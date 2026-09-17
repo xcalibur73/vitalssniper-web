@@ -165,6 +165,42 @@ async function runExtensionE2ETest() {
     const copyHookText = await btnCopyHook.innerText();
     assert(copyHookText.includes('Copied') || copyHookText.includes('Hook'), 'Copy Hook button responded with feedback');
 
+    // Step 5b: Test 4 AI Pitch Tone Variations
+    console.log('\n[STEP 5b] Testing 4 AI Pitch Tone Variations...');
+    const toneData = popupPage.locator('#toneDataDriven');
+    const toneUrgency = popupPage.locator('#toneUrgency');
+    const toneSoftSell = popupPage.locator('#toneSoftSell');
+    const toneAggressive = popupPage.locator('#toneAggressive');
+
+    assert(await toneData.isVisible(), 'Data-Driven tone tab visible');
+    assert(await toneUrgency.isVisible(), 'Urgency tone tab visible');
+    assert(await toneSoftSell.isVisible(), 'Soft-Sell tone tab visible');
+    assert(await toneAggressive.isVisible(), 'Direct/Aggressive tone tab visible');
+
+    // Switch to Urgency Tone
+    await toneUrgency.click();
+    await popupPage.waitForTimeout(200);
+    const urgencyActive = await toneUrgency.evaluate(el => el.classList.contains('active'));
+    assert(urgencyActive, 'Urgency tone button has active class');
+
+    // Switch to Soft-Sell Tone
+    await toneSoftSell.click();
+    await popupPage.waitForTimeout(200);
+    const softSellActive = await toneSoftSell.evaluate(el => el.classList.contains('active'));
+    assert(softSellActive, 'Soft-Sell tone button has active class');
+
+    // Switch to Aggressive Tone
+    await toneAggressive.click();
+    await popupPage.waitForTimeout(200);
+    const aggressiveActive = await toneAggressive.evaluate(el => el.classList.contains('active'));
+    assert(aggressiveActive, 'Direct/Aggressive tone button has active class');
+
+    // Restore Data-Driven Tone
+    await toneData.click();
+    await popupPage.waitForTimeout(200);
+    const dataActive = await toneData.evaluate(el => el.classList.contains('active'));
+    assert(dataActive, 'Data-Driven tone restored to active');
+
     await popupPage.screenshot({ path: path.join(screenshotDir, '3_outreach_dm.png') });
 
     // Step 6: Test 1-Page Teardown Dossier Export (Confirm no ReferenceError)
@@ -210,6 +246,24 @@ async function runExtensionE2ETest() {
       const closeCompBtn = popupPage.locator('#competitorClose');
       if (await closeCompBtn.isVisible()) await closeCompBtn.click();
     }
+
+    // Step 8: Test Bulk Prospect Audit Modal
+    console.log('\n[STEP 8] Testing Bulk Prospect Audit Modal...');
+    const btnBulk = popupPage.locator('#btnBulkAudit');
+    assert(await btnBulk.isVisible(), 'Bulk Audit button is visible in utility grid');
+    
+    await btnBulk.click();
+    await popupPage.waitForTimeout(300);
+    const bulkModal = popupPage.locator('#bulkAuditModal');
+    assert(await bulkModal.isVisible(), 'Bulk Audit modal opened on click');
+
+    const bulkTextarea = popupPage.locator('#bulkUrlsInput');
+    assert(await bulkTextarea.isVisible(), 'Bulk URLs input textarea is visible');
+
+    const bulkClose = popupPage.locator('#bulkAuditClose');
+    await bulkClose.click();
+    await popupPage.waitForTimeout(200);
+    assert(!(await bulkModal.isVisible()), 'Bulk Audit modal closed successfully');
 
     console.log('\n====================================================');
     console.log(`TOTAL E2E CHECKS: ${passed + failed} | PASSED: ${passed} | FAILED: ${failed}`);

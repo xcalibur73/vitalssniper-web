@@ -7,6 +7,7 @@ import AffiliateDisclosure from '@/components/AffiliateDisclosure';
 import EvidenceBox from '@/components/EvidenceBox';
 import { BLOG_POSTS, BlogPost } from '@/data/posts';
 import { PRODUCTS } from '@/data/products';
+import { ARTICLE_CONTENTS } from '@/data/articleContent';
 import {
   ArrowLeft,
   Clock,
@@ -37,6 +38,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       </div>
     );
   }
+
+  const articleContent = ARTICLE_CONTENTS[params.slug];
 
   // Find related tools and articles
   const relatedTool = PRODUCTS.find((p) => p.isOwnProduct) || PRODUCTS[0];
@@ -120,68 +123,204 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               <EvidenceBox evidence={post.evidence} />
             )}
 
-            <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
-              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
-                The Core Bottleneck: Why Typical Audits Fail
-              </h2>
-              <p className="text-charcoal-muted leading-relaxed">
-                When auditing websites for performance and search visibility, most development teams jump straight into minifying JavaScript files or installing generic caching plugins. While those optimizations help marginally, they overlook the structural architectural flaws that actually determine Core Web Vitals rankings: container DOM nesting and uncompressed cellular payload budgets.
-              </p>
-
-              <div className="p-4 rounded-xl bg-[#F7F4EE] border-l-4 border-accent text-xs sm:text-sm text-charcoal leading-relaxed italic">
-                &ldquo;Over 82% of websites audited in our 500-site benchmark suffered from excessive DOM nesting (&gt;1,400 elements), triggering layout thrashing on mobile screens before a single interaction took place.&rdquo;
-              </div>
-
-              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
-                Step-by-Step Diagnostic Protocol
-              </h2>
-              <p className="text-charcoal-muted leading-relaxed">
-                To identify the exact Largest Contentful Paint node sabotaging your load times, follow this systematic order of verification:
-              </p>
-
-              <ul className="space-y-3 text-xs sm:text-sm text-charcoal-light">
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span><strong>Inspect DOM Tree Depth:</strong> Ensure container wrappers do not exceed 32 levels of nesting. Replace multi-layer row/column builders with lightweight CSS grid.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span><strong>Enforce 50KB HTML Ceiling:</strong> Strip unused inline base64 fonts, deferred tracking snippets, and empty tag clutter before transferring HTML across cellular networks.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                  <span><strong>Set High Fetch Priority on Hero Images:</strong> Apply <code className="bg-sand-200 px-1.5 py-0.5 rounded text-charcoal font-mono">fetchpriority=&quot;high&quot;</code> to your top image and eliminate lazy-loading on viewport assets.</span>
-                </li>
-              </ul>
-
-              {/* In-Content Native Tool Callout */}
-              <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6 mt-8">
-                <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
-                  <Wrench className="h-4 w-4" />
-                  <span>Test Your Website in Real-Time</span>
+            {articleContent ? (
+              <div className="space-y-8">
+                {/* Lead Introduction */}
+                <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-4">
+                  <p className="text-sm sm:text-base text-charcoal leading-relaxed font-medium">
+                    {articleContent.introLead}
+                  </p>
                 </div>
-                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
-                  Find Your Site&apos;s Specific Flaws in 50 Milliseconds
-                </h3>
-                <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
-                  Run our free forensic auditor on your target URL to inspect DOM element bloat, identify active page builders, and calculate payload weights.
-                </p>
-                <Link
-                  href="/tools/website-speed-test"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
-                >
-                  <span>Run Free Website Audit</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
 
-              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
-                Recommended Architecture &amp; Conclusion
-              </h2>
-              <p className="text-charcoal-muted leading-relaxed">
-                By focusing on structural containment rather than masking problems with secondary caching layers, websites achieve sustainable sub-second mobile rendering times that pass Google Core Web Vitals and protect organic conversion rates.
-              </p>
-            </div>
+                {/* Key Findings KPI Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {articleContent.keyFindings.map((kf, i) => (
+                    <div key={i} className="paper-card rounded-xl p-4 border-l-4 border-accent">
+                      <div className="text-[10px] font-bold text-accent uppercase tracking-wider mb-1">{kf.metric}</div>
+                      <div className="text-xs text-charcoal font-semibold mb-1 leading-snug">{kf.observation}</div>
+                      <div className="text-[11px] text-charcoal-muted leading-tight">{kf.impact}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Structured Article Sections */}
+                {articleContent.sections.map((sec, sIdx) => (
+                  <div key={sIdx} id={`section-${sIdx}`} className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
+                    <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+                      {sec.title}
+                    </h2>
+
+                    {sec.paragraphs.map((p, pIdx) => (
+                      <p key={pIdx} className="text-charcoal-light leading-relaxed">
+                        {p}
+                      </p>
+                    ))}
+
+                    {sec.callout && (
+                      <div className="p-4 rounded-xl bg-[#F7F4EE] border-l-4 border-accent text-xs sm:text-sm text-charcoal leading-relaxed italic">
+                        {sec.callout.label && (
+                          <span className="not-italic text-accent block mb-1 uppercase text-[10px] font-bold tracking-wider">
+                            {sec.callout.label}
+                          </span>
+                        )}
+                        &ldquo;{sec.callout.text}&rdquo;
+                      </div>
+                    )}
+
+                    {sec.table && (
+                      <div className="overflow-x-auto rounded-xl border border-sand-300 my-4">
+                        <table className="w-full text-left text-xs">
+                          <thead className="bg-[#242321] text-[#F7F4EE]">
+                            <tr>
+                              {sec.table.headers.map((h, hIdx) => (
+                                <th key={hIdx} className="px-4 py-2.5 font-semibold">{h}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-sand-300 bg-white">
+                            {sec.table.rows.map((row, rIdx) => (
+                              <tr key={rIdx} className="hover:bg-sand-50 transition-colors">
+                                {row.map((cell, cIdx) => (
+                                  <td
+                                    key={cIdx}
+                                    className={`px-4 py-2.5 ${cIdx === 0 ? 'font-semibold text-charcoal' : 'text-charcoal-muted'}`}
+                                  >
+                                    {cell}
+                                  </td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+
+                    {sec.codeSnippet && (
+                      <div className="rounded-xl overflow-hidden border border-[#242321] bg-[#11131c] text-sand-100 font-mono text-xs my-4 shadow-sm">
+                        {sec.codeSnippet.caption && (
+                          <div className="px-4 py-2 bg-[#090a10] border-b border-white/10 text-charcoal-subtle text-[11px] font-medium">
+                            {sec.codeSnippet.caption}
+                          </div>
+                        )}
+                        <pre className="p-4 overflow-x-auto leading-relaxed">
+                          <code>{sec.codeSnippet.code}</code>
+                        </pre>
+                      </div>
+                    )}
+
+                    {sec.checklist && (
+                      <div className="p-4 rounded-xl bg-sand-100/50 border border-sand-300 space-y-2.5">
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-charcoal mb-2">
+                          Technical Action Checklist:
+                        </div>
+                        <ul className="space-y-2">
+                          {sec.checklist.map((item, cIdx) => (
+                            <li key={cIdx} className="flex items-start gap-2.5 text-xs text-charcoal-light">
+                              <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* Native In-Content Tool CTA */}
+                <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6">
+                  <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                    <Wrench className="h-4 w-4" />
+                    <span>Live Verification Tool</span>
+                  </div>
+                  <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                    {articleContent.ctaBox.title}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                    {articleContent.ctaBox.desc}
+                  </p>
+                  <Link
+                    href={articleContent.ctaBox.buttonHref}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                  >
+                    <span>{articleContent.ctaBox.buttonText}</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+
+                {/* Verdict Summary Box */}
+                <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-3 border-l-4 border-[#242321]">
+                  <h3 className="font-editorial text-xl font-bold text-charcoal">
+                    Architectural Verdict &amp; Summary
+                  </h3>
+                  <p className="text-sm text-charcoal-muted leading-relaxed">
+                    {articleContent.verdictSummary}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+                  The Core Bottleneck: Why Typical Audits Fail
+                </h2>
+                <p className="text-charcoal-muted leading-relaxed">
+                  When auditing websites for performance and search visibility, most development teams jump straight into minifying JavaScript files or installing generic caching plugins. While those optimizations help marginally, they overlook the structural architectural flaws that actually determine Core Web Vitals rankings: container DOM nesting and uncompressed cellular payload budgets.
+                </p>
+
+                <div className="p-4 rounded-xl bg-[#F7F4EE] border-l-4 border-accent text-xs sm:text-sm text-charcoal leading-relaxed italic">
+                  &ldquo;Over 82% of websites audited in our 500-site benchmark suffered from excessive DOM nesting (&gt;1,400 elements), triggering layout thrashing on mobile screens before a single interaction took place.&rdquo;
+                </div>
+
+                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
+                  Step-by-Step Diagnostic Protocol
+                </h2>
+                <p className="text-charcoal-muted leading-relaxed">
+                  To identify the exact Largest Contentful Paint node sabotaging your load times, follow this systematic order of verification:
+                </p>
+
+                <ul className="space-y-3 text-xs sm:text-sm text-charcoal-light">
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    <span><strong>Inspect DOM Tree Depth:</strong> Ensure container wrappers do not exceed 32 levels of nesting. Replace multi-layer row/column builders with lightweight CSS grid.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    <span><strong>Enforce 50KB HTML Ceiling:</strong> Strip unused inline base64 fonts, deferred tracking snippets, and empty tag clutter before transferring HTML across cellular networks.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    <span><strong>Set High Fetch Priority on Hero Images:</strong> Apply <code className="bg-sand-200 px-1.5 py-0.5 rounded text-charcoal font-mono">fetchpriority=&quot;high&quot;</code> to your top image and eliminate lazy-loading on viewport assets.</span>
+                  </li>
+                </ul>
+
+                {/* In-Content Native Tool Callout */}
+                <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6 mt-8">
+                  <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                    <Wrench className="h-4 w-4" />
+                    <span>Test Your Website in Real-Time</span>
+                  </div>
+                  <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                    Find Your Site&apos;s Specific Flaws in 50 Milliseconds
+                  </h3>
+                  <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                    Run our free forensic auditor on your target URL to inspect DOM element bloat, identify active page builders, and calculate payload weights.
+                  </p>
+                  <Link
+                    href="/tools/website-speed-test"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                  >
+                    <span>Run Free Website Audit</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+
+                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
+                  Recommended Architecture &amp; Conclusion
+                </h2>
+                <p className="text-charcoal-muted leading-relaxed">
+                  By focusing on structural containment rather than masking problems with secondary caching layers, websites achieve sustainable sub-second mobile rendering times that pass Google Core Web Vitals and protect organic conversion rates.
+                </p>
+              </div>
+            )}
 
           </article>
 
@@ -196,26 +335,38 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   <span>Table of Contents</span>
                 </div>
                 <ul className="space-y-2.5 text-xs text-charcoal-muted">
-                  <li>
-                    <a href="#bottlenecks" className="hover:text-accent transition-colors">
-                      1. The Core Bottleneck: Why Typical Audits Fail
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#protocol" className="hover:text-accent transition-colors">
-                      2. Step-by-Step Diagnostic Protocol
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#tools" className="hover:text-accent transition-colors">
-                      3. Live Forensic Testing &amp; Verification
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#conclusion" className="hover:text-accent transition-colors">
-                      4. Recommended Architecture &amp; Conclusion
-                    </a>
-                  </li>
+                  {articleContent ? (
+                    articleContent.sections.map((sec, sIdx) => (
+                      <li key={sIdx}>
+                        <a href={`#section-${sIdx}`} className="hover:text-accent transition-colors">
+                          {sIdx + 1}. {sec.title}
+                        </a>
+                      </li>
+                    ))
+                  ) : (
+                    <>
+                      <li>
+                        <a href="#bottlenecks" className="hover:text-accent transition-colors">
+                          1. The Core Bottleneck: Why Typical Audits Fail
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#protocol" className="hover:text-accent transition-colors">
+                          2. Step-by-Step Diagnostic Protocol
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#tools" className="hover:text-accent transition-colors">
+                          3. Live Forensic Testing &amp; Verification
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#conclusion" className="hover:text-accent transition-colors">
+                          4. Recommended Architecture &amp; Conclusion
+                        </a>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
 
