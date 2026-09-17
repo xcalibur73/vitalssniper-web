@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="waBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242321"/>
+      <stop offset="100%" stop-color="#141312"/>
+    </linearGradient>
+    <linearGradient id="waAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97757"/>
+      <stop offset="100%" stop-color="#B76345"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle Base (Apple/Modern Tech Standard rx=112) -->
+  <rect width="512" height="512" rx="114" fill="url(#waBg)"/>
+  <rect x="8" y="8" width="496" height="496" rx="106" fill="none" stroke="#383632" stroke-width="12"/>
+
+  <!-- Bold Tech Publication Lettermark -->
+  <text x="246" y="328"
+        text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, 'Inter', sans-serif"
+        font-weight="900"
+        font-size="214"
+        letter-spacing="-8"
+        fill="#F7F4EE">WA<tspan fill="url(#waAccent)">.</tspan></text>
+</svg>

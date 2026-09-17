@@ -27,7 +27,14 @@ export const metadata: Metadata = {
   title: 'Web Audits Helper | VitalsSniper PRO - Practical Web Intelligence for Better Websites',
   description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization. Includes VitalsSniper PRO.',
   icons: {
-    icon: '/assets/appsumo_icon_512x512.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   openGraph: {
     title: 'Web Audits Helper - Practical Web Intelligence for Better Websites',
