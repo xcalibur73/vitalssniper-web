@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { Key, CheckCircle2, AlertCircle, Download, ExternalLink, HelpCircle, ShieldCheck, Copy, Check } from 'lucide-react';
@@ -31,6 +31,10 @@ export default function LicenseActivation() {
         throw new Error(data.message || 'Invalid or unrecognized AppSumo code.');
       }
       setVerifiedData(data);
+      try {
+        localStorage.setItem('vs_pro_activated', 'true');
+        window.dispatchEvent(new Event('vs_license_activated'));
+      } catch (e) {}
     } catch (err: any) {
       setError(err.message);
     } finally {

@@ -17,6 +17,7 @@ import {
   Smartphone,
   Sparkles,
   Lock,
+  Key,
 } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
 
@@ -30,6 +31,11 @@ export default function LiveAuditor() {
   const [activeTab, setActiveTab] = useState<'email' | 'dm' | 'loom'>('email');
   const [copied, setCopied] = useState(false);
   const [triesLeft, setTriesLeft] = useState<number>(MAX_DEMO_TRIES);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [unlockKey, setUnlockKey] = useState('');
+  const [unlockLoading, setUnlockLoading] = useState(false);
+  const [unlockError, setUnlockError] = useState<string | null>(null);
+  const [showKeyInput, setShowKeyInput] = useState(false);
 
   useEffect(() => {
     try {
@@ -39,8 +45,43 @@ export default function LiveAuditor() {
       } else {
         localStorage.setItem('vs_demo_tries_left', MAX_DEMO_TRIES.toString());
       }
+
+      if (localStorage.getItem('vs_pro_activated') === 'true') {
+        setIsUnlocked(true);
+      }
     } catch (e) {}
+
+    const handleActivated = () => setIsUnlocked(true);
+    window.addEventListener('vs_license_activated', handleActivated);
+    return () => window.removeEventListener('vs_license_activated', handleActivated);
   }, []);
+
+  async function handleDirectUnlock(e: React.FormEvent) {
+    e.preventDefault();
+    if (!unlockKey.trim()) return;
+    setUnlockLoading(true);
+    setUnlockError(null);
+    try {
+      const res = await fetch('/api/license/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: unlockKey.trim() }),
+      });
+      const data = await res.json();
+      if (!data.valid) {
+        throw new Error(data.message || 'Invalid or unrecognized AppSumo code.');
+      }
+      setIsUnlocked(true);
+      try {
+        localStorage.setItem('vs_pro_activated', 'true');
+        window.dispatchEvent(new Event('vs_license_activated'));
+      } catch (err) {}
+    } catch (err: any) {
+      setUnlockError(err.message);
+    } finally {
+      setUnlockLoading(false);
+    }
+  }
 
   async function handleAudit(targetUrl?: string) {
     const finalUrl = targetUrl || url;
@@ -240,170 +281,258 @@ export default function LiveAuditor() {
               </div>
             </div>
 
-            {/* Telemetry Metric Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 my-6">
+            {/* Results Body: Telemetry + Improvements + Outreach with Blurred Lock Layer */}
+            <div className="relative mt-6 rounded-2xl">
               
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <Layers className="h-3.5 w-3.5 text-emerald-400" />
-                  <span>CMS / Builder</span>
-                </div>
-                <div className="text-sm font-bold text-white truncate" title={result.telemetry.detectedCms}>
-                  {result.telemetry.detectedCms}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <FileCode className="h-3.5 w-3.5 text-blue-400" />
-                  <span>DOM Elements</span>
-                </div>
-                <div
-                  className={`text-sm font-bold ${
-                    result.telemetry.totalElements > 1400 ? 'text-amber-400' : 'text-white'
-                  }`}
-                >
-                  {result.telemetry.totalElements.toLocaleString()}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <Gauge className="h-3.5 w-3.5 text-purple-400" />
-                  <span>Document Size</span>
-                </div>
-                <div
-                  className={`text-sm font-bold ${
-                    result.telemetry.docKb > 50 ? 'text-rose-400' : 'text-emerald-400'
-                  }`}
-                >
-                  {result.telemetry.docKb} KB
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <Smartphone className="h-3.5 w-3.5 text-yellow-400" />
-                  <span>Mobile Zoom</span>
-                </div>
-                <div className="text-sm font-bold">
-                  {result.telemetry.isZoomLocked ? (
-                    <span className="text-rose-400">Locked ✕</span>
-                  ) : (
-                    <span className="text-emerald-400">Scalable ✓</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
-                  <span>AI Schema</span>
-                </div>
-                <div className="text-sm font-bold truncate">
-                  {result.telemetry.hasSchema ? (
-                    <span className="text-emerald-400">{result.telemetry.schemaType}</span>
-                  ) : (
-                    <span className="text-rose-400">Missing ✕</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
-                <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
-                  <Gauge className="h-3.5 w-3.5 text-teal-400" />
-                  <span>Server TTFB</span>
-                </div>
-                <div className="text-sm font-bold text-white">
-                  {result.ttfb} ms
-                </div>
-              </div>
-
-            </div>
-
-            {/* Recommended Technical Improvements (Actionable & 0 Design Changes) */}
-            {result.improvements && result.improvements.length > 0 && (
-              <div className="mb-6 rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-4 sm:p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
-                    <CheckCircle2 className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-white">Recommended Technical Improvements</h4>
-                    <span className="text-[11px] text-emerald-400 font-medium">100% Visual Design Invariance Guarantee &bull; Zero Aesthetic Disruption</span>
-                  </div>
-                </div>
-                <div className="grid gap-2.5">
-                  {result.improvements.map((imp: string, idx: number) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300">
-                      <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-[11px] font-bold text-emerald-400 mt-0.5">
-                        {idx + 1}
-                      </span>
-                      <span className="leading-relaxed">{imp}</span>
+              {/* Content Container (Blurred when !isUnlocked) */}
+              <div
+                className={`transition-all duration-500 ${
+                  !isUnlocked ? 'filter blur-md select-none pointer-events-none opacity-25' : ''
+                }`}
+              >
+                {/* Telemetry Metric Cards */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-6">
+                  
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <Layers className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>CMS / Builder</span>
                     </div>
-                  ))}
+                    <div className="text-sm font-bold text-white truncate" title={result.telemetry.detectedCms}>
+                      {result.telemetry.detectedCms}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <FileCode className="h-3.5 w-3.5 text-blue-400" />
+                      <span>DOM Elements</span>
+                    </div>
+                    <div
+                      className={`text-sm font-bold ${
+                        result.telemetry.totalElements > 1400 ? 'text-amber-400' : 'text-white'
+                      }`}
+                    >
+                      {result.telemetry.totalElements.toLocaleString()}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <Gauge className="h-3.5 w-3.5 text-purple-400" />
+                      <span>Document Size</span>
+                    </div>
+                    <div
+                      className={`text-sm font-bold ${
+                        result.telemetry.docKb > 50 ? 'text-rose-400' : 'text-emerald-400'
+                      }`}
+                    >
+                      {result.telemetry.docKb} KB
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <Smartphone className="h-3.5 w-3.5 text-yellow-400" />
+                      <span>Mobile Zoom</span>
+                    </div>
+                    <div className="text-sm font-bold">
+                      {result.telemetry.isZoomLocked ? (
+                        <span className="text-rose-400">Locked ✕</span>
+                      ) : (
+                        <span className="text-emerald-400">Scalable ✓</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
+                      <span>AI Schema</span>
+                    </div>
+                    <div className="text-sm font-bold truncate">
+                      {result.telemetry.hasSchema ? (
+                        <span className="text-emerald-400">{result.telemetry.schemaType}</span>
+                      ) : (
+                        <span className="text-rose-400">Missing ✕</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border border-white/10 bg-[#0e1017] p-3.5">
+                    <div className="text-[11px] font-medium text-gray-400 mb-1 flex items-center gap-1.5">
+                      <Gauge className="h-3.5 w-3.5 text-teal-400" />
+                      <span>Server TTFB</span>
+                    </div>
+                    <div className="text-sm font-bold text-white">
+                      {result.ttfb} ms
+                    </div>
+                  </div>
+
                 </div>
+
+                {/* Recommended Technical Improvements (Actionable & 0 Design Changes) */}
+                {result.improvements && result.improvements.length > 0 && (
+                  <div className="mb-6 rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
+                        <CheckCircle2 className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-white">Recommended Technical Improvements</h4>
+                        <span className="text-[11px] text-emerald-400 font-medium">100% Visual Design Invariance Guarantee &bull; Zero Aesthetic Disruption</span>
+                      </div>
+                    </div>
+                    <div className="grid gap-2.5">
+                      {result.improvements.map((imp: string, idx: number) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300">
+                          <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-[11px] font-bold text-emerald-400 mt-0.5">
+                            {idx + 1}
+                          </span>
+                          <span className="leading-relaxed">{imp}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Generated Outreach Copy Box */}
+                <div className="rounded-xl border border-white/10 bg-[#0b0d14] p-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    
+                    {/* Channel Switcher */}
+                    <div className="flex items-center gap-1.5 rounded-lg bg-surface p-1 border border-white/10">
+                      <button
+                        onClick={() => setActiveTab('email')}
+                        className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                          activeTab === 'email' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Mail className="h-3.5 w-3.5" />
+                        <span>Cold Email</span>
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('dm')}
+                        className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                          activeTab === 'dm' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Linkedin className="h-3.5 w-3.5" />
+                        <span>LinkedIn DM</span>
+                      </button>
+                      <button
+                        onClick={() => setActiveTab('loom')}
+                        className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                          activeTab === 'loom' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Video className="h-3.5 w-3.5" />
+                        <span>30s Loom Script</span>
+                      </button>
+                    </div>
+
+                    {/* Copy Button */}
+                    <button
+                      onClick={() => handleCopy(result.outreach[activeTab])}
+                      className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-white/10 transition-colors"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-3.5 w-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3.5 w-3.5" />
+                          <span>Copy Pitch Script</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Pitch Script Preview */}
+                  <pre className="whitespace-pre-wrap font-sans text-xs sm:text-sm text-gray-300 leading-relaxed max-h-64 overflow-y-auto pr-2">
+                    {result.outreach[activeTab]}
+                  </pre>
+                </div>
+
               </div>
-            )}
 
-            {/* Generated Outreach Copy Box */}
-            <div className="rounded-xl border border-white/10 bg-[#0b0d14] p-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                
-                {/* Channel Switcher */}
-                <div className="flex items-center gap-1.5 rounded-lg bg-surface p-1 border border-white/10">
-                  <button
-                    onClick={() => setActiveTab('email')}
-                    className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
-                      activeTab === 'email' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
-                    }`}
-                  >
-                    <Mail className="h-3.5 w-3.5" />
-                    <span>Cold Email</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('dm')}
-                    className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
-                      activeTab === 'dm' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
-                    }`}
-                  >
-                    <Linkedin className="h-3.5 w-3.5" />
-                    <span>LinkedIn DM</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('loom')}
-                    className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
-                      activeTab === 'loom' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
-                    }`}
-                  >
-                    <Video className="h-3.5 w-3.5" />
-                    <span>30s Loom Script</span>
-                  </button>
-                </div>
+              {/* Blurred Lock Layer Overlay when !isUnlocked */}
+              {!isUnlocked && (
+                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#0d0f1a]/85 backdrop-blur-md p-6 sm:p-10 text-center border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] animate-in fade-in duration-300">
+                  
+                  {/* Glowing Lock Icon */}
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-500/20 via-amber-500/10 to-emerald-500/10 text-amber-400 shadow-[0_0_40px_rgba(245,158,11,0.3)]">
+                    <Lock className="h-8 w-8 animate-pulse" />
+                  </div>
 
-                {/* Copy Button */}
-                <button
-                  onClick={() => handleCopy(result.outreach[activeTab])}
-                  className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-white/10 transition-colors"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="h-3.5 w-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-3.5 w-3.5" />
-                      <span>Copy Pitch Script</span>
-                    </>
+                  <h3 className="text-xl sm:text-3xl font-black text-white tracking-tight mb-2.5">
+                    Full Diagnostic Report &amp; Outreach Pitches Locked
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6 leading-relaxed">
+                    You're viewing a free preview for <strong className="text-white">{result.domain}</strong>. To unlock the full forensic telemetry, actionable code remediation steps, and 1-click cold pitch generator, buy the lifetime license on AppSumo.
+                  </p>
+
+                  {/* Primary & Secondary Action CTAs */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-4">
+                    <a
+                      href={SITE_CONFIG.appsumoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-500 px-6 py-3.5 text-xs sm:text-sm font-black text-black shadow-[0_10px_30px_rgba(16,185,129,0.35)] hover:from-emerald-300 hover:to-emerald-400 transition-all flex items-center justify-center gap-2 transform hover:scale-[1.02]"
+                    >
+                      <span>Unlock Full Report on AppSumo ($39)</span>
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+
+                    <button
+                      onClick={() => setShowKeyInput(!showKeyInput)}
+                      className="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 px-5 py-3.5 text-xs sm:text-sm font-bold text-white transition-all text-center flex items-center justify-center gap-2"
+                    >
+                      <Key className="h-4 w-4 text-emerald-400" />
+                      <span>Already bought? Activate Key</span>
+                    </button>
+                  </div>
+
+                  {/* Inline Activation Input if toggled */}
+                  {showKeyInput && (
+                    <form onSubmit={handleDirectUnlock} className="w-full max-w-md mx-auto mt-2 p-3.5 rounded-xl border border-white/15 bg-black/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2">
+                      <label className="block text-left text-[11px] font-bold text-gray-300 mb-1.5">
+                        Enter Your AppSumo Redemption Code:
+                      </label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          required
+                          value={unlockKey}
+                          onChange={(e) => setUnlockKey(e.target.value)}
+                          placeholder="e.g. VS-PRO-XXXX-XXXX"
+                          className="flex-1 rounded-lg border border-white/15 bg-[#141724] px-3.5 py-2 text-xs font-mono uppercase text-white outline-none focus:border-emerald-500"
+                        />
+                        <button
+                          type="submit"
+                          disabled={unlockLoading}
+                          className="rounded-lg bg-emerald-500 px-4 py-2 text-xs font-bold text-black hover:bg-emerald-400 disabled:opacity-50 transition-colors"
+                        >
+                          {unlockLoading ? 'Verifying...' : 'Unlock Now'}
+                        </button>
+                      </div>
+                      {unlockError && (
+                        <p className="mt-2 text-[11px] text-rose-400 text-left font-medium">{unlockError}</p>
+                      )}
+                    </form>
                   )}
-                </button>
-              </div>
 
-              {/* Pitch Script Preview */}
-              <pre className="whitespace-pre-wrap font-sans text-xs sm:text-sm text-gray-300 leading-relaxed max-h-64 overflow-y-auto pr-2">
-                {result.outreach[activeTab]}
-              </pre>
+                  <div className="mt-4 flex items-center gap-2 text-[11px] text-gray-400 flex-wrap justify-center">
+                    <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                    <span>60-Day Money-Back Guarantee &bull; Lifetime Chrome Extension Access &bull; 0 Server Queues</span>
+                  </div>
+
+                </div>
+              )}
+
             </div>
 
           </div>
