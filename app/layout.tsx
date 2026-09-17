@@ -16,14 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://webaudits.pro'),
-  title: 'Web Audits Helper | VitalsSniper PRO: Turn Website Bottlenecks Into High-Ticket Retainers',
-  description: '1-Click CMS & builder detector, DOM bloat scanner, cellular payload budget inspector, and high-converting agency outreach engine.',
+  title: 'Web Audits Helper | VitalsSniper PRO - Web Tools Reviewed, Ranked, and Trusted',
+  description: 'Your trusted guide to web performance tools, hosting, and site speed. Independent reviews, speed benchmarks, and our flagship VitalsSniper PRO inspector.',
   icons: {
     icon: '/assets/appsumo_icon_512x512.png',
   },
   openGraph: {
-    title: 'Web Audits Helper | VitalsSniper PRO: Turn Website Bottlenecks Into High-Ticket Retainers',
-    description: '1-Click Page Builder & DOM Bloat Telemetry for Agencies and Digital Consultants.',
+    title: 'Web Audits Helper - Web Tools Reviewed, Ranked, and Trusted',
+    description: 'Independent reviews of hosting, page builders, SEO tools, and web performance software. Plus VitalsSniper PRO - the 50ms website forensics inspector.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
   },
 };

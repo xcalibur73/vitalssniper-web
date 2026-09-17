@@ -24,6 +24,11 @@ module.exports = {
           light: '#34d399',
           glow: 'rgba(16, 185, 129, 0.25)',
         },
+        indigo: {
+          DEFAULT: '#6366f1',
+          light: '#818cf8',
+          glow: 'rgba(99, 102, 241, 0.25)',
+        },
       },
       fontFamily: {
         sans: ['var(--font-plus-jakarta)', 'sans-serif'],

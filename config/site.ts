@@ -1,15 +1,27 @@
 export const SITE_CONFIG = {
   name: 'Web Audits Helper',
   legacyName: 'VitalsSniper PRO',
+  tagline: 'Web Tools. Reviewed. Ranked. Trusted.',
   domain: 'webaudits.pro',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://webaudits.pro',
   supportEmail: 'support@webaudits.pro',
-  description: '1-Click Proof-of-Flaw Web Inspector & Agency Client Acquisition Engine',
+  description: 'Your trusted guide to web performance tools, hosting, and site speed - plus our flagship VitalsSniper PRO inspector.',
   appsumoUrl: process.env.NEXT_PUBLIC_APPSUMO_URL || 'https://appsumo.com/products/vitalssniper',
   docsUrl: '/docs',
   licenseUrl: '/license',
   dashboardUrl: '/dashboard',
   pricingUrl: '/pricing',
+  vitalsniperUrl: '/vitalssniper',
+  toolsUrl: '/tools',
+  blogUrl: '/blog',
+  categories: [
+    'Speed & Performance',
+    'Hosting & CDN',
+    'Page Builders',
+    'SEO Tools',
+    'Analytics',
+    'Security',
+  ] as const,
   pricing: {
     free: {
       price: 0,

@@ -3,7 +3,7 @@ import path from 'path';
 
 async function runLiveSuite() {
   console.log('====================================================');
-  console.log('🚀 STARTING VITALS-SNIPER PRO LIVE VERIFICATION SUITE');
+  console.log('🚀 STARTING WEB AUDITS HELPER LIVE VERIFICATION SUITE');
   console.log('====================================================\n');
 
   const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -25,15 +25,27 @@ async function runLiveSuite() {
 
   try {
     // ----------------------------------------------------
-    // TEST SECTION 1: Web App Landing Page & Navigation
+    // TEST SECTION 1: Brand Hub Homepage & Navigation
     // ----------------------------------------------------
-    console.log('[SECTION 1] Testing Web App Landing & Deliverables Showcase...');
+    console.log('[SECTION 1] Testing Brand Hub Homepage & Navigation...');
     await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
     
     const title = await page.title();
-    assert(title.includes('VitalsSniper PRO'), 'Page title correctly renders VitalsSniper PRO');
+    assert(title.includes('VitalsSniper PRO') && title.includes('Web Audits Helper'), 'Page title correctly renders brand name and VitalsSniper PRO');
 
-    // Deliverables grid check (9 items)
+    const homeText = await page.innerText('body');
+    assert(homeText.includes('Find the Right Web Tools'), 'Brand hero headline rendered cleanly');
+    assert(homeText.includes('Built by Us, Trusted by Agencies'), 'VitalsSniper spotlight section rendered');
+    assert(homeText.includes('Top Web Tools We Recommend'), 'Curated tools grid rendered');
+    assert(homeText.includes('From the Blog'), 'Blog preview section rendered');
+
+    // ----------------------------------------------------
+    // TEST SECTION 2: VitalsSniper PRO Product Page & Live Auditor
+    // ----------------------------------------------------
+    console.log('\n[SECTION 2] Testing Dedicated VitalsSniper PRO Product Page & Auditor...');
+    await page.goto('http://localhost:3000/vitalssniper', { waitUntil: 'networkidle' });
+
+    // Deliverables grid check
     const deliverableCards = await page.$$('section#deliverables .grid > div');
     assert(deliverableCards.length >= 6, `Deliverables grid rendered with ${deliverableCards.length} items`);
 
@@ -43,10 +55,6 @@ async function runLiveSuite() {
     assert(deliverablesText.includes('1-Click Lead Pipeline & CSV Export'), 'Lead Pipeline CRM featured in deliverables');
     assert(deliverablesText.includes('White-Label Agency PDF & Booking CTA'), 'White-Label PDF featured in deliverables');
 
-    // ----------------------------------------------------
-    // TEST SECTION 2: Live Auditor & Frosted-Glass Lock Layer
-    // ----------------------------------------------------
-    console.log('\n[SECTION 2] Testing Live Auditor & Frosted-Glass Blurred Lock Layer...');
     await page.locator('#auditor').scrollIntoViewIfNeeded();
 
     // Click sample button for instant audit
@@ -111,9 +119,24 @@ async function runLiveSuite() {
     assert(loomContent.includes('0:00') && loomContent.includes('0:08'), '30-second Loom script rendered with timestamps');
 
     // ----------------------------------------------------
-    // TEST SECTION 5: Extension Popup Functionality in Browser
+    // TEST SECTION 5: Curated Tools Catalog & Review Pages
     // ----------------------------------------------------
-    console.log('\n[SECTION 5] Testing VitalsSniper Extension Popup UI & Modals...');
+    console.log('\n[SECTION 5] Testing Tools Catalog & Review Routes...');
+    await page.goto('http://localhost:3000/tools', { waitUntil: 'networkidle' });
+    const toolsText = await page.innerText('body');
+    assert(toolsText.includes('Web Tools Catalog'), 'Tools catalog heading displayed');
+    assert(toolsText.includes('Cloudways') && toolsText.includes('GeneratePress'), 'Affiliate tools present in catalog');
+
+    // Test individual tool review page
+    await page.goto('http://localhost:3000/tools/cloudways', { waitUntil: 'networkidle' });
+    const reviewText = await page.innerText('body');
+    assert(reviewText.includes('Cloudways'), 'Cloudways review page rendered');
+    assert(reviewText.includes('Pros') && reviewText.includes('Cons'), 'Pros and Cons displayed on review page');
+
+    // ----------------------------------------------------
+    // TEST SECTION 6: Extension Popup Functionality in Browser
+    // ----------------------------------------------------
+    console.log('\n[SECTION 6] Testing VitalsSniper Extension Popup UI & Modals...');
     const extPopupPath = 'file:///' + path.resolve('../vitalssniper_extension/popup.html').replace(/\\/g, '/');
     await page.goto(extPopupPath, { waitUntil: 'load' });
     await page.waitForTimeout(1000);
