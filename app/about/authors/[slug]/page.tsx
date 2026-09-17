@@ -47,16 +47,44 @@ export default function AuthorProfilePage({ params }: AuthorPageProps) {
     '@type': 'ProfilePage',
     mainEntity: {
       '@type': 'Person',
+      '@id': `https://www.webaudits.pro/about/authors/${author.slug}#person`,
       name: author.name,
       jobTitle: author.role,
       description: author.bio,
+      url: `https://www.webaudits.pro/about/authors/${author.slug}`,
       knowsAbout: author.specialization,
       worksFor: {
         '@type': 'Organization',
+        '@id': 'https://www.webaudits.pro/#organization',
         name: 'Web Audits',
         url: 'https://www.webaudits.pro',
       },
     },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: 'https://www.webaudits.pro/about',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: author.name,
+        item: `https://www.webaudits.pro/about/authors/${author.slug}`,
+      },
+    ],
   };
 
   return (
@@ -65,6 +93,11 @@ export default function AuthorProfilePage({ params }: AuthorPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Navbar />
 

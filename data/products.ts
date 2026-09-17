@@ -20,6 +20,7 @@ export interface Product {
   name: string;
   category: ProductCategory;
   isOwnProduct: boolean;
+  editorialRating: number;
   verdict: string;
   description: string;
   pricing: string;
@@ -46,6 +47,7 @@ export const PRODUCTS: Product[] = [
     name: 'VitalsSniper PRO',
     category: 'Speed & Performance',
     isOwnProduct: true,
+    editorialRating: 4.9,
     verdict: 'In-browser diagnostic inspector for active-tab website forensics and client proposal proof sheets.',
     description:
       'VitalsSniper PRO is an active-tab website inspector designed for agencies, SEO consultants, and performance specialists. It executes client-side diagnostics in your browser, isolates LCP elements visually on screen, and generates white-label tear sheets for client proposals.',
@@ -85,6 +87,7 @@ export const PRODUCTS: Product[] = [
     name: 'Cloudways',
     category: 'Hosting & CDN',
     isOwnProduct: false,
+    editorialRating: 4.8,
     verdict: 'Managed cloud hosting platform with built-in server-level caching across top cloud providers.',
     description:
       'Cloudways simplifies managed cloud hosting on infrastructure providers like DigitalOcean, AWS, and Google Cloud. It provides built-in server-level caches, staging environments, and automated backups for mission-critical web properties.',
@@ -124,6 +127,7 @@ export const PRODUCTS: Product[] = [
     name: 'GeneratePress',
     category: 'Page Builders',
     isOwnProduct: false,
+    editorialRating: 4.9,
     verdict: 'Ultra-lightweight WordPress theme engineered for speed, accessibility, and zero layout shift.',
     description:
       'GeneratePress is an open-source, performance-first WordPress theme. Designed with strict accessibility and Core Web Vitals standards, it adds less than 10KB to initial page payloads while offering modular block-based layout elements.',
@@ -163,6 +167,7 @@ export const PRODUCTS: Product[] = [
     name: 'Cloudflare',
     category: 'Hosting & CDN',
     isOwnProduct: false,
+    editorialRating: 4.8,
     verdict: 'Global edge network delivering CDN caching, DNS resolution, and DDoS mitigation.',
     description:
       'Cloudflare operates a global edge network spanning hundreds of cities. It accelerates web delivery, protects domains against automated DDoS attacks, and provides edge computing via Cloudflare Workers.',
@@ -202,6 +207,7 @@ export const PRODUCTS: Product[] = [
     name: 'Rank Math',
     category: 'SEO Tools',
     isOwnProduct: false,
+    editorialRating: 4.7,
     verdict: 'Modular WordPress SEO plugin featuring granular Schema.org generator and search analytics.',
     description:
       'Rank Math is a modern WordPress SEO plugin designed to streamline on-page optimization. It features a modular architecture, structured data generator, Google Search Console integration, and automated redirection monitoring.',
@@ -241,6 +247,7 @@ export const PRODUCTS: Product[] = [
     name: 'Ahrefs',
     category: 'SEO Tools',
     isOwnProduct: false,
+    editorialRating: 4.8,
     verdict: 'Comprehensive SEO toolset with fresh backlink index, keyword explorer, and SERP diagnostics.',
     description:
       'Ahrefs provides a comprehensive and frequently updated backlink index in search marketing. Its Site Explorer, Keywords Explorer, and Content Explorer empower SEO specialists to discover ranking opportunities and diagnose competitor gaps.',
@@ -280,6 +287,7 @@ export const PRODUCTS: Product[] = [
     name: 'WP Rocket',
     category: 'Speed & Performance',
     isOwnProduct: false,
+    editorialRating: 4.6,
     verdict: 'Turnkey WordPress caching and asset optimization plugin with automated script delay.',
     description:
       'WP Rocket is a premium caching plugin for WordPress designed to deliver fast Core Web Vitals improvements with minimal manual configuration. It handles page caching, CSS/JS minimization, lazy loading, and delay of unused JavaScript.',
@@ -319,6 +327,7 @@ export const PRODUCTS: Product[] = [
     name: 'Plausible Analytics',
     category: 'Analytics',
     isOwnProduct: false,
+    editorialRating: 4.9,
     verdict: 'Lightweight, privacy-first web analytics platform requiring zero cookie consent banners.',
     description:
       'Plausible Analytics is an open-source, lightweight alternative to Google Analytics that complies fully with GDPR, CCPA, and PECR without requiring cookie banners. Its script weighs less than 1KB, preventing main-thread blocking.',

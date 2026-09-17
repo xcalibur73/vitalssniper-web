@@ -75,6 +75,53 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
   const relatedGuide = BLOG_POSTS.find((p) => p.slug === tool.relatedGuideSlug) || BLOG_POSTS[0];
   const relatedSisterTool = FREE_TOOLS.find((t) => t.slug === tool.relatedToolSlug) || FREE_TOOLS[0];
 
+  const webAppSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: tool.name,
+    description: tool.fullDescription || tool.shortDescription,
+    url: `https://www.webaudits.pro/tools/${tool.slug}`,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'All modern browsers',
+    browserRequirements: 'Requires JavaScript',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Web Audits',
+      url: 'https://www.webaudits.pro',
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Tools',
+        item: 'https://www.webaudits.pro/tools',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: tool.name,
+        item: `https://www.webaudits.pro/tools/${tool.slug}`,
+      },
+    ],
+  };
+
   const handleRunAudit = (targetUrlToTest?: string) => {
     const target = targetUrlToTest || inputUrl;
     if (!target.trim()) return;
@@ -92,6 +139,15 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
 
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org WebApplication & Breadcrumbs JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       {/* Header Breadcrumb */}

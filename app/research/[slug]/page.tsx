@@ -33,8 +33,65 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
     notFound();
   }
 
+  const datasetSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: study.title,
+    description: study.summary,
+    url: `https://www.webaudits.pro/research/${study.slug}`,
+    creator: {
+      '@type': 'Organization',
+      name: 'Web Audits',
+      url: 'https://www.webaudits.pro',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Web Audits',
+      url: 'https://www.webaudits.pro',
+    },
+    datePublished: study.date,
+    temporalCoverage: '2025/2026',
+    spatialCoverage: 'Global',
+    variableMeasured: study.metrics.map((m) => m.label),
+    measurementTechnique: study.methodology,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Research',
+        item: 'https://www.webaudits.pro/research',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: study.title,
+        item: `https://www.webaudits.pro/research/${study.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org Dataset & Breadcrumbs JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <div className="py-12 border-b border-sand-300 bg-white">

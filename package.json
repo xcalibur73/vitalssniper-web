@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:schemas": "node tests/validate_schemas.mjs",
+    "test:e2e": "node tests/run_editorial_e2e.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

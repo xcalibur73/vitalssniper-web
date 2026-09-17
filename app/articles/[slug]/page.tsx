@@ -107,6 +107,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     dateModified: post.date,
     author: {
       '@type': 'Person',
+      '@id': `https://www.webaudits.pro/about/authors/${authorSlug}#person`,
       name: authorObj?.name || post.author,
       jobTitle: authorObj?.role || 'Technical Author',
       url: `https://www.webaudits.pro/about/authors/${authorSlug}`,
@@ -128,6 +129,59 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     keywords: `${post.category}, ${post.tag}, Web Performance, Core Web Vitals, Website Audit`,
   };
 
+  const categorySlugMap: Record<string, string> = {
+    'Web Performance': 'web-performance',
+    'SEO': 'seo',
+    'AI Search': 'ai-search',
+    'Web Design': 'web-design',
+    'Conversion': 'conversion',
+    'Tools': 'tools',
+  };
+  const catSlug = categorySlugMap[post.category];
+
+  const breadcrumbItems = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.webaudits.pro',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Articles',
+      item: 'https://www.webaudits.pro/articles',
+    },
+  ];
+
+  if (catSlug) {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: post.category,
+      item: `https://www.webaudits.pro/articles/${catSlug}`,
+    });
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 4,
+      name: post.title,
+      item: `https://www.webaudits.pro/articles/${post.slug}`,
+    });
+  } else {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: post.title,
+      item: `https://www.webaudits.pro/articles/${post.slug}`,
+    });
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems,
+  };
+
   return (
     <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
@@ -137,6 +191,11 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+        {/* Schema.org BreadcrumbList JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
 
         {/* Navigation Breadcrumb */}

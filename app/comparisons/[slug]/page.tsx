@@ -34,8 +34,38 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
     notFound();
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Comparisons',
+        item: 'https://www.webaudits.pro/comparisons',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: comp.title,
+        item: `https://www.webaudits.pro/comparisons/${comp.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <div className="py-12 border-b border-sand-300 bg-white">

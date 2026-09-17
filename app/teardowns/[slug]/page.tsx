@@ -33,8 +33,70 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
     notFound();
   }
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: td.title,
+    description: td.seoFinding,
+    url: `https://www.webaudits.pro/teardowns/${td.slug}`,
+    image: ['https://www.webaudits.pro/assets/appsumo_hero_1920x1080.png'],
+    datePublished: '2026-03-01',
+    author: {
+      '@type': 'Organization',
+      name: 'Web Audits Editorial Team',
+      url: 'https://www.webaudits.pro',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Web Audits',
+      url: 'https://www.webaudits.pro',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.webaudits.pro/favicon.svg',
+      },
+    },
+    about: {
+      '@type': 'Thing',
+      name: td.targetType,
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Teardowns',
+        item: 'https://www.webaudits.pro/teardowns',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: td.title,
+        item: `https://www.webaudits.pro/teardowns/${td.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org TechArticle & Breadcrumbs JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <div className="py-12 border-b border-sand-300 bg-white">

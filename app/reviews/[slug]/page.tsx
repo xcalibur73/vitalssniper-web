@@ -60,6 +60,12 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
       applicationCategory: product.category,
       operatingSystem: 'All Platforms',
     },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: product.editorialRating.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
     reviewBody: product.verdict,
     author: {
       '@type': 'Organization',
@@ -77,12 +83,41 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Reviews',
+        item: 'https://www.webaudits.pro/reviews',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: `${product.name} Review`,
+        item: `https://www.webaudits.pro/reviews/${product.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
-      {/* Schema.org Review JSON-LD */}
+      {/* Schema.org Review & Breadcrumbs JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Navbar />
 
@@ -134,7 +169,11 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+            <div className="p-3.5 rounded-xl bg-accent/5 border border-accent/20">
+              <span className="text-accent block text-[10px] uppercase font-bold">Benchmark Score:</span>
+              <span className="font-bold text-accent text-sm">{product.editorialRating} / 5.0</span>
+            </div>
             <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Environment:</span>
               <span className="font-bold text-charcoal">{product.testedStack}</span>

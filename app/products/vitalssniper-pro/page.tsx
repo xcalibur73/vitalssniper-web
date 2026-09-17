@@ -76,8 +76,67 @@ export default function VitalsSniperProductPage() {
     'Zero monthly subscription fees: all future core updates included',
   ];
 
+  const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'VitalsSniper PRO',
+    operatingSystem: 'Chromium browsers (Chrome, Edge, Brave, Arc, Opera)',
+    applicationCategory: 'DeveloperApplication',
+    description:
+      'Proof-of-flaw web inspector and outreach engine for performance agencies and technical SEO consultants.',
+    url: 'https://www.webaudits.pro/products/vitalssniper-pro',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      description: 'Free public beta access with full in-tab telemetry and white-label tear sheets.',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://www.webaudits.pro/#organization',
+      name: 'Web Audits',
+      url: 'https://www.webaudits.pro',
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: 'https://www.webaudits.pro/vitalssniper',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'VitalsSniper PRO',
+        item: 'https://www.webaudits.pro/products/vitalssniper-pro',
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org SoftwareApplication JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       {/* Hero Section */}
