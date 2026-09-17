@@ -14,9 +14,9 @@ export default function ProductReview({ params }: { params: { slug: string } }) 
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#08090e] text-[#f9fafb] flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Product not found</h1>
-        <Link href="/tools" className="text-emerald-500 hover:text-emerald-400 flex items-center">
+      <div className="min-h-screen bg-[#faf8f5] text-[#18181b] flex flex-col items-center justify-center">
+        <h1 className="font-editorial text-3xl font-bold mb-4">Product not found</h1>
+        <Link href="/tools" className="text-terracotta hover:underline flex items-center">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Tools
         </Link>
       </div>
@@ -26,135 +26,138 @@ export default function ProductReview({ params }: { params: { slug: string } }) 
   const relatedTools = PRODUCTS.filter((p) => p.category === product.category && p.slug !== product.slug).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#08090e] bg-tech-grid text-[#f9fafb] flex flex-col">
+    <div className="min-h-screen bg-[#faf8f5] text-[#18181b] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1 max-w-6xl mx-auto px-6 py-16 w-full">
-        <Link href="/tools" className="inline-flex items-center text-gray-400 hover:text-emerald-500 transition-colors mb-8 font-medium">
-          <ArrowLeft className="w-4 h-4 mr-2" /> Back to Tools
+        <Link href="/tools" className="inline-flex items-center text-xs font-semibold text-charcoal-muted hover:text-charcoal transition-colors mb-8">
+          <ArrowLeft className="w-3.5 h-3.5 mr-1.5" /> Back to Tools Catalog
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Review Column */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-[#12141d] rounded-2xl p-8 border border-white/5">
-              <div className="flex items-start gap-6 mb-6">
-                <div className="text-5xl">{product.iconEmoji}</div>
+            <div className="paper-card rounded-2xl p-6 sm:p-8">
+              <div className="flex items-start gap-5 mb-6">
+                <div className="text-4xl sm:text-5xl">{product.iconEmoji}</div>
                 <div>
-                  <h1 className="text-3xl font-extrabold mb-2">{product.name}</h1>
+                  <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mb-2">{product.name}</h1>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="px-3 py-1 bg-white/5 rounded-full text-xs font-medium text-gray-300">
+                    <span className="editorial-pill">
                       {product.category}
                     </span>
                     {product.isOwnProduct && (
-                      <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 rounded-full text-xs font-bold">
-                        Our Product
+                      <span className="px-3 py-0.5 bg-terracotta text-white rounded-full text-xs font-bold">
+                        Our Flagship Tool
                       </span>
                     )}
-                    <div className="flex items-center text-yellow-400">
+                    <div className="flex items-center text-amber-600 font-bold text-xs">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-current' : 'text-gray-600'}`} />
+                        <Star key={i} className={`w-3.5 h-3.5 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-500' : 'text-sand-400'}`} />
                       ))}
-                      <span className="ml-2 text-sm text-gray-400">{product.rating}/5</span>
+                      <span className="ml-1.5">{product.rating.toFixed(1)} / 5.0</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">{product.description}</p>
+              <p className="text-sm sm:text-base text-charcoal-muted leading-relaxed mb-6">{product.description}</p>
               
               <div className="mb-8">
                 <AffiliateDisclosure compact={true} />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              {/* Pros & Cons */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 p-5 rounded-xl bg-[#faf8f5] border border-sand-300">
                 <div>
-                  <h3 className="text-xl font-bold mb-4 flex items-center text-emerald-400">
-                    <Check className="w-5 h-5 mr-2" /> Pros
+                  <h3 className="font-editorial text-lg font-bold mb-3 flex items-center text-emerald-800">
+                    <Check className="w-4 h-4 mr-1.5 text-emerald-600" /> Key Strengths
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {product.pros.map((pro, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <Check className="w-4 h-4 mr-2 mt-1 text-emerald-500 shrink-0" />
-                        <span className="text-gray-300 text-sm leading-relaxed">{pro}</span>
+                      <li key={idx} className="flex items-start text-xs text-charcoal-muted">
+                        <Check className="w-3.5 h-3.5 mr-1.5 mt-0.5 text-emerald-600 shrink-0" />
+                        <span>{pro}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-4 flex items-center text-red-400">
-                    <XIcon className="w-5 h-5 mr-2" /> Cons
+                  <h3 className="font-editorial text-lg font-bold mb-3 flex items-center text-rose-800">
+                    <XIcon className="w-4 h-4 mr-1.5 text-rose-500" /> Limitations
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {product.cons.map((con, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <XIcon className="w-4 h-4 mr-2 mt-1 text-red-500 shrink-0" />
-                        <span className="text-gray-300 text-sm leading-relaxed">{con}</span>
+                      <li key={idx} className="flex items-start text-xs text-charcoal-muted">
+                        <XIcon className="w-3.5 h-3.5 mr-1.5 mt-0.5 text-rose-500 shrink-0" />
+                        <span>{con}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-bold mb-4">Key Features</h3>
-                <ul className="space-y-3 bg-white/5 rounded-xl p-6">
+              {/* Features List */}
+              <div className="mb-8">
+                <h3 className="font-editorial text-xl font-bold text-charcoal mb-4">Core Capabilities</h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {product.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center">
-                      <Check className="w-5 h-5 mr-3 text-emerald-500 shrink-0" />
-                      <span className="text-gray-200">{feature}</span>
+                    <li key={idx} className="flex items-center text-xs text-charcoal-light p-3 rounded-lg bg-[#faf8f5] border border-sand-300">
+                      <Check className="w-3.5 h-3.5 mr-2 text-terracotta shrink-0" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/10">
+              <div className="pt-6 border-t border-sand-300">
                 {product.isOwnProduct ? (
-                  <Link href="/vitalssniper" className="w-full flex items-center justify-center py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold transition-colors">
-                    See Full Product Details <ArrowRight className="w-5 h-5 ml-2" />
+                  <Link href="/vitalssniper" className="w-full flex items-center justify-center py-3.5 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-bold text-sm transition-colors shadow-sm">
+                    <span>See Full VitalsSniper PRO Details</span> <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 ) : (
-                  <a href={product.affiliateUrl} rel="nofollow sponsored noopener" target="_blank" className="w-full flex items-center justify-center py-4 bg-white hover:bg-gray-100 text-[#090a10] rounded-xl font-bold transition-colors">
-                    Visit {product.name} <ExternalLink className="w-5 h-5 ml-2" />
+                  <a href={product.affiliateUrl} rel="nofollow sponsored noopener" target="_blank" className="w-full flex items-center justify-center py-3.5 bg-charcoal hover:bg-black text-white rounded-xl font-bold text-sm transition-colors shadow-sm">
+                    <span>Visit {product.name}</span> <ExternalLink className="w-4 h-4 ml-2" />
                   </a>
                 )}
               </div>
             </div>
           </div>
 
+          {/* Sticky Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
-              <div className="bg-[#12141d] rounded-2xl p-6 border border-white/5">
-                <div className="mb-6">
-                  <p className="text-sm text-gray-400 mb-1">Starting from</p>
-                  <p className="text-3xl font-extrabold text-emerald-400">{product.pricing}</p>
+              <div className="paper-card rounded-2xl p-6">
+                <div className="mb-5">
+                  <p className="text-xs font-semibold text-charcoal-subtle uppercase tracking-wider mb-1">Pricing Model</p>
+                  <p className="font-editorial text-2xl font-bold text-terracotta">{product.pricing}</p>
                 </div>
                 
-                <div className="mb-6">
-                  <p className="text-sm text-gray-400 mb-2">Our Verdict</p>
-                  <p className="text-sm text-gray-200 italic">"{product.verdict}"</p>
+                <div className="mb-6 pb-6 border-b border-sand-300">
+                  <p className="text-xs font-semibold text-charcoal-subtle uppercase tracking-wider mb-1">Editorial Verdict</p>
+                  <p className="text-xs text-charcoal-muted leading-relaxed italic">{product.verdict}</p>
                 </div>
 
                 {product.isOwnProduct ? (
-                  <Link href="/vitalssniper" className="w-full flex items-center justify-center py-3 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 rounded-xl font-bold transition-colors">
-                    View Details
+                  <Link href="/vitalssniper" className="w-full flex items-center justify-center py-3 bg-terracotta text-white rounded-xl font-bold text-xs hover:bg-terracotta-dark transition-colors shadow-xs">
+                    Get Lifetime License ($39)
                   </Link>
                 ) : (
-                  <a href={product.affiliateUrl} rel="nofollow sponsored noopener" target="_blank" className="w-full flex items-center justify-center py-3 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-400 border border-indigo-500/30 rounded-xl font-bold transition-colors">
-                    Get {product.name} <ExternalLink className="w-4 h-4 ml-2" />
+                  <a href={product.affiliateUrl} rel="nofollow sponsored noopener" target="_blank" className="w-full flex items-center justify-center py-3 bg-charcoal text-white rounded-xl font-bold text-xs hover:bg-black transition-colors shadow-xs">
+                    Visit Official Site <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
                   </a>
                 )}
               </div>
 
               {relatedTools.length > 0 && (
-                <div className="bg-[#12141d] rounded-2xl p-6 border border-white/5">
-                  <h3 className="font-bold mb-4">Related Tools</h3>
-                  <div className="space-y-4">
-                    {relatedTools.map(tool => (
-                      <Link key={tool.slug} href={`/tools/${tool.slug}`} className="flex items-center group">
-                        <div className="w-8 h-8 flex items-center justify-center bg-white/5 rounded-lg mr-3 group-hover:bg-white/10 transition-colors">
-                          {tool.iconEmoji}
-                        </div>
+                <div className="paper-card rounded-2xl p-6">
+                  <h3 className="font-editorial text-lg font-bold text-charcoal mb-4">Related in {product.category}</h3>
+                  <div className="space-y-3">
+                    {relatedTools.map((tool) => (
+                      <Link key={tool.slug} href={`/tools/${tool.slug}`} className="flex items-center gap-3 p-2 rounded-lg hover:bg-sand-200 transition-colors group">
+                        <span className="text-xl">{tool.iconEmoji}</span>
                         <div>
-                          <p className="text-sm font-medium group-hover:text-emerald-400 transition-colors">{tool.name}</p>
+                          <p className="text-xs font-bold text-charcoal group-hover:text-terracotta transition-colors">{tool.name}</p>
+                          <p className="text-[11px] text-charcoal-subtle">{tool.pricing}</p>
                         </div>
                       </Link>
                     ))}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Sparkles, Menu, X } from 'lucide-react';
+import { Sparkles, Menu, X, ArrowRight, Wrench } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
 
 interface NavbarProps {
@@ -14,69 +14,67 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
+    { label: 'Articles', href: '/articles' },
     { label: 'Tools', href: '/tools' },
-    { label: 'Reviews', href: '/blog' },
-    { label: 'VitalsSniper PRO', href: '/vitalssniper' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Free Audit', href: '/free-audit-report' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Resources', href: '/resources' },
+    { label: 'About', href: '/about' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-[#090a10]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-sand-300 bg-[#faf8f5]/90 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6">
         
-        {/* Brand */}
+        {/* Brand Logo & Editorial Wordmark */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-white/20 shadow-[0_0_16px_rgba(16,185,129,0.25)] transition-transform group-hover:scale-105">
+          <div className="relative h-9 w-9 overflow-hidden rounded-lg border border-sand-300 bg-white shadow-sm transition-transform group-hover:scale-105">
             <Image
               src="/assets/appsumo_icon_512x512.png"
-              alt="Web Audits Helper Logo"
+              alt="Web Audits Helper"
               width={36}
               height={36}
               className="h-full w-full object-cover"
             />
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-lg tracking-tight text-white">Web Audits</span>
-            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-bold text-emerald-400">
+            <span className="font-editorial text-2xl font-bold tracking-tight text-charcoal">
+              Web Audits
+            </span>
+            <span className="rounded-md border border-terracotta/20 bg-terracotta/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-terracotta">
               Helper
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        {/* Desktop Editorial Navigation Links */}
+        <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                link.label === 'VitalsSniper PRO'
-                  ? 'text-emerald-400 hover:text-emerald-300'
-                  : 'text-gray-400 hover:text-white'
-              }`}
+              className="text-sm font-semibold text-charcoal-muted transition-colors hover:text-charcoal"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Right Side: CTA + Mobile Toggle */}
+        {/* Primary Header CTA */}
         <div className="flex items-center gap-3">
           <Link
-            href="/vitalssniper"
-            className="hidden sm:flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-xs font-bold text-black shadow-[0_4px_14px_rgba(255,255,255,0.2)] transition-all hover:bg-gray-100 hover:scale-[1.02]"
+            href="/tools"
+            className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-terracotta px-4 py-2 text-xs font-bold text-white shadow-sm transition-all hover:bg-terracotta-dark hover:shadow hover:scale-[1.02]"
           >
-            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-            <span>Get VitalsSniper PRO</span>
-            <span className="rounded bg-black/10 px-1.5 py-0.5 text-[10px] font-extrabold">$39</span>
+            <Wrench className="h-3.5 w-3.5" />
+            <span>Try Free Tools</span>
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-white/10 text-gray-400 hover:text-white transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-sand-300 text-charcoal hover:bg-sand-200 transition-colors"
+            aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -84,27 +82,28 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
 
       </div>
 
-      {/* Mobile Nav Drawer */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-white/[0.08] bg-[#090a10]/95 backdrop-blur-xl px-6 py-4 space-y-1">
+        <div className="md:hidden border-t border-sand-300 bg-[#faf8f5] px-6 py-5 space-y-2 shadow-lg">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-colors"
+              className="block rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-sand-200 transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <div className="pt-3 border-t border-white/[0.06]">
+          <div className="pt-3 border-t border-sand-300">
             <Link
-              href="/vitalssniper"
+              href="/tools"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-black hover:bg-gray-100 transition-all"
+              className="flex items-center justify-center gap-2 rounded-xl bg-terracotta px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-terracotta-dark transition-all"
             >
-              <Sparkles className="h-4 w-4 text-emerald-600" />
-              <span>Get VitalsSniper PRO: $39</span>
+              <Wrench className="h-4 w-4" />
+              <span>Try Free Tools</span>
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

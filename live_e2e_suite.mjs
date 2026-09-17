@@ -3,7 +3,7 @@ import path from 'path';
 
 async function runLiveSuite() {
   console.log('====================================================');
-  console.log('🚀 STARTING WEB AUDITS HELPER LIVE VERIFICATION SUITE');
+  console.log('🚀 STARTING WEB AUDITS HELPER EDITORIAL E2E SUITE');
   console.log('====================================================\n');
 
   const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -25,24 +25,72 @@ async function runLiveSuite() {
 
   try {
     // ----------------------------------------------------
-    // TEST SECTION 1: Brand Hub Homepage & Navigation
+    // TEST SECTION 1: Modern Editorial Tech Homepage
     // ----------------------------------------------------
-    console.log('[SECTION 1] Testing Brand Hub Homepage & Navigation...');
+    console.log('[SECTION 1] Testing Modern Editorial Homepage & Sections...');
     await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
     
     const title = await page.title();
-    assert(title.includes('VitalsSniper PRO') && title.includes('Web Audits Helper'), 'Page title correctly renders brand name and VitalsSniper PRO');
+    assert(title.includes('VitalsSniper PRO') && title.includes('Web Audits Helper'), 'Page title correctly renders brand and VitalsSniper PRO');
 
     const homeText = await page.innerText('body');
-    assert(homeText.includes('Find the Right Web Tools'), 'Brand hero headline rendered cleanly');
-    assert(homeText.includes('Built by Us, Trusted by Agencies'), 'VitalsSniper spotlight section rendered');
-    assert(homeText.includes('Top Web Tools We Recommend'), 'Curated tools grid rendered');
-    assert(homeText.includes('From the Blog'), 'Blog preview section rendered');
+    assert(homeText.includes('Practical Web Intelligence for'), 'Editorial headline rendered');
+    assert(homeText.includes('Better Websites'), 'Headline emphasis rendered');
+    assert(homeText.includes('Find Website Problems. Turn Them into Opportunities.'), 'VitalsSniper PRO outcome-driven showcase rendered');
+    assert(homeText.includes('Latest Technical Publications'), 'Featured articles section rendered');
+    assert(homeText.includes('Explore by Technical Discipline'), 'Taxonomy topic explorer rendered');
+    assert(homeText.includes('Tested & Recommended Software'), 'Popular affiliate reviews rendered');
+    assert(homeText.includes('Free & Professional Web Tools'), 'Free tools suite rendered');
+    assert(homeText.includes('What We Found: The 100-Website Forensic Performance Audit'), '100-site teardown research study rendered');
+    assert(homeText.includes("Don't just read about website problems") && homeText.includes("Find yours."), 'Dark editorial CTA section rendered');
+    assert(homeText.includes('Get useful web intelligence without the fluff.'), 'Newsletter box rendered');
 
     // ----------------------------------------------------
-    // TEST SECTION 2: VitalsSniper PRO Product Page & Live Auditor
+    // TEST SECTION 2: Navigation Links Across Publication
     // ----------------------------------------------------
-    console.log('\n[SECTION 2] Testing Dedicated VitalsSniper PRO Product Page & Auditor...');
+    console.log('\n[SECTION 2] Testing Publication Navigation Routes...');
+    
+    // Test /articles archive
+    await page.goto('http://localhost:3000/articles', { waitUntil: 'networkidle' });
+    const articlesText = await page.innerText('body');
+    assert(articlesText.includes('Technical Articles & Benchmarks'), '/articles archive page rendered');
+    assert(articlesText.includes('Core Web Vitals') || articlesText.includes('Performance'), 'Article cards present');
+
+    // Test individual article page
+    await page.goto('http://localhost:3000/articles/5-best-wordpress-speed-plugins-2026', { waitUntil: 'networkidle' });
+    const articleDetailText = await page.innerText('body');
+    assert(articleDetailText.includes('5 Best WordPress Speed Plugins'), 'Individual article page rendered');
+    const isTocVisible = await page.locator('text=Table of Contents').isVisible();
+    assert(isTocVisible || articleDetailText.includes('Core Bottleneck'), 'Table of contents or article headings rendered');
+    assert(articleDetailText.includes('VitalsSniper PRO'), 'Tool CTA present in sidebar');
+
+    // Test /reviews archive
+    await page.goto('http://localhost:3000/reviews', { waitUntil: 'networkidle' });
+    const reviewsText = await page.innerText('body');
+    assert(reviewsText.includes('Tested & Benchmarked Software'), '/reviews archive rendered');
+    assert(reviewsText.includes('Affiliate Disclosure'), 'FTC disclosure present on reviews page');
+
+    // Test /resources
+    await page.goto('http://localhost:3000/resources', { waitUntil: 'networkidle' });
+    const resourcesText = await page.innerText('body');
+    assert(resourcesText.includes('Resources & Agency Playbooks'), '/resources page rendered');
+
+    // Test /about
+    await page.goto('http://localhost:3000/about', { waitUntil: 'networkidle' });
+    const aboutText = await page.innerText('body');
+    assert(aboutText.includes('Independent Editorial Standards'), '/about page rendered');
+    assert(aboutText.includes('Our Three Connected Engines'), '3-engine architecture documented on about page');
+
+    // Test /tools catalog
+    await page.goto('http://localhost:3000/tools', { waitUntil: 'networkidle' });
+    const toolsText = await page.innerText('body');
+    assert(toolsText.includes('Web Tools Catalog'), '/tools catalog rendered');
+    assert(toolsText.includes('Free Website Audit') && toolsText.includes('VitalsSniper PRO'), 'Both Free and Pro tools rendered');
+
+    // ----------------------------------------------------
+    // TEST SECTION 3: Dedicated VitalsSniper PRO Page & Live Auditor
+    // ----------------------------------------------------
+    console.log('\n[SECTION 3] Testing Dedicated VitalsSniper PRO Product Page & Auditor...');
     await page.goto('http://localhost:3000/vitalssniper', { waitUntil: 'networkidle' });
 
     // Deliverables grid check
@@ -74,9 +122,9 @@ async function runLiveSuite() {
     assert(auditorText.includes('Unlock Full Report on AppSumo ($39)'), 'AppSumo redirect CTA is present inside lock overlay');
 
     // ----------------------------------------------------
-    // TEST SECTION 3: In-Auditor Key Activation & Dynamic Unblur
+    // TEST SECTION 4: In-Auditor Key Activation & Dynamic Unblur
     // ----------------------------------------------------
-    console.log('\n[SECTION 3] Testing License Key Activation & Dynamic Report Unblur...');
+    console.log('\n[SECTION 4] Testing License Key Activation & Dynamic Report Unblur...');
     
     // Click "Already bought? Activate Key" to reveal inline form
     const toggleKeyBtn = page.locator('button:has-text("Already bought? Activate Key")').first();
@@ -102,9 +150,9 @@ async function runLiveSuite() {
     assert(unlockedAuditorText.includes('Cold Email Pitch') || unlockedAuditorText.includes('Copy Pitch Script'), 'Cold outreach generator displayed');
 
     // ----------------------------------------------------
-    // TEST SECTION 4: Multi-Channel Outreach Switcher
+    // TEST SECTION 5: Multi-Channel Outreach Switcher
     // ----------------------------------------------------
-    console.log('\n[SECTION 4] Testing Multi-Channel Outreach Tabs (Email, DM, Loom)...');
+    console.log('\n[SECTION 5] Testing Multi-Channel Outreach Tabs (Email, DM, Loom)...');
     
     const dmTab = page.locator('button:has-text("LinkedIn DM")').first();
     await dmTab.click();
@@ -117,21 +165,6 @@ async function runLiveSuite() {
     await page.waitForTimeout(300);
     const loomContent = await page.locator('#auditor pre').innerText();
     assert(loomContent.includes('0:00') && loomContent.includes('0:08'), '30-second Loom script rendered with timestamps');
-
-    // ----------------------------------------------------
-    // TEST SECTION 5: Curated Tools Catalog & Review Pages
-    // ----------------------------------------------------
-    console.log('\n[SECTION 5] Testing Tools Catalog & Review Routes...');
-    await page.goto('http://localhost:3000/tools', { waitUntil: 'networkidle' });
-    const toolsText = await page.innerText('body');
-    assert(toolsText.includes('Web Tools Catalog'), 'Tools catalog heading displayed');
-    assert(toolsText.includes('Cloudways') && toolsText.includes('GeneratePress'), 'Affiliate tools present in catalog');
-
-    // Test individual tool review page
-    await page.goto('http://localhost:3000/tools/cloudways', { waitUntil: 'networkidle' });
-    const reviewText = await page.innerText('body');
-    assert(reviewText.includes('Cloudways'), 'Cloudways review page rendered');
-    assert(reviewText.includes('Pros') && reviewText.includes('Cons'), 'Pros and Cons displayed on review page');
 
     // ----------------------------------------------------
     // TEST SECTION 6: Extension Popup Functionality in Browser

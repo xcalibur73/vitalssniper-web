@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans, JetBrains_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -14,16 +14,24 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+  adjustFontFallback: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://webaudits.pro'),
-  title: 'Web Audits Helper | VitalsSniper PRO - Web Tools Reviewed, Ranked, and Trusted',
-  description: 'Your trusted guide to web performance tools, hosting, and site speed. Independent reviews, speed benchmarks, and our flagship VitalsSniper PRO inspector.',
+  title: 'Web Audits Helper | VitalsSniper PRO - Practical Web Intelligence for Better Websites',
+  description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization. Includes VitalsSniper PRO.',
   icons: {
     icon: '/assets/appsumo_icon_512x512.png',
   },
   openGraph: {
-    title: 'Web Audits Helper - Web Tools Reviewed, Ranked, and Trusted',
-    description: 'Independent reviews of hosting, page builders, SEO tools, and web performance software. Plus VitalsSniper PRO - the 50ms website forensics inspector.',
+    title: 'Web Audits Helper - Practical Web Intelligence for Better Websites',
+    description: 'Analyze websites, discover problems, learn how to fix them, and find the tools that can help. Educational guides, independent tool reviews, and proprietary audit tools.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
   },
 };
@@ -34,9 +42,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} dark`}>
-      <body className="bg-[#090a10] text-[#f9fafb] antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
-        <div className="ambient-glow" />
+    <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}>
+      <body className="bg-[#faf8f5] text-[#18181b] antialiased selection:bg-terracotta/20 selection:text-terracotta-dark min-h-screen flex flex-col font-sans">
         {children}
       </body>
     </html>

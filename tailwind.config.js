@@ -8,16 +8,39 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#090a10',
+        background: '#faf8f5',
+        foreground: '#18181b',
         surface: {
           DEFAULT: '#12141d',
           elevated: '#181b28',
           card: '#141724',
         },
         border: {
-          DEFAULT: 'rgba(255, 255, 255, 0.08)',
-          hover: 'rgba(255, 255, 255, 0.18)',
-          active: 'rgba(16, 185, 129, 0.4)',
+          DEFAULT: 'rgba(231, 227, 218, 0.8)',
+          dark: 'rgba(255, 255, 255, 0.08)',
+          hover: 'rgba(194, 65, 12, 0.3)',
+          active: '#c2410c',
+        },
+        terracotta: {
+          DEFAULT: '#c2410c',
+          light: '#ea580c',
+          dark: '#9a3412',
+          subtle: 'rgba(194, 65, 12, 0.08)',
+          border: 'rgba(194, 65, 12, 0.25)',
+        },
+        sand: {
+          50: '#fdfbf7',
+          100: '#faf8f5',
+          200: '#f4f0ea',
+          300: '#e7e3da',
+          400: '#d5cfc3',
+          500: '#a8a29e',
+        },
+        charcoal: {
+          DEFAULT: '#18181b',
+          light: '#27272a',
+          muted: '#52525b',
+          subtle: '#71717a',
         },
         emerald: {
           DEFAULT: '#10b981',
@@ -31,7 +54,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-plus-jakarta)', 'sans-serif'],
+        sans: ['var(--font-plus-jakarta)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Newsreader', 'Georgia', 'Cambria', 'serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       borderRadius: {
