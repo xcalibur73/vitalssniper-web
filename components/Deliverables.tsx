@@ -1,0 +1,102 @@
+﻿import React from 'react';
+import { Layers, FileCode, Gauge, Smartphone, Sparkles, Download, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+
+export default function Deliverables() {
+  const items = [
+    {
+      icon: Layers,
+      title: '1-Click Page Builder Detection',
+      desc: 'Instantly identifies Elementor, Divi, WPBakery, Avada, Salient, Squarespace, Webflow, Shopify, or Next.js directly from live DOM fingerprints.',
+      pill: 'CMS Telemetry',
+    },
+    {
+      icon: Gauge,
+      title: 'DOM Bloat & Cellular Payload',
+      desc: 'Flags excessive container nesting (>1,400 elements) and uncompressed HTML transfer size exceeding Google’s 50KB mobile cellular ceiling.',
+      pill: 'Speed Invariants',
+    },
+    {
+      icon: Sparkles,
+      title: 'AI Citation Schema Readiness',
+      desc: 'Verifies whether prospective client sites have valid Knowledge Graph JSON-LD schemas required to be cited in ChatGPT, Perplexity, and Copilot answers.',
+      pill: 'GEO & AI Search',
+    },
+    {
+      icon: FileCode,
+      title: '3-Sentence Multi-Channel Pitch Generator',
+      desc: 'Auto-generates non-salesy, high-response Cold Emails, LinkedIn DMs, and 30-second Loom pitch scripts citing their specific performance flaws.',
+      pill: 'Client Acquisition',
+    },
+    {
+      icon: Download,
+      title: 'Executive 1-Page PDF Teardown Dossier',
+      desc: 'Export clean, print-optimized technical teardown cards. Attach them directly to your email outreach to look like a high-ticket $500/hr consultant.',
+      pill: 'PDF Deliverable',
+    },
+    {
+      icon: Zap,
+      title: '100% Client-Side / Zero Server Lag',
+      desc: 'Runs in 50 milliseconds directly in your browser. No external API queues, no third-party rate limits, and zero tracking scripts.',
+      pill: '50ms Execution',
+    },
+  ];
+
+  return (
+    <section id="deliverables" className="py-20 border-t border-white/[0.08] bg-[#0c0d14]/50">
+      <div className="mx-auto max-w-6xl px-6">
+        
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 mb-4">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            <span>Commercial Deliverables</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+            What You Get with VitalsSniper PRO
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-base">
+            Everything included in your lifetime package to turn technical client website flaws into closed retainers.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-white/10 bg-[#12141d] p-6 sm:p-7 flex flex-col justify-between shadow-lg hover:border-white/20 transition-all group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-105 transition-transform">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold text-gray-400">
+                      {item.pill}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Deliverables summary strip */}
+        <div className="mt-10 rounded-2xl border border-white/10 bg-[#141724] p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-white font-semibold">
+            <ShieldCheck className="h-4 w-4 text-emerald-400" />
+            <span>Package includes: <code>vitalssniper_pro.zip</code> &bull; Activation Key &bull; Lifetime Updates</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-400 font-bold">100% Commercial Rights</span>
+            <span>&bull;</span>
+            <span>Chrome, Brave, Edge & Firefox</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Search,
   CheckCircle2,
@@ -16,7 +16,11 @@ import {
   Gauge,
   Smartphone,
   Sparkles,
+  Lock,
 } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
+
+const MAX_DEMO_TRIES = 4;
 
 export default function LiveAuditor() {
   const [url, setUrl] = useState('');
@@ -25,10 +29,27 @@ export default function LiveAuditor() {
   const [result, setResult] = useState<any | null>(null);
   const [activeTab, setActiveTab] = useState<'email' | 'dm' | 'loom'>('email');
   const [copied, setCopied] = useState(false);
+  const [triesLeft, setTriesLeft] = useState<number>(MAX_DEMO_TRIES);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('vs_demo_tries_left');
+      if (stored !== null) {
+        setTriesLeft(parseInt(stored, 10));
+      } else {
+        localStorage.setItem('vs_demo_tries_left', MAX_DEMO_TRIES.toString());
+      }
+    } catch (e) {}
+  }, []);
 
   async function handleAudit(targetUrl?: string) {
     const finalUrl = targetUrl || url;
     if (!finalUrl.trim()) return;
+
+    if (triesLeft <= 0) {
+      setError('You have used all 4 free demo audits. Please activate your AppSumo license or purchase access to run unlimited audits.');
+      return;
+    }
 
     setLoading(true);
     setError(null);
@@ -46,6 +67,12 @@ export default function LiveAuditor() {
         throw new Error(data.error || 'Failed to analyze site.');
       }
       setResult(data);
+
+      const nextTries = Math.max(0, triesLeft - 1);
+      setTriesLeft(nextTries);
+      try {
+        localStorage.setItem('vs_demo_tries_left', nextTries.toString());
+      } catch (e) {}
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -64,18 +91,54 @@ export default function LiveAuditor() {
       <div className="mx-auto max-w-5xl px-6">
         
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 mb-4">
+        <div className="text-center mb-8">
+          <div className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs font-semibold mb-4 transition-colors ${
+            triesLeft > 0
+              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+              : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
+          }`}>
             <Sparkles className="h-3.5 w-3.5" />
-            Interactive In-Browser Demo
+            <span>
+              Live Demo &bull; {triesLeft > 0 ? `${triesLeft} of ${MAX_DEMO_TRIES} Free Scans Remaining` : '0 Free Scans Left (Demo Limit Reached)'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
             Test Any Website in Real-Time
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-base">
-            Type any prospect’s website URL to run live DOM bloat, Page Builder, and cellular payload telemetry.
+            Type any prospect’s website URL to test live DOM bloat, Page Builder, and cellular payload telemetry.
           </p>
         </div>
+
+        {/* Locked Banner when 0 tries left */}
+        {triesLeft <= 0 && (
+          <div className="mx-auto max-w-2xl mb-8 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-6 text-center shadow-lg animate-in fade-in">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mb-3">
+              <Lock className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Free Demo Limit Reached (4/4 Audits Used)</h3>
+            <p className="text-xs text-gray-300 max-w-md mx-auto mb-5 leading-relaxed">
+              You've used all 4 free web demo audits. To run unlimited audits in 50ms directly from your Chrome toolbar with 0 server queues, activate your AppSumo voucher above or buy a lifetime license.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="#activate"
+                className="w-full sm:w-auto rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-emerald-400"
+              >
+                Activate AppSumo Key & Download (.zip)
+              </a>
+              <a
+                href={SITE_CONFIG.appsumoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto rounded-xl bg-white px-5 py-2.5 text-xs font-bold text-black transition-all hover:bg-gray-100 flex items-center justify-center gap-1.5"
+              >
+                <span>Buy on AppSumo ($39)</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+        )}
 
         {/* Input Bar */}
         <div className="mx-auto max-w-2xl mb-4">
@@ -84,28 +147,33 @@ export default function LiveAuditor() {
               e.preventDefault();
               handleAudit();
             }}
-            className="flex flex-col sm:flex-row gap-2.5 rounded-2xl border border-white/10 bg-[#12141d] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] focus-within:border-emerald-500/50"
+            className={`flex flex-col sm:flex-row gap-2.5 rounded-2xl border bg-[#12141d] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] focus-within:border-emerald-500/50 ${
+              triesLeft <= 0 ? 'opacity-60 border-white/5' : 'border-white/10'
+            }`}
           >
             <div className="flex flex-1 items-center gap-3 px-3">
               <Search className="h-5 w-5 text-gray-500" />
               <input
                 type="text"
+                disabled={triesLeft <= 0}
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="e.g. interiorstudio.com or lawfirm.com"
-                className="w-full bg-transparent text-sm sm:text-base text-white outline-none placeholder:text-gray-500"
+                placeholder={triesLeft > 0 ? "e.g. interiorstudio.com or lawfirm.com" : "Demo limit reached — activate license above"}
+                className="w-full bg-transparent text-sm sm:text-base text-white outline-none placeholder:text-gray-500 disabled:cursor-not-allowed"
               />
             </div>
             <button
               type="submit"
-              disabled={loading}
-              className="flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-black transition-all hover:bg-gray-100 disabled:opacity-50"
+              disabled={loading || triesLeft <= 0}
+              className="flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-black transition-all hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
                   <span>Scanning...</span>
                 </>
+              ) : triesLeft <= 0 ? (
+                <span>Demo Locked</span>
               ) : (
                 <span>Scan Website</span>
               )}

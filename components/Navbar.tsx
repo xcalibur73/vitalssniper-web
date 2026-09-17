@@ -36,33 +36,30 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
 
         {/* Center Nav Links */}
         <nav className="hidden items-center gap-7 md:flex">
-          <a href="#auditor" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Live Scanner
-          </a>
-          <a href="#features" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Features
-          </a>
-          <a href="#pricing" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Pricing
-          </a>
-          <Link href="/docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Docs & Playbook
-          </Link>
-          <Link href="/license" className="flex items-center gap-1.5 text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400">
+          <a href="#activate" className="text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400 flex items-center gap-1.5">
             <Key className="h-3.5 w-3.5" />
-            License Portal
-          </Link>
+            <span>Activate & Download</span>
+          </a>
+          <a href="#auditor" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            Live Demo (4 Tries)
+          </a>
+          <a href="#deliverables" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            What You Get
+          </a>
+          <a href="#docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            Documentation & Setup
+          </a>
         </nav>
 
         {/* Action CTAs */}
         <div className="flex items-center gap-3">
-          <Link
-            href="/license"
+          <a
+            href="#activate"
             className="hidden rounded-lg border border-white/10 bg-surface px-3.5 py-2 text-xs font-semibold text-gray-300 transition-colors hover:border-white/20 hover:text-white sm:flex items-center gap-1.5"
           >
             <Key className="h-3 w-3 text-emerald-400" />
-            <span>Redeem AppSumo Code</span>
-          </Link>
+            <span>Redeem Code</span>
+          </a>
 
           <a
             href={SITE_CONFIG.appsumoUrl}
