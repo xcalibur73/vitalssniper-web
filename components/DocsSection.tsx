@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { BookOpen, Terminal, CheckCircle2, Copy, Send, FileText, ArrowRight } from 'lucide-react';
 
 export default function DocsSection() {
@@ -101,9 +101,9 @@ export default function DocsSection() {
                   A
                 </div>
                 <div>
-                  <h4 className="font-bold text-white mb-1">Prospect Local or Niche Websites</h4>
+                  <h4 className="font-bold text-white mb-1">Open Any Target Website</h4>
                   <p className="text-gray-400 leading-relaxed">
-                    Search Google or Clutch for dental practices, law firms, e-commerce stores, or SaaS companies spending money on Google/Facebook Ads.
+                    Navigate to any client, competitor, or prospect website you want to analyze in your browser.
                   </p>
                 </div>
               </div>
