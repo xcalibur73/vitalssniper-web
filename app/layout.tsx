@@ -15,14 +15,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://vitalssniper.com'),
-  title: 'VitalsSniper PRO: Proof-of-Flaw Web Inspector & Outreach Engine',
+  metadataBase: new URL('https://webaudits.pro'),
+  title: 'WebAudits PRO | VitalsSniper PRO: Turn Website Bottlenecks Into High-Ticket Retainers',
   description: '1-Click CMS & builder detector, DOM bloat scanner, cellular payload budget inspector, and high-converting agency outreach engine.',
   icons: {
     icon: '/assets/appsumo_icon_512x512.png',
   },
   openGraph: {
-    title: 'VitalsSniper PRO: Turn Website Bottlenecks Into High-Ticket Retainers',
+    title: 'WebAudits PRO | VitalsSniper PRO: Turn Website Bottlenecks Into High-Ticket Retainers',
     description: '1-Click Page Builder & DOM Bloat Telemetry for Agencies and Digital Consultants.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
   },

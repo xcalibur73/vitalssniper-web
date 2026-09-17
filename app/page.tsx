@@ -45,9 +45,9 @@ export default function HomePage() {
 
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-6">
-            Close $3,000+ Speed & Core Web Vitals Retainers <br className="hidden sm:inline" />
+            Turn Client Website Bottlenecks Into <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-white via-gray-200 to-emerald-400 bg-clip-text text-transparent">
-              in 50 Milliseconds
+              $3,000+ Speed Retainers
             </span>
           </h1>
 
@@ -135,7 +135,7 @@ export default function HomePage() {
                 <span className="h-3 w-3 rounded-full bg-emerald-500/80 inline-block" />
               </div>
               <span className="font-mono text-[11px] text-gray-400">
-                VitalsSniper PRO &bull; Active Tab Forensic Diagnostic Inspector
+                WebAudits PRO &bull; Active Tab Forensic Diagnostic Inspector
               </span>
               <span className="text-[11px] text-emerald-400 font-bold hidden sm:inline">Manifest V3 Certified</span>
             </div>
