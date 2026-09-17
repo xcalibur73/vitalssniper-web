@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     description: 'Analyze websites, discover problems, learn how to fix them, and find the tools that can help. Educational guides, independent tool reviews, and proprietary audit tools.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
   },
+  verification: {
+    google: 'MFBAeQ1oIPTijXK0ARXfJSf52mZCWjbCk1XMYnu9lyE',
+  },
 };
 
 export default function RootLayout({
