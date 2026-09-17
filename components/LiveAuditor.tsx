@@ -56,16 +56,18 @@ export default function LiveAuditor() {
     return () => window.removeEventListener('vs_license_activated', handleActivated);
   }, []);
 
-  async function handleDirectUnlock(e: React.FormEvent) {
-    e.preventDefault();
-    if (!unlockKey.trim()) return;
+  async function handleDirectUnlock(e?: React.FormEvent | React.MouseEvent) {
+    if (e) e.preventDefault();
+    const inputEl = typeof document !== 'undefined' ? (document.getElementById('inputDirectUnlock') as HTMLInputElement | null) : null;
+    const rawKey = (unlockKey || (inputEl ? inputEl.value : '')).trim();
+    if (!rawKey) return;
     setUnlockLoading(true);
     setUnlockError(null);
     try {
       const res = await fetch('/api/license/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key: unlockKey.trim() }),
+        body: JSON.stringify({ key: rawKey.toUpperCase() }),
       });
       const data = await res.json();
       if (!data.valid) {
@@ -505,6 +507,7 @@ export default function LiveAuditor() {
                       <div className="flex gap-2">
                         <input
                           type="text"
+                          id="inputDirectUnlock"
                           required
                           value={unlockKey}
                           onChange={(e) => setUnlockKey(e.target.value)}
@@ -512,7 +515,9 @@ export default function LiveAuditor() {
                           className="flex-1 rounded-lg border border-white/15 bg-[#141724] px-3.5 py-2 text-xs font-mono uppercase text-white outline-none focus:border-emerald-500"
                         />
                         <button
-                          type="submit"
+                          type="button"
+                          id="btnDirectUnlock"
+                          onClick={handleDirectUnlock}
                           disabled={unlockLoading}
                           className="rounded-lg bg-emerald-500 px-4 py-2 text-xs font-bold text-black hover:bg-emerald-400 disabled:opacity-50 transition-colors"
                         >
