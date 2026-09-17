@@ -440,10 +440,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "Under the empirical 200-VU sustained load profile, Cloudways' dedicated FPM pool architecture delivered a flat 42ms response time with 0% errors, while SiteGround's shared-tenant worker ceiling produced queuing and 6.7% cumulative 502/504 errors once concurrency crossed 80 users, making Cloudways the objectively more resilient choice for any WooCommerce or high-traffic WordPress deployment expecting concurrent session counts above that threshold. The remediation cost of migrating to a dedicated-resource host is recovered almost immediately in conversion rate terms, since a 6.7% error rate during peak traffic directly translates to lost checkout completions at the exact moment revenue potential is highest. Engineering teams should treat sustained concurrency load testing, not single-request TTFB, as the mandatory pre-migration diagnostic before committing to either hosting architecture.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Test Your Current Host Under Real Traffic Stress",
+      "desc": "Measure your current TTFB and see how your hosting response times compare against our 200-concurrent-user benchmark dataset.",
+      "buttonText": "View Cloudways vs SiteGround Comparison",
+      "buttonHref": "/comparisons/cloudways-vs-siteground"
     }
   },
   'how-to-make-your-website-discoverable-by-ai-search-engines':   {
@@ -572,10 +572,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical data across 50 articles and 10 domains confirms that AI citation is not a ranking competition but a machine-extractability problem solved specifically by '@id'-linked JSON-LD entity graphs, a properly served llms.txt manifest, and passage-level prose restructured to eliminate cross-chunk pronoun dependencies. The 3.2x citation lift observed in Perplexity Pro answer summaries, combined with a 100% crawler fetch success rate once llms.txt and correct redirect handling were in place, represents a measurable and reproducible ROI for engineering time spent on entity markup rather than continued investment in traditional keyword density tactics. Any domain seeking Generative Engine Optimization visibility should treat entity graph implementation and llms.txt deployment as a mandatory launch-blocking requirement, not an optional enhancement, verified in CI before every production deploy.",
     "ctaBox": {
-      "title": "Audit Your Target Domain in Under 1 Second",
-      "desc": "Run our free in-browser diagnostic tool to measure your TTFB, DOM complexity, and mobile LCP bottlenecks with live telemetry.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Audit Your AI Search & Crawler Citability",
+      "desc": "Inspect your structured JSON-LD entity graph, test llms.txt availability, and measure how easily GPTBot and Perplexity can parse your core claims.",
+      "buttonText": "Check AI Search Readiness",
+      "buttonHref": "/research/ai-search-readiness"
     }
   },
   'how-to-score-100-on-pagespeed-without-breaking-your-site':   {
@@ -705,9 +705,9 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical data from Audit Log #042 confirms that a 100 PageSpeed score and intact conversion tracking are not mutually exclusive when the remediation targets execution context (Partytown worker isolation, Zaraz edge proxying) rather than script deletion, reducing Total Blocking Time from 920ms to 15ms while retaining 99.8 percent event capture fidelity. The engineering ROI is unambiguous: the migration required roughly 6 to 10 engineering hours per site and zero ongoing revenue risk, compared to the naive alternative of stripping tracking scripts, which produces a clean Lighthouse report alongside a blind marketing attribution pipeline. Our final recommendation is to treat main-thread offloading as the default architecture for all third-party tags on any production site where both Core Web Vitals compliance and conversion measurement are business requirements, not competing priorities.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
+      "title": "Isolate Third-Party Script Bloat on Your Landing Pages",
+      "desc": "Identify the exact analytics trackers, pixels, and chat widgets hijacking your mobile main thread before touching your production code.",
+      "buttonText": "Run Free Script & CWV Audit",
       "buttonHref": "/tools/website-speed-test"
     }
   },
@@ -845,10 +845,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "Rank Math's consolidated postmeta serialization and modular option architecture measurably outperform Yoast on both database load (18% fewer post-save queries) and frontend memory footprint (96KB versus 812KB autoloaded options), while simultaneously producing deeper, more cross-referenced JSON-LD graphs that give structured data parsers cleaner entity resolution paths. The remediation cost of migrating is low relative to the compounding TTFB and PHP execution overhead Yoast's larger autoload payload introduces at scale, particularly on shared hosting tiers lacking persistent object caching. For any WordPress installation exceeding 500 posts or operating without Redis or Memcached, Rank Math is the architecturally sound default, with Yoast remaining a viable choice only where existing Premium schema configurations make migration cost prohibitive in the short term.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Inspect Your WordPress Schema & Query Overhead",
+      "desc": "See our deep benchmark comparing database queries, memory footprint, and Schema.org JSON-LD generation between Rank Math and Yoast.",
+      "buttonText": "Compare Rank Math vs Yoast",
+      "buttonHref": "/comparisons/rank-math-vs-yoast"
     }
   },
   'why-your-lcp-score-tanks-on-mobile-how-to-fix-it': {
@@ -1106,10 +1106,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical outreach data confirms that specificity and visual falsifiability, not document length, drive reply rates and discovery call bookings, with the 1-page DOM proof tear sheet producing a 28% reply rate and a 4.2x higher booking conversion against the 50-page generic PDF baseline. The ROI calculation is straightforward: the tear sheet pipeline costs under 6 seconds of compute per prospect domain and requires no manual report writing, while converting at a rate that turns a 214-domain outbound batch into a measurably larger pipeline of $3,500/mo retainer conversations. Agencies should retire the automated 50-page export as a cold outreach asset entirely, reserving it only as a post-call technical appendix, and standardize the CDP-based single-flaw screenshot pipeline documented in Section 3 as the default outbound mechanism.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Turn 15-Second Audits Into $3,500 Retainers",
+      "desc": "Stop sending 50-page PDF reports that get ignored. Deliver branded 1-page visual proof tear sheets that demonstrate undeniable client performance flaws.",
+      "buttonText": "Explore VitalsSniper PRO for Agencies",
+      "buttonHref": "/products/vitalssniper-pro"
     }
   },
   'zero-cls-web-design-principles':   {
@@ -1238,9 +1238,9 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical data is unambiguous: font metric mismatch and unreserved async content boxes account for the entire measured 0.28 CLS penalty across all 15 test layouts, and both are fully remediable through static CSS alone, requiring zero JavaScript and zero runtime measurement overhead. The engineering ROI is exceptionally high, a one-time font metrics calculation and aspect-ratio audit reduced Total Blocking Time from 920ms to 15ms and moved CLS to a flat 0.000 across every device profile tested, directly converting a failing Core Web Vitals assessment into a top-5-percentile pass. Any production layout still exhibiting non-zero CLS after implementing font-display strategies alone should be treated as an incomplete remediation, since font swap timing controls and geometric metric normalization are separate, non-substitutable engineering interventions.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
+      "title": "Diagnose Cumulative Layout Shifts on Mobile",
+      "desc": "Detect unreserved image dimensions, webfont reflow jumps, and injected banner shifts that cause your site to fail Core Web Vitals on mobile.",
+      "buttonText": "Audit Your Layout Stability",
       "buttonHref": "/tools/website-speed-test"
     }
   },
@@ -1646,10 +1646,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical data across 25 high-volume Shopify storefronts confirms that mobile LCP failures are overwhelmingly caused by render-blocking JavaScript from apps and carousels delaying hero image discovery, not by server latency, CDN tier, or Shopify plan level, since TTFB remained stable at 270ms to 380ms across every tested configuration. Applying static preload hints, fetchpriority='high', and deferring non-critical app scripts moved 19 of 25 stores under the 2.5 second threshold with zero infrastructure spend and an average engineering effort of under 4 hours per storefront. The remaining 6 stores require asset-level remediation (AVIF conversion, decode cost reduction) rather than loading-order fixes, meaning any Shopify LCP audit must inspect both resource discovery timing and raw image decode cost as distinct, separately diagnosable failure modes.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Inspect Your Shopify Store Mobile LCP Delay",
+      "desc": "Identify the carousels, customer review widgets, and tracking pixels delaying your product page hero image on mobile connections.",
+      "buttonText": "Audit Your Shopify Speed",
+      "buttonHref": "/tools/lcp-checker"
     }
   },
   'what-makes-a-website-feel-fast-when-it-isnt':   {
@@ -1778,9 +1778,9 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "The empirical data confirms that perceived speed is governed by paint-timeline mechanics and main-thread input scheduling, not by the LCP or TTFB values that dominate most performance dashboards, with a measured 44% reduction in perceived wait time achievable without moving either metric. The remediation cost is low, roughly 2 to 5KB of inline critical CSS, a defer attribute, and font metric override descriptors, against a disproportionately large perceptual and conversion return, making this one of the highest ROI interventions available to a frontend team. Engineering teams should treat inline skeleton paint timing and sub-100ms input responsiveness as first-class performance budgets audited in CI, equal in priority to LCP and TTFB, rather than as a cosmetic afterthought.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
+      "title": "Measure Your Real-World Interaction Latency",
+      "desc": "Test your page First Contentful Paint, skeleton responsiveness, and Interaction to Next Paint (INP) to discover why users perceive lag.",
+      "buttonText": "Run Free Speed & UX Test",
       "buttonHref": "/tools/website-speed-test"
     }
   },
@@ -2044,10 +2044,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "Across the 100-image test corpus, AVIF delivers a genuine 18% byte-size advantage over WebP, but that advantage is only realized as faster LCP when decode cost stays isolated to a single above-fold image on low-tier mobile CPUs. Sites should serve AVIF exclusively for the primary LCP candidate, WebP for secondary above-fold assets on the low-tier device segment, and retain progressive JPEG as the universal fallback for legacy UAs, feed readers, and social scrapers. This tiered, decode-aware format strategy, verified through DevTools trace analysis rather than file-size assumptions alone, is the only configuration in our testing that passed the 2.5s mobile LCP threshold across all device tiers without regressing Total Blocking Time.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Benchmark Your Image Formats & Mobile Decode Times",
+      "desc": "Audit your hero media assets to see whether AVIF byte savings outweigh mobile CPU decode overhead on real cellular connections.",
+      "buttonText": "Run Free Image & LCP Audit",
+      "buttonHref": "/tools/lcp-checker"
     }
   },
   'why-your-hero-image-becomes-the-lcp-element':   {
@@ -2176,10 +2176,10 @@ add_action('wp_enqueue_scripts', function() {
     ],
     "verdictSummary": "Across the 500-site audit cohort, Largest Contentful Paint failure was overwhelmingly a geometric and discovery-order problem rather than a raw bandwidth problem, with 84% of desktop and 78% of mobile pages losing the LCP race specifically because the hero visual's resource request was delayed by client-side hydration, missing fetchpriority hints, or absent static markup. Remediating the four-step discovery path, static HTML markup, fetchpriority=\"high\", reserved geometry, and an explicit preload hint, produced a measured reduction in mobile LCP from a 4.2 second failing baseline to 1.3 seconds in the forensic architecture group, a result achieved without any change to server infrastructure or hosting tier. Any engineering team treating LCP as a server-speed metric rather than a client-side discovery and rendering-priority problem will systematically misallocate remediation budget and continue failing Core Web Vitals despite fast TTFB.",
     "ctaBox": {
-      "title": "Audit Your Target Domain",
-      "desc": "Run our free in-browser diagnostic tool to measure your metrics and isolate bottlenecks in under 1 second.",
-      "buttonText": "Run Free Audit",
-      "buttonHref": "/tools/website-speed-test"
+      "title": "Identify Your Viewport True LCP Candidate",
+      "desc": "Inspect the geometric pixel area of your above-the-fold media and test whether priority preloading can bring your mobile LCP under 2.5 seconds.",
+      "buttonText": "Run Free LCP Diagnostic",
+      "buttonHref": "/tools/lcp-checker"
     }
   },
   'does-llms-txt-actually-matter-test': {
