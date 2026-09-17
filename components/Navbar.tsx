@@ -35,19 +35,22 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
         </Link>
 
         {/* Center Nav Links */}
-        <nav className="hidden items-center gap-7 md:flex">
-          <a href="#activate" className="text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400 flex items-center gap-1.5">
-            <Key className="h-3.5 w-3.5" />
-            <span>Activate & Download</span>
-          </a>
+        <nav className="hidden items-center gap-6 lg:flex">
           <a href="#auditor" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Live Demo (4 Tries)
+            Live Demo
           </a>
           <a href="#deliverables" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            What You Get
+            Capabilities
+          </a>
+          <a href="#comparison" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            Vs Traditional
+          </a>
+          <a href="#activate" className="text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400 flex items-center gap-1.5">
+            <Key className="h-3.5 w-3.5" />
+            <span>Redeem & Download</span>
           </a>
           <a href="#docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Documentation & Setup
+            Playbook
           </a>
           <a href="#faq" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             FAQ

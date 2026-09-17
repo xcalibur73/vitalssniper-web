@@ -82,18 +82,21 @@ export default function Deliverables() {
             return (
               <div
                 key={item.title}
-                className="rounded-2xl border border-white/10 bg-[#12141d] p-6 sm:p-7 flex flex-col justify-between shadow-lg hover:border-white/20 transition-all group"
+                className="rounded-2xl border border-white/10 bg-[#11131c] hover:bg-[#151824] p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:border-emerald-500/30 transition-all duration-200 group relative overflow-hidden"
               >
+                <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-emerald-500/5 blur-2xl group-hover:bg-emerald-500/10 transition-colors pointer-events-none" />
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-105 transition-transform">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold text-gray-400">
+                    <span className="rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-gray-300">
                       {item.pill}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 tracking-tight group-hover:text-emerald-300 transition-colors">
+                    {item.title}
+                  </h3>
                   <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
