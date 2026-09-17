@@ -1,5 +1,5 @@
-﻿import React from 'react';
-import { Layers, FileCode, Gauge, Smartphone, Sparkles, Download, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
+import React from 'react';
+import { Layers, FileCode, Gauge, Sparkles, Download, CheckCircle2, ShieldCheck, Zap, Swords, Target, Database, Settings } from 'lucide-react';
 
 export default function Deliverables() {
   const items = [
@@ -22,16 +22,34 @@ export default function Deliverables() {
       pill: 'GEO & AI Search',
     },
     {
+      icon: Swords,
+      title: 'Head-to-Head Competitor Mode',
+      desc: 'Benchmark your prospect directly against their #1 competitor in real-time. Instantly generates comparison killer-hooks showing why clients bounce to rivals.',
+      pill: 'Competitor Intel',
+    },
+    {
+      icon: Target,
+      title: 'Live LCP Element Visual Highlighter',
+      desc: 'Animates a glowing emerald indicator directly on the live target page to show prospects the exact Largest Contentful Paint node sabotaging their score.',
+      pill: 'Visual Proof',
+    },
+    {
+      icon: Database,
+      title: '1-Click Lead Pipeline & CSV Export',
+      desc: 'Save audited prospects into a built-in browser CRM and export clean CSV datasets formatted for immediate import into Instantly, Lemlist, or HubSpot.',
+      pill: 'Lead CRM',
+    },
+    {
+      icon: Download,
+      title: 'White-Label Agency PDF & Booking CTA',
+      desc: 'Generate executive 1-page teardowns branded with your custom agency logo, auditor name, and direct Calendly booking link for frictionless closes.',
+      pill: 'White-Label PDF',
+    },
+    {
       icon: FileCode,
       title: '3-Sentence Multi-Channel Pitch Generator',
       desc: 'Auto-generates non-salesy, high-response Cold Emails, LinkedIn DMs, and 30-second Loom pitch scripts citing their specific performance flaws.',
       pill: 'Client Acquisition',
-    },
-    {
-      icon: Download,
-      title: 'Executive 1-Page PDF Teardown Dossier',
-      desc: 'Export clean, print-optimized technical teardown cards. Attach them directly to your email outreach to look like a high-ticket $500/hr consultant.',
-      pill: 'PDF Deliverable',
     },
     {
       icon: Zap,
