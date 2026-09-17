@@ -222,6 +222,34 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 </Link>
               </div>
 
+              {/* Newsletter Signup Card */}
+              <div className="paper-card rounded-2xl p-6 bg-[#faf8f5]">
+                <span className="text-[10px] font-bold text-terracotta uppercase tracking-wider block mb-1">
+                  Weekly Dispatch
+                </span>
+                <h4 className="font-editorial text-lg font-bold text-charcoal mb-1">
+                  Web Intelligence Without the Fluff
+                </h4>
+                <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                  Real performance benchmarks and technical guides delivered every Thursday.
+                </p>
+                <form action="/free-audit-report" method="GET" className="space-y-2">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="you@agency.com"
+                    className="w-full rounded-xl border border-sand-300 bg-white px-3.5 py-2 text-xs text-charcoal outline-none placeholder:text-charcoal-subtle focus:border-terracotta"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full rounded-xl bg-terracotta py-2 text-xs font-bold text-white hover:bg-terracotta-dark transition-all shadow-2xs"
+                  >
+                    Subscribe Free
+                  </button>
+                </form>
+              </div>
+
               {/* Relevant Affiliate Recommendation */}
               <div className="paper-card rounded-2xl p-6">
                 <div className="flex items-center justify-between gap-2 mb-2">

@@ -6,12 +6,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure';
 import { PRODUCTS } from '@/data/products';
-import { Star, ExternalLink, ArrowRight, Check, X, ShieldCheck } from 'lucide-react';
+import { Star, ExternalLink, ArrowRight, Check, X, ShieldCheck, BarChart2 } from 'lucide-react';
 
 export default function ReviewsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const categories = ['All', 'Hosting & CDN', 'Page Builders', 'SEO Tools', 'Speed & Performance', 'Analytics'];
+  const categories = ['All', 'Speed & Performance', 'Hosting & CDN', 'Page Builders', 'SEO Tools', 'Analytics'];
 
   const filteredProducts = PRODUCTS.filter(
     (p) => selectedCategory === 'All' || p.category === selectedCategory
@@ -26,13 +26,14 @@ export default function ReviewsPage() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-white px-3.5 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-2xs">
-            <span>Independent Software Testing</span>
+            <BarChart2 className="h-3.5 w-3.5 text-terracotta" />
+            <span>Independent Software Testing &bull; 2026 Edition</span>
           </div>
           <h1 className="font-editorial text-4xl sm:text-5xl font-bold tracking-tight text-charcoal mb-4">
-            Tested &amp; Benchmarked Software
+            Best Website Audit &amp; Performance Tools
           </h1>
           <p className="text-sm sm:text-base text-charcoal-muted leading-relaxed">
-            Honest evaluations of hosting platforms, WordPress optimization plugins, SEO suites, and page builders tested on live production servers.
+            Honest evaluations of hosting platforms, WordPress speed plugins, SEO suites, and page builders tested on live production servers under real traffic concurrency.
           </p>
         </div>
 
@@ -41,7 +42,78 @@ export default function ReviewsPage() {
           <AffiliateDisclosure />
         </div>
 
-        {/* Category Pills */}
+        {/* Comparison Table Near Top (Immediately Useful) */}
+        <div className="mb-14 paper-card rounded-2xl overflow-hidden">
+          <div className="p-5 border-b border-sand-300 bg-white flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-terracotta" />
+              <h2 className="font-editorial text-lg sm:text-xl font-bold text-charcoal">
+                2026 Software Comparison Matrix
+              </h2>
+            </div>
+            <span className="text-xs font-semibold text-charcoal-subtle hidden sm:inline">
+              Sorted by Editorial Rating
+            </span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-[#faf8f5] border-b border-sand-300 text-charcoal-subtle uppercase tracking-wider text-[10px]">
+                  <th className="py-3.5 px-4 font-bold">Tool</th>
+                  <th className="py-3.5 px-4 font-bold">Category</th>
+                  <th className="py-3.5 px-4 font-bold">Rating</th>
+                  <th className="py-3.5 px-4 font-bold">Pricing</th>
+                  <th className="py-3.5 px-4 font-bold">Key Focus</th>
+                  <th className="py-3.5 px-4 font-bold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand-300 bg-white">
+                {PRODUCTS.map((prod) => (
+                  <tr key={prod.slug} className="hover:bg-sand-50 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-charcoal flex items-center gap-2">
+                      <span>{prod.iconEmoji}</span>
+                      <Link href={prod.isOwnProduct ? '/vitalssniper' : `/tools/${prod.slug}`} className="hover:text-terracotta transition-colors">
+                        {prod.name}
+                      </Link>
+                      {prod.isOwnProduct && (
+                        <span className="text-[9px] font-bold text-white bg-terracotta px-1.5 py-0.5 rounded">
+                          OURS
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-3.5 px-4 text-charcoal-muted">
+                      {prod.category}
+                    </td>
+                    <td className="py-3.5 px-4">
+                      <div className="flex items-center gap-1 font-bold text-amber-600">
+                        <Star className="h-3 w-3 fill-amber-400 text-amber-500" />
+                        <span>{prod.rating.toFixed(1)}</span>
+                      </div>
+                    </td>
+                    <td className="py-3.5 px-4 font-mono font-semibold text-charcoal">
+                      {prod.pricing}
+                    </td>
+                    <td className="py-3.5 px-4 text-charcoal-muted max-w-[200px] truncate">
+                      {prod.verdict}
+                    </td>
+                    <td className="py-3.5 px-4 text-right">
+                      <Link
+                        href={prod.isOwnProduct ? '/vitalssniper' : `/tools/${prod.slug}`}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-terracotta hover:underline"
+                      >
+                        <span>Review</span>
+                        <ArrowRight className="h-3 w-3" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Category Filter Pills */}
         <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
           {categories.map((cat) => (
             <button
@@ -58,7 +130,7 @@ export default function ReviewsPage() {
           ))}
         </div>
 
-        {/* Product Cards Grid */}
+        {/* Structured Product Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
           {filteredProducts.map((prod) => (
             <div
@@ -72,7 +144,7 @@ export default function ReviewsPage() {
                   </span>
                   {prod.isOwnProduct ? (
                     <span className="text-[10px] font-bold text-white bg-terracotta px-2.5 py-0.5 rounded-full">
-                      Our Flagship Product
+                      Our Flagship Platform
                     </span>
                   ) : (
                     <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600">
@@ -99,9 +171,23 @@ export default function ReviewsPage() {
                   <strong className="text-charcoal">Verdict:</strong> {prod.verdict}
                 </div>
 
+                {/* Key Features */}
+                <div className="mb-5">
+                  <span className="text-xs font-bold text-charcoal block mb-2">Key Features:</span>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-charcoal-muted">
+                    {prod.features.slice(0, 4).map((feat, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <Check className="h-3.5 w-3.5 text-terracotta flex-shrink-0 mt-0.5" />
+                        <span className="truncate">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Pros and Cons */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-6">
                   <div>
-                    <span className="font-bold text-emerald-700 block mb-2">Key Advantages:</span>
+                    <span className="font-bold text-emerald-700 block mb-2">Pros:</span>
                     <ul className="space-y-1 text-charcoal-muted">
                       {prod.pros.slice(0, 3).map((pro, i) => (
                         <li key={i} className="flex items-start gap-1.5">
@@ -113,7 +199,7 @@ export default function ReviewsPage() {
                   </div>
 
                   <div>
-                    <span className="font-bold text-rose-700 block mb-2">Trade-offs:</span>
+                    <span className="font-bold text-rose-700 block mb-2">Limitations:</span>
                     <ul className="space-y-1 text-charcoal-muted">
                       {prod.cons.slice(0, 2).map((con, i) => (
                         <li key={i} className="flex items-start gap-1.5">
@@ -136,7 +222,7 @@ export default function ReviewsPage() {
                     href={prod.isOwnProduct ? '/vitalssniper' : `/tools/${prod.slug}`}
                     className="flex-1 sm:flex-none text-center px-3.5 py-2 rounded-xl border border-sand-300 bg-white text-xs font-bold text-charcoal hover:border-terracotta/40 transition-all"
                   >
-                    View In-Depth Review
+                    Read Detailed Review
                   </Link>
 
                   <a
@@ -145,7 +231,7 @@ export default function ReviewsPage() {
                     rel="nofollow sponsored noopener"
                     className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-terracotta text-xs font-bold text-white hover:bg-terracotta-dark transition-all shadow-xs"
                   >
-                    <span>{prod.isOwnProduct ? 'Get VitalsSniper ($39)' : 'Visit Site'}</span>
+                    <span>{prod.isOwnProduct ? 'Get VitalsSniper ($39)' : 'Visit Tool'}</span>
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 </div>

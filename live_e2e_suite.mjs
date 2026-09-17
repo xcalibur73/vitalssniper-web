@@ -67,7 +67,7 @@ async function runLiveSuite() {
     // Test /reviews archive
     await page.goto('http://localhost:3000/reviews', { waitUntil: 'networkidle' });
     const reviewsText = await page.innerText('body');
-    assert(reviewsText.includes('Tested & Benchmarked Software'), '/reviews archive rendered');
+    assert(reviewsText.includes('Best Website Audit') || reviewsText.includes('Comparison Matrix'), '/reviews archive rendered');
     assert(reviewsText.includes('Affiliate Disclosure'), 'FTC disclosure present on reviews page');
 
     // Test /resources
