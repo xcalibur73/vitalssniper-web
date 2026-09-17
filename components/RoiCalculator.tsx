@@ -139,17 +139,15 @@ export default function RoiCalculator({ onOpenCheckout }: { onOpenCheckout: (tie
               </div>
               <div className="flex justify-between text-xs text-gray-300">
                 <span>VitalsSniper Investment:</span>
-                <span className="font-bold text-emerald-400">$39 One-Time</span>
+                <span className="font-bold text-emerald-400">$0 Free in Beta</span>
               </div>
             </div>
 
             <a
-              href="https://appsumo.com/products/vitalssniper"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/vitalssniper#auditor"
               className="w-full rounded-xl bg-white py-3.5 px-4 text-sm font-bold text-black transition-all hover:bg-gray-100 hover:scale-[1.02] shadow-[0_6px_20px_rgba(255,255,255,0.2)] block text-center"
             >
-              Unlock VitalsSniper PRO ($39)
+              Test Free In-Browser Beta
             </a>
           </div>
 

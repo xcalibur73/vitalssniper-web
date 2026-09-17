@@ -76,7 +76,7 @@ const VS_ROWS: Row[] = [
   {
     feature: 'Commercial Pricing Model',
     category: 'ROI',
-    vitalssniper: 'One-time $39 Lifetime Deal on AppSumo',
+    vitalssniper: 'Free during Public Beta testing ($0)',
     pagespeed: 'Free (developer report, not a sales tool)',
     manual: 'Hours of non-billable manual research',
   },

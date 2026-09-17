@@ -38,10 +38,10 @@ export default function EditorialDarkCta() {
           </Link>
 
           <Link
-            href="/vitalssniper"
+            href="/vitalssniper#auditor"
             className="w-full sm:w-auto rounded-xl border border-white/20 bg-white/5 px-6 py-4 text-sm font-semibold text-gray-300 hover:border-white/40 hover:text-white transition-all flex items-center justify-center gap-2"
           >
-            <span>Explore VitalsSniper PRO ($39)</span>
+            <span>Test VitalsSniper Beta (Free)</span>
           </Link>
         </div>
 

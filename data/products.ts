@@ -49,10 +49,10 @@ export const PRODUCTS: Product[] = [
     verdict: 'In-browser diagnostic inspector for active-tab website forensics and client proposal proof sheets.',
     description:
       'VitalsSniper PRO is an active-tab website inspector designed for agencies, SEO consultants, and performance specialists. It executes client-side diagnostics in your browser, isolates LCP elements visually on screen, and generates white-label tear sheets for client proposals.',
-    pricing: '$39 lifetime on AppSumo',
+    pricing: 'Free Public Beta',
     bestFor: 'Agencies, SEO Consultants, and Performance Specialists',
-    pricingModel: 'One-Time Lifetime License',
-    hasFreePlan: false,
+    pricingModel: 'Free Public Beta',
+    hasFreePlan: true,
     hasApi: true,
     wpIntegration: true,
     testingPeriod: '90+ days continuous internal dogfooding',
@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
       'Executes locally inside your active browser tab without third-party API quotas',
       'Highlights the exact DOM node triggering Largest Contentful Paint live on the page',
       'Generates branded white-label PDF proposal tear sheets with your agency booking link',
-      'One-time lifetime payment model on AppSumo with zero recurring subscriptions',
+      'Free during public beta testing with zero payment or credit card required',
     ],
     cons: [
       'Requires a Chromium-based browser (Chrome, Edge, Brave, Opera)',

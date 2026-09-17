@@ -98,15 +98,13 @@ export default function VitalsSniperProductPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-            <a
-              href={SITE_CONFIG.appsumoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/vitalssniper#auditor"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-4 text-sm font-bold text-white shadow-sm hover:bg-accent-dark hover:scale-[1.01] transition-all"
             >
-              <span>Get Lifetime Access ($39 on AppSumo)</span>
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              <span>Join Free Public Beta</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
 
             <Link
               href="/tools/website-speed-test"
@@ -190,18 +188,18 @@ export default function VitalsSniperProductPage() {
       <section className="py-20 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="editorial-pill mb-2">Transparent Commercial Pricing</span>
+            <span className="editorial-pill mb-2">Public Beta Program</span>
             <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mt-2">
-              Single Payment. Lifetime License.
+              Open Beta: 100% Free Testing
             </h2>
             <p className="text-sm text-charcoal-muted mt-2">
-              Zero recurring subscriptions. Lock in lifetime access on AppSumo while the founder deal is live.
+              Test in-browser tab diagnostics and client proposal generation for free. No credit card, no paywall, and zero risk.
             </p>
           </div>
 
           <div className="rounded-3xl border-2 border-accent bg-[#F7F4EE] p-8 sm:p-10 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 bg-accent text-white text-[11px] font-bold uppercase tracking-wider px-6 py-1.5 rounded-bl-xl">
-              Lifetime AppSumo Deal
+              Public Beta
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-8 border-b border-sand-300 mb-8">
@@ -210,13 +208,13 @@ export default function VitalsSniperProductPage() {
                   VitalsSniper PRO
                 </h3>
                 <p className="text-xs text-charcoal-muted mt-1">
-                  Full agency client-acquisition suite with lifetime updates.
+                  Full agency client-acquisition suite with free access during public beta.
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="font-editorial text-5xl font-bold text-charcoal">$39</span>
-                <span className="text-xs text-charcoal-muted ml-2 font-medium">one-time payment</span>
+                <span className="font-editorial text-5xl font-bold text-charcoal">$0</span>
+                <span className="text-xs text-charcoal-muted ml-2 font-medium">during open beta</span>
               </div>
             </div>
 
@@ -230,19 +228,17 @@ export default function VitalsSniperProductPage() {
             </div>
 
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <a
-                href={SITE_CONFIG.appsumoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/vitalssniper#auditor"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-4 text-sm font-bold text-white shadow-sm hover:bg-accent-dark transition-all"
               >
-                <span>Claim $39 Lifetime Deal on AppSumo</span>
-                <ExternalLink className="h-4 w-4" />
-              </a>
+                <span>Launch In-Browser Beta Audit</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
 
               <span className="text-xs text-charcoal-muted flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                <span>60-Day Money-Back Guarantee</span>
+                <span>100% Free Public Beta</span>
               </span>
             </div>
           </div>

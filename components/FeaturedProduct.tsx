@@ -64,13 +64,13 @@ export default function FeaturedProduct() {
             
             <div className="mt-auto">
               <div className="text-sm font-medium text-emerald-400 mb-3">
-                $39 Lifetime Deal on AppSumo
+                Public Beta: Free In-Browser Testing
               </div>
               <Link 
-                href="/vitalssniper"
+                href="/vitalssniper#auditor"
                 className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-black font-semibold hover:bg-gray-100 transition-colors"
               >
-                See Full Product Details
+                Launch Free Beta Audit
               </Link>
             </div>
           </div>

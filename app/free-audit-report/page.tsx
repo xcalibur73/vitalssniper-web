@@ -65,6 +65,21 @@ export default function FreeAuditReportPage() {
     e.preventDefault();
     if (!email.trim() || !result) return;
 
+    fetch('/api/audit/collect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email.trim(),
+        agencyName: company.trim() || null,
+        domain: result.domain || url.trim(),
+        url: url.trim(),
+        score: result.telemetry?.healthScore || result.score || 0,
+        telemetry: result.telemetry || null,
+        primaryFlaw: result.flaw?.headline || result.primaryFlaw || null,
+        source: 'free_audit_report_page',
+      }),
+    }).catch(() => {});
+
     if (isSupabaseConfigured && supabase) {
       try {
         await supabase.from('leads').insert({
@@ -289,15 +304,13 @@ export default function FreeAuditReportPage() {
                   <p className="text-xs text-gray-400">VitalsSniper PRO highlights elements live on active tabs and includes a built-in prospect CRM.</p>
                 </div>
 
-                <a
-                  href={SITE_CONFIG.appsumoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/vitalssniper#auditor"
                   className="rounded-xl bg-white px-6 py-3 text-xs font-bold text-black hover:bg-gray-100 transition-all flex items-center gap-2 flex-shrink-0 shadow-md"
                 >
-                  <span>Get VitalsSniper PRO: $39</span>
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
+                  <span>Test VitalsSniper Beta (Free)</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-emerald-600" />
+                </Link>
               </div>
 
             </div>

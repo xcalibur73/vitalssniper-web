@@ -46,7 +46,7 @@ export default function FreeToolsSuite() {
               <div className="flex items-center justify-between gap-2 mb-3 mt-1">
                 <span className="text-xs font-bold text-terracotta font-mono">Pro Platform</span>
                 <span className="text-[11px] font-bold text-charcoal bg-sand-300 px-2 py-0.5 rounded">
-                  $39 Lifetime
+                  Public Beta
                 </span>
               </div>
 
@@ -74,10 +74,10 @@ export default function FreeToolsSuite() {
             </div>
 
             <Link
-              href="/vitalssniper"
+              href="/vitalssniper#auditor"
               className="w-full rounded-xl bg-terracotta py-3 text-center text-xs font-bold text-white hover:bg-terracotta-dark transition-all block shadow-xs"
             >
-              Get VitalsSniper PRO ($39)
+              Test VitalsSniper Beta (Free)
             </Link>
           </div>
 

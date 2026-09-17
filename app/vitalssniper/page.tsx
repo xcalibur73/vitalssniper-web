@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -14,7 +14,6 @@ import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
 import {
   Sparkles,
-  ExternalLink,
   ShieldCheck,
   ArrowRight,
   Key,
@@ -24,7 +23,6 @@ import {
   CheckCircle2,
   ArrowLeft,
 } from 'lucide-react';
-import { SITE_CONFIG } from '@/config/site';
 
 export default function VitalsSniperPage() {
   return (
@@ -46,7 +44,7 @@ export default function VitalsSniperPage() {
           {/* Top Authority Pill */}
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-8 shadow-sm">
             <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" />
-            <span>Manifest V3 Certified - Client Acquisition Infrastructure for Digital Agencies</span>
+            <span>Public Beta Active: Client Acquisition Infrastructure for Digital Agencies</span>
           </div>
 
           {/* Main Headline */}
@@ -65,30 +63,27 @@ export default function VitalsSniperPage() {
           {/* Dual Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <a
-              href={SITE_CONFIG.appsumoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#auditor"
               className="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-sm font-extrabold text-black shadow-[0_4px_24px_rgba(255,255,255,0.25)] transition-all hover:bg-gray-100 hover:scale-[1.02] flex items-center justify-center gap-2.5"
             >
               <Sparkles className="h-4 w-4 text-emerald-600" />
-              <span>Get Lifetime Deal on AppSumo: $39</span>
-              <ExternalLink className="h-4 w-4" />
+              <span>Test Live in Browser (Public Beta: Free)</span>
+              <ArrowRight className="h-4 w-4" />
             </a>
 
             <a
-              href="#auditor"
+              href="#deliverables"
               className="w-full sm:w-auto rounded-xl border border-white/20 bg-surface-card px-7 py-4 text-sm font-semibold text-gray-300 transition-all hover:border-emerald-500/40 hover:text-white flex items-center justify-center gap-2"
             >
-              <span>Test Interactive Demo</span>
-              <ArrowRight className="h-4 w-4 text-emerald-400" />
+              <span>Explore Diagnostic Features</span>
             </a>
           </div>
 
-          {/* Helper link for AppSumo voucher holders */}
+          {/* Helper link for AppSumo voucher holders & beta testers */}
           <div className="text-xs text-gray-500 mb-14">
-            Already purchased on AppSumo?{' '}
-            <a href="#activate" className="text-emerald-400 hover:underline font-semibold">
-              Redeem voucher code &amp; download extension &rarr;
+            Currently in open public testing &bull;{' '}
+            <a href="#auditor" className="text-emerald-400 hover:underline font-semibold">
+              Scan your domain for free &rarr;
             </a>
           </div>
 
@@ -121,9 +116,9 @@ export default function VitalsSniperPage() {
             <div className="rounded-xl border border-white/10 bg-[#11131c]/80 backdrop-blur p-4">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <FileSpreadsheet className="h-4 w-4" />
-                <span className="text-lg font-black tracking-tight text-white">$39 LTD</span>
+                <span className="text-lg font-black tracking-tight text-white">Public Beta</span>
               </div>
-              <p className="text-xs text-gray-400">AppSumo Lifetime Deal. One-time payment with all core updates included.</p>
+              <p className="text-xs text-gray-400">Free Testing Active. Inspect live tabs and test pitch copy with zero cost.</p>
             </div>
           </div>
 
@@ -141,7 +136,7 @@ export default function VitalsSniperPage() {
                 <span className="h-3 w-3 rounded-full bg-emerald-500/80 inline-block" />
               </div>
               <span className="font-mono text-[11px] text-gray-400">
-                Web Audits Helper - Active Tab Forensic Diagnostic Inspector
+                Web Audits Helper: Active Tab Forensic Diagnostic Inspector
               </span>
               <span className="text-[11px] text-emerald-400 font-bold hidden sm:inline">Manifest V3 Certified</span>
             </div>
@@ -158,7 +153,7 @@ export default function VitalsSniperPage() {
         </div>
       </section>
 
-      {/* Interactive Live Demo (4-Try Cap with Lock Layer) */}
+      {/* Interactive Live Demo */}
       <LiveAuditor />
 
       {/* Commercial Deliverables (9 Powerhouse Features) */}
@@ -171,17 +166,17 @@ export default function VitalsSniperPage() {
       <RoiCalculator onOpenCheckout={() => {}} />
 
       {/* Dedicated Voucher Redemption & License Portal */}
-      <section className="py-20 border-t border-white/[0.08] bg-[#090b12]">
+      <section id="activate" className="py-20 border-t border-white/[0.08] bg-[#090b12]">
         <div className="mx-auto max-w-4xl px-6 text-center mb-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 mb-4">
             <Key className="h-3.5 w-3.5" />
-            <span>AppSumo Software Delivery Portal</span>
+            <span>Early Access &amp; License Portal</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
             Redeem Your License &amp; Download Extension
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-            Enter your AppSumo voucher key below to generate your direct commercial download link and instant verification certificate.
+            Have an early access or voucher key? Enter your code below to generate your direct extension download link.
           </p>
         </div>
 
@@ -194,31 +189,29 @@ export default function VitalsSniperPage() {
       {/* Interactive FAQ Section */}
       <FaqSection />
 
-      {/* AppSumo Listing Callout Banner */}
+      {/* Public Beta Callout Banner */}
       <section className="py-20 border-t border-white/[0.08] bg-gradient-to-b from-[#12141d] to-[#090a10]">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <div className="rounded-3xl border border-emerald-500/30 bg-emerald-500/5 p-8 sm:p-12 relative overflow-hidden shadow-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 text-xs font-bold text-emerald-400 mb-4">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Available Exclusively on AppSumo</span>
+              <span>Public Beta Research Cohort</span>
             </div>
             
             <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
-              Get VitalsSniper PRO Lifetime Access Today
+              Test VitalsSniper In-Browser For Free
             </h2>
             <p className="text-xs sm:text-base text-gray-400 max-w-xl mx-auto mb-8">
-              Audit unlimited websites directly from your browser toolbar in 50 milliseconds. No monthly fees, no server lag.
+              Audit client websites directly from your browser in 50 milliseconds. Help shape our empirical benchmark dataset while testing client pitches for free.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href={SITE_CONFIG.appsumoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#auditor"
                 className="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-sm font-extrabold text-black shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition-all hover:bg-gray-100 hover:scale-[1.02] flex items-center justify-center gap-2"
               >
-                <span>Buy Lifetime Deal on AppSumo: $39</span>
-                <ExternalLink className="h-4 w-4" />
+                <span>Launch Free Web Auditor</span>
+                <ArrowRight className="h-4 w-4" />
               </a>
 
               <a
@@ -226,19 +219,19 @@ export default function VitalsSniperPage() {
                 className="w-full sm:w-auto rounded-xl border border-white/20 bg-surface-card px-6 py-4 text-sm font-semibold text-gray-300 transition-all hover:border-white/30 hover:text-white flex items-center justify-center gap-2"
               >
                 <Key className="h-4 w-4 text-emerald-400" />
-                <span>Already Bought? Redeem Code Above</span>
+                <span>Redeem Early Access Key</span>
               </a>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400">
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>60-Day AppSumo Money-Back Guarantee</span>
+                <span>100% Free Public Beta</span>
               </div>
               <span>&bull;</span>
-              <span>100% Client-Side Privacy</span>
+              <span>Zero Credit Card Required</span>
               <span>&bull;</span>
-              <span>Lifetime Updates</span>
+              <span>100% Client-Side Privacy</span>
             </div>
 
           </div>

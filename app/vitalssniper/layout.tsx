@@ -38,7 +38,7 @@ const softwareSchema = {
   applicationCategory: 'DeveloperApplication, BusinessApplication',
   offers: {
     '@type': 'Offer',
-    price: '39.00',
+    price: '0.00',
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
     url: 'https://www.webaudits.pro/vitalssniper',

@@ -170,15 +170,13 @@ export default function FeaturedToolHero() {
                   Explore VitalsSniper PRO
                 </Link>
 
-                <a
-                  href={SITE_CONFIG.appsumoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/vitalssniper#auditor"
                   className="rounded-xl border border-sand-300 bg-white px-5 py-3.5 text-xs sm:text-sm font-bold text-charcoal hover:border-accent/40 transition-all flex items-center justify-center gap-1.5 shadow-sm"
                 >
-                  <span>AppSumo Lifetime Deal ($39)</span>
-                  <ExternalLink className="h-3.5 w-3.5 text-accent" />
-                </a>
+                  <span>Public Beta Access (Free)</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-accent" />
+                </Link>
               </div>
             </div>
 

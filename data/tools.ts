@@ -248,7 +248,7 @@ export interface DirectoryTool {
 }
 
 export const DIRECTORY_TOOLS: DirectoryTool[] = [
-  { name: 'VitalsSniper PRO', category: 'Auditing & Diagnostics', pricing: '$39 Lifetime', freePlan: false, url: '/products/vitalssniper-pro', testedMetric: 'In-browser active-tab forensics', bestFor: 'Agencies & SEO Consultants' },
+  { name: 'VitalsSniper PRO', category: 'Auditing & Diagnostics', pricing: 'Free Public Beta', freePlan: true, url: '/vitalssniper', testedMetric: 'In-browser active-tab forensics', bestFor: 'Agencies & SEO Consultants' },
   { name: 'Cloudways', category: 'Hosting & CDN', pricing: 'From $14/mo', freePlan: false, url: '/reviews/cloudways', testedMetric: '145ms avg server TTFB', bestFor: 'WooCommerce & Agency Staging' },
   { name: 'GeneratePress', category: 'Theme & Frameworks', pricing: 'From $59/yr', freePlan: true, url: '/reviews/generatepress', testedMetric: '0.000 CLS / <10KB CSS footprint', bestFor: 'Fast Publishing Sites' },
   { name: 'Cloudflare', category: 'CDN & Security', pricing: 'Free / $20/mo', freePlan: true, url: '/reviews/cloudflare', testedMetric: '12ms global DNS propagation', bestFor: 'DDoS Protection & Edge Caching' },

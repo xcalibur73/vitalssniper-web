@@ -394,6 +394,7 @@ I recorded a 30s screen clip showing the fix. Mind if I send the link over?
     }
 
     return NextResponse.json({
+      success: true,
       domain,
       targetUrl,
       score,
