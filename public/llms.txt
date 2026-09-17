@@ -1,0 +1,24 @@
+﻿# Web Audits Helper
+
+> Web Audits Helper (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
+
+## Core Products and Tools
+
+- [VitalsSniper PRO](https://www.webaudits.pro/vitalssniper): Chrome extension for in-browser client-side website forensics, DOM tree depth inspection, and multi-channel pitch generation.
+- [Website Speed Test](https://www.webaudits.pro/tools/website-speed-test): In-browser diagnostic tool measuring TTFB, DOM node count, and asset payload weights.
+- [LCP Element Checker](https://www.webaudits.pro/tools/lcp-checker): Diagnostic inspector locating viewport Largest Contentful Paint media assets and preload declarations.
+- [Tools Catalog](https://www.webaudits.pro/tools): Curated catalog of tested hosting providers, page builders, caching plugins, and SEO utilities.
+
+## Signature Technical Guides and Research
+
+- [How to Audit 50 Client Sites in 1 Week](https://www.webaudits.pro/articles/how-to-audit-50-client-sites-in-1-week): Agency forensic workflow for rapid prospect analysis and high-ticket retainer acquisition.
+- [Why Mobile LCP Is Slow: 7 Patterns](https://www.webaudits.pro/articles/why-your-lcp-score-tanks-on-mobile-how-to-fix-it): Diagnostic analysis of hero media prioritization, lazy-loading pitfalls, and responsive image budgets.
+- [Elementor vs Gutenberg Performance Benchmark](https://www.webaudits.pro/articles/we-measured-it-elementor-vs-gutenberg-performance): Controlled empirical comparison of DOM node counts, wire transfer payloads, and mobile render times.
+- [DOM Element Count Threshold Analysis](https://www.webaudits.pro/articles/how-many-dom-elements-is-too-many): Empirical analysis of 500 websites evaluating style recalculation latency across DOM tree depths.
+- [Website Autopsy #001](https://www.webaudits.pro/teardowns/website-autopsy-001): Comprehensive mobile performance teardown of an uncompressed 6.8MB SaaS homepage.
+
+## Editorial and Testing Methodology
+
+- [Research Methodology](https://www.webaudits.pro/about/methodology): Empirical testing protocol, K6 load testing parameters, and Chromium DevTools telemetry standards.
+- [Editorial Policy](https://www.webaudits.pro/editorial-policy): Standards on factual claims, independence, and correction logging.
+- [Affiliate Disclosure](https://www.webaudits.pro/affiliate-disclosure): Strict FTC compliance disclosure and sponsored link policies.

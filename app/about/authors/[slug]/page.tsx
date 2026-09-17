@@ -25,6 +25,9 @@ export function generateMetadata({ params }: AuthorPageProps) {
   return {
     title: `${author.name} - ${author.role} | Web Audits Helper`,
     description: author.bio,
+    alternates: {
+      canonical: `https://www.webaudits.pro/about/authors/${author.slug}`,
+    },
   };
 }
 
@@ -39,8 +42,30 @@ export default function AuthorProfilePage({ params }: AuthorPageProps) {
   const authorArticles = BLOG_POSTS.slice(0, 3);
   const authorStudies = RESEARCH_STUDIES.slice(0, 2);
 
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: author.name,
+      jobTitle: author.role,
+      description: author.bio,
+      knowsAbout: author.specialization,
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Web Audits Helper',
+        url: 'https://www.webaudits.pro',
+      },
+    },
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org ProfilePage & Person JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <Navbar />
 
       <div className="py-16 border-b border-sand-300 bg-white">

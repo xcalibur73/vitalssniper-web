@@ -34,6 +34,9 @@ export function generateMetadata({ params }: ReviewPageProps) {
   return {
     title: `${product.name} Review & Benchmarks | Web Audits Helper`,
     description: product.description,
+    alternates: {
+      canonical: `https://www.webaudits.pro/reviews/${product.slug}`,
+    },
   };
 }
 
@@ -48,8 +51,39 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
     (p) => p.category === product.category && p.slug !== product.slug
   ).slice(0, 3);
 
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'SoftwareApplication',
+      name: product.name,
+      applicationCategory: product.category,
+      operatingSystem: 'All Platforms',
+    },
+    reviewBody: product.verdict,
+    author: {
+      '@type': 'Organization',
+      name: 'Web Audits Helper Editorial Team',
+      url: 'https://www.webaudits.pro',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Web Audits Helper',
+      url: 'https://www.webaudits.pro',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.webaudits.pro/favicon.svg',
+      },
+    },
+  };
+
   return (
     <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      {/* Schema.org Review JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
       <Navbar />
 
       <div className="py-12 border-b border-sand-300 bg-white">

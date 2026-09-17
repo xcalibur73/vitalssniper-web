@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
@@ -8,6 +9,7 @@ import EvidenceBox from '@/components/EvidenceBox';
 import { BLOG_POSTS, BlogPost } from '@/data/posts';
 import { PRODUCTS } from '@/data/products';
 import { ARTICLE_CONTENTS } from '@/data/articleContent';
+import { AUTHORS } from '@/data/authors';
 import {
   ArrowLeft,
   Clock,
@@ -23,6 +25,48 @@ import {
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+  if (!post) {
+    return { title: 'Article Not Found | Web Audits Helper' };
+  }
+
+  const title = `${post.title} | Web Audits Helper`;
+  const description = post.excerpt.length > 155 ? `${post.excerpt.slice(0, 152)}...` : post.excerpt;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.webaudits.pro/articles/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description,
+      url: `https://www.webaudits.pro/articles/${post.slug}`,
+      siteName: 'Web Audits Helper',
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: [post.category, post.tag],
+      images: [
+        {
+          url: '/assets/appsumo_hero_1920x1080.png',
+          width: 1200,
+          height: 675,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description,
+      images: ['/assets/appsumo_hero_1920x1080.png'],
+    },
+  };
 }
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
@@ -46,11 +90,55 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   const affiliateTool = PRODUCTS.find((p) => !p.isOwnProduct) || PRODUCTS[1];
   const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 
+  const authorSlug = post.author.toLowerCase().includes('marcus')
+    ? 'marcus-reed'
+    : post.author.toLowerCase().includes('elena')
+    ? 'elena-rostova'
+    : 'devin-vance';
+  const authorObj = AUTHORS[authorSlug];
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: post.title,
+    description: post.excerpt,
+    image: ['https://www.webaudits.pro/assets/appsumo_hero_1920x1080.png'],
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
+      name: authorObj?.name || post.author,
+      jobTitle: authorObj?.role || 'Technical Author',
+      url: `https://www.webaudits.pro/about/authors/${authorSlug}`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Web Audits Helper',
+      url: 'https://www.webaudits.pro',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.webaudits.pro/favicon.svg',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.webaudits.pro/articles/${post.slug}`,
+    },
+    articleSection: post.category,
+    keywords: `${post.category}, ${post.tag}, Web Performance, Core Web Vitals, Website Audit`,
+  };
+
   return (
     <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
 
       <main className="flex-1 max-w-[1200px] mx-auto px-6 py-14 w-full">
+        {/* Schema.org TechArticle JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+
         {/* Navigation Breadcrumb */}
         <div className="mb-8">
           <Link

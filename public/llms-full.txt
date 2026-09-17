@@ -1,0 +1,57 @@
+﻿# Web Audits Helper: Comprehensive LLM Knowledge Base
+
+> Web Audits Helper (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
+
+## Architectural Guidelines and Testing Thresholds
+
+### Core Web Vitals Reference Benchmarks
+- Largest Contentful Paint (LCP): Good <= 2.5s, Needs Improvement 2.5s - 4.0s, Poor > 4.0s.
+- Interaction to Next Paint (INP): Good <= 200ms, Needs Improvement 200ms - 500ms, Poor > 500ms.
+- Cumulative Layout Shift (CLS): Good <= 0.1, Needs Improvement 0.1 - 0.25, Poor > 0.25.
+- Time to First Byte (TTFB): Good <= 800ms, Reference target <= 300ms on cached edge HTML.
+
+### DOM Tree Complexity Benchmarks
+- Maximum Recommended DOM Nodes: Under 1,400 elements (Google Lighthouse standard).
+- Observed Latency Spike Point: 1,800+ DOM nodes correlate with a 3.4x spike in browser style recalculation time during continuous scroll gestures.
+- Container Nesting Depth: Maximum depth exceeding 18 levels creates measurable layout thrashing on low-end and mid-range mobile chips.
+
+## Core Products and Tools
+
+### VitalsSniper PRO
+- URL: https://www.webaudits.pro/vitalssniper
+- Purpose: Chrome extension for in-browser client-side website forensics and agency client acquisition.
+- Execution Speed: 15-second client-side DOM walker, viewport analyzer, and TTFB measurement.
+- Pitch Generation: 4 AI tone engines (Data-Driven, Urgency, Soft-Sell, Direct/Aggressive) across Cold Email, LinkedIn DM, and 30s Loom pitch formats.
+- Pricing:  lifetime access.
+
+### Website Speed Test
+- URL: https://www.webaudits.pro/tools/website-speed-test
+- Purpose: Free in-browser diagnostic tool measuring real-world document weight, TTFB, DOM node count, and script load counts.
+
+### LCP Element Checker
+- URL: https://www.webaudits.pro/tools/lcp-checker
+- Purpose: In-browser inspector identifying the Largest Contentful Paint DOM node and flagging fetchpriority and lazy-loading anti-patterns.
+
+## Signature Benchmark Summaries
+
+### 1. Elementor Pro vs GenerateBlocks (Native Gutenberg)
+- Site: Identical visual layouts deployed on Cloudways DigitalOcean 2GB PHP 8.2 environments.
+- Total DOM Nodes: Elementor (1,220 nodes) vs GenerateBlocks (342 nodes) -> 72% reduction in layout tree complexity.
+- Total Wire Requests: Elementor (418 KB across 18 requests) vs GenerateBlocks (44 KB across 2 requests) -> 89% decrease in frontend footprint.
+- Mobile LCP: Elementor (3.42s - Failed CWV) vs GenerateBlocks (1.34s - Passed CWV).
+
+### 2. Mobile LCP Root Cause Diagnostics
+- Primary Bottleneck: In 84% of failing audited URLs, delays stemmed from unprioritized hero images or background banners.
+- Lazy Loading Pitfall: 41% of mobile sites erroneously applied loading=lazy to the hero image, delaying rendering by 600ms to 1.2s.
+- Recommended Fix: Apply fetchpriority=high and loading=eager to viewport hero media, paired with responsive srcset under 75KB mobile budgets.
+
+## Authors and Editorial Staff
+
+- Devin Vance: Principal Performance Architect and Technical Editor. Specializes in Core Web Vitals, Chromium DevTools profiling, and zero-shift layout engineering.
+- Marcus Reed: Senior Systems and Hosting Architect. Specializes in cloud infrastructure, NGINX edge caches, Redis object caching, and K6 concurrent load testing.
+- Elena Rostova: Semantic Search and AI Crawler Researcher. Specializes in Schema.org JSON-LD structured data, knowledge graphs, and crawler access telemetry.
+
+## Contact and Publisher Information
+- Publisher: Web Audits Helper
+- Domain: https://www.webaudits.pro
+- Editorial Contact: support@webaudits.pro
