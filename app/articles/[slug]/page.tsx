@@ -21,6 +21,7 @@ import {
   ExternalLink,
   CheckCircle2,
   Share2,
+  HelpCircle,
 } from 'lucide-react';
 
 export function generateStaticParams() {
@@ -182,6 +183,22 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     itemListElement: breadcrumbItems,
   };
 
+  const faqSchema =
+    articleContent?.faq && articleContent.faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: articleContent.faq.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
@@ -197,6 +214,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
+        {/* Schema.org FAQPage JSON-LD */}
+        {faqSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+        )}
 
         {/* Navigation Breadcrumb */}
         <div className="mb-8">
@@ -374,25 +398,56 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 ))}
 
                 {/* Native In-Content Tool CTA */}
-                <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6">
-                  <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
-                    <Wrench className="h-4 w-4" />
-                    <span>Live Verification Tool</span>
+                {articleContent.ctaBox && (
+                  <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6">
+                    <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                      <Wrench className="h-4 w-4" />
+                      <span>Live Verification Tool</span>
+                    </div>
+                    <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                      {articleContent.ctaBox.title}
+                    </h3>
+                    <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                      {articleContent.ctaBox.desc}
+                    </p>
+                    <Link
+                      href={articleContent.ctaBox.buttonHref}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                    >
+                      <span>{articleContent.ctaBox.buttonText}</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                   </div>
-                  <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
-                    {articleContent.ctaBox.title}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
-                    {articleContent.ctaBox.desc}
-                  </p>
-                  <Link
-                    href={articleContent.ctaBox.buttonHref}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
-                  >
-                    <span>{articleContent.ctaBox.buttonText}</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
+                )}
+
+                {/* Frequently Asked Questions */}
+                {articleContent.faq && articleContent.faq.length > 0 && (
+                  <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+                      <HelpCircle className="h-4 w-4" />
+                      <span>Technical FAQ: Forensic and Engineering Clarifications</span>
+                    </div>
+                    <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+                      Frequently Asked Questions
+                    </h3>
+                    <div className="space-y-4 pt-2">
+                      {articleContent.faq.map((item, fIdx) => (
+                        <div
+                          key={fIdx}
+                          className="rounded-xl border border-sand-300 bg-sand-50/50 p-5 space-y-2 hover:border-sand-400 transition-colors"
+                        >
+                          <h4 className="text-sm sm:text-base font-bold text-charcoal flex items-start gap-2">
+                            <span className="text-accent font-mono text-xs mt-0.5">Q{fIdx + 1}:</span>
+                            <span>{item.question}</span>
+                          </h4>
+                          <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed pl-6">
+                            {item.answer}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Verdict Summary Box */}
                 <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-3 border-l-4 border-[#242321]">

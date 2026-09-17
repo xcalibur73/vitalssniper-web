@@ -68,10 +68,12 @@ async function runTests() {
     '/cookies',
   ];
 
+  const BASE_URL = process.env.TEST_BASE_URL || 'http://127.0.0.1:3000';
+
   try {
     console.log('[SECTION 1] Testing 20 Routes for 200 OK and 0 Overflow (Desktop)...');
     for (const route of routes) {
-      const response = await page.goto(`http://localhost:3000${route}`, { waitUntil: 'networkidle' });
+      const response = await page.goto(`${BASE_URL}${route}`, { waitUntil: 'networkidle' });
       assert(response?.status() === 200, `Route ${route} returned HTTP 200`);
 
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -83,7 +85,7 @@ async function runTests() {
     await page.setViewportSize({ width: 390, height: 844 });
     const mobileSampleRoutes = ['/', '/articles', '/tools', '/reviews', '/comparisons', '/research', '/teardowns'];
     for (const route of mobileSampleRoutes) {
-      await page.goto(`http://localhost:3000${route}`, { waitUntil: 'networkidle' });
+      await page.goto(`${BASE_URL}${route}`, { waitUntil: 'networkidle' });
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
       const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
       assert(scrollWidth <= clientWidth, `Route ${route} has zero mobile overflow (Mobile: ${scrollWidth}px <= ${clientWidth}px)`);
@@ -93,7 +95,7 @@ async function runTests() {
     await page.setViewportSize({ width: 1280, height: 800 });
 
     console.log('\n[SECTION 3] Testing Homepage URL Analyzer Bar...');
-    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
     const input = page.locator('input[placeholder*="Enter a website URL"]');
     assert(await input.isVisible(), 'URL Analyzer input bar is visible in hero');
 
@@ -103,7 +105,7 @@ async function runTests() {
     assert(page.url().includes('website-speed-test'), `URL Analyzer routed correctly to: ${page.url()}`);
 
     console.log('\n[SECTION 4] Testing Affiliate Link Disclosures & rel="sponsored"...');
-    await page.goto('http://localhost:3000/reviews', { waitUntil: 'networkidle' });
+    await page.goto(`${BASE_URL}/reviews`, { waitUntil: 'networkidle' });
     const sponsoredLinks = page.locator('a[rel*="sponsored"]');
     const count = await sponsoredLinks.count();
     assert(count > 0, `Found ${count} affiliate links strictly enforcing rel="sponsored"`);
