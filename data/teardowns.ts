@@ -41,7 +41,7 @@ export const TEARDOWNS: TeardownStudy[] = [
     lcpScore: '3.9s (Failed)',
     domElements: 3820,
     totalWeight: '4.8MB',
-    seoFinding: 'Excessive DIV wrapping (nesting depth > 24 levels) caused severe style recalculation penalties during mobile scroll interactions, triggering INP failures.',
+    seoFinding: 'Excessive DIV wrapping (nesting depth > 24 levels) correlated with elevated style recalculation penalties during mobile scroll interactions, contributing to high interaction latency.',
     uxObservation: 'Navigation menu triggers a visible 320ms frame freeze on mobile touch due to heavy unoptimized re-renders of the global mega-menu DOM tree.',
     recommendations: [
       'Flatten DOM layout hierarchy by removing redundant utility container wrappers.',

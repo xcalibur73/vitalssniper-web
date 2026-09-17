@@ -43,28 +43,33 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/articles" className="hover:text-accent-light transition-colors">
-                  Web Performance &amp; CWV
+                <Link href="/articles/web-performance" className="hover:text-accent-light transition-colors">
+                  Web Performance
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-accent-light transition-colors">
-                  Technical SEO
+                <Link href="/articles/seo" className="hover:text-accent-light transition-colors">
+                  SEO &amp; Structured Data
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-accent-light transition-colors">
-                  AI &amp; GEO Search
+                <Link href="/articles/ai-search" className="hover:text-accent-light transition-colors">
+                  AI Search &amp; GEO
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-accent-light transition-colors">
-                  Web Design &amp; CSS
+                <Link href="/articles/web-design" className="hover:text-accent-light transition-colors">
+                  Web Design &amp; 0 CLS
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-accent-light transition-colors">
-                  Conversion Optimization
+                <Link href="/articles/conversion" className="hover:text-accent-light transition-colors">
+                  Conversion &amp; CRO
+                </Link>
+              </li>
+              <li>
+                <Link href="/articles/tools" className="hover:text-accent-light transition-colors">
+                  Tools &amp; Workflows
                 </Link>
               </li>
             </ul>
@@ -214,12 +219,8 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 flex-shrink-0">
-            <Link href="/editorial-policy" className="hover:underline">Methodology</Link>
-            <span>&bull;</span>
-            <Link href="/privacy" className="hover:underline">Privacy</Link>
-            <span>&bull;</span>
-            <Link href="/pricing" className="hover:underline">Pricing</Link>
+          <div className="flex items-center gap-4 flex-shrink-0 text-charcoal-muted">
+            <span className="font-editorial italic text-sand-300">Better insights. Better websites.</span>
           </div>
         </div>
 
