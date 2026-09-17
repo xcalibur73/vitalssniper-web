@@ -3,10 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Key, Sparkles } from 'lucide-react';
+import { ArrowRight, Key, Sparkles, ExternalLink } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
 interface NavbarProps {
-  onOpenCheckout: (tier: 'solo' | 'agency') => void;
+  onOpenCheckout?: (tier: 'solo' | 'agency') => void;
 }
 
 export default function Navbar({ onOpenCheckout }: NavbarProps) {
@@ -60,17 +61,19 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
             className="hidden rounded-lg border border-white/10 bg-surface px-3.5 py-2 text-xs font-semibold text-gray-300 transition-colors hover:border-white/20 hover:text-white sm:flex items-center gap-1.5"
           >
             <Key className="h-3 w-3 text-emerald-400" />
-            <span>Redeem Key</span>
+            <span>Redeem AppSumo Code</span>
           </Link>
 
-          <button
-            onClick={() => onOpenCheckout('solo')}
+          <a
+            href={SITE_CONFIG.appsumoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-xs font-bold text-black shadow-[0_4px_14px_rgba(255,255,255,0.2)] transition-all hover:bg-gray-100 hover:scale-[1.02]"
           >
             <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
-            <span>Get PRO Lifetime</span>
+            <span>Buy on AppSumo</span>
             <span className="rounded bg-black/10 px-1.5 py-0.5 text-[10px] font-extrabold">$39</span>
-          </button>
+          </a>
         </div>
 
       </div>

@@ -20,7 +20,10 @@ import {
   CheckCircle2,
   HelpCircle,
   TrendingUp,
+  Key,
+  ExternalLink,
 } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
 export default function HomePage() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -58,31 +61,34 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <button
-              onClick={() => handleOpenCheckout('solo')}
+            <a
+              href={SITE_CONFIG.appsumoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-extrabold text-black shadow-[0_10px_30px_rgba(255,255,255,0.25)] transition-all hover:bg-gray-100 hover:scale-[1.02]"
             >
-              <span>Get Lifetime Access — $39</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
+              <span>Buy Lifetime Deal on AppSumo — $39</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
 
-            <a
-              href="#auditor"
+            <Link
+              href="/license"
               className="flex items-center gap-2 rounded-xl border border-white/15 bg-surface-card px-6 py-4 text-base font-semibold text-gray-300 transition-all hover:border-white/30 hover:text-white"
             >
-              <span>Try Live Scanner Below</span>
-            </a>
+              <Key className="h-4 w-4 text-emerald-400" />
+              <span>Redeem AppSumo Code</span>
+            </Link>
           </div>
 
           {/* Social Proof */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500 font-medium">
             <span className="flex items-center gap-1.5 text-amber-400">
-              ★★★★★ <span className="text-gray-400">4.9/5 from 120+ agency founders</span>
+              ★★★★★ <span className="text-gray-400">Official AppSumo Partner Listing</span>
             </span>
             <span>&bull;</span>
-            <span>Zero External API Lag</span>
+            <span>Instant Voucher Code Delivery</span>
             <span>&bull;</span>
-            <span>30-Day Money-Back Guarantee</span>
+            <span>60-Day AppSumo Refund Guarantee</span>
           </div>
 
         </div>

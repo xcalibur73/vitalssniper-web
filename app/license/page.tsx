@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CheckoutModal from '@/components/CheckoutModal';
-import { Key, CheckCircle2, AlertCircle, Download, ArrowLeft, ShieldCheck } from 'lucide-react';
+import { Key, CheckCircle2, AlertCircle, Download, ArrowLeft, ShieldCheck, ExternalLink, HelpCircle } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
 export default function LicensePage() {
   const [query, setQuery] = useState('');
@@ -56,37 +57,48 @@ export default function LicensePage() {
         </Link>
 
         <div className="rounded-2xl border border-white/10 bg-[#12141d] p-8 sm:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.5)]">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
               <Key className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">License Management Portal</h1>
-              <p className="text-xs text-gray-400">Lookup your activation key, verify seats, or download the latest update.</p>
+              <h1 className="text-2xl font-bold text-white">AppSumo Voucher & License Redemption</h1>
+              <p className="text-xs text-gray-400">Enter your AppSumo voucher code to unlock your lifetime key and download.</p>
             </div>
           </div>
 
-          <form onSubmit={handleVerify} className="mt-8 space-y-4">
+          {/* Quick steps banner */}
+          <div className="rounded-xl border border-white/10 bg-[#090a10]/60 p-4 mt-6 text-xs text-gray-400 space-y-1.5">
+            <div className="font-bold text-gray-300 flex items-center gap-1.5">
+              <HelpCircle className="h-3.5 w-3.5 text-emerald-400" />
+              <span>How to redeem your AppSumo purchase:</span>
+            </div>
+            <p>1. Open your <strong>AppSumo account &rarr; Products</strong> and copy your VitalsSniper code.</p>
+            <p>2. Paste the code below (e.g. <code>VS-PRO-XXXX-XXXX</code>) and click <strong>Verify & Unlock</strong>.</p>
+            <p>3. Download <code>vitalssniper_pro.zip</code> and install via Chrome Developer Mode in 30 seconds.</p>
+          </div>
+
+          <form onSubmit={handleVerify} className="mt-6 space-y-4">
             <div>
               <label className="block text-xs font-bold text-gray-300 mb-1.5">
-                License Key or Purchase Email
+                AppSumo Redemption Code or License Key
               </label>
               <input
                 type="text"
                 required
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="e.g. VS-PRO-XXXX-XXXX or your@email.com"
-                className="w-full rounded-xl border border-white/10 bg-[#090a10] px-4 py-3 text-sm text-white outline-none focus:border-emerald-500 transition-colors"
+                placeholder="e.g. VS-PRO-XXXX-XXXX"
+                className="w-full rounded-xl border border-white/10 bg-[#090a10] px-4 py-3 text-sm font-mono uppercase tracking-wider text-white outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-white py-3.5 text-sm font-bold text-black transition-all hover:bg-gray-100 disabled:opacity-50"
+              className="w-full rounded-xl bg-white py-3.5 text-sm font-bold text-black transition-all hover:bg-gray-100 disabled:opacity-50 shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
             >
-              {loading ? 'Verifying...' : 'Lookup License'}
+              {loading ? 'Verifying with License Server...' : 'Verify Code & Unlock Download'}
             </button>
           </form>
 
@@ -130,10 +142,21 @@ export default function LicensePage() {
             </div>
           )}
 
-          <div className="mt-8 border-t border-white/10 pt-6 flex items-center justify-between text-xs text-gray-500">
-            <span>Need help with your order?</span>
-            <a href="mailto:support@vitalssniper.com" className="text-emerald-400 hover:underline">
-              Contact Support
+          <div className="mt-8 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+            <div className="flex items-center gap-1.5">
+              <span>Don't have a voucher code yet?</span>
+              <a
+                href={SITE_CONFIG.appsumoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1"
+              >
+                <span>Buy on AppSumo ($39)</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+            <a href="mailto:support@vitalssniper.com" className="text-gray-500 hover:text-white transition-colors">
+              Support Desk
             </a>
           </div>
         </div>

@@ -1,9 +1,9 @@
-'use client';
+import React from 'react';
+import Link from 'next/link';
+import { Check, Sparkles, Shield, Zap, ExternalLink, Key } from 'lucide-react';
+import { SITE_CONFIG } from '@/config/site';
 
-import React, { useState } from 'react';
-import { Check, Sparkles, Shield, Zap } from 'lucide-react';
-
-export default function PricingCards({ onOpenCheckout }: { onOpenCheckout: (tier: 'solo' | 'agency') => void }) {
+export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tier: 'solo' | 'agency') => void }) {
   return (
     <section id="pricing" className="py-24 border-t border-white/[0.08]">
       <div className="mx-auto max-w-5xl px-6">
@@ -81,12 +81,15 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout: (tier
               </ul>
             </div>
 
-            <button
-              onClick={() => onOpenCheckout('solo')}
-              className="w-full rounded-xl border border-white/20 bg-surface-elevated py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black hover:scale-[1.01]"
+            <a
+              href={SITE_CONFIG.appsumoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 bg-surface-elevated py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black hover:scale-[1.01]"
             >
-              Get Solo License ($39)
-            </button>
+              <span>Buy Solo on AppSumo ($39)</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
           </div>
 
           {/* Agency Team */}
@@ -150,25 +153,39 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout: (tier
               </ul>
             </div>
 
-            <button
-              onClick={() => onOpenCheckout('agency')}
-              className="w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 hover:scale-[1.01] shadow-[0_4px_20px_rgba(255,255,255,0.2)]"
+            <a
+              href={SITE_CONFIG.appsumoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 hover:scale-[1.01] shadow-[0_4px_20px_rgba(255,255,255,0.2)]"
             >
-              Get Agency Team ($79)
-            </button>
+              <span>Buy Agency Bundle on AppSumo ($79)</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
           </div>
 
+        </div>
+
+        {/* Voucher Redemption Banner */}
+        <div className="mt-8 text-center">
+          <p className="text-xs text-gray-400">
+            Already purchased your voucher code on AppSumo?{' '}
+            <Link href="/license" className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1">
+              <Key className="h-3 w-3" />
+              Redeem Voucher & Download Extension &rarr;
+            </Link>
+          </p>
         </div>
 
         {/* Guarantee Banner */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-xs text-gray-400">
           <div className="flex items-center gap-2">
             <Shield className="h-4 w-4 text-emerald-400" />
-            <span>30-Day Money-Back Guarantee</span>
+            <span>60-Day AppSumo Money-Back Guarantee</span>
           </div>
           <div className="hidden sm:block text-gray-600">&bull;</div>
           <div className="flex items-center gap-2">
-            <span>🔒 256-Bit SSL Encrypted Checkout</span>
+            <span>🔒 AppSumo Buyer Protection & Verified Reviews</span>
           </div>
           <div className="hidden sm:block text-gray-600">&bull;</div>
           <div className="flex items-center gap-2">
