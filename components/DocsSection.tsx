@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Terminal, CheckCircle2, Copy, Send, FileText, ArrowRight } from 'lucide-react';
+import { BookOpen, Terminal, CheckCircle2, Copy, Send, FileText, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function DocsSection() {
   return (
@@ -139,9 +139,71 @@ export default function DocsSection() {
                 <div>
                   <h4 className="font-bold text-white mb-1">Attach 1-Page PDF Teardown & Close Sprint</h4>
                   <p className="text-gray-400 leading-relaxed">
-                    Click <strong>Export PDF Teardown</strong>. Attach the clean, print-ready card to your conversation. Pitch a 48-Hour Core Web Vitals remediation sprint for $1,500 – $5,000.
+                    Click <strong>Export PDF Teardown</strong>. Attach the clean, print-ready card to your conversation. Pitch a 48-Hour Core Web Vitals remediation sprint for $1,500 - $5,000.
                   </p>
                 </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* 5 Powerhouse Agency Features Guide */}
+          <div className="rounded-2xl border border-white/10 bg-[#12141d] p-8 sm:p-10 shadow-xl space-y-6">
+            <div className="flex items-center gap-3 pb-4 border-b border-white/10">
+              <Sparkles className="h-5 w-5 text-emerald-400" />
+              <h3 className="text-xl sm:text-2xl font-bold text-white">Agency Playbook: The 5 Powerhouse Features</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+              
+              {/* Feature 1 */}
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span>1. White-Label Branding & Booking CTA</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  Click the ⚙️ gear icon in the header. Add your Agency Name, Logo URL, Auditor Title, and Calendly link. When exporting the 1-Page PDF Teardown, VitalsSniper dynamically stamps your branding and a high-converting call booking card onto the document.
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span>2. Head-to-Head Competitor Mode</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  Click the ⚔️ Vs button in the header. Enter your target prospect and their top rival. VitalsSniper benchmarks DOM counts, payload size, and mobile rendering side-by-side, generating a personalized comparison killer-hook showing why clients bounce to rivals.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span>3. Live LCP Visual Element Highlighter</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  While on any client site, click 🎯 Highlight LCP in the utility grid. VitalsSniper outlines the exact Largest Contentful Paint node with an emerald pulse animation and attaches a floating diagnostic badge. Perfect for 30-second Loom recordings.
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span>4. 1-Click Lead Pipeline CRM & CSV Export</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  Click 📌 Save on any audited prospect to store their domain, CMS stack, score, and personalized pitch in your built-in extension CRM. Open the Pipeline drawer and export an RFC-4180 CSV for 1-click import into Instantly, Lemlist, or HubSpot.
+                </p>
+              </div>
+
+              {/* Feature 5 (Spanning full width) */}
+              <div className="md:col-span-2 rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                  <span>5. AI Search & Knowledge Graph Schema Validator</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  VitalsSniper automatically checks whether target websites have valid Knowledge Graph JSON-LD schemas required by AI search engines (ChatGPT, Perplexity, Copilot) to cite them as authoritative sources. This opens up lucrative GEO and AI SEO retainers.
+                </p>
               </div>
 
             </div>

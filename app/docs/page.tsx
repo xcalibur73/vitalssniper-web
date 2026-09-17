@@ -139,6 +139,51 @@ Best regards,
             </div>
           </div>
 
+          {/* 5 Powerhouse Agency Features Guide */}
+          <div className="rounded-2xl border border-white/10 bg-[#12141d] p-8 sm:p-10 space-y-6">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-2.5">
+              <Sparkles className="h-5 w-5 text-emerald-400" />
+              <span>The 5 Powerhouse Agency Features Explained</span>
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <h3 className="font-bold text-emerald-400 text-sm">1. White-Label Agency Branding & Booking CTA</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Click the ⚙️ gear icon in the extension header. Input your Agency Name, Logo URL, Auditor Title, and Calendly / Cal.com link. The confidential 1-Page PDF Teardown automatically stamps your custom agency branding and a high-converting call booking card.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <h3 className="font-bold text-emerald-400 text-sm">2. Head-to-Head Competitor Comparison Mode</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Click the ⚔️ Vs button in the extension header. Enter the target prospect and their main rival. VitalsSniper displays side-by-side metric tables (DOM bloat, payload size, mobile responsiveness) and generates a killer-hook comparison pitch.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <h3 className="font-bold text-emerald-400 text-sm">3. Live LCP Visual Element Highlighter</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Click 🎯 Highlight LCP in the extension utility grid. VitalsSniper identifies the Largest Contentful Paint node in the active DOM, outlines it with an emerald pulsing glow, and attaches a diagnostic badge. Ideal for 30-second Loom recordings.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <h3 className="font-bold text-emerald-400 text-sm">4. 1-Click Lead Pipeline CRM & CSV Export</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Click 📌 Save while auditing any website to store the prospect, CMS stack, score, and personalized pitch directly in the extension. Click the Pipeline icon and export an RFC-4180 CSV for immediate import into Instantly, Lemlist, Apollo, or HubSpot.
+                </p>
+              </div>
+
+              <div className="md:col-span-2 rounded-xl border border-white/5 bg-[#0d0e15] p-5 space-y-2">
+                <h3 className="font-bold text-emerald-400 text-sm">5. AI Search & Knowledge Graph Schema Validator</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Validates whether prospective client sites have valid Knowledge Graph JSON-LD schemas required by AI search engines (ChatGPT, Perplexity, Copilot) to cite them as authoritative sources. Opens up high-margin GEO and AI SEO retainers.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>

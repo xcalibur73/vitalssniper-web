@@ -49,6 +49,9 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
           <a href="#docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             Documentation & Setup
           </a>
+          <a href="#faq" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            FAQ
+          </a>
         </nav>
 
         {/* Action CTAs */}

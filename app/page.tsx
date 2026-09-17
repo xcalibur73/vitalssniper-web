@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import LicenseActivation from '@/components/LicenseActivation';
 import LiveAuditor from '@/components/LiveAuditor';
 import Deliverables from '@/components/Deliverables';
 import DocsSection from '@/components/DocsSection';
+import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
 import { Sparkles, ExternalLink, ShieldCheck, ArrowRight, Key } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
@@ -81,6 +82,9 @@ export default function HomePage() {
       {/* Documentation & How to Use Playbook */}
       <DocsSection />
 
+      {/* Interactive FAQ Section */}
+      <FaqSection />
+
       {/* AppSumo Listing Callout Banner */}
       <section className="py-16 border-t border-white/[0.08] bg-gradient-to-b from-[#12141d] to-[#090a10]">
         <div className="mx-auto max-w-4xl px-6 text-center">
@@ -104,7 +108,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-sm font-extrabold text-black shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition-all hover:bg-gray-100 hover:scale-[1.02] flex items-center justify-center gap-2"
               >
-                <span>Buy Lifetime Deal on AppSumo — $39</span>
+                <span>Buy Lifetime Deal on AppSumo: $39</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
 

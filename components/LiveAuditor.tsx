@@ -201,7 +201,7 @@ export default function LiveAuditor() {
                 disabled={triesLeft <= 0}
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder={triesLeft > 0 ? "e.g. interiorstudio.com or lawfirm.com" : "Demo limit reached — activate license above"}
+                placeholder={triesLeft > 0 ? "e.g. interiorstudio.com or lawfirm.com" : "Demo limit reached: activate license above"}
                 className="w-full bg-transparent text-sm sm:text-base text-white outline-none placeholder:text-gray-500 disabled:cursor-not-allowed"
               />
             </div>
