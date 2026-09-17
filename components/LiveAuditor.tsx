@@ -321,6 +321,31 @@ export default function LiveAuditor() {
 
             </div>
 
+            {/* Recommended Technical Improvements (Actionable & 0 Design Changes) */}
+            {result.improvements && result.improvements.length > 0 && (
+              <div className="mb-6 rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-4 sm:p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">Recommended Technical Improvements</h4>
+                    <span className="text-[11px] text-emerald-400 font-medium">100% Visual Design Invariance Guarantee &bull; Zero Aesthetic Disruption</span>
+                  </div>
+                </div>
+                <div className="grid gap-2.5">
+                  {result.improvements.map((imp: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300">
+                      <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-500/15 text-[11px] font-bold text-emerald-400 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <span className="leading-relaxed">{imp}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Generated Outreach Copy Box */}
             <div className="rounded-xl border border-white/10 bg-[#0b0d14] p-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
