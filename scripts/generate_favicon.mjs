@@ -124,12 +124,12 @@ async function generateAllIcons() {
   <h2>Simulated Browser Chrome Tabs</h2>
   <div class="tab-bar-dark">
     <img src="favicon-32x32.png" width="16" height="16">
-    <span class="tab-title">Web Audits Helper | Technical Audits</span>
+    <span class="tab-title">Web Audits | Technical Audits</span>
   </div>
 
   <div class="tab-bar-light">
     <img src="favicon-32x32.png" width="16" height="16">
-    <span class="tab-title">Web Audits Helper | Technical Audits</span>
+    <span class="tab-title">Web Audits | Technical Audits</span>
   </div>
 
   <h3 style="margin-top: 40px;">All Generated Resolutions:</h3>

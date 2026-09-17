@@ -6,7 +6,7 @@ import { DIRECTORY_TOOLS } from '@/data/tools';
 import { Wrench, Star, ExternalLink, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Public Web Tools & Software Directory | Web Audits Helper',
+  title: 'Public Web Tools & Software Directory | Web Audits',
   description: 'Curated directory of vetted web performance, SEO, hosting, analytics, and speed optimization tools with transparent pricing and review links.',
 };
 

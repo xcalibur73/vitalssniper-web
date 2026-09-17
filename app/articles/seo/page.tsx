@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Technical SEO & Structured Data Hub | Web Audits Helper',
+  title: 'Technical SEO & Structured Data Hub | Web Audits',
   description: 'Guides and tools for Schema.org JSON-LD structured data, crawl budget optimization, canonical directives, and entity SEO.',
 };
 

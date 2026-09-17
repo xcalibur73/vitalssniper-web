@@ -24,7 +24,7 @@ export default function AboutPage() {
             Practical Web Intelligence for Better Websites
           </h1>
           <p className="text-sm sm:text-base text-charcoal-muted max-w-2xl mx-auto leading-relaxed">
-            Web Audits Helper is a digital publication and tooling platform committed to objective web performance research, software testing, and actionable flaw detection.
+            Web Audits is a digital publication and tooling platform committed to objective web performance research, software testing, and actionable flaw detection.
           </p>
         </div>
 

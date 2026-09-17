@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 
 async function runTests() {
   console.log('====================================================');
-  console.log('🚀 RUNNING WEB AUDITS HELPER EDITORIAL VERIFICATION');
+  console.log('🚀 RUNNING WEB AUDITS EDITORIAL VERIFICATION');
   console.log('====================================================\n');
 
   const browser = await chromium.launch({ channel: 'msedge', headless: true });

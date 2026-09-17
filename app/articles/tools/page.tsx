@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Agency Toolstacks & Diagnostic Workflows Hub | Web Audits Helper',
+  title: 'Agency Toolstacks & Diagnostic Workflows Hub | Web Audits',
   description: 'Workflows, software stacks, and consultative sales frameworks for web performance consultants and digital marketing agencies.',
 };
 

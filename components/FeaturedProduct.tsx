@@ -20,7 +20,7 @@ export default function FeaturedProduct() {
                 <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
               </div>
               <div className="flex-1 text-center text-xs text-gray-500 font-mono">
-                Web Audits Helper - Active Tab Inspector
+                Web Audits - Active Tab Inspector
               </div>
             </div>
             

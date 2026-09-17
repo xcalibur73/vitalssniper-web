@@ -56,7 +56,7 @@ async function probeAll() {
         let data = '';
         res.on('data', chunk => data += chunk);
         res.on('end', () => {
-          const hasBrand = data.includes('Web Audits Helper') || data.includes('VitalsSniper');
+          const hasBrand = data.includes('Web Audits') || data.includes('VitalsSniper');
           console.log(`[${res.statusCode}] https://www.webaudits.pro${ep} (${data.length} bytes) - Brand match: ${hasBrand}`);
           if (res.statusCode === 200) successCount++;
           resolve();

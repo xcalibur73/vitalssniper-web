@@ -6,7 +6,7 @@ import { RESEARCH_DATASETS } from '@/data/research';
 import { Database, ShieldCheck, ArrowLeft, BarChart3, CheckCircle2, FileCode } from 'lucide-react';
 
 export const metadata = {
-  title: 'Research Methodology & Dataset Registry | Web Audits Helper',
+  title: 'Research Methodology & Dataset Registry | Web Audits',
   description: 'Complete transparency into our empirical research datasets, testing environments, emulation profiles, and statistical sampling methods.',
 };
 

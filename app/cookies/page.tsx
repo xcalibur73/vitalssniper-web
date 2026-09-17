@@ -5,8 +5,8 @@ import Footer from '@/components/Footer';
 import { Cookie, ShieldCheck, ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Cookie Policy | Web Audits Helper',
-  description: 'Learn how Web Audits Helper uses cookies and local storage. We prioritize privacy with cookieless analytics and zero third-party advertising trackers.',
+  title: 'Cookie Policy | Web Audits',
+  description: 'Learn how Web Audits uses cookies and local storage. We prioritize privacy with cookieless analytics and zero third-party advertising trackers.',
 };
 
 export default function CookiePolicyPage() {
@@ -45,7 +45,7 @@ export default function CookiePolicyPage() {
             1. Our Minimal Cookie Architecture
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed mb-4">
-            Web Audits Helper is designed from the ground up as a privacy-conscious technical publication. Unlike ad-supported media sites that deploy dozens of third-party behavioral cookies, we keep cookie usage to the absolute minimum necessary to deliver core application functionality.
+            Web Audits is designed from the ground up as a privacy-conscious technical publication. Unlike ad-supported media sites that deploy dozens of third-party behavioral cookies, we keep cookie usage to the absolute minimum necessary to deliver core application functionality.
           </p>
           <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
             We do not sell user data, we do not run third-party advertising retargeting pixels (such as Meta Pixel or TikTok Pixel), and we do not profile your browsing habits across external domains.

@@ -5,7 +5,7 @@ import NewsletterBrief from '@/components/NewsletterBrief';
 import { Mail, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'The Web Audits Brief: Weekly Performance & SEO Dispatch | Web Audits Helper',
+  title: 'The Web Audits Brief: Weekly Performance & SEO Dispatch | Web Audits',
   description: 'Subscribe to The Web Audits Brief. Every Thursday: 1 empirical benchmark finding, 1 vetted web tool, 1 teardown lesson, and zero marketing fluff.',
 };
 

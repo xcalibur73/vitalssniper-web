@@ -10,8 +10,8 @@ export async function POST(req: Request) {
     const merchantKey = process.env.CHECKOUT_MERCHANT_KEY;
 
     const pricingTable: Record<string, { name: string; price: number }> = {
-      pro: { name: 'Web Audits Helper PRO Monthly', price: 49 },
-      enterprise: { name: 'Web Audits Helper Enterprise', price: 399 },
+      pro: { name: 'Web Audits PRO Monthly', price: 49 },
+      enterprise: { name: 'Web Audits Enterprise', price: 399 },
     };
 
     const selectedProduct = pricingTable[tier] || pricingTable.pro;

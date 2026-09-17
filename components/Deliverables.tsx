@@ -125,7 +125,7 @@ export default function Deliverables() {
             <span>Commercial Agency Infrastructure</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            What You Get with Web Audits Helper
+            What You Get with Web Audits
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
             Everything your agency needs to turn technical client website flaws into closed retainers in 50 milliseconds.

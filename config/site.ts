@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: 'Web Audits Helper',
+  name: 'Web Audits',
   legacyName: 'VitalsSniper PRO',
   tagline: 'Web Tools. Reviewed. Ranked. Trusted.',
   domain: 'webaudits.pro',

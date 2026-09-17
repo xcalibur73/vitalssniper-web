@@ -33,7 +33,7 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
           <div className="relative h-9 w-9 overflow-hidden rounded-lg border border-sand-300 bg-white shadow-sm transition-transform group-hover:scale-105">
             <Image
               src="/assets/appsumo_icon_512x512.png"
-              alt="Web Audits Helper"
+              alt="Web Audits"
               width={36}
               height={36}
               className="h-full w-full object-cover"
@@ -42,9 +42,6 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
           <div className="flex items-center gap-2">
             <span className="font-editorial text-2xl font-bold tracking-tight text-charcoal">
               Web Audits
-            </span>
-            <span className="rounded-md border border-accent/20 bg-accent/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-accent">
-              Helper
             </span>
           </div>
         </Link>
@@ -67,7 +64,7 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
           <button
             onClick={() => setSearchOpen(!searchOpen)}
             className="flex items-center justify-center h-9 w-9 rounded-lg border border-sand-300 text-charcoal-muted hover:text-charcoal hover:bg-white transition-colors"
-            title="Search Web Audits Helper"
+            title="Search Web Audits"
             aria-label="Search"
           >
             <Search className="h-4 w-4" />

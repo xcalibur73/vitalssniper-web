@@ -1,6 +1,6 @@
-﻿# Web Audits Helper: Comprehensive LLM Knowledge Base
+# Web Audits: Comprehensive LLM Knowledge Base
 
-> Web Audits Helper (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
+> Web Audits (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
 
 ## Architectural Guidelines and Testing Thresholds
 
@@ -52,6 +52,6 @@
 - Elena Rostova: Semantic Search and AI Crawler Researcher. Specializes in Schema.org JSON-LD structured data, knowledge graphs, and crawler access telemetry.
 
 ## Contact and Publisher Information
-- Publisher: Web Audits Helper
+- Publisher: Web Audits
 - Domain: https://www.webaudits.pro
 - Editorial Contact: support@webaudits.pro

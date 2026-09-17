@@ -7,7 +7,7 @@ import { TEARDOWNS } from '@/data/teardowns';
 import { Eye, ShieldAlert, Sparkles } from 'lucide-react';
 
 export const metadata = {
-  title: 'Website Teardowns: Forensic Speed & SEO Case Studies | Web Audits Helper',
+  title: 'Website Teardowns: Forensic Speed & SEO Case Studies | Web Audits',
   description: 'In-depth website teardowns analyzing real production sites for DOM bloat, mobile LCP failures, and render-blocking scripts using VitalsSniper PRO.',
 };
 

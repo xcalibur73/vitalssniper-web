@@ -19,10 +19,10 @@ export async function generateStaticParams() {
 
 export function generateMetadata({ params }: ComparisonPageProps) {
   const comp = COMPARISONS.find((c) => c.slug === params.slug);
-  if (!comp) return { title: 'Comparison Not Found | Web Audits Helper' };
+  if (!comp) return { title: 'Comparison Not Found | Web Audits' };
 
   return {
-    title: `${comp.title} | Web Audits Helper`,
+    title: `${comp.title} | Web Audits`,
     description: comp.summary,
   };
 }

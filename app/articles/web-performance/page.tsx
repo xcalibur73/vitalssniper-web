@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Web Performance & Core Web Vitals Hub | Web Audits Helper',
+  title: 'Web Performance & Core Web Vitals Hub | Web Audits',
   description: 'In-depth engineering guides, diagnostic tools, and speed benchmarks for mobile Largest Contentful Paint (LCP), INP, and server TTFB.',
 };
 

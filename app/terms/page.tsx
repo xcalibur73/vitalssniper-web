@@ -5,8 +5,8 @@ import Footer from '@/components/Footer';
 import { FileText, ShieldCheck, ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms of Service | Web Audits Helper',
-  description: 'Terms of Service and legal usage conditions for Web Audits Helper and VitalsSniper software.',
+  title: 'Terms of Service | Web Audits',
+  description: 'Terms of Service and legal usage conditions for Web Audits and VitalsSniper software.',
 };
 
 export default function TermsPage() {
@@ -34,7 +34,7 @@ export default function TermsPage() {
           </h1>
 
           <p className="text-sm sm:text-base text-charcoal-muted max-w-2xl leading-relaxed">
-            Last updated: March 2026. Please read these terms carefully before accessing Web Audits Helper or using our software.
+            Last updated: March 2026. Please read these terms carefully before accessing Web Audits or using our software.
           </p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function TermsPage() {
             1. Acceptance of Terms
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
-            By accessing or using Web Audits Helper (webaudits.pro) or purchasing VitalsSniper PRO, you agree to be bound by these Terms of Service. If you do not agree to these terms, you should not access our website or utilize our tools.
+            By accessing or using Web Audits (webaudits.pro) or purchasing VitalsSniper PRO, you agree to be bound by these Terms of Service. If you do not agree to these terms, you should not access our website or utilize our tools.
           </p>
         </section>
 
@@ -81,7 +81,7 @@ export default function TermsPage() {
             All audits, benchmarks, reviews, and diagnostic metrics provided on this site are for informational and educational purposes. While we strive for precision in our empirical laboratory testing, web performance varies across network profiles, server conditions, and device hardware.
           </p>
           <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
-            Web Audits Helper is not liable for any direct, indirect, or consequential damages resulting from technical modifications made to client websites or business decisions based on our audit reports.
+            Web Audits is not liable for any direct, indirect, or consequential damages resulting from technical modifications made to client websites or business decisions based on our audit reports.
           </p>
         </section>
 

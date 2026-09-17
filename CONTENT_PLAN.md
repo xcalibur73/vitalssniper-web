@@ -1,4 +1,4 @@
-# Web Audits Helper (webaudits.pro): Editorial Intelligence & Forensic Content Masterplan
+# Web Audits (webaudits.pro): Editorial Intelligence & Forensic Content Masterplan
 
 **Core Identity**: WebAudits.pro = *"We inspect websites and show what is actually happening."*  
 **Brand Promise**: *"We test websites. We show the evidence. We explain what we found."*  
@@ -26,7 +26,7 @@ AGENCY WORKFLOW & RETAINER PROPOSAL
 
 ## 1. Editorial Strategy: The Forensic Data Moat
 
-Web Audits Helper does not publish generic "SEO + AI + hosting + web design" listicles. We operate as an **authoritative digital publication and engineering intelligence lab**.
+Web Audits does not publish generic "SEO + AI + hosting + web design" listicles. We operate as an **authoritative digital publication and engineering intelligence lab**.
 
 ### The 3 Rules of Forensic Publishing:
 1. **Never make a claim without showing the telemetry**: Every guide, benchmark, or autopsy requires an instrumented Evidence Box (`whatWeTested`, `observedResult`, `source`).

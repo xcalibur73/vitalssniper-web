@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Web Design & Zero Layout Shift Hub | Web Audits Helper',
+  title: 'Web Design & Zero Layout Shift Hub | Web Audits',
   description: 'Design token architecture, fluid typography, responsive layouts, and engineering principles for achieving 0 Cumulative Layout Shift (CLS).',
 };
 

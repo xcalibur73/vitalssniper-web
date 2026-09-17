@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "lead_1789678182145_xkl10",
+    "timestamp": "2026-09-17T20:49:42.145Z",
+    "email": null,
+    "agencyName": null,
+    "domain": "apple.com",
+    "url": "https://apple.com",
+    "score": 80,
+    "telemetry": {
+      "totalElements": 1184,
+      "maxDepth": 17,
+      "docKb": 253,
+      "detectedCms": "Custom / Static",
+      "isZoomLocked": false,
+      "hasSchema": true,
+      "schemaType": "WebPage",
+      "externalScripts": 12
+    },
+    "primaryFlaw": "Heavy document payload (253KB HTML exceeds mobile 50KB speed ceiling)",
+    "source": "public_beta_auditor_scan"
+  }
+]

@@ -18,10 +18,10 @@ export async function generateStaticParams() {
 
 export function generateMetadata({ params }: TeardownPageProps) {
   const td = TEARDOWNS.find((t) => t.slug === params.slug);
-  if (!td) return { title: 'Teardown Not Found | Web Audits Helper' };
+  if (!td) return { title: 'Teardown Not Found | Web Audits' };
 
   return {
-    title: `${td.title} | Web Audits Helper`,
+    title: `${td.title} | Web Audits`,
     description: td.seoFinding,
   };
 }

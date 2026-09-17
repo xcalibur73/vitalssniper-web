@@ -4,8 +4,8 @@ import Footer from '@/components/Footer';
 import { ShieldCheck, CheckCircle2, Beaker, Lock } from 'lucide-react';
 
 export const metadata = {
-  title: 'Editorial Policy & Independence Standards | Web Audits Helper',
-  description: 'Our testing standards, independence policy, review criteria, and commercial relationship boundaries at Web Audits Helper.',
+  title: 'Editorial Policy & Independence Standards | Web Audits',
+  description: 'Our testing standards, independence policy, review criteria, and commercial relationship boundaries at Web Audits.',
 };
 
 export default function EditorialPolicyPage() {
@@ -20,7 +20,7 @@ export default function EditorialPolicyPage() {
             Editorial Policy &amp; Testing Methodology
           </h1>
           <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
-            How Web Audits Helper evaluates web performance tools, manages commercial affiliations, and protects empirical accuracy.
+            How Web Audits evaluates web performance tools, manages commercial affiliations, and protects empirical accuracy.
           </p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function EditorialPolicyPage() {
               1. Empirical Testing Standards
             </h2>
             <p>
-              We do not accept vendor marketing claims at face value. Every software review, hosting benchmark, or speed comparison published on Web Audits Helper undergoes at least 14 days of isolated staging and production testing. We measure concrete technical attributes: Time to First Byte (TTFB), Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS), DOM node counts, and database query serialization under simulated concurrency loads.
+              We do not accept vendor marketing claims at face value. Every software review, hosting benchmark, or speed comparison published on Web Audits undergoes at least 14 days of isolated staging and production testing. We measure concrete technical attributes: Time to First Byte (TTFB), Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS), DOM node counts, and database query serialization under simulated concurrency loads.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export default function EditorialPolicyPage() {
               3. Commercial Relationship Boundaries
             </h2>
             <p>
-              While Web Audits Helper maintains affiliate relationships with vetted software providers (and sells our proprietary VitalsSniper PRO software), commercial considerations never dictate editorial conclusions. If a popular tool introduces excessive DOM bloat or fails mobile Core Web Vitals, we document that flaw explicitly. All outbound commercial links enforce rel=&quot;sponsored&quot;.
+              While Web Audits maintains affiliate relationships with vetted software providers (and sells our proprietary VitalsSniper PRO software), commercial considerations never dictate editorial conclusions. If a popular tool introduces excessive DOM bloat or fails mobile Core Web Vitals, we document that flaw explicitly. All outbound commercial links enforce rel=&quot;sponsored&quot;.
             </p>
           </div>
 

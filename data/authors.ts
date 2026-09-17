@@ -15,7 +15,7 @@ export const AUTHORS: Record<string, Author> = {
     slug: 'devin-vance',
     name: 'Devin Vance',
     role: 'Principal Performance Architect & Technical Editor',
-    bio: 'Devin has specialized in web performance and Core Web Vitals engineering for over a decade. He leads diagnostic research and benchmark testing at Web Audits Helper, focusing on mobile LCP reduction, JavaScript execution profiling, and zero-shift layout engineering.',
+    bio: 'Devin has specialized in web performance and Core Web Vitals engineering for over a decade. He leads diagnostic research and benchmark testing at Web Audits, focusing on mobile LCP reduction, JavaScript execution profiling, and zero-shift layout engineering.',
     specialization: [
       'Core Web Vitals Diagnostics (LCP, INP, CLS)',
       'Chromium DevTools Protocol Profiling',

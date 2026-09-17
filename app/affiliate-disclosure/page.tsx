@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { ShieldCheck, CheckCircle2, DollarSign } from 'lucide-react';
 
 export const metadata = {
-  title: 'Affiliate Disclosure & Commercial Transparency | Web Audits Helper',
+  title: 'Affiliate Disclosure & Commercial Transparency | Web Audits',
   description: 'FTC compliance disclosure explaining our affiliate partnerships, rel="sponsored" link standards, and editorial boundaries.',
 };
 
@@ -20,7 +20,7 @@ export default function AffiliateDisclosurePage() {
             Affiliate Disclosure
           </h1>
           <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
-            Full transparency regarding how Web Audits Helper generates revenue, how affiliate links work, and our strict boundaries between editorial testing and commercial partnerships.
+            Full transparency regarding how Web Audits generates revenue, how affiliate links work, and our strict boundaries between editorial testing and commercial partnerships.
           </p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function AffiliateDisclosurePage() {
               1. What Is an Affiliate Link?
             </h2>
             <p>
-              Some of the outbound links on Web Audits Helper are affiliate links. If you click on an affiliate link and make a purchase from the third-party merchant (such as a web hosting provider, theme developer, or SEO software platform), Web Audits Helper may receive a referral commission. This commission comes at zero additional cost to you: in many instances, our partnership agreements secure discounted introductory pricing or extended trial periods for our readers.
+              Some of the outbound links on Web Audits are affiliate links. If you click on an affiliate link and make a purchase from the third-party merchant (such as a web hosting provider, theme developer, or SEO software platform), Web Audits may receive a referral commission. This commission comes at zero additional cost to you: in many instances, our partnership agreements secure discounted introductory pricing or extended trial periods for our readers.
             </p>
           </div>
 
@@ -41,7 +41,7 @@ export default function AffiliateDisclosurePage() {
               2. Strict Link Attribute Standards (rel=&quot;sponsored&quot;)
             </h2>
             <p>
-              In accordance with Google Search Quality guidelines, FTC regulations, and industry transparency standards, all outbound affiliate and commercial links on Web Audits Helper are programmatically tagged with rel=&quot;sponsored noopener&quot; or rel=&quot;nofollow sponsored&quot;. We do not participate in paid link schemes, hidden redirects, or undisclosed promotional endorsements.
+              In accordance with Google Search Quality guidelines, FTC regulations, and industry transparency standards, all outbound affiliate and commercial links on Web Audits are programmatically tagged with rel=&quot;sponsored noopener&quot; or rel=&quot;nofollow sponsored&quot;. We do not participate in paid link schemes, hidden redirects, or undisclosed promotional endorsements.
             </p>
           </div>
 
@@ -59,7 +59,7 @@ export default function AffiliateDisclosurePage() {
               4. Proprietary Software Products
             </h2>
             <p>
-              Web Audits Helper also owns and develops proprietary software, including our flagship browser extension VitalsSniper PRO. When we recommend VitalsSniper PRO on article pages or free tool landing pages, we disclose our ownership transparently so readers understand the commercial relationship.
+              Web Audits also owns and develops proprietary software, including our flagship browser extension VitalsSniper PRO. When we recommend VitalsSniper PRO on article pages or free tool landing pages, we disclose our ownership transparently so readers understand the commercial relationship.
             </p>
           </div>
         </div>

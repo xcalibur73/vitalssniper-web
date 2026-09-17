@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-editorial text-2xl font-bold text-[#F7F4EE]">Web Audits Helper</span>
+              <span className="font-editorial text-2xl font-bold text-[#F7F4EE]">Web Audits</span>
               <span className="rounded border border-accent/30 bg-accent/20 px-2 py-0.5 text-[10px] font-bold text-accent-light uppercase tracking-wider">
                 Digital Publication &amp; Tools
               </span>
@@ -212,10 +212,10 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-[#F7F4EE]/60">
           <div>
             <p className="mb-1">
-              &copy; {new Date().getFullYear()} Web Audits Helper &bull; webaudits.pro &bull; All rights reserved.
+              &copy; {new Date().getFullYear()} Web Audits &bull; webaudits.pro &bull; All rights reserved.
             </p>
             <p className="max-w-3xl text-[10px] leading-relaxed text-[#F7F4EE]/50">
-              Editorial &amp; Affiliate Disclosure: Web Audits Helper is an independent digital publication. We test all software, web hosts, and SEO plugins in laboratory and field conditions. Outbound affiliate links carry rel=&quot;sponsored&quot;. We may earn a commission if you make a purchase through our links at zero extra cost to you. This never compromises our testing data or verdicts.
+              Editorial &amp; Affiliate Disclosure: Web Audits is an independent digital publication. We test all software, web hosts, and SEO plugins in laboratory and field conditions. Outbound affiliate links carry rel=&quot;sponsored&quot;. We may earn a commission if you make a purchase through our links at zero extra cost to you. This never compromises our testing data or verdicts.
             </p>
           </div>
 

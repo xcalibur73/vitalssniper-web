@@ -30,10 +30,10 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
   if (!post) {
-    return { title: 'Article Not Found | Web Audits Helper' };
+    return { title: 'Article Not Found | Web Audits' };
   }
 
-  const title = `${post.title} | Web Audits Helper`;
+  const title = `${post.title} | Web Audits`;
   const description = post.excerpt.length > 155 ? `${post.excerpt.slice(0, 152)}...` : post.excerpt;
 
   return {
@@ -46,7 +46,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       title: post.title,
       description,
       url: `https://www.webaudits.pro/articles/${post.slug}`,
-      siteName: 'Web Audits Helper',
+      siteName: 'Web Audits',
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
@@ -113,7 +113,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Web Audits Helper',
+      name: 'Web Audits',
       url: 'https://www.webaudits.pro',
       logo: {
         '@type': 'ImageObject',

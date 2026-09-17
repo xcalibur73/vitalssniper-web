@@ -29,10 +29,10 @@ export async function generateStaticParams() {
 
 export function generateMetadata({ params }: ReviewPageProps) {
   const product = PRODUCTS.find((p) => p.slug === params.slug);
-  if (!product) return { title: 'Review Not Found | Web Audits Helper' };
+  if (!product) return { title: 'Review Not Found | Web Audits' };
 
   return {
-    title: `${product.name} Review & Benchmarks | Web Audits Helper`,
+    title: `${product.name} Review & Benchmarks | Web Audits`,
     description: product.description,
     alternates: {
       canonical: `https://www.webaudits.pro/reviews/${product.slug}`,
@@ -63,12 +63,12 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
     reviewBody: product.verdict,
     author: {
       '@type': 'Organization',
-      name: 'Web Audits Helper Editorial Team',
+      name: 'Web Audits Editorial Team',
       url: 'https://www.webaudits.pro',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Web Audits Helper',
+      name: 'Web Audits',
       url: 'https://www.webaudits.pro',
       logo: {
         '@type': 'ImageObject',

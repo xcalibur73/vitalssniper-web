@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Conversion Optimization & Speed ROI Hub | Web Audits Helper',
+  title: 'Conversion Optimization & Speed ROI Hub | Web Audits',
   description: 'Data-driven conversion rate optimization (CRO), speed-to-revenue correlation studies, and agency proposal playbooks.',
 };
 

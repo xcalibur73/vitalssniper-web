@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm text-charcoal-muted leading-relaxed">
-            Last updated: March 2026. Web Audits Helper is committed to absolute data privacy and transparency.
+            Last updated: March 2026. Web Audits is committed to absolute data privacy and transparency.
           </p>
         </header>
 

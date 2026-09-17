@@ -3,7 +3,7 @@ import path from 'path';
 
 async function runLiveSuite() {
   console.log('====================================================');
-  console.log('🚀 STARTING WEB AUDITS HELPER EDITORIAL E2E SUITE');
+  console.log('🚀 STARTING WEB AUDITS EDITORIAL E2E SUITE');
   console.log('====================================================\n');
 
   const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -31,7 +31,7 @@ async function runLiveSuite() {
     await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
     
     const title = await page.title();
-    assert(title.includes('VitalsSniper PRO') && title.includes('Web Audits Helper'), 'Page title correctly renders brand and VitalsSniper PRO');
+    assert(title.includes('VitalsSniper PRO') && title.includes('Web Audits'), 'Page title correctly renders brand and VitalsSniper PRO');
 
     const homeText = await page.innerText('body');
     assert(homeText.includes('Practical Web Intelligence for'), 'Editorial headline rendered');

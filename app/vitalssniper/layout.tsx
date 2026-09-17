@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'VitalsSniper PRO | Fast In-Browser Website Audits & Agency Pitches',
     description: 'Audit prospect websites in 15 seconds, locate Core Web Vitals and DOM bloat bottlenecks, and generate evidence-grounded proposals with VitalsSniper PRO.',
     url: 'https://www.webaudits.pro/vitalssniper',
-    siteName: 'Web Audits Helper',
+    siteName: 'Web Audits',
     type: 'website',
     images: [
       {
@@ -45,7 +45,7 @@ const softwareSchema = {
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Web Audits Helper',
+    name: 'Web Audits',
     url: 'https://www.webaudits.pro',
     logo: {
       '@type': 'ImageObject',

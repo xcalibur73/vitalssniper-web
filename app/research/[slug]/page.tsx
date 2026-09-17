@@ -18,10 +18,10 @@ export async function generateStaticParams() {
 
 export function generateMetadata({ params }: ResearchPageProps) {
   const study = RESEARCH_STUDIES.find((s) => s.slug === params.slug);
-  if (!study) return { title: 'Research Study Not Found | Web Audits Helper' };
+  if (!study) return { title: 'Research Study Not Found | Web Audits' };
 
   return {
-    title: `${study.title} | Web Audits Helper`,
+    title: `${study.title} | Web Audits`,
     description: study.summary,
   };
 }

@@ -6,7 +6,7 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'AI Search & GEO Hub | Web Audits Helper',
+  title: 'AI Search & GEO Hub | Web Audits',
   description: 'Emerging practices for generative search engine optimization (GEO), AI crawler access (OAI-SearchBot, PerplexityBot), and llms.txt observability.',
 };
 

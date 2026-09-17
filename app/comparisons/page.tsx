@@ -7,7 +7,7 @@ import { COMPARISONS } from '@/data/comparisons';
 import { ArrowRight, Trophy, Sparkles, Scale } from 'lucide-react';
 
 export const metadata = {
-  title: 'Head-to-Head Web Tool & Hosting Comparisons | Web Audits Helper',
+  title: 'Head-to-Head Web Tool & Hosting Comparisons | Web Audits',
   description: 'Data-driven comparisons of top WordPress hosting, SEO plugins, and performance tools tested under identical workloads.',
 };
 

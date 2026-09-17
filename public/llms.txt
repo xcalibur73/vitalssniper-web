@@ -1,6 +1,6 @@
-﻿# Web Audits Helper
+# Web Audits
 
-> Web Audits Helper (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
+> Web Audits (webaudits.pro) is an independent web performance, technical SEO, Core Web Vitals, and website forensics publication and software laboratory. We test websites with instrumented browser telemetry and publish empirical benchmarks, comparative software reviews, and free diagnostic tools.
 
 ## Core Products and Tools
 

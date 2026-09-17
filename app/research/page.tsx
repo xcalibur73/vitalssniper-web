@@ -7,7 +7,7 @@ import { RESEARCH_STUDIES } from '@/data/research';
 import { BarChart3, Database, FileSpreadsheet, Sparkles } from 'lucide-react';
 
 export const metadata = {
-  title: 'Original Web Performance & SEO Research Reports | Web Audits Helper',
+  title: 'Original Web Performance & SEO Research Reports | Web Audits',
   description: 'Empirical datasets and primary industry research analyzing Core Web Vitals, DOM bloat, and AI crawler readiness across hundreds of production websites.',
 };
 

@@ -20,10 +20,10 @@ export async function generateStaticParams() {
 
 export function generateMetadata({ params }: AuthorPageProps) {
   const author = AUTHORS[params.slug];
-  if (!author) return { title: 'Author Not Found | Web Audits Helper' };
+  if (!author) return { title: 'Author Not Found | Web Audits' };
 
   return {
-    title: `${author.name} - ${author.role} | Web Audits Helper`,
+    title: `${author.name} - ${author.role} | Web Audits`,
     description: author.bio,
     alternates: {
       canonical: `https://www.webaudits.pro/about/authors/${author.slug}`,
@@ -53,7 +53,7 @@ export default function AuthorProfilePage({ params }: AuthorPageProps) {
       knowsAbout: author.specialization,
       worksFor: {
         '@type': 'Organization',
-        name: 'Web Audits Helper',
+        name: 'Web Audits',
         url: 'https://www.webaudits.pro',
       },
     },
