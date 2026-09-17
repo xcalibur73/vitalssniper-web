@@ -23,9 +23,6 @@ export default function Footer() {
           <Link href="/license" className="hover:text-white transition-colors">
             License Portal
           </Link>
-          <Link href="/vitalssniper_pro.zip" download className="hover:text-white transition-colors">
-            Download ZIP
-          </Link>
           <a href="mailto:support@vitalssniper.com" className="hover:text-white transition-colors">
             Support Desk
           </a>

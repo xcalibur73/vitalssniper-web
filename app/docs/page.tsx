@@ -52,7 +52,7 @@ export default function DocsPage() {
                 <div>
                   <h4 className="font-bold text-white mb-1">Download and Extract the ZIP</h4>
                   <p className="text-gray-400 mb-2">
-                    Download <a href="/vitalssniper_pro.zip" download className="text-emerald-400 font-bold hover:underline">vitalssniper_pro.zip</a> and extract the folder to a folder on your computer.
+                    Download your extension package from the <Link href="/license" className="text-emerald-400 font-bold hover:underline">License Portal</Link> using your activation key and extract the folder on your computer.
                   </p>
                 </div>
               </div>

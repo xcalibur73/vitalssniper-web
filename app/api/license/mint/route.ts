@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
+    const adminSecret = req.headers.get('x-admin-secret');
+    if (!process.env.ADMIN_SECRET_KEY || adminSecret !== process.env.ADMIN_SECRET_KEY) {
+      return NextResponse.json({ error: 'Unauthorized: Administrative access required.' }, { status: 401 });
+    }
+
     const { email, name, tier, paymentMethod } = await req.json();
 
     if (!email || !email.includes('@')) {
@@ -24,7 +29,7 @@ export async function POST(req: NextRequest) {
       email,
       name: name || 'Valued Customer',
       paymentMethod: paymentMethod || 'card',
-      downloadUrl: '/vitalssniper_pro.zip',
+      downloadUrl: `/api/download?key=${key}`,
       createdAt: new Date().toISOString(),
     });
   } catch (err: any) {

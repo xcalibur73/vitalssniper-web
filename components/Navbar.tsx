@@ -56,11 +56,11 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
         {/* Action CTAs */}
         <div className="flex items-center gap-3">
           <Link
-            href="/vitalssniper_pro.zip"
-            download
-            className="hidden rounded-lg border border-white/10 bg-surface px-3.5 py-2 text-xs font-semibold text-gray-300 transition-colors hover:border-white/20 hover:text-white sm:block"
+            href="/license"
+            className="hidden rounded-lg border border-white/10 bg-surface px-3.5 py-2 text-xs font-semibold text-gray-300 transition-colors hover:border-white/20 hover:text-white sm:flex items-center gap-1.5"
           >
-            Download ZIP
+            <Key className="h-3 w-3 text-emerald-400" />
+            <span>Redeem Key</span>
           </Link>
 
           <button

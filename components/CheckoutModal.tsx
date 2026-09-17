@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, Check, Download, CreditCard, Sparkles, ShieldCheck } from 'lucide-react';
+import { X, Check, Download, CreditCard, Sparkles, ShieldCheck, Lock, ArrowRight, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -14,45 +15,59 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [payMethod, setPayMethod] = useState<'card' | 'payoneer'>('card');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [licenseData, setLicenseData] = useState<any | null>(null);
+  const [step, setStep] = useState<'select' | 'payment_pending'>('select');
+  const [redemptionCode, setRedemptionCode] = useState('');
+  const [verifyLoading, setVerifyLoading] = useState(false);
+  const [verifiedData, setVerifiedData] = useState<any | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     setTier(defaultTier);
-  }, [defaultTier]);
+    setStep('select');
+    setVerifiedData(null);
+    setErrorMessage(null);
+  }, [defaultTier, isOpen]);
 
   if (!isOpen) return null;
 
   const price = tier === 'solo' ? 39 : 79;
 
-  async function handleOrder(e: React.FormEvent) {
+  // Checkout URLs (Can be connected to Lemon Squeezy, Gumroad, or Payoneer)
+  function handleProceedToPayment(e: React.FormEvent) {
     e.preventDefault();
     if (!email.trim()) return;
 
-    setIsSubmitting(true);
+    // Transition to payment pending state with instruction
+    setStep('payment_pending');
+  }
+
+  async function handleVerifyPaymentCode(e: React.FormEvent) {
+    e.preventDefault();
+    if (!redemptionCode.trim()) return;
+
+    setVerifyLoading(true);
+    setErrorMessage(null);
+
     try {
-      const res = await fetch('/api/license/mint', {
+      const res = await fetch('/api/license/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          tier,
-          paymentMethod: payMethod,
-        }),
+        body: JSON.stringify({ key: redemptionCode.trim() }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Checkout failed');
-      setLicenseData(data);
+      if (!data.valid) {
+        throw new Error(data.message || 'Payment code could not be verified.');
+      }
+      setVerifiedData(data);
     } catch (err: any) {
-      alert(err.message);
+      setErrorMessage(err.message);
     } finally {
-      setIsSubmitting(false);
+      setVerifyLoading(false);
     }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-lg rounded-2xl border border-white/15 bg-[#141724] p-6 sm:p-8 shadow-[0_40px_90px_rgba(0,0,0,0.8)]">
         
         {/* Close button */}
@@ -63,20 +78,20 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
           <X className="h-5 w-5" />
         </button>
 
-        {!licenseData ? (
+        {step === 'select' && (
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">
-                <Sparkles className="h-3.5 w-3.5" />
-                Secure Checkout
+                <Lock className="h-3.5 w-3.5" />
+                Locked &bull; Secure Commercial Checkout
               </div>
-              <h3 className="text-2xl font-extrabold text-white">Complete Your License</h3>
+              <h3 className="text-2xl font-extrabold text-white">Purchase Lifetime License</h3>
               <p className="text-xs text-gray-400 mt-1">
-                One-time lifetime payment &bull; Instant license key delivery & access
+                Select your license package to proceed to the secure checkout processor.
               </p>
             </div>
 
-            {/* Tier Selector in Checkout */}
+            {/* Tier Selector */}
             <div className="grid grid-cols-2 gap-3 mb-5">
               <button
                 type="button"
@@ -108,11 +123,12 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
             </div>
 
             {/* Checkout Form */}
-            <form onSubmit={handleOrder} className="space-y-4">
+            <form onSubmit={handleProceedToPayment} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-gray-300 mb-1.5">Full Name</label>
                 <input
                   type="text"
+                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Doe"
@@ -132,12 +148,8 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
                   placeholder="jane@agency.com"
                   className="w-full rounded-lg border border-white/10 bg-[#090a10] px-3.5 py-2.5 text-sm text-white outline-none focus:border-emerald-500 transition-colors"
                 />
-                <span className="text-[11px] text-gray-500 mt-1 block">
-                  Your activation key and download receipt will be delivered here.
-                </span>
               </div>
 
-              {/* Payment Method Selector */}
               <div>
                 <label className="block text-xs font-bold text-gray-300 mb-1.5">Payment Method</label>
                 <div className="grid grid-cols-2 gap-2.5">
@@ -170,41 +182,106 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
 
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 disabled:opacity-50 mt-2 shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
+                className="w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 mt-2 shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
               >
-                {isSubmitting ? 'Processing Payment...' : `Complete Order — Pay $${price}`}
+                Proceed to Secure Checkout (${price})
               </button>
             </form>
 
-            <div className="mt-4 flex items-center justify-center gap-2 text-[11px] text-gray-500">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-              <span>30-Day Money-Back Guarantee &bull; 256-Bit SSL Encryption</span>
+            <div className="mt-4 flex items-center justify-between text-[11px] text-gray-500">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                30-Day Guarantee
+              </span>
+              <button
+                type="button"
+                onClick={() => setStep('payment_pending')}
+                className="text-emerald-400 hover:underline"
+              >
+                Have an AppSumo / voucher code?
+              </button>
             </div>
           </div>
-        ) : (
-          /* Order Confirmation State */
+        )}
+
+        {step === 'payment_pending' && !verifiedData && (
+          <div>
+            <div className="mb-6">
+              <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
+                <Lock className="h-3.5 w-3.5" />
+                Payment Required &bull; Download Locked
+              </div>
+              <h3 className="text-2xl font-extrabold text-white">Unlock Your License</h3>
+              <p className="text-xs text-gray-400 mt-1">
+                Enter your payment confirmation code, AppSumo voucher, or license key to unlock your download.
+              </p>
+            </div>
+
+            <form onSubmit={handleVerifyPaymentCode} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-300 mb-1.5">
+                  Enter License or Redemption Code
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={redemptionCode}
+                  onChange={(e) => setRedemptionCode(e.target.value)}
+                  placeholder="e.g. VS-PRO-XXXX-XXXX"
+                  className="w-full rounded-lg border border-white/10 bg-[#090a10] px-3.5 py-3 text-sm font-mono text-white uppercase outline-none focus:border-emerald-500 transition-colors tracking-wider"
+                />
+              </div>
+
+              {errorMessage && (
+                <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300">
+                  {errorMessage}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={verifyLoading}
+                className="w-full rounded-xl bg-emerald-500 py-3.5 text-sm font-extrabold text-black transition-all hover:bg-emerald-400 disabled:opacity-50"
+              >
+                {verifyLoading ? 'Verifying...' : 'Verify Code & Unlock Download'}
+              </button>
+            </form>
+
+            <div className="mt-6 border-t border-white/10 pt-4 text-center">
+              <p className="text-xs text-gray-500 mb-3">Haven't completed checkout yet?</p>
+              <button
+                type="button"
+                onClick={() => setStep('select')}
+                className="text-xs text-gray-300 hover:text-white underline font-semibold"
+              >
+                &larr; Back to plan selection
+              </button>
+            </div>
+          </div>
+        )}
+
+        {verifiedData && (
           <div className="text-center py-4">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 mb-4">
               <Check className="h-7 w-7" />
             </div>
 
-            <h3 className="text-2xl font-extrabold text-white mb-1">Order Confirmed!</h3>
+            <h3 className="text-2xl font-extrabold text-white mb-1">License Verified!</h3>
             <p className="text-xs text-gray-400 mb-6">
-              Thank you for your order, <strong>{licenseData.name}</strong>. Here is your official lifetime activation key:
+              Your license is active. Your commercial package has been unlocked:
             </p>
 
             <div className="rounded-xl border border-dashed border-emerald-500/50 bg-[#090a10] p-4 mb-6">
               <div className="text-[11px] font-bold text-gray-500 uppercase tracking-widest mb-1">
-                Your Lifetime License Key
+                Active License Key
               </div>
               <div className="font-mono text-xl font-bold tracking-widest text-emerald-400 select-all">
-                {licenseData.key}
+                {verifiedData.key}
               </div>
             </div>
 
             <a
-              href="/vitalssniper_pro.zip"
+              href={verifiedData.downloadUrl}
               download
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 shadow-[0_4px_16px_rgba(255,255,255,0.2)] mb-3"
             >
@@ -213,7 +290,7 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
             </a>
 
             <p className="text-[11px] text-gray-500">
-              A copy of your license key and installation instructions has been sent to {licenseData.email}.
+              Valid for lifetime updates and support across Chromium and Firefox browsers.
             </p>
           </div>
         )}
