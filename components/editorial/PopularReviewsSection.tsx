@@ -3,121 +3,84 @@
 import React from 'react';
 import Link from 'next/link';
 import { PRODUCTS } from '@/data/products';
-import { Star, ExternalLink, ArrowRight, Check, X } from 'lucide-react';
+import { Star, ExternalLink, ArrowRight, Check, X, Beaker, ShieldCheck } from 'lucide-react';
 
 export default function PopularReviewsSection() {
-  const featuredReviews = [
-    {
-      title: 'Cloudways Managed Cloud Hosting',
-      productSlug: 'cloudways',
-      category: 'Hosting & CDN',
-      bestFor: 'Agencies scaling WordPress sites needing custom server stacks',
-      rating: 4.5,
-      pricing: 'From $14/month',
-      verdict: 'Highest TTFB consistency under multi-threaded concurrency tests.',
-      pros: ['Built-in Cloudflare Enterprise CDN', 'One-click staging & automatic backups', 'Choice of DigitalOcean, AWS, or Vultr'],
-      cons: ['No cPanel (custom dashboard required)', 'Email hosting requires separate add-on'],
-      affiliateUrl: 'https://www.cloudways.com',
-    },
-    {
-      title: 'GeneratePress Theme & Blocks',
-      productSlug: 'generatepress',
-      category: 'Page Builders',
-      bestFor: 'Developers aiming for perfect 100/100 Core Web Vitals with zero bloat',
-      rating: 5.0,
-      pricing: 'From $59/year (or $249 Lifetime)',
-      verdict: 'Under 10KB total CSS and zero jQuery. The gold standard for modern speed.',
-      pros: ['Near-zero DOM overhead (<300 elements)', 'Native CSS grid & flexbox controls', 'Unmatched documentation and support'],
-      cons: ['Requires basic understanding of web design layout principles', 'No pre-packaged bloated animations'],
-      affiliateUrl: 'https://generatepress.com',
-    },
-    {
-      title: 'Rank Math SEO Suite',
-      productSlug: 'rank-math',
-      category: 'SEO Tools',
-      bestFor: 'Content publishers needing granular Schema.org JSON-LD graph controls',
-      rating: 4.5,
-      pricing: 'Free + Pro from $6.99/month',
-      verdict: 'Lighter script execution than Yoast, with built-in AI content scoring.',
-      pros: ['Comprehensive Schema.org entity generator', 'Built-in 404 monitor and redirection engine', 'Clean modular design (enable only what you need)'],
-      cons: ['AI content suggestions require credits', 'Settings hierarchy can feel overwhelming for novices'],
-      affiliateUrl: 'https://rankmath.com',
-    },
-    {
-      title: 'WP Rocket Caching Plugin',
-      productSlug: 'wp-rocket',
-      category: 'Speed & Performance',
-      bestFor: 'Busy site owners wanting 1-click critical CSS and script delaying',
-      rating: 4.0,
-      pricing: 'From $59/year',
-      verdict: 'The easiest way to pass Largest Contentful Paint without editing code.',
-      pros: ['Automatic unused CSS removal', 'JavaScript execution delay until user interaction', 'Gzip and cache preloading built-in'],
-      cons: ['No free trial tier', 'Aggressive script delaying can break complex interactive carousels'],
-      affiliateUrl: 'https://wp-rocket.me',
-    },
-  ];
+  // Show 4 popular third-party software reviews
+  const reviewedProducts = PRODUCTS.filter((p) => !p.isOwnProduct).slice(0, 4);
 
   return (
-    <section className="py-20 border-b border-sand-300 bg-[#faf8f5]">
+    <section className="py-20 border-b border-sand-300 bg-[#F7F4EE]">
       <div className="mx-auto max-w-6xl px-6">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-terracotta">
-              Independent Reviews &amp; Testing
-            </span>
-            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mt-1">
-              Tested &amp; Recommended Software
+            <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-white px-3 py-1 text-xs font-semibold text-charcoal-muted mb-3 shadow-xs">
+              <Beaker className="h-3.5 w-3.5 text-accent" />
+              <span>Independent Laboratory Testing</span>
+            </div>
+            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal">
+              Empirical Software &amp; Hosting Reviews
             </h2>
             <p className="text-charcoal-muted max-w-xl text-sm mt-2">
-              Every tool is benchmarked in isolated environments. We document honest trade-offs so you invest only in software that delivers measurable returns.
+              Every tool is tested in live and staging environments. Factual attributes, speed impact, and real trade-offs rather than arbitrary scores.
             </p>
           </div>
 
           <Link
             href="/reviews"
-            className="inline-flex items-center gap-2 text-xs font-bold text-terracotta hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent hover:underline"
           >
-            <span>Browse All Software Reviews</span>
+            <span>Browse All Reviews</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
         {/* 2-Column Structured Review Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {featuredReviews.map((rev) => (
+          {reviewedProducts.map((prod) => (
             <div
-              key={rev.title}
+              key={prod.slug}
               className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between"
             >
               <div>
                 {/* Header row: category, rating, pricing */}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="editorial-pill">
-                    {rev.category}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{prod.iconEmoji}</span>
+                    <span className="editorial-pill">
+                      {prod.category}
+                    </span>
+                  </div>
                   <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600">
                     <Star className="h-4 w-4 fill-amber-400 text-amber-500" />
-                    <span>{rev.rating.toFixed(1)} / 5.0</span>
+                    <span>{prod.rating.toFixed(1)} / 5.0</span>
                   </div>
                 </div>
 
                 {/* Title */}
                 <h3 className="font-editorial text-2xl font-bold text-charcoal mb-1">
-                  <Link href={`/tools/${rev.productSlug}`} className="hover:text-terracotta transition-colors">
-                    {rev.title}
+                  <Link href={`/reviews/${prod.slug}`} className="hover:text-accent transition-colors">
+                    {prod.name}
                   </Link>
                 </h3>
 
-                {/* Best For tag */}
-                <p className="text-xs font-semibold text-charcoal-light mb-4">
-                  <span className="text-terracotta">Best for:</span> {rev.bestFor}
-                </p>
+                {/* Factual Attributes Strip */}
+                <div className="grid grid-cols-2 gap-2 my-3 text-[11px] bg-[#F7F4EE] p-2.5 rounded-lg border border-sand-300">
+                  <div>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Best For:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.bestFor}</span>
+                  </div>
+                  <div>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Duration:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.testingPeriod}</span>
+                  </div>
+                </div>
 
                 {/* Verdict Callout Box */}
-                <div className="p-3.5 rounded-xl bg-[#faf8f5] border border-sand-300 text-xs text-charcoal-light leading-relaxed mb-5">
-                  <strong className="text-charcoal">Verdict:</strong> {rev.verdict}
+                <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300 text-xs text-charcoal leading-relaxed mb-5">
+                  <strong className="text-charcoal">Verdict:</strong> {prod.verdict}
                 </div>
 
                 {/* Pros and Cons */}
@@ -125,7 +88,7 @@ export default function PopularReviewsSection() {
                   <div>
                     <span className="font-bold text-emerald-700 block mb-2">Strengths:</span>
                     <ul className="space-y-1.5 text-charcoal-muted">
-                      {rev.pros.map((pro, i) => (
+                      {prod.pros.slice(0, 3).map((pro, i) => (
                         <li key={i} className="flex items-start gap-1.5">
                           <Check className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
                           <span>{pro}</span>
@@ -137,7 +100,7 @@ export default function PopularReviewsSection() {
                   <div>
                     <span className="font-bold text-rose-700 block mb-2">Limitations:</span>
                     <ul className="space-y-1.5 text-charcoal-muted">
-                      {rev.cons.map((con, i) => (
+                      {prod.cons.slice(0, 2).map((con, i) => (
                         <li key={i} className="flex items-start gap-1.5">
                           <X className="h-3.5 w-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
                           <span>{con}</span>
@@ -151,22 +114,22 @@ export default function PopularReviewsSection() {
               {/* Bottom Card Bar: Pricing & Dual CTA */}
               <div className="pt-4 border-t border-sand-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <span className="text-xs font-bold text-charcoal font-mono">
-                  {rev.pricing}
+                  {prod.pricing}
                 </span>
 
                 <div className="flex items-center gap-2.5 w-full sm:w-auto">
                   <Link
-                    href={`/tools/${rev.productSlug}`}
-                    className="flex-1 sm:flex-none text-center px-3.5 py-2 rounded-xl border border-sand-300 bg-white text-xs font-bold text-charcoal hover:border-terracotta/40 transition-all"
+                    href={`/reviews/${prod.slug}`}
+                    className="flex-1 sm:flex-none text-center px-3.5 py-2 rounded-xl border border-sand-300 bg-white text-xs font-bold text-charcoal hover:border-accent/40 transition-all shadow-xs"
                   >
                     Read Full Review
                   </Link>
 
                   <a
-                    href={rev.affiliateUrl}
+                    href={prod.affiliateUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener"
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-terracotta text-xs font-bold text-white hover:bg-terracotta-dark transition-all shadow-sm"
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
                   >
                     <span>Visit Tool</span>
                     <ExternalLink className="h-3 w-3" />
@@ -176,6 +139,14 @@ export default function PopularReviewsSection() {
 
             </div>
           ))}
+        </div>
+
+        {/* Detailed Methodology Disclosure */}
+        <div className="mt-8 rounded-xl bg-white border border-sand-300 p-4 text-xs text-charcoal-muted flex items-start gap-3">
+          <ShieldCheck className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+          <p className="leading-relaxed text-[11px]">
+            <strong>Editorial &amp; Testing Methodology:</strong> We do not accept payment for positive reviews or favorable rankings. All software undergoes at least 14 days of live deployment testing. Affiliate links support our research at zero extra cost to you. Read our full <Link href="/editorial-policy" className="text-accent underline font-semibold">Editorial Policy</Link>.
+          </p>
         </div>
 
       </div>

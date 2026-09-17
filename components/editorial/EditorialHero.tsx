@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Wrench, Sparkles, TrendingUp, Zap } from 'lucide-react';
+import UrlAnalyzerBar from '@/components/UrlAnalyzerBar';
 
 export default function EditorialHero() {
   return (
@@ -11,26 +12,26 @@ export default function EditorialHero() {
         
         {/* Editorial Masthead Tagline */}
         <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-white px-4 py-1.5 text-xs font-semibold text-charcoal-muted shadow-sm mb-8">
-          <span className="h-2 w-2 rounded-full bg-terracotta" />
+          <span className="h-2 w-2 rounded-full bg-accent" />
           <span>Independent Benchmarks &bull; Digital Publication &amp; Web Tools</span>
         </div>
 
         {/* Major Publication Headline in Serif */}
         <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-charcoal leading-[1.08] mb-6">
-          Practical Web Intelligence for <br className="hidden sm:inline" />
-          <span className="italic font-normal text-terracotta">Better Websites.</span>
+          Better Websites Start With <br className="hidden sm:inline" />
+          <span className="italic font-normal text-accent">Better Information.</span>
         </h1>
 
         {/* Subhead */}
-        <p className="text-base sm:text-xl text-charcoal-muted max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-          Analyze websites, discover hidden performance flaws, learn how to fix them, and find the vetted tools that make real differences.
+        <p className="text-base sm:text-xl text-charcoal-muted max-w-3xl mx-auto mb-8 leading-relaxed font-normal">
+          Practical research, tools and guides for website performance, SEO, AI search, web design and conversion.
         </p>
 
         {/* Dual Primary Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <Link
             href="/tools"
-            className="w-full sm:w-auto rounded-xl bg-terracotta px-8 py-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-terracotta-dark hover:shadow-md hover:scale-[1.01] flex items-center justify-center gap-2.5"
+            className="w-full sm:w-auto rounded-xl bg-accent px-8 py-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-accent-dark hover:shadow-md hover:scale-[1.01] flex items-center justify-center gap-2.5"
           >
             <Wrench className="h-4 w-4" />
             <span>Explore Tools</span>
@@ -39,11 +40,16 @@ export default function EditorialHero() {
 
           <Link
             href="/articles"
-            className="w-full sm:w-auto rounded-xl border border-sand-300 bg-white px-8 py-4 text-sm font-bold text-charcoal shadow-sm transition-all hover:border-terracotta/40 hover:text-terracotta flex items-center justify-center gap-2"
+            className="w-full sm:w-auto rounded-xl border border-sand-300 bg-white px-8 py-4 text-sm font-bold text-charcoal shadow-sm transition-all hover:border-accent/40 hover:text-accent flex items-center justify-center gap-2"
           >
-            <BookOpen className="h-4 w-4 text-terracotta" />
-            <span>Read Guides</span>
+            <BookOpen className="h-4 w-4 text-accent" />
+            <span>Read the Latest</span>
           </Link>
+        </div>
+
+        {/* Underneath: Interactive URL Input Bar */}
+        <div className="mb-14">
+          <UrlAnalyzerBar />
         </div>
 
         {/* Editorial Value Strip: 3 Clean Pillars */}

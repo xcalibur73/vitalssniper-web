@@ -1,0 +1,107 @@
+import { chromium } from 'playwright';
+
+async function runTests() {
+  console.log('====================================================');
+  console.log('🚀 RUNNING WEB AUDITS HELPER EDITORIAL VERIFICATION');
+  console.log('====================================================\n');
+
+  const browser = await chromium.launch({ channel: 'msedge', headless: true });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  let passed = 0;
+  let failed = 0;
+
+  function assert(condition, message) {
+    if (condition) {
+      console.log(`  ✓ PASS: ${message}`);
+      passed++;
+    } else {
+      console.error(`  ✗ FAIL: ${message}`);
+      failed++;
+    }
+  }
+
+  const routes = [
+    '/',
+    '/articles',
+    '/articles/5-best-wordpress-speed-plugins-2026',
+    '/tools',
+    '/tools/website-speed-test',
+    '/tools/lcp-checker',
+    '/tools/directory',
+    '/reviews',
+    '/reviews/cloudways',
+    '/reviews/generatepress',
+    '/comparisons',
+    '/comparisons/cloudways-vs-siteground',
+    '/research',
+    '/research/website-performance-report',
+    '/teardowns',
+    '/teardowns/website-teardown-027',
+    '/products/vitalssniper-pro',
+    '/newsletter',
+    '/editorial-policy',
+    '/affiliate-disclosure',
+  ];
+
+  try {
+    console.log('[SECTION 1] Testing 20 Routes for 200 OK and 0 Overflow (Desktop)...');
+    for (const route of routes) {
+      const response = await page.goto(`http://localhost:3000${route}`, { waitUntil: 'networkidle' });
+      assert(response?.status() === 200, `Route ${route} returned HTTP 200`);
+
+      const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+      const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
+      assert(scrollWidth <= clientWidth, `Route ${route} has zero horizontal overflow (Desktop: ${scrollWidth}px <= ${clientWidth}px)`);
+    }
+
+    console.log('\n[SECTION 2] Testing Mobile Viewport (390px) Overflow Across Key Routes...');
+    await page.setViewportSize({ width: 390, height: 844 });
+    const mobileSampleRoutes = ['/', '/articles', '/tools', '/reviews', '/comparisons', '/research', '/teardowns'];
+    for (const route of mobileSampleRoutes) {
+      await page.goto(`http://localhost:3000${route}`, { waitUntil: 'networkidle' });
+      const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+      const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
+      assert(scrollWidth <= clientWidth, `Route ${route} has zero mobile overflow (Mobile: ${scrollWidth}px <= ${clientWidth}px)`);
+    }
+
+    // Reset viewport to desktop
+    await page.setViewportSize({ width: 1280, height: 800 });
+
+    console.log('\n[SECTION 3] Testing Homepage URL Analyzer Bar...');
+    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+    const input = page.locator('input[placeholder*="Enter a website URL"]');
+    assert(await input.isVisible(), 'URL Analyzer input bar is visible in hero');
+
+    await input.fill('https://example.com');
+    await page.locator('button:has-text("Analyze")').click();
+    await page.waitForURL(/.*tools\/website-speed-test.*/, { timeout: 5000 });
+    assert(page.url().includes('website-speed-test'), `URL Analyzer routed correctly to: ${page.url()}`);
+
+    console.log('\n[SECTION 4] Testing Affiliate Link Disclosures & rel="sponsored"...');
+    await page.goto('http://localhost:3000/reviews', { waitUntil: 'networkidle' });
+    const sponsoredLinks = page.locator('a[rel*="sponsored"]');
+    const count = await sponsoredLinks.count();
+    assert(count > 0, `Found ${count} affiliate links strictly enforcing rel="sponsored"`);
+
+    const disclosureText = await page.innerText('body');
+    assert(disclosureText.includes('Affiliate Disclosure') || disclosureText.includes('disclosure'), 'Mandatory FTC disclosure present on reviews');
+
+  } catch (err) {
+    console.error('Test Error:', err);
+    failed++;
+  } finally {
+    await browser.close();
+  }
+
+  console.log('\n====================================================');
+  console.log(`FINAL RESULTS: ${passed} PASSED | ${failed} FAILED`);
+  console.log('====================================================');
+
+  if (failed > 0) {
+    process.exit(1);
+  }
+}
+
+runTests();

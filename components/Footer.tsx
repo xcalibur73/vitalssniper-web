@@ -5,19 +5,19 @@ import { ShieldCheck, Mail, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-sand-300 bg-[#f4f0ea] py-16 text-xs text-charcoal-muted">
+    <footer className="border-t border-sand-300 bg-[#242321] py-16 text-xs text-[#F7F4EE]/70">
       <div className="mx-auto max-w-7xl px-6">
         
         {/* Masthead Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-sand-300">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-editorial text-2xl font-bold text-charcoal">Web Audits Helper</span>
-              <span className="rounded bg-sand-300 px-2 py-0.5 text-[10px] font-bold text-charcoal-light uppercase tracking-wider">
+              <span className="font-editorial text-2xl font-bold text-[#F7F4EE]">Web Audits Helper</span>
+              <span className="rounded border border-accent/30 bg-accent/20 px-2 py-0.5 text-[10px] font-bold text-accent-light uppercase tracking-wider">
                 Digital Publication &amp; Tools
               </span>
             </div>
-            <p className="text-sm text-charcoal-muted max-w-xl">
+            <p className="text-sm text-[#F7F4EE]/70 max-w-xl">
               Practical web intelligence for better websites. Independent benchmarks, technical performance guides, and actionable audit tools.
             </p>
           </div>
@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <Link
               href="/tools"
-              className="inline-flex items-center gap-2 rounded-xl bg-charcoal px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-black"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-accent-dark"
             >
               <span>Explore All Web Tools</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -34,37 +34,37 @@ export default function Footer() {
         </div>
 
         {/* Multi-Column Publication Navigation */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-sand-300">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 py-12 border-b border-white/10">
           
           {/* Column 1: Editorial Articles */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-4">
-              Editorial Beats
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F4EE] mb-4">
+              Articles
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/articles" className="hover:text-terracotta transition-colors">
+                <Link href="/articles" className="hover:text-accent-light transition-colors">
                   Web Performance &amp; CWV
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-terracotta transition-colors">
-                  Technical SEO &amp; Crawlability
+                <Link href="/articles" className="hover:text-accent-light transition-colors">
+                  Technical SEO
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-terracotta transition-colors">
-                  AI &amp; GEO (Generative Search)
+                <Link href="/articles" className="hover:text-accent-light transition-colors">
+                  AI &amp; GEO Search
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-terracotta transition-colors">
-                  Conversion Rate Optimization
+                <Link href="/articles" className="hover:text-accent-light transition-colors">
+                  Web Design &amp; CSS
                 </Link>
               </li>
               <li>
-                <Link href="/articles" className="hover:text-terracotta transition-colors">
-                  Modern Web Design &amp; CSS
+                <Link href="/articles" className="hover:text-accent-light transition-colors">
+                  Conversion Optimization
                 </Link>
               </li>
             </ul>
@@ -72,102 +72,131 @@ export default function Footer() {
 
           {/* Column 2: Web Tools */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-4">
-              Web Tools Suite
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F4EE] mb-4">
+              Web Tools
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/vitalssniper" className="font-semibold text-terracotta hover:underline">
-                  VitalsSniper PRO (Flagship)
+                <Link href="/products/vitalssniper-pro" className="font-semibold text-accent-light hover:underline">
+                  VitalsSniper PRO
                 </Link>
               </li>
               <li>
-                <Link href="/free-audit-report" className="hover:text-terracotta transition-colors">
-                  Free Website Audit Report
+                <Link href="/tools/website-speed-test" className="hover:text-accent-light transition-colors">
+                  Website Speed Test
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="hover:text-terracotta transition-colors">
-                  Page Weight &amp; DOM Bloat Checker
+                <Link href="/tools/lcp-checker" className="hover:text-accent-light transition-colors">
+                  LCP Element Finder
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="hover:text-terracotta transition-colors">
-                  SEO &amp; Knowledge Graph Schema Tester
+                <Link href="/tools/page-weight-checker" className="hover:text-accent-light transition-colors">
+                  Page Weight Checker
                 </Link>
               </li>
               <li>
-                <Link href="/dashboard" className="hover:text-terracotta transition-colors">
-                  License &amp; Verification Portal
+                <Link href="/tools/directory" className="hover:text-accent-light transition-colors">
+                  Public Tool Directory
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Affiliate Reviews */}
+          {/* Column 3: Reviews & Comparisons */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-4">
-              Reviews &amp; Comparisons
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F4EE] mb-4">
+              Reviews &amp; Compares
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/reviews" className="hover:text-terracotta transition-colors">
-                  Best WordPress Hosting 2026
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-terracotta transition-colors">
-                  Semrush vs Ahrefs Comparison
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-terracotta transition-colors">
-                  Cloudways vs SiteGround Speed Test
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-terracotta transition-colors">
-                  Best AI Tools for Web Agencies
-                </Link>
-              </li>
-              <li>
-                <Link href="/reviews" className="hover:text-terracotta transition-colors">
+                <Link href="/reviews" className="hover:text-accent-light transition-colors">
                   All Software Reviews
                 </Link>
               </li>
+              <li>
+                <Link href="/comparisons" className="hover:text-accent-light transition-colors">
+                  Head-to-Head Comparisons
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews/cloudways" className="hover:text-accent-light transition-colors">
+                  Cloudways Review
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews/rank-math" className="hover:text-accent-light transition-colors">
+                  Rank Math Review
+                </Link>
+              </li>
+              <li>
+                <Link href="/reviews/generatepress" className="hover:text-accent-light transition-colors">
+                  GeneratePress Review
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Column 4: Publication & Standards */}
+          {/* Column 4: Research & Showroom */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-4">
-              Publication Standards
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F4EE] mb-4">
+              Research &amp; Data
             </h4>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/about" className="hover:text-terracotta transition-colors">
-                  About &amp; Editorial Mission
+                <Link href="/research" className="hover:text-accent-light transition-colors">
+                  Original Research Reports
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-terracotta transition-colors">
-                  Testing Methodology &amp; Benchmarks
+                <Link href="/teardowns" className="hover:text-accent-light transition-colors">
+                  Website Teardowns
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="hover:text-terracotta transition-colors">
-                  Free Agency Resources &amp; Playbooks
+                <Link href="/newsletter" className="hover:text-accent-light transition-colors">
+                  The Web Audits Brief
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="hover:text-terracotta transition-colors">
-                  Technical Documentation
+                <Link href="/resources" className="hover:text-accent-light transition-colors">
+                  Resource Library
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Legal & Policy */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-[#F7F4EE] mb-4">
+              Trust &amp; Legal
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link href="/affiliate-disclosure" className="hover:text-accent-light transition-colors">
+                  Affiliate Disclosure
                 </Link>
               </li>
               <li>
-                <a href={`mailto:${SITE_CONFIG.supportEmail}`} className="hover:text-terracotta transition-colors">
-                  Contact Editorial Team
-                </a>
+                <Link href="/editorial-policy" className="hover:text-accent-light transition-colors">
+                  Editorial Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-accent-light transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-accent-light transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="hover:text-accent-light transition-colors">
+                  Cookie Policy
+                </Link>
               </li>
             </ul>
           </div>
@@ -175,20 +204,20 @@ export default function Footer() {
         </div>
 
         {/* FTC Disclosure & Attribution */}
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-charcoal-subtle">
+        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-[#F7F4EE]/60">
           <div>
             <p className="mb-1">
               &copy; {new Date().getFullYear()} Web Audits Helper &bull; webaudits.pro &bull; All rights reserved.
             </p>
-            <p className="max-w-2xl text-[10px] leading-relaxed text-charcoal-muted">
-              Editorial &amp; Affiliate Disclosure: Web Audits Helper is an independent digital publication. We test all software and hosting providers in real-world environments. When you purchase through links on our site, we may earn an affiliate commission at zero additional cost to you. This never influences our scores or editorial rankings.
+            <p className="max-w-3xl text-[10px] leading-relaxed text-[#F7F4EE]/50">
+              Editorial &amp; Affiliate Disclosure: Web Audits Helper is an independent digital publication. We test all software, web hosts, and SEO plugins in laboratory and field conditions. Outbound affiliate links carry rel=&quot;sponsored&quot;. We may earn a commission if you make a purchase through our links at zero extra cost to you. This never compromises our testing data or verdicts.
             </p>
           </div>
 
           <div className="flex items-center gap-4 flex-shrink-0">
-            <Link href="/about" className="hover:underline">Methodology</Link>
+            <Link href="/editorial-policy" className="hover:underline">Methodology</Link>
             <span>&bull;</span>
-            <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
+            <Link href="/privacy" className="hover:underline">Privacy</Link>
             <span>&bull;</span>
             <Link href="/pricing" className="hover:underline">Pricing</Link>
           </div>

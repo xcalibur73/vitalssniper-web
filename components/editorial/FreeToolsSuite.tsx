@@ -84,7 +84,7 @@ export default function FreeToolsSuite() {
           {/* Free Tools Cards */}
           {FREE_TOOLS.slice(0, 5).map((tool) => (
             <div
-              key={tool.id}
+              key={tool.slug}
               className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all group"
             >
               <div>
@@ -92,9 +92,9 @@ export default function FreeToolsSuite() {
                   <span className="editorial-pill">
                     Free Tool
                   </span>
-                  {tool.badge && (
+                  {tool.category && (
                     <span className="text-[10px] font-bold text-charcoal bg-sand-200 px-2 py-0.5 rounded-full border border-sand-300">
-                      {tool.badge}
+                      {tool.category}
                     </span>
                   )}
                 </div>
@@ -103,11 +103,11 @@ export default function FreeToolsSuite() {
                   {tool.name}
                 </h3>
                 <p className="text-xs text-charcoal-muted leading-relaxed mb-5">
-                  {tool.description}
+                  {tool.shortDescription}
                 </p>
 
                 <div className="space-y-2 text-xs text-charcoal-subtle mb-6 border-t border-sand-300 pt-4">
-                  {tool.features.slice(0, 3).map((feat, i) => (
+                  {tool.howToImprove.slice(0, 3).map((feat, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <Check className="h-3 w-3 text-emerald-600 flex-shrink-0" />
                       <span className="truncate">{feat}</span>
@@ -117,10 +117,10 @@ export default function FreeToolsSuite() {
               </div>
 
               <Link
-                href={tool.href}
+                href={`/tools/${tool.slug}`}
                 className="w-full rounded-xl border border-sand-300 bg-[#faf8f5] py-2.5 text-center text-xs font-bold text-charcoal hover:border-terracotta/40 hover:text-terracotta hover:bg-white transition-all block"
               >
-                {tool.ctaText} &rarr;
+                Launch Free Tool &rarr;
               </Link>
             </div>
           ))}
