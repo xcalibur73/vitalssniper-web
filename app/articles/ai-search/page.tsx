@@ -8,6 +8,14 @@ import { RESEARCH_STUDIES } from '@/data/research';
 export const metadata = {
   title: 'AI Search & GEO Hub | Web Audits',
   description: 'Emerging practices for generative search engine optimization (GEO), AI crawler access (OAI-SearchBot, PerplexityBot), and llms.txt observability.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/articles/ai-search',
+  },
+  openGraph: {
+    title: 'AI Search & GEO Hub | Web Audits',
+    description: 'Emerging practices for generative search engine optimization (GEO), AI crawler access (OAI-SearchBot, PerplexityBot), and llms.txt observability.',
+    url: 'https://www.webaudits.pro/articles/ai-search',
+  },
 };
 
 export default function AiSearchHub() {

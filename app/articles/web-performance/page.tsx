@@ -8,6 +8,14 @@ import { RESEARCH_STUDIES } from '@/data/research';
 export const metadata = {
   title: 'Web Performance & Core Web Vitals Hub | Web Audits',
   description: 'In-depth engineering guides, diagnostic tools, and speed benchmarks for mobile Largest Contentful Paint (LCP), INP, and server TTFB.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/articles/web-performance',
+  },
+  openGraph: {
+    title: 'Web Performance & Core Web Vitals Hub | Web Audits',
+    description: 'In-depth engineering guides, diagnostic tools, and speed benchmarks for mobile Largest Contentful Paint (LCP), INP, and server TTFB.',
+    url: 'https://www.webaudits.pro/articles/web-performance',
+  },
 };
 
 export default function WebPerformanceHub() {

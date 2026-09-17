@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { DollarSign, TrendingUp, Users, Target } from 'lucide-react';
 
-export default function RoiCalculator({ onOpenCheckout }: { onOpenCheckout: (tier: 'solo' | 'agency') => void }) {
+export default function RoiCalculator({ onOpenCheckout }: { onOpenCheckout?: (tier: 'solo' | 'agency') => void }) {
   const [pitchesPerWeek, setPitchesPerWeek] = useState(25);
   const [responseRate, setResponseRate] = useState(12); // percent
   const [retainerPrice, setRetainerPrice] = useState(2500); // dollars

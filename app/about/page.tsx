@@ -1,11 +1,19 @@
-'use client';
 
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ShieldCheck, Target, Award, Wrench, CheckCircle2, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'About Web Audits - Editorial Standards & Mission',
+  description: 'Learn about Web Audits, our testing lab methodology, independent editorial standards, and commitment to reproducible web performance benchmarks.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/about',
+  },
+};
 
 export default function AboutPage() {
   return (

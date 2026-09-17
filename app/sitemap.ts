@@ -37,53 +37,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/cookies`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/newsletter`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/sitemap-page`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
   ];
+
+  // Stable baseline date for editorial static routes and evergreen datasets (Q1 2026)
+  const baselineDate = new Date('2026-03-01T00:00:00.000Z');
 
   const articleRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/articles/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.updatedDate || post.date),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const reviewRoutes: MetadataRoute.Sitemap = PRODUCTS.map((product) => ({
     url: `${baseUrl}/reviews/${product.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const comparisonRoutes: MetadataRoute.Sitemap = COMPARISONS.map((comp) => ({
     url: `${baseUrl}/comparisons/${comp.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const researchRoutes: MetadataRoute.Sitemap = RESEARCH_STUDIES.map((study) => ({
     url: `${baseUrl}/research/${study.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const teardownRoutes: MetadataRoute.Sitemap = TEARDOWNS.map((td) => ({
     url: `${baseUrl}/teardowns/${td.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const authorRoutes: MetadataRoute.Sitemap = AUTHORS_LIST.map((author) => ({
     url: `${baseUrl}/about/authors/${author.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
 
   const toolRoutes: MetadataRoute.Sitemap = FREE_TOOLS.map((tool) => ({
     url: `${baseUrl}/tools/${tool.slug}`,
-    lastModified: new Date(),
+    lastModified: baselineDate,
     changeFrequency: 'monthly',
     priority: 0.7,
   }));

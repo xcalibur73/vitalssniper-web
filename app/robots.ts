@@ -8,11 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/dashboard/', '/license/'],
       },
-      {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'PerplexityBot', 'ClaudeBot', 'anthropic-ai'],
-        allow: '/',
-        disallow: ['/api/', '/dashboard/', '/license/'],
-      },
     ],
     sitemap: 'https://www.webaudits.pro/sitemap.xml',
   };

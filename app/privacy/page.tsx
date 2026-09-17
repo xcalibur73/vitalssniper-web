@@ -1,10 +1,18 @@
-'use client';
 
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ShieldCheck, ArrowLeft, Lock } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Web Audits',
+  description: 'Web Audits privacy policy and data governance practices. We prioritize client-side forensics and privacy-respecting analytics.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/privacy',
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (

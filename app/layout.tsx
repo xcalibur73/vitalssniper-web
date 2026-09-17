@@ -23,8 +23,8 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://webaudits.pro'),
-  title: 'Web Audits | VitalsSniper PRO - Practical Web Intelligence for Better Websites',
+  metadataBase: new URL('https://www.webaudits.pro'),
+  title: 'Web Audits - Core Web Vitals, SEO & Speed Benchmarks',
   description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization. Includes VitalsSniper PRO.',
   icons: {
     icon: [
@@ -37,9 +37,14 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Web Audits - Practical Web Intelligence for Better Websites',
+    title: 'Web Audits - Core Web Vitals, SEO & Speed Benchmarks',
     description: 'Analyze websites, discover problems, learn how to fix them, and find the tools that can help. Educational guides, independent tool reviews, and proprietary audit tools.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@webauditspro',
+    creator: '@webauditspro',
   },
   verification: {
     google: 'MFBAeQ1oIPTijXK0ARXfJSf52mZCWjbCk1XMYnu9lyE',

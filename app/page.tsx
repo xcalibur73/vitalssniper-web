@@ -1,6 +1,6 @@
-'use client';
 
 import React from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import EditorialHero from '@/components/editorial/EditorialHero';
 import WebsiteIntelligenceSection from '@/components/editorial/WebsiteIntelligenceSection';
@@ -10,6 +10,14 @@ import PopularReviewsSection from '@/components/editorial/PopularReviewsSection'
 import ActionBanner from '@/components/editorial/ActionBanner';
 import NewsletterBrief from '@/components/NewsletterBrief';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Web Audits - Core Web Vitals, SEO & Speed Benchmarks',
+  description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization. Includes VitalsSniper PRO.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro',
+  },
+};
 
 export default function HomePage() {
   const websiteSchema = {

@@ -1,4 +1,3 @@
-'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -163,7 +162,7 @@ export default function VitalsSniperPage() {
       <ComparisonTable />
 
       {/* Agency ROI & Unit Economics Calculator */}
-      <RoiCalculator onOpenCheckout={() => {}} />
+      <RoiCalculator />
 
       {/* Dedicated Voucher Redemption & License Portal */}
       <section id="activate" className="py-20 border-t border-white/[0.08] bg-[#090b12]">

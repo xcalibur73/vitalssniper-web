@@ -19,6 +19,7 @@ export interface BlogPost {
   category: EditorialCategory;
   author: string;
   date: string;
+  updatedDate?: string;
   readTime: string;
   featured: boolean;
   tag: string;

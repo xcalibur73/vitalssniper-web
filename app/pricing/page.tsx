@@ -1,6 +1,5 @@
-﻿'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -16,6 +15,14 @@ import {
   Key,
 } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'Pricing & Lifetime License | Web Audits',
+  description: 'Transparent pricing for VitalsSniper PRO and agency auditing software. Lifetime license access with zero recurring subscriptions.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/pricing',
+  },
+};
 
 export default function PricingPage() {
   return (

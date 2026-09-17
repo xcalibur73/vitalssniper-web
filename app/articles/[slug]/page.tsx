@@ -105,7 +105,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     description: post.excerpt,
     image: ['https://www.webaudits.pro/assets/appsumo_hero_1920x1080.png'],
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedDate || post.date,
     author: {
       '@type': 'Person',
       '@id': `https://www.webaudits.pro/about/authors/${authorSlug}#person`,

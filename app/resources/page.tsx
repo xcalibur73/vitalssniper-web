@@ -1,10 +1,18 @@
-'use client';
 
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FileSpreadsheet, FileText, Download, CheckCircle2, ArrowRight, BookOpen, Shield } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Agency Resources & Pitch Templates | Web Audits',
+  description: 'Downloadable cold outreach swipe files, executive speed proposal templates, and Core Web Vitals remediation checklists for web agencies.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/resources',
+  },
+};
 
 export default function ResourcesPage() {
   const resources = [

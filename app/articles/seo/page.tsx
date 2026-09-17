@@ -8,6 +8,14 @@ import { RESEARCH_STUDIES } from '@/data/research';
 export const metadata = {
   title: 'Technical SEO & Structured Data Hub | Web Audits',
   description: 'Guides and tools for Schema.org JSON-LD structured data, crawl budget optimization, canonical directives, and entity SEO.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/articles/seo',
+  },
+  openGraph: {
+    title: 'Technical SEO & Structured Data Hub | Web Audits',
+    description: 'Guides and tools for Schema.org JSON-LD structured data, crawl budget optimization, canonical directives, and entity SEO.',
+    url: 'https://www.webaudits.pro/articles/seo',
+  },
 };
 
 export default function SeoHub() {

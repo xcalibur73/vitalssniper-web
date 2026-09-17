@@ -8,6 +8,14 @@ import { RESEARCH_STUDIES } from '@/data/research';
 export const metadata = {
   title: 'Web Design & Zero Layout Shift Hub | Web Audits',
   description: 'Design token architecture, fluid typography, responsive layouts, and engineering principles for achieving 0 Cumulative Layout Shift (CLS).',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/articles/web-design',
+  },
+  openGraph: {
+    title: 'Web Design & Zero Layout Shift Hub | Web Audits',
+    description: 'Design token architecture, fluid typography, responsive layouts, and engineering principles for achieving 0 Cumulative Layout Shift (CLS).',
+    url: 'https://www.webaudits.pro/articles/web-design',
+  },
 };
 
 export default function WebDesignHub() {
