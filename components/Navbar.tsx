@@ -36,23 +36,23 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
 
         {/* Center Nav Links */}
         <nav className="hidden items-center gap-6 lg:flex">
-          <a href="#auditor" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+          <a href="/#auditor" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             Live Demo
           </a>
-          <a href="#deliverables" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+          <a href="/#deliverables" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             Capabilities
           </a>
-          <a href="#comparison" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
-            Vs Traditional
-          </a>
-          <a href="#activate" className="text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400 flex items-center gap-1.5">
+          <Link href="/pricing" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+            Pricing
+          </Link>
+          <a href="/#activate" className="text-sm font-medium text-gray-400 transition-colors hover:text-emerald-400 flex items-center gap-1.5">
             <Key className="h-3.5 w-3.5" />
             <span>Redeem & Download</span>
           </a>
-          <a href="#docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+          <a href="/#docs" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             Playbook
           </a>
-          <a href="#faq" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
+          <a href="/#faq" className="text-sm font-medium text-gray-400 transition-colors hover:text-white">
             FAQ
           </a>
         </nav>

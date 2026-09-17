@@ -8,23 +8,30 @@ export default function Footer() {
         
         {/* Brand Copyright */}
         <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-          <span className="font-bold text-white text-sm">VitalsSniper PRO</span>
+          <span className="font-bold text-white text-sm">WebAudits PRO</span>
+          <span className="text-[11px] text-gray-500">(VitalsSniper Core)</span>
           <span className="hidden sm:inline">&bull;</span>
-          <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} webaudits.pro</span>
           <span className="hidden sm:inline">&bull;</span>
-          <span>Single-User & Agency Commercial License.</span>
+          <span>Commercial Agency License</span>
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-6">
-          <Link href="/docs" className="hover:text-white transition-colors">
-            Documentation
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <Link href="/pricing" className="hover:text-white transition-colors">
+            Pricing
           </Link>
-          <Link href="/license" className="hover:text-white transition-colors">
+          <Link href="/dashboard" className="hover:text-white transition-colors">
             License Portal
           </Link>
-          <a href="mailto:support@vitalssniper.com" className="hover:text-white transition-colors">
-            Support Desk
+          <Link href="/free-audit-report" className="hover:text-white transition-colors">
+            Free Report
+          </Link>
+          <Link href="/docs" className="hover:text-white transition-colors">
+            Docs & Playbook
+          </Link>
+          <a href="mailto:support@webaudits.pro" className="hover:text-white transition-colors">
+            support@webaudits.pro
           </a>
         </div>
 
