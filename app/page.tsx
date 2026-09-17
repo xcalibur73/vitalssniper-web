@@ -135,7 +135,7 @@ export default function HomePage() {
                 <span className="h-3 w-3 rounded-full bg-emerald-500/80 inline-block" />
               </div>
               <span className="font-mono text-[11px] text-gray-400">
-                WebAudits PRO &bull; Active Tab Forensic Diagnostic Inspector
+                Web Audits Helper &bull; Active Tab Forensic Diagnostic Inspector
               </span>
               <span className="text-[11px] text-emerald-400 font-bold hidden sm:inline">Manifest V3 Certified</span>
             </div>

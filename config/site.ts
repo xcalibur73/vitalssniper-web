@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: 'WebAudits PRO',
+  name: 'Web Audits Helper',
   legacyName: 'VitalsSniper PRO',
   domain: 'webaudits.pro',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://webaudits.pro',

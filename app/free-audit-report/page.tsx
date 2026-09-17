@@ -274,7 +274,7 @@ export default function FreeAuditReportPage() {
                   rel="noopener noreferrer"
                   className="rounded-xl bg-white px-6 py-3 text-xs font-bold text-black hover:bg-gray-100 transition-all flex items-center gap-2 flex-shrink-0 shadow-md"
                 >
-                  <span>Get WebAudits PRO: $39</span>
+                  <span>Get Web Audits Helper: $39</span>
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>

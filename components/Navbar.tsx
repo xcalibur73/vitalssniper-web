@@ -20,16 +20,16 @@ export default function Navbar({ onOpenCheckout }: NavbarProps) {
           <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-white/20 shadow-[0_0_16px_rgba(16,185,129,0.25)] transition-transform group-hover:scale-105">
             <Image
               src="/assets/appsumo_icon_512x512.png"
-              alt="WebAudits PRO Logo"
+              alt="Web Audits Helper Logo"
               width={36}
               height={36}
               className="h-full w-full object-cover"
             />
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-lg tracking-tight text-white">WebAudits</span>
+            <span className="font-extrabold text-lg tracking-tight text-white">Web Audits</span>
             <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-bold text-emerald-400">
-              PRO
+              Helper
             </span>
           </div>
         </Link>

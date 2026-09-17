@@ -119,7 +119,7 @@ export default function DashboardPage() {
             <span>Commercial License Management Hub</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-3">
-            WebAudits PRO License Portal
+            Web Audits Helper License Portal
           </h1>
           <p className="text-sm sm:text-base text-gray-400 max-w-xl mx-auto">
             Manage your commercial license key, monitor audit quota, view unlocked enterprise capabilities, and download release builds.

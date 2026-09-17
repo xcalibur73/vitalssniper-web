@@ -118,7 +118,7 @@ export default function PricingPage() {
             </div>
 
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">WebAudits PRO</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">Web Audits Helper PRO</div>
               
               {billingCycle === 'lifetime' ? (
                 <div>
@@ -232,7 +232,7 @@ export default function PricingPage() {
             </div>
 
             <a
-              href={`mailto:${SITE_CONFIG.supportEmail}?subject=Enterprise%20Inquiry%20WebAudits%20PRO`}
+              href={`mailto:${SITE_CONFIG.supportEmail}?subject=Enterprise%20Inquiry%20Web%20Audits%20Helper`}
               className="w-full rounded-xl border border-white/15 bg-white/5 py-3 text-center text-xs font-bold text-white hover:bg-white/10 transition-all block"
             >
               Contact Enterprise Sales

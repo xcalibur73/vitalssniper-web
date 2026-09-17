@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Brand Copyright */}
         <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-          <span className="font-bold text-white text-sm">WebAudits PRO</span>
+          <span className="font-bold text-white text-sm">Web Audits Helper</span>
           <span className="text-[11px] text-gray-500">(VitalsSniper Core)</span>
           <span className="hidden sm:inline">&bull;</span>
           <span>&copy; {new Date().getFullYear()} webaudits.pro</span>
