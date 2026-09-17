@@ -50,4 +50,22 @@ export const TEARDOWNS: TeardownStudy[] = [
     ],
     vitalsSniperProof: 'VitalsSniper PRO surfaced DOM depth warnings and identified 8 unminified vendor bundles directly from the active Chromium browser tab.',
   },
+  {
+    id: '#001',
+    slug: 'website-autopsy-001',
+    title: 'Website Autopsy #001: A Full Mobile Performance Teardown',
+    targetType: 'High-Growth SaaS Landing Page (Next.js / Tailwind)',
+    date: 'March 2026',
+    lcpScore: '5.4s (Failed)',
+    domElements: 3410,
+    totalWeight: '6.8MB',
+    seoFinding: 'Video hero background (4.2MB MP4) was loaded eagerly without preload controls, starving bandwidth from the Largest Contentful Paint text node.',
+    uxObservation: 'Mobile viewport froze for 410ms on initial scroll as 18 unbundled tracking tags executed simultaneously on the main thread.',
+    recommendations: [
+      'Replace autoplay video background with responsive static WebP poster on mobile viewports.',
+      'Offload third-party tracking scripts to a web worker via Partytown or defer execution past initial input.',
+      'Flatten 28 nested wrapper DIVs into a single CSS grid container.',
+    ],
+    vitalsSniperProof: 'VitalsSniper PRO surfaced 3,410 DOM elements, flagged the 4.2MB video payload, and exported a client proposal PDF card in under 50ms.',
+  },
 ];

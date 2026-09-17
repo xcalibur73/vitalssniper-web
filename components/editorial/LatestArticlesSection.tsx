@@ -137,7 +137,7 @@ export default function LatestArticlesSection() {
                 </div>
                 <div className="h-1.5 w-full bg-sand-300 rounded" />
                 <div className="h-1.5 w-4/5 bg-sand-300/70 rounded" />
-                <div className="text-[9px] text-accent font-semibold">llms.txt entity graph detected (4.1x lift)</div>
+                <div className="text-[9px] text-accent font-semibold">Structured claim syntax verified</div>
               </div>
 
               <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">

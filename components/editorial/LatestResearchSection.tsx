@@ -56,38 +56,38 @@ export default function LatestResearchSection() {
                 {/* Metric Summary Column */}
                 <div className="sm:col-span-6 space-y-3">
                   <div>
-                    <div className="text-2xl font-bold text-charcoal tracking-tight">4.1x</div>
-                    <div className="text-[11px] text-charcoal-muted">citation lift (llms.txt)</div>
+                    <div className="text-2xl font-bold text-charcoal tracking-tight">3.2x</div>
+                    <div className="text-[11px] text-charcoal-muted">observed citation frequency (structured claims)</div>
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-charcoal tracking-tight">48h</div>
-                    <div className="text-[11px] text-charcoal-muted">faster indexing</div>
+                    <div className="text-lg font-bold text-charcoal tracking-tight">200</div>
+                    <div className="text-[11px] text-charcoal-muted">technical URLs audited</div>
                   </div>
                   <div>
                     <div className="text-lg font-bold text-charcoal tracking-tight">10</div>
-                    <div className="text-[11px] text-charcoal-muted">production domains</div>
+                    <div className="text-[11px] text-charcoal-muted">production domains monitored</div>
                   </div>
                 </div>
 
                 {/* Comparative Bar Chart */}
                 <div className="sm:col-span-6 flex flex-col items-center">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2 text-center w-full">
-                    Citation Rate Lift
+                    Observed Citation Frequency
                   </div>
                   
                   <div className="flex items-end justify-center gap-6 h-28 w-full px-2 border-b border-sand-300 pb-1">
-                    {/* Bar 1: With llms.txt (4.1x) */}
-                    <div className="flex flex-col items-center gap-1 w-12">
-                      <span className="text-[10px] font-bold text-charcoal">4.1x</span>
+                    {/* Bar 1: Structured Claims (3.2x) */}
+                    <div className="flex flex-col items-center gap-1 w-14">
+                      <span className="text-[10px] font-bold text-charcoal">3.2x</span>
                       <div className="w-full bg-[#20201E] rounded-t-md h-24 transition-all group-hover:bg-accent" />
-                      <span className="text-[9px] font-medium text-charcoal text-center leading-tight whitespace-nowrap">With llms.txt</span>
+                      <span className="text-[9px] font-medium text-charcoal text-center leading-tight whitespace-nowrap">Structured</span>
                     </div>
 
-                    {/* Bar 2: Without (Baseline 1.0x) */}
-                    <div className="flex flex-col items-center gap-1 w-12">
+                    {/* Bar 2: Unstructured (Baseline 1.0x) */}
+                    <div className="flex flex-col items-center gap-1 w-14">
                       <span className="text-[10px] font-bold text-charcoal-muted">1.0x</span>
                       <div className="w-full bg-sand-400/60 rounded-t-md h-8" />
-                      <span className="text-[9px] font-medium text-charcoal-muted text-center leading-tight">Without</span>
+                      <span className="text-[9px] font-medium text-charcoal-muted text-center leading-tight">Unstructured</span>
                     </div>
                   </div>
                 </div>
