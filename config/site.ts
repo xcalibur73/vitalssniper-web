@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://webaudits.pro',
   supportEmail: 'support@webaudits.pro',
   description: 'Your trusted guide to web performance tools, hosting, and site speed - plus our flagship VitalsSniper PRO inspector.',
-  appsumoUrl: process.env.NEXT_PUBLIC_APPSUMO_URL || 'https://appsumo.com/products/vitalssniper',
+  appsumoUrl: process.env.NEXT_PUBLIC_APPSUMO_URL || '/vitalssniper#auditor',
   docsUrl: '/docs',
   licenseUrl: '/license',
   dashboardUrl: '/dashboard',

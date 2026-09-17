@@ -77,7 +77,7 @@ export const PRODUCTS: Product[] = [
       'In-browser prospect pipeline CRM with 1-click CSV export',
       'Side-by-side competitor diagnostic comparison view',
     ],
-    affiliateUrl: 'https://appsumo.com/products/vitalssniper',
+    affiliateUrl: '/vitalssniper#auditor',
     iconEmoji: '🎯',
   },
   {

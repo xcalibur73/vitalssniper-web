@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Check, Sparkles, Shield, Zap, ExternalLink, Key } from 'lucide-react';
+import { Check, Sparkles, Shield, Zap, ExternalLink, Key, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
 
 export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tier: 'solo' | 'agency') => void }) {
@@ -81,15 +81,13 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tie
               </ul>
             </div>
 
-            <a
-              href={SITE_CONFIG.appsumoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/vitalssniper#auditor"
               className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 bg-surface-elevated py-3.5 text-sm font-bold text-white transition-all hover:bg-white hover:text-black hover:scale-[1.01]"
             >
-              <span>Buy Solo on AppSumo ($39)</span>
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              <span>Start Free Beta Audit</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
           {/* Agency Team */}
@@ -153,15 +151,13 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tie
               </ul>
             </div>
 
-            <a
-              href={SITE_CONFIG.appsumoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/vitalssniper#auditor"
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 hover:scale-[1.01] shadow-[0_4px_20px_rgba(255,255,255,0.2)]"
             >
-              <span>Buy Agency Bundle on AppSumo ($79)</span>
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              <span>Join Public Beta (Free)</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
 
         </div>
@@ -169,7 +165,7 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tie
         {/* Voucher Redemption Banner */}
         <div className="mt-8 text-center">
           <p className="text-xs text-gray-400">
-            Already purchased your voucher code on AppSumo?{' '}
+            Have an early access code or voucher?{' '}
             <Link href="/license" className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1">
               <Key className="h-3 w-3" />
               Redeem Voucher & Download Extension &rarr;
@@ -181,15 +177,15 @@ export default function PricingCards({ onOpenCheckout }: { onOpenCheckout?: (tie
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-xs text-gray-400">
           <div className="flex items-center gap-2">
             <Shield className="h-4 w-4 text-emerald-400" />
-            <span>60-Day AppSumo Money-Back Guarantee</span>
+            <span>100% Free Public Beta</span>
           </div>
           <div className="hidden sm:block text-gray-600">&bull;</div>
           <div className="flex items-center gap-2">
-            <span>🔒 AppSumo Buyer Protection & Verified Reviews</span>
+            <span>🔒 Zero Tracking &amp; Client-Side Privacy</span>
           </div>
           <div className="hidden sm:block text-gray-600">&bull;</div>
           <div className="flex items-center gap-2">
-            <span>⚡ Instant License Key & ZIP Delivery</span>
+            <span>⚡ Instant In-Browser Telemetry</span>
           </div>
         </div>
 

@@ -177,15 +177,12 @@ export default function LicenseActivation() {
 
         {/* Footer fallback */}
         <div className="mt-5 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
-          <span>Haven't purchased your license yet?</span>
+          <span>Want to test without a license key?</span>
           <a
-            href={SITE_CONFIG.appsumoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/vitalssniper#auditor"
             className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1"
           >
-            <span>Get VitalsSniper PRO on AppSumo ($39)</span>
-            <ExternalLink className="h-3 w-3" />
+            <span>Run Free In-Browser Audit &rarr;</span>
           </a>
         </div>
 

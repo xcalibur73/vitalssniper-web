@@ -253,12 +253,10 @@ export default function ComparisonTable({ comparison }: ComparisonTableProps = {
               <span>Telemetry validated across 10,000+ cumulative scans and 500 production benchmark domains.</span>
             </div>
             <a
-              href="https://appsumo.com/products/vitalssniper"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/vitalssniper#auditor"
               className="text-accent hover:underline font-bold transition-colors"
             >
-              Get started with lifetime access &rarr;
+              Test free in public beta &rarr;
             </a>
           </div>
         </div>

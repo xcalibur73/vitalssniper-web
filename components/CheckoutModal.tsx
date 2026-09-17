@@ -198,7 +198,7 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
                 onClick={() => setStep('payment_pending')}
                 className="text-emerald-400 hover:underline"
               >
-                Have an AppSumo / voucher code?
+                Have an early access or voucher code?
               </button>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function CheckoutModal({ isOpen, onClose, defaultTier }: Checkout
               </div>
               <h3 className="text-2xl font-extrabold text-white">Unlock Your License</h3>
               <p className="text-xs text-gray-400 mt-1">
-                Enter your payment confirmation code, AppSumo voucher, or license key to unlock your download.
+                Enter your voucher code or early access key to unlock your download.
               </p>
             </div>
 

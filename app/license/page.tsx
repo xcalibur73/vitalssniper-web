@@ -144,16 +144,13 @@ export default function LicensePage() {
 
           <div className="mt-8 border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
             <div className="flex items-center gap-1.5">
-              <span>Don't have a voucher code yet?</span>
-              <a
-                href={SITE_CONFIG.appsumoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <span>Want to test without a code?</span>
+              <Link
+                href="/vitalssniper#auditor"
                 className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1"
               >
-                <span>Buy on AppSumo ($39)</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
+                <span>Run Free In-Browser Audit &rarr;</span>
+              </Link>
             </div>
             <a href="mailto:support@vitalssniper.com" className="text-gray-500 hover:text-white transition-colors">
               Support Desk

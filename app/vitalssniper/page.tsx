@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -79,7 +79,7 @@ export default function VitalsSniperPage() {
             </a>
           </div>
 
-          {/* Helper link for AppSumo voucher holders & beta testers */}
+          {/* Helper link for beta testers */}
           <div className="text-xs text-gray-500 mb-14">
             Currently in open public testing &bull;{' '}
             <a href="#auditor" className="text-emerald-400 hover:underline font-semibold">

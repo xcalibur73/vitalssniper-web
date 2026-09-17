@@ -26,11 +26,11 @@ export async function POST(req: Request) {
       });
     }
 
-    // Default graceful fallback: AppSumo Lifetime deal or success mock
+    // Default graceful fallback: Free Public Beta auditor
     return NextResponse.json({
       success: true,
-      checkoutUrl: SITE_CONFIG.appsumoUrl,
-      notice: '2Checkout keys not configured yet in environment. Directing to AppSumo lifetime deal.',
+      checkoutUrl: '/vitalssniper#auditor',
+      notice: 'VitalsSniper is currently in Free Public Beta. Directing to interactive in-browser auditor.',
     });
   } catch (err: any) {
     return NextResponse.json(

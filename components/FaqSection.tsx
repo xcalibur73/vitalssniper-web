@@ -10,8 +10,8 @@ interface FaqItem {
 
 const FAQ_ITEMS: FaqItem[] = [
   {
-    question: 'Where do I find my license key after purchasing on AppSumo?',
-    answer: 'When you purchase VitalsSniper PRO on AppSumo, your unique activation key is available in your AppSumo account under "My Products" (redeem instructions). Paste that code into the activation box at the top of this page to verify and immediately download vitalssniper_pro.zip.',
+    question: 'How do I access the VitalsSniper Public Beta?',
+    answer: 'VitalsSniper is currently open for free public beta testing directly on this website. You can audit any URL in real-time, test DOM bloat, evaluate server TTFB, and generate technical cold email outreach pitches without payment or credit card.',
   },
   {
     question: 'Which web browsers are supported?',
@@ -34,8 +34,8 @@ const FAQ_ITEMS: FaqItem[] = [
     answer: 'While on any target website, click "🎯 Highlight LCP" in the extension utility grid. VitalsSniper injects an emerald pulse animation around the exact Largest Contentful Paint DOM node sabotaging their score and attaches a floating diagnostic pill. It creates instant visual proof during 30-second Loom recordings or live Zoom pitches.',
   },
   {
-    question: 'What is the refund policy?',
-    answer: 'Every AppSumo purchase is protected by the official 60-day AppSumo money-back guarantee. You can test VitalsSniper PRO risk-free on your client acquisition campaigns for two full months.',
+    question: 'Is there any cost during the Public Beta?',
+    answer: 'No. The public beta is 100% free with zero credit card required. You can test client-side audits and join the research cohort to shape upcoming features.',
   },
 ];
 

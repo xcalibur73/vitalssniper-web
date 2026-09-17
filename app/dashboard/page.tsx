@@ -169,9 +169,9 @@ export default function DashboardPage() {
 
               <div className="text-xs text-gray-500 flex items-center justify-between pt-2">
                 <span>Testing the portal? Use sandbox key: <code className="text-emerald-400 font-mono">VS-PRO-TEST-9999</code></span>
-                <a href={SITE_CONFIG.appsumoUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">
-                  Need a license? Buy on AppSumo: $39 &rarr;
-                </a>
+                <Link href="/vitalssniper#auditor" className="text-emerald-400 hover:underline">
+                  Test Free in Public Beta &rarr;
+                </Link>
               </div>
             </form>
           ) : (
