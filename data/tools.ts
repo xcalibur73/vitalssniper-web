@@ -8,7 +8,7 @@ export interface WebTool {
   tier: ToolTier;
   category: string;
   icon: string;
-  metricTarget?: string;
+  referenceBenchmark?: string;
   whatItMeans: string;
   howToImprove: string[];
   relatedGuideSlug: string;
@@ -21,13 +21,13 @@ export const FREE_TOOLS: WebTool[] = [
   {
     slug: 'website-speed-test',
     name: 'Website Speed Test',
-    shortDescription: 'Instant performance audit measuring real server TTFB and mobile Core Web Vitals.',
-    fullDescription: 'Analyze live website loading latency, server response times, and critical asset payloads without queue delays.',
+    shortDescription: 'In-browser performance audit measuring server TTFB and mobile Core Web Vitals.',
+    fullDescription: 'Analyze live website loading latency, server response times, and critical asset payloads directly in your browser without queue delays.',
     tier: 'free',
     category: 'Performance',
     icon: '⚡',
-    metricTarget: 'Target: TTFB < 200ms, LCP < 2.5s',
-    whatItMeans: 'Time to First Byte measures the latency between browser request and the first byte of server response. High TTFB delays every subsequent visual asset.',
+    referenceBenchmark: 'Reference Benchmark: TTFB < 200ms, LCP < 2.5s',
+    whatItMeans: 'Time to First Byte measures the latency between browser request and the first byte of server response. High TTFB delays every subsequent visual asset and render step.',
     howToImprove: [
       'Enable server-level page caching (FastCGI, Redis, or Varnish).',
       'Use an edge CDN with automatic platform optimization to serve HTML from the nearest edge point.',
@@ -44,8 +44,8 @@ export const FREE_TOOLS: WebTool[] = [
     tier: 'free',
     category: 'Performance',
     icon: '🎯',
-    metricTarget: 'Target: Mobile LCP < 2.5s',
-    whatItMeans: 'Largest Contentful Paint measures perceived load speed by timing when the primary viewport content finishes rendering. A slow LCP directly increases bounce rates.',
+    referenceBenchmark: 'Reference Benchmark: Mobile LCP <= 2.5s (75th percentile)',
+    whatItMeans: 'Largest Contentful Paint measures perceived load speed by timing when the primary viewport content finishes rendering. A slow LCP directly impacts user bounce rates.',
     howToImprove: [
       'Add fetchpriority="high" to the principal above-the-fold hero image.',
       'Preload the LCP image in the document head before render-blocking CSS stylesheets.',
@@ -58,12 +58,12 @@ export const FREE_TOOLS: WebTool[] = [
     slug: 'page-weight-checker',
     name: 'Page Weight Checker',
     shortDescription: 'Break down total transfer bytes across JavaScript, CSS, images, and fonts.',
-    fullDescription: 'Inspects full page weight distribution to reveal uncompressed media, excess script bundles, and memory hogs.',
+    fullDescription: 'Inspects full page weight distribution to reveal uncompressed media, excess script bundles, and memory bottlenecks.',
     tier: 'free',
     category: 'Performance',
     icon: '⚖️',
-    metricTarget: 'Target: Total page weight < 1.5MB',
-    whatItMeans: 'Heavy web pages congest mobile radio chips and delay rendering on cellular networks, driving up CPU processing time.',
+    referenceBenchmark: 'Reference Benchmark: Initial mobile transfer < 1.5MB',
+    whatItMeans: 'Heavy web pages congest mobile radio interfaces and delay rendering on cellular networks, driving up CPU processing and battery consumption.',
     howToImprove: [
       'Compress raster photography into modern WebP or AVIF formats.',
       'Remove unused CSS frameworks and defer non-critical JavaScript execution.',
@@ -80,8 +80,8 @@ export const FREE_TOOLS: WebTool[] = [
     tier: 'free',
     category: 'SEO',
     icon: '🔍',
-    metricTarget: 'Target: Title 50-60 chars, Description 140-160 chars',
-    whatItMeans: 'Accurate title tags and meta descriptions determine search snippet CTR and communicate primary query context to search engine spiders.',
+    referenceBenchmark: 'Reference Benchmark: Title 50-60 chars, Description 140-160 chars',
+    whatItMeans: 'Accurate title tags and meta descriptions determine search snippet CTR and communicate primary query context to search engine crawlers.',
     howToImprove: [
       'Ensure every indexable URL has a self-referential canonical tag.',
       'Craft unique, high-intent titles placing primary keywords toward the front.',
@@ -93,13 +93,13 @@ export const FREE_TOOLS: WebTool[] = [
   {
     slug: 'schema-validator',
     name: 'Schema Validator',
-    shortDescription: 'Inspect Schema.org JSON-LD structured data and Knowledge Graph entity markup.',
-    fullDescription: 'Validates Article, Organization, Product, WebApplication, and BreadcrumbList structured data for rich snippet compliance.',
+    shortDescription: 'Inspect Schema.org JSON-LD structured data and entity markup.',
+    fullDescription: 'Validates Article, Organization, Product, WebApplication, and BreadcrumbList structured data for rich snippet compliance and AI crawler disambiguation.',
     tier: 'free',
     category: 'SEO',
     icon: '🏷️',
-    metricTarget: 'Target: 100% valid JSON-LD without syntax errors',
-    whatItMeans: 'Structured data bridges unstructured page prose into machine-readable knowledge graphs for search engines and generative AI agents.',
+    referenceBenchmark: 'Reference Benchmark: Valid Schema.org JSON-LD with verified entity IDs',
+    whatItMeans: 'Structured data assists search engines and autonomous AI agents in disambiguating page entities, author credentials, and topical relationships without guessing.',
     howToImprove: [
       'Embed valid Schema.org entities directly inside script type="application/ld+json" blocks.',
       'Declare exact author Person identifiers and explicit datePublished ISO timestamps.',
@@ -116,7 +116,7 @@ export const FREE_TOOLS: WebTool[] = [
     tier: 'free',
     category: 'Security',
     icon: '🛡️',
-    metricTarget: 'Target: A+ Security Rating with HSTS and CSP',
+    referenceBenchmark: 'Reference Benchmark: Modern security headers (HSTS, CSP, X-Content-Type-Options)',
     whatItMeans: 'HTTP security headers safeguard users against clickjacking, cross-site scripting (XSS), and SSL downgrade attacks while enforcing efficient browser caching.',
     howToImprove: [
       'Enable HSTS with max-age=31536000 and includeSubDomains.',
@@ -130,11 +130,11 @@ export const FREE_TOOLS: WebTool[] = [
     slug: 'broken-link-checker',
     name: 'Broken Link Checker',
     shortDescription: 'Detect 404 dead ends, broken internal anchors, and problematic external links.',
-    fullDescription: 'Crawls on-page links to verify HTTP response status codes and surface broken anchor references that waste search crawl budget.',
+    fullDescription: 'Crawls on-page links to verify HTTP response status codes and surface broken anchor references that degrade user experience and waste crawl budget.',
     tier: 'free',
     category: 'SEO',
     icon: '🔗',
-    metricTarget: 'Target: 0 broken internal links',
+    referenceBenchmark: 'Reference Benchmark: 0 broken internal links (100% 200/301 status)',
     whatItMeans: 'Broken internal links disrupt user navigation and cause search engine crawlers to waste crawl budget on non-existent endpoints.',
     howToImprove: [
       'Implement permanent 301 redirects for any altered or retired URLs.',
@@ -148,15 +148,15 @@ export const FREE_TOOLS: WebTool[] = [
     slug: 'image-size-analyzer',
     name: 'Image Size Analyzer',
     shortDescription: 'Inspect image compression, modern WebP/AVIF adoption, and aspect ratio layout shifts.',
-    fullDescription: 'Identifies uncompressed PNGs, missing intrinsic dimensions, and images scaled down via CSS that degrade mobile performance.',
+    fullDescription: 'Identifies uncompressed images, missing intrinsic dimensions, and assets scaled down via CSS that degrade mobile performance.',
     tier: 'free',
     category: 'Performance',
     icon: '🖼️',
-    metricTarget: 'Target: All images in WebP/AVIF under 150KB',
-    whatItMeans: 'Unoptimized images represent the largest single component of website weight on the modern web and are the primary driver of mobile LCP issues.',
+    referenceBenchmark: 'Reference Benchmark: Content imagery in WebP/AVIF under 150KB',
+    whatItMeans: 'Unoptimized images represent the largest single component of website weight on the modern web and are a primary driver of mobile LCP issues.',
     howToImprove: [
       'Always serve images in modern next-gen formats like WebP or AVIF.',
-      'Provide responsive srcset attributes to serve scaled dimensions to mobile phones.',
+      'Provide responsive srcset attributes to serve scaled dimensions to mobile viewports.',
       'Specify explicit width and height attributes on every img tag to lock layout geometry.',
     ],
     relatedGuideSlug: 'zero-cls-web-design-principles',
@@ -168,13 +168,13 @@ export const PRO_TOOLS: WebTool[] = [
   {
     slug: 'vitalssniper-pro',
     name: 'VitalsSniper PRO',
-    shortDescription: 'Deep in-browser website forensics, proof-of-flaw visual tear sheets, and client proposal generator.',
-    fullDescription: 'Our flagship browser extension for web agencies, SEO consultants, and performance specialists. Audits any live URL in 50ms without third-party API quotas.',
+    shortDescription: 'In-browser website forensics, visual LCP element highlighter, and client proposal generator.',
+    fullDescription: 'Our flagship browser extension for web agencies, SEO consultants, and performance specialists. Audits any live URL in milliseconds without third-party API quotas.',
     tier: 'pro',
     category: 'Agency Diagnostic',
     icon: '🎯',
     isOwnProduct: true,
-    whatItMeans: 'Complete client-side website inspection: isolates exact DOM nodes, render-blocking scripts, and server bottlenecks with instant white-label reporting.',
+    whatItMeans: 'Active-tab client-side website inspection: isolates exact DOM nodes, render-blocking scripts, and server bottlenecks with instant white-label reporting.',
     howToImprove: [],
     relatedGuideSlug: 'the-agency-guide-to-white-label-website-audits',
     relatedToolSlug: 'website-speed-test',
@@ -182,13 +182,13 @@ export const PRO_TOOLS: WebTool[] = [
   {
     slug: 'website-opportunity-analyzer',
     name: 'Website Opportunity Analyzer',
-    shortDescription: 'Calculates lost revenue from mobile loading delays and estimates conversion lift from speed gains.',
-    fullDescription: 'Converts milliseconds of latency into estimated annual lost revenue to make financial cases for enterprise performance work.',
+    shortDescription: 'Calculates performance bottlenecks and models conversion improvements from Core Web Vitals gains.',
+    fullDescription: 'Analyzes mobile loading latency and provides empirical conversion lift projections based on published e-commerce performance studies.',
     tier: 'pro',
     category: 'Conversion',
     icon: '📊',
     isOwnProduct: true,
-    whatItMeans: 'Speed is a revenue metric. This engine maps conversion loss curves based on real e-commerce and lead generation benchmarks.',
+    whatItMeans: 'Speed directly correlates with user conversion and retention. This engine models performance improvements against published e-commerce datasets.',
     howToImprove: [],
     relatedGuideSlug: 'the-agency-guide-to-white-label-website-audits',
     relatedToolSlug: 'vitalssniper-pro',
@@ -196,13 +196,13 @@ export const PRO_TOOLS: WebTool[] = [
   {
     slug: 'client-audit-generator',
     name: 'Client Audit Generator',
-    shortDescription: 'Automated 1-page agency tear sheets with custom agency logo, colors, and booking links.',
-    fullDescription: 'Generates branded PDF audit summaries designed to be attached to cold outreach emails and discovery proposals.',
+    shortDescription: 'Automated 1-page agency tear sheets with custom agency branding, colors, and booking links.',
+    fullDescription: 'Generates branded PDF audit summaries designed to be attached to client discovery proposals and audit presentations.',
     tier: 'pro',
     category: 'Agency Diagnostic',
     icon: '📄',
     isOwnProduct: true,
-    whatItMeans: 'Prospects do not read 50-page technical reports. High-converting tear sheets isolate 3 critical flaws and present a clear solution.',
+    whatItMeans: 'Prospects rarely read 50-page automated PDF dumps. High-converting tear sheets isolate 3 critical flaws and present a clear remediation scope.',
     howToImprove: [],
     relatedGuideSlug: 'the-agency-guide-to-white-label-website-audits',
     relatedToolSlug: 'vitalssniper-pro',
@@ -210,13 +210,13 @@ export const PRO_TOOLS: WebTool[] = [
   {
     slug: 'competitor-benchmark',
     name: 'Competitor Benchmark Suite',
-    shortDescription: 'Side-by-side speed and SEO audit comparing a client site against 3 direct competitors.',
-    fullDescription: 'Surfaces competitive gaps in Core Web Vitals, page weight, and mobile response to fuel persuasive sales presentations.',
+    shortDescription: 'Side-by-side speed and SEO audit comparing a client site against direct competitors.',
+    fullDescription: 'Surfaces competitive gaps in Core Web Vitals, page weight, and mobile response to support consultative sales presentations.',
     tier: 'pro',
     category: 'Agency Diagnostic',
     icon: '⚔️',
     isOwnProduct: true,
-    whatItMeans: 'Nothing persuades a prospect faster than seeing their direct competitor loading twice as fast on mobile networks.',
+    whatItMeans: 'Comparing performance against direct competitors creates an objective baseline for prioritizing technical optimization work.',
     howToImprove: [],
     relatedGuideSlug: 'the-agency-guide-to-white-label-website-audits',
     relatedToolSlug: 'vitalssniper-pro',
@@ -224,30 +224,40 @@ export const PRO_TOOLS: WebTool[] = [
   {
     slug: 'website-monitoring',
     name: 'Automated CWV Monitoring',
-    shortDescription: 'Continuous regression tracking alerting you when plugins or updates cause Core Web Vitals to fail.',
-    fullDescription: 'Automated synthetic tests run every 6 hours across desktop and mobile viewports with webhook and email alerts.',
+    shortDescription: 'Regression tracking alerting you when CMS updates or plugins cause Core Web Vitals to slip.',
+    fullDescription: 'Scheduled synthetic tests run across desktop and mobile viewports with webhook and email alerts for regression detection.',
     tier: 'pro',
     category: 'Monitoring',
     icon: '📡',
     isOwnProduct: true,
-    whatItMeans: 'Websites constantly drift. Automated monitoring prevents silent performance regressions before they impact organic search rankings.',
+    whatItMeans: 'Websites constantly drift as marketing plugins and content are added. Automated monitoring detects regressions before they impact search visibility.',
     howToImprove: [],
     relatedGuideSlug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
     relatedToolSlug: 'vitalssniper-pro',
   },
 ];
 
-export const DIRECTORY_TOOLS = [
-  { name: 'VitalsSniper PRO', category: 'Auditing & Performance', pricing: '$39 Lifetime', freePlan: false, url: '/products/vitalssniper-pro', rating: 4.8 },
-  { name: 'Cloudways', category: 'Hosting & CDN', pricing: 'From $14/mo', freePlan: false, url: '/reviews/cloudways', rating: 4.6 },
-  { name: 'GeneratePress', category: 'Theme & Frameworks', pricing: 'From $59/yr', freePlan: true, url: '/reviews/generatepress', rating: 4.9 },
-  { name: 'Cloudflare', category: 'CDN & Security', pricing: 'Free / $20/mo', freePlan: true, url: '/reviews/cloudflare', rating: 4.8 },
-  { name: 'Rank Math', category: 'SEO & Schema', pricing: 'Free / $6.99/mo', freePlan: true, url: '/reviews/rank-math', rating: 4.7 },
-  { name: 'Ahrefs', category: 'SEO & Keywords', pricing: 'From $99/mo', freePlan: true, url: '/reviews/ahrefs', rating: 4.8 },
-  { name: 'WP Rocket', category: 'Caching & Speed', pricing: 'From $59/yr', freePlan: false, url: '/reviews/wp-rocket', rating: 4.6 },
-  { name: 'Plausible Analytics', category: 'Privacy Analytics', pricing: 'From $9/mo', freePlan: false, url: '/reviews/plausible-analytics', rating: 4.7 },
-  { name: 'LiteSpeed Cache', category: 'Caching & Speed', pricing: 'Free (Open Source)', freePlan: true, url: '#', rating: 4.8 },
-  { name: 'Screaming Frog', category: 'SEO Crawlers', pricing: 'Free / $259/yr', freePlan: true, url: '#', rating: 4.9 },
-  { name: 'Kinsta', category: 'Hosting & CDN', pricing: 'From $35/mo', freePlan: false, url: '#', rating: 4.5 },
-  { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: '#', rating: 4.6 },
+export interface DirectoryTool {
+  name: string;
+  category: string;
+  pricing: string;
+  freePlan: boolean;
+  url: string;
+  testedMetric: string;
+  bestFor: string;
+}
+
+export const DIRECTORY_TOOLS: DirectoryTool[] = [
+  { name: 'VitalsSniper PRO', category: 'Auditing & Diagnostics', pricing: '$39 Lifetime', freePlan: false, url: '/products/vitalssniper-pro', testedMetric: 'In-browser active-tab forensics', bestFor: 'Agencies & SEO Consultants' },
+  { name: 'Cloudways', category: 'Hosting & CDN', pricing: 'From $14/mo', freePlan: false, url: '/reviews/cloudways', testedMetric: '145ms avg server TTFB', bestFor: 'WooCommerce & Agency Staging' },
+  { name: 'GeneratePress', category: 'Theme & Frameworks', pricing: 'From $59/yr', freePlan: true, url: '/reviews/generatepress', testedMetric: '0.000 CLS / <10KB CSS footprint', bestFor: 'Fast Publishing Sites' },
+  { name: 'Cloudflare', category: 'CDN & Security', pricing: 'Free / $20/mo', freePlan: true, url: '/reviews/cloudflare', testedMetric: '12ms global DNS propagation', bestFor: 'DDoS Protection & Edge Caching' },
+  { name: 'Rank Math', category: 'SEO & Schema', pricing: 'Free / $6.99/mo', freePlan: true, url: '/reviews/rank-math', testedMetric: '18% fewer SQL queries vs Yoast', bestFor: 'Schema.org JSON-LD Generation' },
+  { name: 'Ahrefs', category: 'SEO & Keywords', pricing: 'From $99/mo', freePlan: true, url: '/reviews/ahrefs', testedMetric: 'Live backlink crawler freshness', bestFor: 'Competitive Gap Analysis' },
+  { name: 'WP Rocket', category: 'Caching & Speed', pricing: 'From $59/yr', freePlan: false, url: '/reviews/wp-rocket', testedMetric: '1.4s avg mobile LCP reduction', bestFor: 'Automated Script Deferral' },
+  { name: 'Plausible Analytics', category: 'Privacy Analytics', pricing: 'From $9/mo', freePlan: false, url: '/reviews/plausible-analytics', testedMetric: '0.9KB script / 0.0ms blocking', bestFor: 'Cookieless Compliance' },
+  { name: 'LiteSpeed Cache', category: 'Caching & Speed', pricing: 'Free (Open Source)', freePlan: true, url: '#', testedMetric: 'Native LiteSpeed server caching', bestFor: 'LiteSpeed Server Environments' },
+  { name: 'Screaming Frog', category: 'SEO Crawlers', pricing: 'Free / $259/yr', freePlan: true, url: '#', testedMetric: 'Deep on-page crawl diagnostics', bestFor: 'Full Domain Technical Audits' },
+  { name: 'Kinsta', category: 'Hosting & CDN', pricing: 'From $35/mo', freePlan: false, url: '#', testedMetric: 'Google C2 enterprise infrastructure', bestFor: 'High-Traffic Enterprise WordPress' },
+  { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: '#', testedMetric: 'Automated AVIF/WebP conversion', bestFor: 'Heavy Photography Catalogs' },
 ];

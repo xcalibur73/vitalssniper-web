@@ -53,9 +53,8 @@ export default function PopularReviewsSection() {
                       {prod.category}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600">
-                    <Star className="h-4 w-4 fill-amber-400 text-amber-500" />
-                    <span>{prod.rating.toFixed(1)} / 5.0</span>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-charcoal-muted bg-white px-2.5 py-1 rounded-md border border-sand-300 shadow-2xs">
+                    <span className="font-mono text-accent font-bold">{prod.pricingModel}</span>
                   </div>
                 </div>
 
@@ -69,12 +68,12 @@ export default function PopularReviewsSection() {
                 {/* Factual Attributes Strip */}
                 <div className="grid grid-cols-2 gap-2 my-3 text-[11px] bg-[#F7F4EE] p-2.5 rounded-lg border border-sand-300">
                   <div>
-                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Best For:</span>
-                    <span className="font-semibold text-charcoal truncate block">{prod.bestFor}</span>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Environment:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.testedStack}</span>
                   </div>
                   <div>
-                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Duration:</span>
-                    <span className="font-semibold text-charcoal truncate block">{prod.testingPeriod}</span>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Observed Metric:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.observedMetric}</span>
                   </div>
                 </div>
 

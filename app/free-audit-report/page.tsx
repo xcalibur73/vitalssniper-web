@@ -17,6 +17,7 @@ import {
   Mail,
   Building,
   ExternalLink,
+  Download,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { SITE_CONFIG } from '@/config/site';
@@ -28,17 +29,18 @@ export default function FreeAuditReportPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<any | null>(null);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Stage 1: Ungated initial audit
+  const handleAuditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!url.trim() || !email.trim()) return;
+    if (!url.trim()) return;
 
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      // 1. Run live forensic audit via our API
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,27 +53,33 @@ export default function FreeAuditReportPage() {
       }
 
       setResult(auditData);
-
-      // 2. Save lead into Supabase leads table if configured
-      if (isSupabaseConfigured && supabase) {
-        try {
-          await supabase.from('leads').insert({
-            email: email.trim(),
-            url: auditData.domain || url.trim(),
-            company_name: company.trim() || null,
-            health_score: auditData.telemetry?.healthScore || 0,
-            cms: auditData.telemetry?.cms || 'Custom',
-            primary_flaw: auditData.flaw?.headline || null,
-          });
-        } catch (dbErr) {
-          console.warn('Lead capture db insert notice:', dbErr);
-        }
-      }
     } catch (err: any) {
       setError(err.message || 'An error occurred during website analysis.');
     } finally {
       setLoading(false);
     }
+  };
+
+  // Stage 3: Optional report delivery via email
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !result) return;
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('leads').insert({
+          email: email.trim(),
+          url: result.domain || url.trim(),
+          company_name: company.trim() || null,
+          health_score: result.telemetry?.healthScore || 0,
+          cms: result.telemetry?.cms || 'Custom',
+          primary_flaw: result.flaw?.headline || null,
+        });
+      } catch (dbErr) {
+        console.warn('Lead capture db insert notice:', dbErr);
+      }
+    }
+    setEmailSubmitted(true);
   };
 
   return (
@@ -90,7 +98,7 @@ export default function FreeAuditReportPage() {
             Free Website Audit Report
           </h1>
           <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">
-            See exactly what is killing your prospects&apos; mobile speed, Core Web Vitals, and conversion rates in 50 milliseconds.
+            Inspect mobile performance, Core Web Vitals bottlenecks, and DOM complexity. Instant on-page results with zero gating.
           </p>
         </div>
 
@@ -99,10 +107,10 @@ export default function FreeAuditReportPage() {
           <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
 
           {!result ? (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleAuditSubmit} className="space-y-5">
               <div>
                 <label className="block text-xs font-bold text-gray-300 mb-1.5">
-                  Target Website URL to Audit
+                  Enter Website URL to Audit
                 </label>
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#090a10] px-3.5 py-3 focus-within:border-emerald-500 transition-colors">
                   <Globe className="h-4 w-4 text-gray-500 flex-shrink-0" />
@@ -114,41 +122,6 @@ export default function FreeAuditReportPage() {
                     placeholder="e.g. apple.com or yourprospect.com"
                     className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500 font-mono"
                   />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 mb-1.5">
-                    Your Work Email (Report Delivery)
-                  </label>
-                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#090a10] px-3.5 py-3 focus-within:border-emerald-500 transition-colors">
-                    <Mail className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="alex@agency.com"
-                      className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 mb-1.5">
-                    Agency or Company Name (Optional)
-                  </label>
-                  <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#090a10] px-3.5 py-3 focus-within:border-emerald-500 transition-colors">
-                    <Building className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                    <input
-                      type="text"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      placeholder="Apex Digital Architecture"
-                      className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500"
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -167,12 +140,12 @@ export default function FreeAuditReportPage() {
                 {loading ? (
                   <>
                     <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
-                    <span>Executing 50ms Forensic Scan...</span>
+                    <span>Executing In-Browser Forensic Scan...</span>
                   </>
                 ) : (
                   <>
                     <Zap className="h-4 w-4 text-emerald-600" />
-                    <span>Generate Free Website Audit Report</span>
+                    <span>Run Free Audit (No Email Required)</span>
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
@@ -181,7 +154,7 @@ export default function FreeAuditReportPage() {
               <div className="flex items-center justify-center gap-4 text-[11px] text-gray-500 pt-2">
                 <span>100% Free</span>
                 <span>&bull;</span>
-                <span>No Credit Card Required</span>
+                <span>No Email Required to View Results</span>
                 <span>&bull;</span>
                 <span>Instant Forensic Telemetry</span>
               </div>
@@ -199,8 +172,11 @@ export default function FreeAuditReportPage() {
                 </div>
 
                 <button
-                  onClick={() => setResult(null)}
-                  className="text-xs text-gray-400 hover:text-white underline"
+                  onClick={() => {
+                    setResult(null);
+                    setEmailSubmitted(false);
+                  }}
+                  className="text-xs text-gray-400 hover:text-white underline cursor-pointer"
                 >
                   Audit Another Website
                 </button>
@@ -242,7 +218,7 @@ export default function FreeAuditReportPage() {
               {result.flaw && (
                 <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5 space-y-2">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-                    Sabotaging Performance Flaw
+                    Observed Performance Flaw
                   </span>
                   <h3 className="text-base font-bold text-white">{result.flaw.headline}</h3>
                   <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">{result.flaw.explanation}</p>
@@ -253,7 +229,7 @@ export default function FreeAuditReportPage() {
               {result.outreach?.email && (
                 <div className="rounded-xl border border-white/10 bg-[#090a10] p-5 space-y-2">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
-                    Generated Agency Pitch Hook
+                    Generated Remediation Pitch Hook
                   </span>
                   <div className="font-mono text-xs text-gray-300 whitespace-pre-wrap bg-black/40 p-4 rounded-lg border border-white/5">
                     {result.outreach.email}
@@ -261,11 +237,56 @@ export default function FreeAuditReportPage() {
                 </div>
               )}
 
+              {/* Optional Stage 3: PDF Report Delivery Form */}
+              <div className="rounded-xl border border-white/10 bg-[#090a10] p-6">
+                {!emailSubmitted ? (
+                  <form onSubmit={handleEmailSubmit} className="space-y-4">
+                    <div className="flex items-center gap-2 text-white font-bold text-sm">
+                      <Download className="h-4 w-4 text-emerald-400" />
+                      <span>Want this audit exported as a branded PDF tear sheet?</span>
+                    </div>
+                    <p className="text-xs text-gray-400">
+                      Enter your email to receive a clean executive summary formatted for client presentations.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="your-email@agency.com"
+                        className="rounded-lg border border-white/10 bg-black/50 px-3.5 py-2.5 text-xs text-white outline-none focus:border-emerald-500"
+                      />
+                      <input
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="Agency Name (Optional)"
+                        className="rounded-lg border border-white/10 bg-black/50 px-3.5 py-2.5 text-xs text-white outline-none focus:border-emerald-500"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="rounded-lg bg-emerald-500 hover:bg-emerald-600 px-5 py-2.5 text-xs font-bold text-black transition-colors cursor-pointer"
+                    >
+                      Send PDF Audit Tear Sheet
+                    </button>
+                  </form>
+                ) : (
+                  <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold">
+                    <CheckCircle2 className="h-4 w-4" />
+                    <span>Report request recorded. Your audit tear sheet will be dispatched to {email}.</span>
+                  </div>
+                )}
+              </div>
+
               {/* Upsell to PRO */}
               <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                  <h4 className="font-bold text-white text-base">Want to audit unlimited sites in 50ms?</h4>
-                  <p className="text-xs text-gray-400">Get the full Chrome extension with white-label PDF reports and competitor comparison.</p>
+                  <h4 className="font-bold text-white text-base">Need in-browser LCP highlighting &amp; white-label branding?</h4>
+                  <p className="text-xs text-gray-400">VitalsSniper PRO highlights elements live on active tabs and includes a built-in prospect CRM.</p>
                 </div>
 
                 <a
@@ -274,7 +295,7 @@ export default function FreeAuditReportPage() {
                   rel="noopener noreferrer"
                   className="rounded-xl bg-white px-6 py-3 text-xs font-bold text-black hover:bg-gray-100 transition-all flex items-center gap-2 flex-shrink-0 shadow-md"
                 >
-                  <span>Get Web Audits Helper: $39</span>
+                  <span>Get VitalsSniper PRO: $39</span>
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>

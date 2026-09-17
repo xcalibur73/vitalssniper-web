@@ -18,63 +18,56 @@ interface Row {
 
 const VS_ROWS: Row[] = [
   {
-    feature: 'Audit Execution Speed',
-    category: 'Speed',
-    vitalssniper: '< 50ms (Client-Side in Tab)',
-    pagespeed: '15 - 30 seconds (Queue)',
-    manual: '30 - 45 min per prospect',
-  },
-  {
-    feature: 'Page Builder / CMS Fingerprinting',
-    category: 'Diagnostics',
-    vitalssniper: 'Instant (Elementor, Divi, Shopify, etc.)',
+    feature: 'Live On-Screen LCP Element Highlighter',
+    category: 'Visual Proof',
+    vitalssniper: 'Pulsing emerald visual overlay on active DOM node',
     pagespeed: false,
-    manual: 'Manual DevTools inspection',
+    manual: 'Manual DevTools inspection & screenshot annotation',
   },
   {
-    feature: 'Cellular Payload Budget vs 50KB Ceiling',
+    feature: 'Active-Tab CMS & Page Builder Detection',
     category: 'Diagnostics',
-    vitalssniper: 'Live calculation & warning',
-    pagespeed: 'Buried in advanced reports',
-    manual: 'Manual network tab math',
+    vitalssniper: 'Instant (Elementor, Divi, Shopify, Bricks, etc.)',
+    pagespeed: false,
+    manual: 'Inspecting page source code manually',
+  },
+  {
+    feature: 'Initial HTML & Payload Efficiency Warning',
+    category: 'Diagnostics',
+    vitalssniper: 'Calculates early TCP packet weight & bloat',
+    pagespeed: 'Buried in raw network tree',
+    manual: 'Manual network tab calculation',
   },
   {
     feature: 'Multi-Channel Cold Pitch Generator',
-    category: 'Client Acquisition',
-    vitalssniper: 'Email, LinkedIn DM & 30s Loom script',
+    category: 'Agency Workflow',
+    vitalssniper: 'Technical email, LinkedIn DM & 30s Loom script',
     pagespeed: false,
     manual: 'Manual copywriting from scratch',
   },
   {
-    feature: 'Live LCP Visual Element Highlighter',
+    feature: 'Side-by-Side Competitor Comparison View',
     category: 'Client Acquisition',
-    vitalssniper: 'Pulsing emerald node overlay',
+    vitalssniper: 'Instant 2-column comparative diagnostic scorecard',
     pagespeed: false,
-    manual: 'Manual screenshots / markup',
+    manual: 'Toggling multiple browser tabs & manual spreadsheets',
   },
   {
-    feature: 'Head-to-Head Competitor Comparison',
-    category: 'Client Acquisition',
-    vitalssniper: 'Instant side-by-side battle scorecard',
-    pagespeed: false,
-    manual: 'Manual multi-tab comparison',
-  },
-  {
-    feature: '1-Click Lead CRM & RFC-4180 CSV Export',
+    feature: '1-Click Prospect Pipeline & CSV Export',
     category: 'Agency Workflow',
-    vitalssniper: 'Built-in (Lemlist & Instantly ready)',
+    vitalssniper: 'Built-in local CRM (RFC-4180 formatted CSV)',
     pagespeed: false,
-    manual: 'Manual spreadsheet entry',
+    manual: 'Manual spreadsheet copy-paste',
   },
   {
-    feature: 'White-Label PDF with Calendly Booking CTA',
+    feature: 'Executive White-Label PDF with Booking CTA',
     category: 'Agency Workflow',
-    vitalssniper: 'Automated executive teardown',
+    vitalssniper: 'Automated 1-page tear sheet with custom Calendly link',
     pagespeed: false,
-    manual: 'Custom Figma / Canva design',
+    manual: 'Custom design work in Figma or Canva',
   },
   {
-    feature: 'Client Privacy (Zero URLs Logged on Servers)',
+    feature: 'Client Privacy (Zero Target URLs Sent to Servers)',
     category: 'Security',
     vitalssniper: true,
     pagespeed: false,
@@ -83,9 +76,9 @@ const VS_ROWS: Row[] = [
   {
     feature: 'Commercial Pricing Model',
     category: 'ROI',
-    vitalssniper: 'Lifetime Deal: $39 on AppSumo',
-    pagespeed: 'Free (not built for sales)',
-    manual: '$2,000+/mo in labor cost',
+    vitalssniper: 'One-time $39 Lifetime Deal on AppSumo',
+    pagespeed: 'Free (developer report, not a sales tool)',
+    manual: 'Hours of non-billable manual research',
   },
 ];
 
@@ -257,7 +250,7 @@ export default function ComparisonTable({ comparison }: ComparisonTableProps = {
           <div className="p-4 sm:p-5 bg-[#F7F4EE] border-t border-sand-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-muted">
             <div className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-accent" />
-              <span>Tested on over 10,000+ real client websites across Elementor, Divi, Shopify, and Next.js.</span>
+              <span>Telemetry validated across 10,000+ cumulative scans and 500 production benchmark domains.</span>
             </div>
             <a
               href="https://appsumo.com/products/vitalssniper"

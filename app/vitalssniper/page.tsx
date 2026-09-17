@@ -51,15 +51,15 @@ export default function VitalsSniperPage() {
 
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-6">
-            Close $3,000+ Speed &amp; Core Web Vitals Retainers <br className="hidden sm:inline" />
+            Find Website Problems. Prove Them Visually. <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-white via-gray-200 to-emerald-400 bg-clip-text text-transparent">
-              in 50 Milliseconds
+              Build Better Client Proposals.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-sm sm:text-lg text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-            Stop sending generic cold emails that get deleted. Inspect target websites in your browser, reveal uncompressed DOM container bloat, highlight LCP bottlenecks live on screen, and export white-labeled executive teardowns stamped with your Calendly booking link.
+            VitalsSniper PRO is an in-browser diagnostic inspector built for web agencies, SEO consultants, and performance specialists. Audit live tabs in milliseconds, isolate LCP elements visually on screen, export branded proof sheets, and organize prospective client leads without third-party API quotas.
           </p>
 
           {/* Dual Action CTAs */}
@@ -97,33 +97,33 @@ export default function VitalsSniperPage() {
             <div className="rounded-xl border border-white/10 bg-[#11131c]/80 backdrop-blur p-4">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <Zap className="h-4 w-4" />
-                <span className="text-lg font-black tracking-tight text-white">&lt; 50ms</span>
+                <span className="text-lg font-black tracking-tight text-white">Active-Tab</span>
               </div>
-              <p className="text-xs text-gray-400">Client-Side Speed. Runs directly in tab with zero server lag.</p>
+              <p className="text-xs text-gray-400">Local Diagnostics. Inspects active browser tabs with zero server queues.</p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#11131c]/80 backdrop-blur p-4">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <Lock className="h-4 w-4" />
-                <span className="text-lg font-black tracking-tight text-white">100%</span>
+                <span className="text-lg font-black tracking-tight text-white">100% Local</span>
               </div>
-              <p className="text-xs text-gray-400">Data Privacy. No client URLs logged to third-party servers.</p>
+              <p className="text-xs text-gray-400">Data Privacy. Target URLs inspected locally without third-party tracking.</p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#11131c]/80 backdrop-blur p-4">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <CheckCircle2 className="h-4 w-4" />
-                <span className="text-lg font-black tracking-tight text-white">9-in-1</span>
+                <span className="text-lg font-black tracking-tight text-white">Agency Core</span>
               </div>
-              <p className="text-xs text-gray-400">Agency Suite. Competitor battle, LCP highlight &amp; White-Label PDF.</p>
+              <p className="text-xs text-gray-400">Visual Evidence. LCP highlighter, competitor comparison &amp; White-Label PDF.</p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#11131c]/80 backdrop-blur p-4">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <FileSpreadsheet className="h-4 w-4" />
-                <span className="text-lg font-black tracking-tight text-white">RFC-4180</span>
+                <span className="text-lg font-black tracking-tight text-white">$39 LTD</span>
               </div>
-              <p className="text-xs text-gray-400">CRM CSV Export. Ready for Lemlist, Instantly &amp; HubSpot.</p>
+              <p className="text-xs text-gray-400">AppSumo Lifetime Deal. One-time payment with all core updates included.</p>
             </div>
           </div>
 

@@ -172,9 +172,9 @@ export default function ToolsPage() {
                       {tool.shortDescription}
                     </p>
 
-                    {tool.metricTarget && (
+                    {tool.referenceBenchmark && (
                       <div className="rounded-lg bg-[#F7F4EE] border border-sand-300 px-3 py-1.5 text-[11px] font-medium text-charcoal mb-4">
-                        {tool.metricTarget}
+                        {tool.referenceBenchmark}
                       </div>
                     )}
                   </div>

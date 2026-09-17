@@ -85,19 +85,10 @@ export default function ToolsGrid({ products, limit, showFilters = false }: Tool
               </div>
 
               <div className="flex items-center gap-2 mb-3">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(product.rating || 0)
-                          ? 'text-amber-400 fill-amber-400'
-                          : 'text-gray-600 fill-gray-600'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-white">{product.rating}</span>
+                <span className="inline-block px-2 py-0.5 rounded bg-white/10 text-xs text-white font-mono">
+                  {product.pricingModel}
+                </span>
+                <span className="text-xs text-gray-400 truncate">{product.observedMetric}</span>
               </div>
 
               <p className="text-sm text-gray-300 line-clamp-1 mb-4 flex-grow">

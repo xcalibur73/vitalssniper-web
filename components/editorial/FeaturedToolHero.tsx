@@ -43,11 +43,11 @@ export default function FeaturedToolHero() {
   ];
 
   const workflowSteps = [
-    { label: 'Audit', desc: '50ms in-tab scan' },
+    { label: 'Audit', desc: 'Instant in-tab scan' },
     { label: 'Diagnose', desc: 'DOM bloat & LCP' },
     { label: 'Visual Proof', desc: 'Pulsing element outline' },
     { label: 'Report', desc: 'White-label PDF' },
-    { label: 'Proposal', desc: '3-sentence pitch' },
+    { label: 'Proposal', desc: 'Technical pitch script' },
     { label: 'Monitor', desc: 'Automated regressions' },
   ];
 
@@ -121,10 +121,10 @@ export default function FeaturedToolHero() {
               Commercial Workflow Engine
             </span>
             <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal mt-1">
-              Find The Problem. Prove It. Sell The Solution.
+              Find Website Problems. Prove Them Visually. Build Better Proposals.
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-muted mt-2">
-              VitalsSniper PRO automates client prospecting: turn technical diagnostics into closed optimization contracts.
+              VitalsSniper PRO gives web agencies instant in-browser forensics: isolate performance bottlenecks, generate proof sheets, and organize client outreach.
             </p>
           </div>
 
@@ -146,7 +146,7 @@ export default function FeaturedToolHero() {
               <div className="space-y-3 text-xs text-charcoal">
                 <div className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span><strong>50ms In-Tab Telemetry:</strong> Detects Elementor, Divi, Shopify, and DOM element bloat with zero server lag.</span>
+                  <span><strong>Instant In-Tab Telemetry:</strong> Detects Elementor, Divi, Shopify, and DOM element complexity with zero server wait times.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -193,7 +193,7 @@ export default function FeaturedToolHero() {
                   <span className="font-mono text-[11px] text-gray-300">
                     Active Tab Inspector &bull; VitalsSniper PRO
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-bold hidden sm:inline">50ms Telemetry</span>
+                  <span className="text-[10px] text-emerald-400 font-bold hidden sm:inline">Active Tab Diagnostics</span>
                 </div>
 
                 <div className="relative rounded-xl overflow-hidden border border-white/5">

@@ -172,9 +172,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
             </button>
           </form>
 
-          {tool.metricTarget && (
+          {tool.referenceBenchmark && (
             <div className="mt-3 text-[11px] text-charcoal-muted">
-              {tool.metricTarget}
+              {tool.referenceBenchmark}
             </div>
           )}
 

@@ -62,7 +62,7 @@ export default function ReviewsPage() {
                 <tr className="bg-[#F7F4EE] border-b border-sand-300 text-charcoal-subtle uppercase tracking-wider text-[10px]">
                   <th className="py-3.5 px-4 font-bold">Tool</th>
                   <th className="py-3.5 px-4 font-bold">Category</th>
-                  <th className="py-3.5 px-4 font-bold">Rating</th>
+                  <th className="py-3.5 px-4 font-bold">Observed Metric</th>
                   <th className="py-3.5 px-4 font-bold">Pricing</th>
                   <th className="py-3.5 px-4 font-bold">Best For</th>
                   <th className="py-3.5 px-4 font-bold text-right">Action</th>
@@ -88,11 +88,8 @@ export default function ReviewsPage() {
                     <td className="py-3.5 px-4 text-charcoal-muted">
                       {prod.category}
                     </td>
-                    <td className="py-3.5 px-4">
-                      <div className="flex items-center gap-1 font-bold text-amber-600">
-                        <Star className="h-3 w-3 fill-amber-400 text-amber-500" />
-                        <span>{prod.rating.toFixed(1)}</span>
-                      </div>
+                    <td className="py-3.5 px-4 text-charcoal-muted text-[11px] font-medium">
+                      {prod.observedMetric}
                     </td>
                     <td className="py-3.5 px-4 font-mono font-semibold text-charcoal">
                       {prod.pricing}
@@ -150,10 +147,9 @@ export default function ReviewsPage() {
                       Our Flagship Platform
                     </span>
                   ) : (
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600">
-                      <Star className="h-4 w-4 fill-amber-400 text-amber-500" />
-                      <span>{prod.rating.toFixed(1)} / 5.0</span>
-                    </div>
+                    <span className="text-xs font-semibold text-charcoal-muted bg-white px-2.5 py-1 rounded-md border border-sand-300 shadow-2xs">
+                      <span className="font-mono text-accent font-bold">{prod.pricingModel}</span>
+                    </span>
                   )}
                 </div>
 
@@ -176,12 +172,12 @@ export default function ReviewsPage() {
                 {/* Factual Attributes Strip */}
                 <div className="grid grid-cols-2 gap-2 my-3 text-[11px] bg-[#F7F4EE] p-2.5 rounded-lg border border-sand-300">
                   <div>
-                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Best For:</span>
-                    <span className="font-semibold text-charcoal truncate block">{prod.bestFor}</span>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Environment:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.testedStack}</span>
                   </div>
                   <div>
-                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Duration:</span>
-                    <span className="font-semibold text-charcoal truncate block">{prod.testingPeriod}</span>
+                    <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Observed Metric:</span>
+                    <span className="font-semibold text-charcoal truncate block">{prod.observedMetric}</span>
                   </div>
                 </div>
 

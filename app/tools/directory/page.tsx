@@ -40,10 +40,9 @@ export default function ToolDirectoryPage() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span className="editorial-pill">{tool.category}</span>
-                  <div className="flex items-center gap-1 text-xs font-bold text-amber-600">
-                    <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-500" />
-                    <span>{tool.rating.toFixed(1)}</span>
-                  </div>
+                  <span className="text-[10px] font-bold text-accent bg-[#F7F4EE] px-2 py-0.5 rounded border border-sand-300">
+                    Verified
+                  </span>
                 </div>
 
                 <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
@@ -52,12 +51,16 @@ export default function ToolDirectoryPage() {
 
                 <div className="space-y-1.5 text-xs text-charcoal-muted mb-4 bg-[#F7F4EE] p-3 rounded-xl border border-sand-300">
                   <div className="flex justify-between">
+                    <span className="text-charcoal-muted">Observed Metric:</span>
+                    <span className="font-semibold text-charcoal truncate">{tool.testedMetric}</span>
+                  </div>
+                  <div className="flex justify-between">
                     <span className="text-charcoal-muted">Pricing:</span>
                     <span className="font-bold text-charcoal">{tool.pricing}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-charcoal-muted">Free Plan:</span>
-                    <span className="font-bold text-charcoal">{tool.freePlan ? 'Yes' : 'No'}</span>
+                    <span className="text-charcoal-muted">Best For:</span>
+                    <span className="font-semibold text-charcoal truncate">{tool.bestFor}</span>
                   </div>
                 </div>
               </div>

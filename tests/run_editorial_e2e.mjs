@@ -25,6 +25,12 @@ async function runTests() {
   const routes = [
     '/',
     '/articles',
+    '/articles/web-performance',
+    '/articles/seo',
+    '/articles/ai-search',
+    '/articles/web-design',
+    '/articles/conversion',
+    '/articles/tools',
     '/articles/5-best-wordpress-speed-plugins-2026',
     '/tools',
     '/tools/website-speed-test',
@@ -40,9 +46,17 @@ async function runTests() {
     '/teardowns',
     '/teardowns/website-teardown-027',
     '/products/vitalssniper-pro',
+    '/vitalssniper',
+    '/free-audit-report',
+    '/about',
+    '/about/methodology',
+    '/about/authors/devin-vance',
     '/newsletter',
     '/editorial-policy',
     '/affiliate-disclosure',
+    '/privacy',
+    '/terms',
+    '/cookies',
   ];
 
   try {

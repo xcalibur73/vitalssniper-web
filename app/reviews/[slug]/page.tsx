@@ -70,10 +70,9 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
                 Our Flagship Software
               </span>
             )}
-            <div className="flex items-center gap-1 text-xs font-bold text-amber-600">
-              <Star className="h-4 w-4 fill-amber-400 text-amber-500" />
-              <span>{product.rating.toFixed(1)} / 5.0</span>
-            </div>
+            <span className="rounded-md bg-[#F7F4EE] border border-sand-300 px-2.5 py-0.5 text-xs font-semibold text-charcoal">
+              {product.pricingModel}
+            </span>
           </div>
 
           <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-charcoal mb-4 leading-tight">
@@ -103,6 +102,14 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
             <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
+              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Environment:</span>
+              <span className="font-bold text-charcoal">{product.testedStack}</span>
+            </div>
+            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
+              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Observed Metric:</span>
+              <span className="font-bold text-charcoal">{product.observedMetric}</span>
+            </div>
+            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Best For:</span>
               <span className="font-bold text-charcoal">{product.bestFor}</span>
             </div>
@@ -111,16 +118,8 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
               <span className="font-bold text-charcoal">{product.pricingModel}</span>
             </div>
             <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Free Plan Available:</span>
-              <span className="font-bold text-charcoal">{product.hasFreePlan ? 'Yes' : 'No'}</span>
-            </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">API / Automation:</span>
-              <span className="font-bold text-charcoal">{product.hasApi ? 'Yes' : 'No'}</span>
-            </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">WP Integration:</span>
-              <span className="font-bold text-charcoal">{product.wpIntegration ? 'Yes' : 'No'}</span>
+              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Primary Limitation:</span>
+              <span className="font-bold text-charcoal">{product.primaryLimitation}</span>
             </div>
             <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Testing Duration:</span>
