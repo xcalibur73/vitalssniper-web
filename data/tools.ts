@@ -162,6 +162,43 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'zero-cls-web-design-principles',
     relatedToolSlug: 'page-weight-checker',
   },
+  {
+    slug: 'geo-audit',
+    name: 'GEO Citability & AI Crawler Auditor',
+    shortDescription: 'Audit content citability for Google AI Overviews, ChatGPT Search, and Perplexity based on Princeton KDD 2024 research.',
+    fullDescription: 'Evaluates passage citability, audits 2026 AI search crawler access in robots.txt, and verifies Schema.org entity disambiguation for generative search engine extraction.',
+    tier: 'free',
+    category: 'AI Search & GEO',
+    icon: '🤖',
+    referenceBenchmark: 'Reference Benchmark: Citability Score >= 80/100, Search Bots 100% Allowed',
+    whatItMeans: 'AI search engines retrieve passages based on factual density, statistical proofs, and explicit crawler permissions. Blocking search crawlers or formatting answers into verbose paragraphs causes content to be omitted from synthesized AI answers.',
+    howToImprove: [
+      "Explicitly allow 'OAI-SearchBot', 'Claude-SearchBot', and 'PerplexityBot' in robots.txt.",
+      'Format key factual definitions into 134-167 word blocks in the opening 40 words of each section.',
+      "Add authoritative 'sameAs' entity links in JSON-LD pointing to Wikidata and Wikipedia.",
+      'Deploy a structured /llms.txt file at your domain root with markdown links to core factual claims.',
+    ],
+    relatedGuideSlug: 'ai-search-readiness',
+    relatedToolSlug: 'schema-validator',
+  },
+  {
+    slug: 'hydration-audit',
+    name: 'DOM Hydration & SSR Parity Engine',
+    shortDescription: 'Compare server-rendered HTML (SSR) against hydrated client DOM (CSR) to detect silent search regressions.',
+    fullDescription: 'Detects dropped Schema.org JSON-LD scripts, client-injected noindex tags, and internal link discrepancies during client-side JavaScript hydration.',
+    tier: 'free',
+    category: 'Technical SEO',
+    icon: '🔬',
+    referenceBenchmark: 'Reference Benchmark: 100% Metadata Parity, 0 Dropped Schemas, 0 Client-Only Critical Links',
+    whatItMeans: 'Client-side hydration frequently alters the DOM after initial server render. Search engines without full headless JavaScript execution may miss links, schemas, or indexing directives injected dynamically.',
+    howToImprove: [
+      'Ensure all primary navigation links render in initial server HTML before JavaScript hydration.',
+      'Render Schema.org JSON-LD scripts server-side to avoid client hydration race conditions.',
+      'Prevent client-side scripts from dynamically injecting meta robots noindex tags.',
+    ],
+    relatedGuideSlug: 'how-to-audit-50-client-sites-in-1-week',
+    relatedToolSlug: 'website-speed-test',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [
@@ -260,4 +297,6 @@ export const DIRECTORY_TOOLS: DirectoryTool[] = [
   { name: 'Screaming Frog', category: 'SEO Crawlers', pricing: 'Free / $259/yr', freePlan: true, url: '#', testedMetric: 'Deep on-page crawl diagnostics', bestFor: 'Full Domain Technical Audits' },
   { name: 'Kinsta', category: 'Hosting & CDN', pricing: 'From $35/mo', freePlan: false, url: '#', testedMetric: 'Google C2 enterprise infrastructure', bestFor: 'High-Traffic Enterprise WordPress' },
   { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: '#', testedMetric: 'Automated AVIF/WebP conversion', bestFor: 'Heavy Photography Catalogs' },
+  { name: 'CitationPulse', category: 'AI Search & GEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/geo-audit', testedMetric: 'Princeton KDD 2024 passage citability scoring', bestFor: 'GEO & Generative Engine Optimization' },
+  { name: 'DOMHydrate', category: 'Technical SEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/hydration-audit', testedMetric: 'Headless Chromium SSR vs CSR DOM diffing', bestFor: 'JavaScript SEO & Hydration Parity' },
 ];
