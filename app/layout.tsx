@@ -1,25 +1,17 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, JetBrains_Mono, Newsreader } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const plusJakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-plus-jakarta',
+  variable: '--font-sans',
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
+  variable: '--font-mono',
   display: 'swap',
-});
-
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  variable: '--font-serif',
-  display: 'swap',
-  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -60,8 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}>
-      <body className="bg-[#F7F4EE] text-[#20201E] antialiased selection:bg-terracotta/20 selection:text-terracotta-dark min-h-screen flex flex-col font-sans">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-[#F8F8F8] text-[#0F0F0F] antialiased selection:bg-[#2563EB]/15 selection:text-[#1D4ED8] min-h-screen flex flex-col font-sans">
         {children}
       </body>
     </html>

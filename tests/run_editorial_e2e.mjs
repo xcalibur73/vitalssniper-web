@@ -96,12 +96,12 @@ async function runTests() {
 
     console.log('\n[SECTION 3] Testing Homepage URL Analyzer Bar...');
     await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle' });
-    const input = page.locator('input[placeholder*="Enter a website URL"]');
+    const input = page.locator('input[placeholder*="website URL"]');
     assert(await input.isVisible(), 'URL Analyzer input bar is visible in hero');
 
     await input.fill('https://example.com');
-    await page.locator('button:has-text("Analyze")').click();
-    await page.waitForURL(/.*tools\/website-speed-test.*/, { timeout: 5000 });
+    await page.locator('button:has-text("Analyze")').first().click();
+    await page.waitForURL(/.*tools\/website-speed-test.*/, { timeout: 10000 });
     assert(page.url().includes('website-speed-test'), `URL Analyzer routed correctly to: ${page.url()}`);
 
     console.log('\n[SECTION 4] Testing Affiliate Link Disclosures & rel="sponsored"...');

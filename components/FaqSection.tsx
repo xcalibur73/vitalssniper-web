@@ -47,18 +47,18 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 border-t border-white/[0.08] bg-[#0c0d14]/40">
+    <section id="faq" className="py-20 border-b border-[#E5E7EB] bg-white">
       <div className="mx-auto max-w-4xl px-6">
         
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-400 mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#2563EB] mb-4">
             <HelpCircle className="h-3.5 w-3.5" />
             <span>Got Questions?</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F0F0F] mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="text-[#4B5563] max-w-xl mx-auto text-sm sm:text-base">
             Everything you need to know about activating your license, using the extension, and running client acquisition campaigns.
           </p>
         </div>
@@ -71,8 +71,8 @@ export default function FaqSection() {
                 key={idx}
                 className={`rounded-2xl border transition-all ${
                   isOpen
-                    ? 'border-emerald-500/40 bg-[#12141d] shadow-[0_4px_24px_rgba(16,185,129,0.08)]'
-                    : 'border-white/10 bg-[#10121a] hover:border-white/20'
+                    ? 'border-[#2563EB] bg-white shadow-xs'
+                    : 'border-[#E5E7EB] bg-white hover:border-[#D1D5DB]'
                 }`}
               >
                 <button
@@ -80,17 +80,17 @@ export default function FaqSection() {
                   onClick={() => toggleFaq(idx)}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer select-none"
                 >
-                  <span className="text-sm sm:text-base font-bold text-white pr-4">
+                  <span className="text-sm sm:text-base font-bold text-[#0F0F0F] pr-4">
                     {item.question}
                   </span>
                   <ChevronDown
-                    className={`h-5 w-5 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
-                      isOpen ? 'rotate-180 text-emerald-400' : ''
+                    className={`h-5 w-5 text-[#6B7280] transition-transform duration-200 flex-shrink-0 ${
+                      isOpen ? 'rotate-180 text-[#2563EB]' : ''
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                  <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#4B5563] leading-relaxed border-t border-[#E5E7EB] pt-4">
                     {item.answer}
                   </div>
                 )}

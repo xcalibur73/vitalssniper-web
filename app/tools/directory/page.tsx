@@ -12,19 +12,19 @@ export const metadata = {
 
 export default function ToolDirectoryPage() {
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="py-16 border-b border-sand-300 bg-white">
+      <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-[#F7F4EE] px-3 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-xs">
-            <Wrench className="h-3.5 w-3.5 text-accent" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#2563EB] mb-4 shadow-xs">
+            <Wrench className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Curated Software Index</span>
           </div>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold text-charcoal mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F0F0F] tracking-tight mb-4">
             Web Tools Directory
           </h1>
-          <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
+          <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
             An index of vetted website performance, hosting, SEO, and analytics tools. We document verified pricing models, free plan availability, and empirical testing reviews.
           </p>
         </div>
@@ -35,40 +35,40 @@ export default function ToolDirectoryPage() {
           {DIRECTORY_TOOLS.map((tool) => (
             <div
               key={tool.name}
-              className="rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all flex flex-col justify-between"
+              className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs hover:border-[#2563EB]/40 transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="editorial-pill">{tool.category}</span>
-                  <span className="text-[10px] font-bold text-accent bg-[#F7F4EE] px-2 py-0.5 rounded border border-sand-300">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-[#4B5563]">{tool.category}</span>
+                  <span className="text-[10px] font-bold text-[#2563EB] bg-[#F8F8F8] px-2 py-0.5 rounded border border-[#E5E7EB]">
                     Verified
                   </span>
                 </div>
 
-                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                   {tool.name}
                 </h3>
 
-                <div className="space-y-1.5 text-xs text-charcoal-muted mb-4 bg-[#F7F4EE] p-3 rounded-xl border border-sand-300">
+                <div className="space-y-1.5 text-xs text-[#4B5563] mb-4 bg-[#F8F8F8] p-3 rounded-xl border border-[#E5E7EB]">
                   <div className="flex justify-between">
-                    <span className="text-charcoal-muted">Observed Metric:</span>
-                    <span className="font-semibold text-charcoal truncate">{tool.testedMetric}</span>
+                    <span className="text-[#6B7280]">Observed Metric:</span>
+                    <span className="font-semibold text-[#0F0F0F] truncate">{tool.testedMetric}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-charcoal-muted">Pricing:</span>
-                    <span className="font-bold text-charcoal">{tool.pricing}</span>
+                    <span className="text-[#6B7280]">Pricing:</span>
+                    <span className="font-bold text-[#0F0F0F]">{tool.pricing}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-charcoal-muted">Best For:</span>
-                    <span className="font-semibold text-charcoal truncate">{tool.bestFor}</span>
+                    <span className="text-[#6B7280]">Best For:</span>
+                    <span className="font-semibold text-[#0F0F0F] truncate">{tool.bestFor}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-sand-300 flex items-center justify-between">
+              <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between">
                 <Link
                   href={tool.url}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#2563EB] hover:underline"
                 >
                   <span>View Details</span>
                   <ArrowRight className="h-3.5 w-3.5" />

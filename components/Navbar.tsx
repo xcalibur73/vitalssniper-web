@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, Menu, X, ArrowRight, Wrench, Search } from 'lucide-react';
-import { SITE_CONFIG } from '@/config/site';
+import { Menu, X, ArrowRight, Search, Activity } from 'lucide-react';
 
 interface NavbarProps {
   onOpenCheckout?: (tier?: any) => void;
@@ -16,44 +15,41 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const navLinks = [
-    { label: 'Articles', href: '/articles' },
     { label: 'Tools', href: '/tools' },
-    { label: 'Reviews', href: '/reviews' },
-    { label: 'Comparisons', href: '/comparisons' },
     { label: 'Research', href: '/research' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Articles', href: '/articles' },
     { label: 'Resources', href: '/resources' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sand-300 bg-[#F7F4EE]/95 backdrop-blur-md transition-all">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/95 backdrop-blur-md transition-all">
+      <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6">
         
-        {/* Brand Logo & Editorial Wordmark */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-9 w-9 overflow-hidden rounded-lg shadow-sm transition-transform group-hover:scale-105">
+        {/* Brand Logo & Wordmark */}
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="relative h-8 w-8 overflow-hidden rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-1 flex items-center justify-center transition-transform group-hover:scale-105">
             <Image
               src="/favicon.svg"
-              alt="Web Audits"
-              width={36}
-              height={36}
-              className="h-full w-full object-cover"
+              alt="WebAudits.pro"
+              width={24}
+              height={24}
+              className="h-full w-full object-contain"
               priority
             />
           </div>
-          <div className="flex items-center gap-2">
-            <span className="font-editorial text-2xl font-bold tracking-tight text-charcoal">
-              Web Audits
-            </span>
-          </div>
+          <span className="text-xl font-bold tracking-tight text-[#0F0F0F]">
+            WebAudits<span className="text-[#2563EB]">.pro</span>
+          </span>
         </Link>
 
-        {/* Desktop Editorial Navigation Links */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-charcoal-muted transition-colors hover:text-charcoal"
+              className="text-sm font-medium text-[#4B5563] transition-colors hover:text-[#0F0F0F]"
             >
               {link.label}
             </Link>
@@ -64,8 +60,8 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSearchOpen(!searchOpen)}
-            className="flex items-center justify-center h-9 w-9 rounded-lg border border-sand-300 text-charcoal-muted hover:text-charcoal hover:bg-white transition-colors"
-            title="Search Web Audits"
+            className="flex items-center justify-center h-9 w-9 rounded-lg border border-[#E5E7EB] bg-white text-[#4B5563] hover:text-[#0F0F0F] hover:bg-[#F3F4F6] transition-colors"
+            title="Search WebAudits"
             aria-label="Search"
           >
             <Search className="h-4 w-4" />
@@ -73,16 +69,16 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
 
           <Link
             href="/tools/website-speed-test"
-            className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-action px-4 py-2 text-xs font-bold text-white shadow-[0_2px_6px_rgba(194,65,12,0.2)] transition-all hover:bg-action-hover hover:shadow-[0_4px_10px_rgba(194,65,12,0.28)] hover:scale-[1.02]"
+            className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Free Audit</span>
+            <Activity className="h-3.5 w-3.5" />
+            <span>Run Free Audit</span>
           </Link>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-sand-300 text-charcoal hover:bg-sand-200 transition-colors"
+            className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-[#E5E7EB] text-[#0F0F0F] hover:bg-[#F3F4F6] transition-colors"
             aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -93,7 +89,7 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
 
       {/* Quick Search Overlay */}
       {searchOpen && (
-        <div className="border-t border-sand-300 bg-white px-6 py-4 shadow-sm animate-fadeIn">
+        <div className="border-t border-[#E5E7EB] bg-white px-6 py-4 shadow-sm animate-fadeIn">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -103,18 +99,18 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
             }}
             className="max-w-2xl mx-auto flex items-center gap-2"
           >
-            <Search className="h-5 w-5 text-muted" />
+            <Search className="h-4 w-4 text-[#6B7280]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search performance guides, tool reviews, or benchmarks..."
-              className="flex-1 border-none bg-transparent px-2 py-1 text-sm text-charcoal placeholder-muted focus:outline-none"
+              className="flex-1 border-none bg-transparent px-2 py-1 text-sm text-[#0F0F0F] placeholder-[#6B7280] focus:outline-none"
               autoFocus
             />
             <button
               type="submit"
-              className="rounded-lg bg-accent px-3 py-1 text-xs font-bold text-white hover:bg-accent-dark"
+              className="rounded-md bg-[#2563EB] px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors"
             >
               Search
             </button>
@@ -124,24 +120,24 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-sand-300 bg-[#F7F4EE] px-6 py-5 space-y-2 shadow-lg">
+        <div className="md:hidden border-t border-[#E5E7EB] bg-white px-6 py-5 space-y-2 shadow-lg">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-3 py-2 text-base font-semibold text-charcoal hover:bg-sand-200 transition-colors"
+              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B5563] hover:text-[#0F0F0F] hover:bg-[#F3F4F6] transition-colors min-h-[44px] flex items-center"
             >
               {link.label}
             </Link>
           ))}
-          <div className="pt-3 border-t border-sand-300">
+          <div className="pt-3 border-t border-[#E5E7EB]">
             <Link
               href="/tools/website-speed-test"
               onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-accent-dark transition-all"
+              className="flex items-center justify-center gap-2 rounded-lg bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white hover:bg-[#1D4ED8] transition-colors min-h-[44px]"
             >
-              <Sparkles className="h-4 w-4" />
+              <Activity className="h-4 w-4" />
               <span>Run Free Audit</span>
               <ArrowRight className="h-4 w-4" />
             </Link>

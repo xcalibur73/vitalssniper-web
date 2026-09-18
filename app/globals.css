@@ -3,80 +3,197 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #F7F4EE;
-  --color-surface: #FFFFFF;
-  --color-text: #20201E;
-  --color-muted: #716C64;
-  --color-border: #DDD7CE;
-  --color-accent: #B76345;
-  --color-dark: #242321;
-  --color-text-on-dark: #F7F4EE;
-  --container-width: 1200px;
-  --reading-width: 740px;
+  --bg: #F8F8F8;
+  --surface: #FFFFFF;
+  --surface-soft: #F3F4F6;
 
-  --background: #F7F4EE;
-  --foreground: #20201E;
-  --sand-border: #DDD7CE;
-  --terracotta: #B76345;
+  --text: #0F0F0F;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --border: #E5E7EB;
+  --border-strong: #D1D5DB;
+
+  --dark: #111827;
+  --dark-text: #F9FAFB;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --container: 1200px;
+  --reading-width: 720px;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--bg);
+  color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Editorial Serif Headlines */
+/* Headings inherit Inter clean typography */
 .font-editorial {
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
 }
 
-/* Warm Paper Card */
-.paper-card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 1px 3px rgba(32, 32, 30, 0.03), 0 6px 16px -4px rgba(32, 32, 30, 0.04);
+/* Standard Minimalist Card */
+.card-standard,
+.paper-card,
+.bento-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: none;
+  transition: border-color 150ms ease-out;
 }
 
-.paper-card:hover {
-  border-color: rgba(183, 99, 69, 0.4);
-  box-shadow: 0 2px 6px rgba(32, 32, 30, 0.04), 0 12px 24px -6px rgba(32, 32, 30, 0.06);
+.card-standard:hover,
+.paper-card:hover,
+.bento-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: none;
 }
 
-/* Dark Contrast Panel (for terminal and VitalsSniper inspector previews) */
+/* Dark Contrast Panel (for terminal and code previews) */
 .dark-panel {
-  background-color: var(--color-dark);
+  background-color: var(--dark);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--color-text-on-dark);
+  color: var(--dark-text);
+  border-radius: var(--radius-lg);
 }
 
-/* Category Pill (Editorial) */
+/* Primary Button */
+.btn-primary,
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 12px 28px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow: none;
+  transition: background-color 150ms ease-out;
+}
+
+.btn-primary:hover,
+.btn-action:hover {
+  background-color: var(--primary-hover);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 12px 28px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow: none;
+  transition: all 150ms ease-out;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+  border-color: var(--primary-hover);
+  color: var(--primary-hover);
+}
+
+/* Category Pill (Subtle Label) */
 .editorial-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.6rem;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background-color: rgba(194, 65, 12, 0.08);
-  border: 1px solid rgba(194, 65, 12, 0.2);
-  color: #c2410c;
+  background-color: var(--surface-soft);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
 }
 
-/* Subtle tech grid background */
-.bg-tech-grid {
-  background-image: radial-gradient(rgba(24, 24, 27, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Diagnostic & Severity Badges */
+.badge-status-good,
+.badge-cwv-good {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #047857;
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
 }
 
-.bg-tech-grid-dark {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
+.badge-status-warning,
+.badge-cwv-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #b45309;
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge-status-critical,
+.badge-cwv-poor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #b91c1c;
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Evidence Callout */
+.evidence-callout {
+  background-color: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
 }
 
 /* Custom scrollbars */
@@ -85,108 +202,12 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F4EE;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #d5cfc3;
+  background: var(--border-strong);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a29e;
-}
-
-/* High-Converting Action CTA Button (Ahrefs / Stripe standard) */
-.btn-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #c2410c;
-  color: #ffffff;
-  font-weight: 700;
-  border-radius: 0.75rem;
-  padding: 0.875rem 1.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.22);
-  transition: all 180ms ease-out;
-}
-
-.btn-action:hover {
-  background-color: #9a3412;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.32);
-}
-
-.btn-action:active {
-  transform: translateY(0);
-}
-
-/* Core Web Vitals Diagnostic Badges (Google CWV / RTINGS standard) */
-.badge-cwv-good {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 9999px;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  background-color: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #047857;
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-variant-numeric: tabular-nums;
-}
-
-.badge-cwv-warning {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 9999px;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  background-color: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  color: #b45309;
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-variant-numeric: tabular-nums;
-}
-
-.badge-cwv-poor {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 9999px;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #b91c1c;
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Laboratory Evidence Callout Box (Smashing / Wirecutter standard) */
-.evidence-callout {
-  background-color: #faf7f2;
-  border: 1px solid var(--color-border);
-  border-left: 4px solid #c2410c;
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 1px 3px rgba(32, 32, 30, 0.03);
-}
-
-/* Bento Card Micro-Border (Linear / Vercel standard) */
-.bento-card {
-  background-color: var(--color-surface);
-  border: 1px solid rgba(32, 32, 30, 0.08);
-  border-radius: 1rem;
-  transition: all 200ms ease-out;
-}
-
-.bento-card:hover {
-  border-color: rgba(194, 65, 12, 0.3);
-  box-shadow: 0 4px 12px rgba(32, 32, 30, 0.04);
+  background: #9CA3AF;
 }

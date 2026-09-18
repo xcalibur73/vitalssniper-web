@@ -10,25 +10,25 @@ export const metadata = {
 
 export default function EditorialPolicyPage() {
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="py-16 border-b border-sand-300 bg-white">
+      <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <span className="editorial-pill mb-4">Integrity &amp; Standards</span>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold text-charcoal mb-4">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[#2563EB] border border-blue-200 mb-4">Integrity &amp; Standards</span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F0F0F] tracking-tight mb-4">
             Editorial Policy &amp; Testing Methodology
           </h1>
-          <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
+          <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
             How Web Audits evaluates web performance tools, manages commercial affiliations, and protects empirical accuracy.
           </p>
         </div>
       </div>
 
       <div className="py-16 mx-auto max-w-4xl px-6 flex-1 w-full space-y-10">
-        <div className="rounded-2xl border border-sand-300 bg-white p-8 shadow-sm space-y-6 text-sm text-charcoal-muted leading-relaxed">
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-xs space-y-6 text-sm text-[#4B5563] leading-relaxed">
           <div>
-            <h2 className="font-editorial text-2xl font-bold text-charcoal mb-3">
+            <h2 className="text-2xl font-bold text-[#0F0F0F] mb-3">
               1. Empirical Testing Standards
             </h2>
             <p>
@@ -37,7 +37,7 @@ export default function EditorialPolicyPage() {
           </div>
 
           <div>
-            <h2 className="font-editorial text-2xl font-bold text-charcoal mb-3">
+            <h2 className="text-2xl font-bold text-[#0F0F0F] mb-3">
               2. Anti-Thin-Affiliate Mandate
             </h2>
             <p>
@@ -46,7 +46,7 @@ export default function EditorialPolicyPage() {
           </div>
 
           <div>
-            <h2 className="font-editorial text-2xl font-bold text-charcoal mb-3">
+            <h2 className="text-2xl font-bold text-[#0F0F0F] mb-3">
               3. Commercial Relationship Boundaries
             </h2>
             <p>
@@ -55,7 +55,7 @@ export default function EditorialPolicyPage() {
           </div>
 
           <div>
-            <h2 className="font-editorial text-2xl font-bold text-charcoal mb-3">
+            <h2 className="text-2xl font-bold text-[#0F0F0F] mb-3">
               4. Corrections &amp; Dataset Updates
             </h2>
             <p>

@@ -114,7 +114,7 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org BreadcrumbList JSON-LD */}
       <script
         type="application/ld+json"
@@ -122,33 +122,33 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
       />
       <Navbar />
 
-      <div className="py-12 border-b border-sand-300 bg-white">
+      <div className="py-12 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
           {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
-            <Link href="/" className="hover:text-charcoal transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#6B7280]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-sand-400">/</span>
-            <Link href="/comparisons" className="hover:text-charcoal transition-colors">
+            <span className="text-gray-400">/</span>
+            <Link href="/comparisons" className="hover:text-[#0F0F0F] transition-colors">
               Comparisons
             </Link>
-            <span className="text-sand-400">/</span>
-            <span className="text-charcoal font-semibold" aria-current="page">
+            <span className="text-gray-400">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {comp.title}
             </span>
           </nav>
 
           <div className="flex items-center gap-2 mb-3">
-            <span className="editorial-pill">{comp.category}</span>
-            <span className="text-xs text-charcoal-muted">Independent Testing</span>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[#2563EB] border border-blue-200">{comp.category}</span>
+            <span className="text-xs text-[#6B7280]">Independent Testing</span>
           </div>
 
-          <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-charcoal mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F0F0F] mb-4 leading-tight">
             {comp.title}
           </h1>
 
-          <p className="text-base text-charcoal-muted leading-relaxed max-w-3xl">
+          <p className="text-base text-[#4B5563] leading-relaxed max-w-3xl">
             {comp.summary}
           </p>
         </div>
@@ -157,36 +157,36 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
       <div className="py-16 mx-auto max-w-4xl px-6 flex-1 w-full space-y-10">
         
         {/* Quick Verdict Box */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
           <div className="flex items-center gap-2 mb-3">
-            <Trophy className="h-5 w-5 text-accent" />
-            <h2 className="font-editorial text-2xl font-bold text-charcoal">
+            <Trophy className="h-5 w-5 text-[#2563EB]" />
+            <h2 className="text-2xl font-bold text-[#0F0F0F]">
               The Bottom-Line Verdict
             </h2>
           </div>
-          <p className="text-sm text-charcoal leading-relaxed mb-6">
+          <p className="text-sm text-[#0F0F0F] leading-relaxed mb-6">
             {comp.verdict}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 flex flex-col justify-between">
+            <div className="p-4 rounded-xl bg-[#F8F8F8] border border-[#E5E7EB] flex flex-col justify-between">
               <div>
-                <strong className="text-charcoal block mb-1">
+                <strong className="text-[#0F0F0F] block mb-1">
                   Pick {productA ? (
-                    <Link href={`/reviews/${productA.slug}`} className="hover:underline text-accent">
+                    <Link href={`/reviews/${productA.slug}`} className="hover:underline text-[#2563EB]">
                       {comp.toolA}
                     </Link>
                   ) : (
                     comp.toolA
                   )} if:
                 </strong>
-                <p className="text-charcoal-muted">{comp.bestForA}</p>
+                <p className="text-[#4B5563]">{comp.bestForA}</p>
               </div>
               {productA && (
-                <div className="mt-3 pt-2 border-t border-sand-300">
+                <div className="mt-3 pt-2 border-t border-[#E5E7EB]">
                   <Link
                     href={`/reviews/${productA.slug}`}
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#2563EB] hover:underline"
                   >
                     <span>Read our in-depth {productA.name} review</span>
                     <ArrowRight className="h-3 w-3" />
@@ -194,24 +194,24 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                 </div>
               )}
             </div>
-            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 flex flex-col justify-between">
+            <div className="p-4 rounded-xl bg-[#F8F8F8] border border-[#E5E7EB] flex flex-col justify-between">
               <div>
-                <strong className="text-charcoal block mb-1">
+                <strong className="text-[#0F0F0F] block mb-1">
                   Pick {productB ? (
-                    <Link href={`/reviews/${productB.slug}`} className="hover:underline text-accent">
+                    <Link href={`/reviews/${productB.slug}`} className="hover:underline text-[#2563EB]">
                       {comp.toolB}
                     </Link>
                   ) : (
                     comp.toolB
                   )} if:
                 </strong>
-                <p className="text-charcoal-muted">{comp.bestForB}</p>
+                <p className="text-[#4B5563]">{comp.bestForB}</p>
               </div>
               {productB && (
-                <div className="mt-3 pt-2 border-t border-sand-300">
+                <div className="mt-3 pt-2 border-t border-[#E5E7EB]">
                   <Link
                     href={`/reviews/${productB.slug}`}
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#2563EB] hover:underline"
                   >
                     <span>Read our in-depth {productB.name} review</span>
                     <ArrowRight className="h-3 w-3" />
@@ -226,11 +226,11 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
         <ComparisonTable comparison={comp} />
 
         {/* Detailed In-Depth Analysis */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-          <h3 className="font-editorial text-2xl font-bold text-charcoal mb-4">
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+          <h3 className="text-2xl font-bold text-[#0F0F0F] mb-4">
             Laboratory Testing Notes &amp; Stress Analysis
           </h3>
-          <div className="prose prose-stone text-sm text-charcoal-muted leading-relaxed space-y-4">
+          <div className="text-sm text-[#4B5563] leading-relaxed space-y-4">
             <p>{comp.detailedAnalysis}</p>
             <p>
               In our multi-threaded concurrency audits, we isolated CPU throttling, database query serialization, and edge caching behaviors under simulated mobile traffic. When evaluating hosting and software, remember that lab benchmarks provide a standardized baseline, but your specific theme and plugin configuration will dictate actual production results.
@@ -240,10 +240,10 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
 
         {/* Related Technical Guides */}
         {relatedGuides.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="h-5 w-5 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <BookOpen className="h-5 w-5 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Related Forensic Guides &amp; Benchmarks
               </h3>
             </div>
@@ -252,16 +252,16 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                 <Link
                   key={guide.slug}
                   href={`/articles/${guide.slug}`}
-                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                  className="group block p-4 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] hover:border-[#2563EB] hover:bg-white transition-all duration-200"
                 >
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="editorial-pill text-[10px]">{guide.category}</span>
-                    <span className="text-[11px] text-charcoal-muted">{guide.readTime}</span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-[#4B5563]">{guide.category}</span>
+                    <span className="text-[11px] text-[#6B7280]">{guide.readTime}</span>
                   </div>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors line-clamp-2 mb-1.5">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
                     {guide.title}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
                 </Link>
@@ -272,10 +272,10 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
 
         {/* Other Head-to-Head Comparisons */}
         {otherComparisons.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <Layers className="h-5 w-5 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <Layers className="h-5 w-5 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Explore Sibling Benchmark Showdowns
               </h3>
             </div>
@@ -284,13 +284,13 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                 <Link
                   key={other.slug}
                   href={`/comparisons/${other.slug}`}
-                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                  className="group block p-4 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] hover:border-[#2563EB] hover:bg-white transition-all duration-200"
                 >
-                  <span className="editorial-pill text-[10px] mb-2 inline-block">{other.category}</span>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-[#2563EB] border border-blue-200 mb-2 inline-block">{other.category}</span>
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {other.toolA} vs {other.toolB}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2">
                     {other.summary}
                   </p>
                 </Link>
@@ -300,13 +300,13 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
         )}
 
         {/* FTC Disclosure & Navigation */}
-        <div className="rounded-xl border border-sand-300 bg-white p-4 text-xs text-charcoal-muted flex items-center justify-between">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 text-xs text-[#4B5563] flex items-center justify-between">
           <span className="text-[11px]">
-            Affiliate Disclosure: Links on this page may be sponsored. Read our full <Link href="/editorial-policy" className="text-accent underline">Editorial Policy</Link>.
+            Affiliate Disclosure: Links on this page may be sponsored. Read our full <Link href="/editorial-policy" className="text-[#2563EB] underline">Editorial Policy</Link>.
           </span>
           <Link
             href="/comparisons"
-            className="inline-flex items-center gap-1 font-bold text-accent hover:underline text-xs"
+            className="inline-flex items-center gap-1 font-bold text-[#2563EB] hover:underline text-xs"
           >
             <span>More Comparisons</span>
             <ArrowRight className="h-3.5 w-3.5" />

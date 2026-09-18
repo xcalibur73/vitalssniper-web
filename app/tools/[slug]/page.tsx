@@ -56,15 +56,15 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
   // If a user navigated to a product slug under /tools, display a bridge to its full review
   if (!freeTool && fallbackProduct) {
     return (
-      <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+      <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
         <Navbar />
         <div className="py-20 mx-auto max-w-4xl px-6 text-center">
           <span className="text-4xl mb-4 block">{fallbackProduct.iconEmoji}</span>
-          <h1 className="font-editorial text-3xl font-bold mb-3">{fallbackProduct.name}</h1>
-          <p className="text-sm text-charcoal-muted max-w-xl mx-auto mb-6">{fallbackProduct.description}</p>
+          <h1 className="text-3xl font-bold mb-3 text-[#0F0F0F]">{fallbackProduct.name}</h1>
+          <p className="text-sm text-[#4B5563] max-w-xl mx-auto mb-6 leading-relaxed">{fallbackProduct.description}</p>
           <Link
             href={`/reviews/${fallbackProduct.slug}`}
-            className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-xs font-bold text-white hover:bg-accent-dark"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-5 py-2.5 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
           >
             <span>Read Full Empirical Review</span>
             <ArrowRight className="h-3.5 w-3.5" />
@@ -127,7 +127,7 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org WebApplication & Breadcrumbs JSON-LD */}
       <script
         type="application/ld+json"
@@ -140,36 +140,36 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
       <Navbar />
 
       {/* Header Breadcrumb */}
-      <div className="py-12 border-b border-sand-300 bg-white">
+      <div className="py-12 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
           {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
-            <Link href="/" className="hover:text-charcoal transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-sand-400">/</span>
-            <Link href="/tools" className="hover:text-charcoal transition-colors">
+            <span className="text-[#9CA3AF]">/</span>
+            <Link href="/tools" className="hover:text-[#0F0F0F] transition-colors">
               Tools
             </Link>
-            <span className="text-sand-400">/</span>
-            <span className="text-charcoal font-semibold" aria-current="page">
+            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {tool.name}
             </span>
           </nav>
 
-          <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-3">
+          <div className="flex items-center gap-3 text-xs text-[#4B5563] mb-3">
             <span className="text-2xl">{tool.icon}</span>
-            <span className="editorial-pill">{tool.category}</span>
-            <span className="text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
+            <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold">{tool.category}</span>
+            <span className="text-[#10B981] font-semibold bg-[#10B981]/10 px-2.5 py-0.5 rounded border border-[#10B981]/20">
               100% Free Utility
             </span>
           </div>
 
-          <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-charcoal mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F0F0F] mb-4 leading-tight">
             {tool.name}
           </h1>
 
-          <p className="text-base text-charcoal-muted leading-relaxed max-w-2xl">
+          <p className="text-base text-[#4B5563] leading-relaxed max-w-2xl">
             {tool.fullDescription}
           </p>
         </div>
@@ -181,24 +181,24 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
         <ToolRunnerClient tool={tool} />
 
         {/* Stage 3: What This Metric Means */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-          <h2 className="font-editorial text-2xl font-bold text-charcoal mb-3">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] mb-3">
             What This Metric Means for Your Site
           </h2>
-          <p className="text-sm text-charcoal-muted leading-relaxed">
+          <p className="text-sm text-[#4B5563] leading-relaxed">
             {tool.whatItMeans}
           </p>
         </div>
 
         {/* Stage 4: How to Improve This Score */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-          <h3 className="font-editorial text-xl font-bold text-charcoal mb-4">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+          <h3 className="text-xl font-bold text-[#0F0F0F] mb-4">
             How to Improve Your Score (Actionable Fixes)
           </h3>
-          <ul className="space-y-3 text-xs text-charcoal">
+          <ul className="space-y-3 text-xs text-[#4B5563]">
             {tool.howToImprove.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2.5">
-                <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed">{item}</span>
               </li>
             ))}
@@ -207,19 +207,19 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
 
         {/* Stage 5: Related Editorial Guide */}
         {relatedGuide && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="editorial-pill mb-2">Recommended Guide</span>
-              <h4 className="font-editorial text-lg font-bold text-charcoal">
+              <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold mb-2 inline-block">Recommended Guide</span>
+              <h4 className="text-base font-bold text-[#0F0F0F]">
                 {relatedGuide.title}
               </h4>
-              <p className="text-xs text-charcoal-muted mt-1 line-clamp-1">
+              <p className="text-xs text-[#4B5563] mt-1 line-clamp-1">
                 {relatedGuide.excerpt}
               </p>
             </div>
             <Link
               href={`/articles/${relatedGuide.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline flex-shrink-0"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] hover:underline flex-shrink-0"
             >
               <span>Read Guide</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -229,22 +229,22 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
 
         {/* Stage 6: Related Sister Free Tool */}
         {relatedSisterTool && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="text-3xl">{relatedSisterTool.icon}</span>
               <div>
-                <span className="text-[10px] uppercase font-bold text-charcoal-muted block">Sister Free Tool</span>
-                <h4 className="font-editorial text-lg font-bold text-charcoal">
+                <span className="text-[10px] uppercase font-bold text-[#6B7280] block">Sister Free Tool</span>
+                <h4 className="text-base font-bold text-[#0F0F0F]">
                   {relatedSisterTool.name}
                 </h4>
-                <p className="text-xs text-charcoal-muted line-clamp-1">
+                <p className="text-xs text-[#4B5563] line-clamp-1">
                   {relatedSisterTool.shortDescription}
                 </p>
               </div>
             </div>
             <Link
               href={`/tools/${relatedSisterTool.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline flex-shrink-0"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] hover:underline flex-shrink-0"
             >
               <span>Launch Tool</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -253,21 +253,21 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
         )}
 
         {/* Stage 7: Relevant Product (VitalsSniper PRO Bridge) */}
-        <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+        <div className="rounded-xl bg-[#111827] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937] shadow-xs">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-accent-light block mb-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] block mb-1">
               Need Deeper Client Diagnostics?
             </span>
-            <h4 className="font-editorial text-2xl font-bold mb-2">
+            <h4 className="text-2xl font-bold mb-2">
               VitalsSniper PRO In-Tab Forensics
             </h4>
-            <p className="text-xs text-[#F7F4EE]/70 max-w-xl leading-relaxed">
+            <p className="text-xs text-[#9CA3AF] max-w-xl leading-relaxed">
               Isolate exact DOM elements, generate white label PDF audit summaries, and export outreach lead lists in 50ms from any live Chromium tab.
             </p>
           </div>
           <Link
             href="/products/vitalssniper-pro"
-            className="rounded-xl bg-accent px-6 py-3.5 text-xs font-bold text-white hover:bg-accent-dark transition-all flex-shrink-0 shadow-sm"
+            className="rounded-lg bg-[#2563EB] px-6 py-3 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors flex-shrink-0 shadow-xs"
           >
             <span>Learn About VitalsSniper PRO</span>
           </Link>

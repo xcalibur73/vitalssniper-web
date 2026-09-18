@@ -15,21 +15,21 @@ export const metadata: Metadata = {
 
 export default function FreeAuditReportPage() {
   return (
-    <main className="min-h-screen bg-[#08090e] bg-tech-grid text-[#f9fafb] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
       <div className="mx-auto max-w-4xl px-6 py-16 flex-1 w-full">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-4 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-4 py-1.5 text-xs font-semibold text-[#4B5563] mb-4 shadow-xs">
+            <Sparkles className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Instant Forensic Performance Teardown</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F0F0F] mb-4">
             Free Website Audit Report
           </h1>
-          <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#4B5563] max-w-2xl mx-auto leading-relaxed">
             Inspect mobile performance, Core Web Vitals bottlenecks, and DOM complexity. Instant on-page results with zero gating.
           </p>
         </div>

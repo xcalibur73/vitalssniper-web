@@ -123,7 +123,7 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org TechArticle & Breadcrumbs JSON-LD */}
       <script
         type="application/ld+json"
@@ -135,25 +135,25 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
       />
       <Navbar />
 
-      <div className="py-12 border-b border-sand-300 bg-white">
+      <div className="py-12 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
           {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
-            <Link href="/" className="hover:text-charcoal transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#6B7280]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-sand-400">/</span>
-            <Link href="/teardowns" className="hover:text-charcoal transition-colors">
+            <span className="text-gray-400">/</span>
+            <Link href="/teardowns" className="hover:text-[#0F0F0F] transition-colors">
               Teardowns
             </Link>
-            <span className="text-sand-400">/</span>
-            <span className="text-charcoal font-semibold" aria-current="page">
+            <span className="text-gray-400">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {td.title}
             </span>
           </nav>
 
-          <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-3">
-            <span className="rounded bg-charcoal px-2 py-0.5 text-[11px] font-bold text-white uppercase tracking-wider">
+          <div className="flex items-center gap-3 text-xs text-[#6B7280] mb-3">
+            <span className="rounded bg-[#111827] px-2 py-0.5 text-[11px] font-bold text-white uppercase tracking-wider">
               {td.id}
             </span>
             <span>Target: {td.targetType}</span>
@@ -161,7 +161,7 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
             <span>{td.date}</span>
           </div>
 
-          <h1 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F0F0F] mb-4 leading-tight">
             {td.title}
           </h1>
         </div>
@@ -171,67 +171,67 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
         
         {/* Metric Cards Grid */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 text-center shadow-xs">
-            <span className="text-xs text-charcoal-muted block mb-1">Mobile LCP</span>
-            <span className="font-editorial text-3xl font-bold text-rose-600 block">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 text-center shadow-xs">
+            <span className="text-xs text-[#6B7280] block mb-1">Mobile LCP</span>
+            <span className="text-3xl font-bold text-[#EF4444] block">
               {td.lcpScore}
             </span>
           </div>
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 text-center shadow-xs">
-            <span className="text-xs text-charcoal-muted block mb-1">Total DOM Elements</span>
-            <span className="font-editorial text-3xl font-bold text-charcoal block">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 text-center shadow-xs">
+            <span className="text-xs text-[#6B7280] block mb-1">Total DOM Elements</span>
+            <span className="text-3xl font-bold text-[#0F0F0F] block">
               {td.domElements}
             </span>
           </div>
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 text-center shadow-xs">
-            <span className="text-xs text-charcoal-muted block mb-1">Total Page Weight</span>
-            <span className="font-editorial text-3xl font-bold text-charcoal block">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 text-center shadow-xs">
+            <span className="text-xs text-[#6B7280] block mb-1">Total Page Weight</span>
+            <span className="text-3xl font-bold text-[#0F0F0F] block">
               {td.totalWeight}
             </span>
           </div>
         </div>
 
         {/* Diagnostic Findings */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-8 shadow-sm space-y-6">
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-xs space-y-6">
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-accent mb-2">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB] mb-2">
               Primary Bottleneck Discovered
             </h2>
-            <p className="text-sm text-charcoal leading-relaxed">
+            <p className="text-sm text-[#0F0F0F] leading-relaxed">
               {td.seoFinding}
             </p>
           </div>
 
-          <div className="pt-4 border-t border-sand-300">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+          <div className="pt-4 border-t border-[#E5E7EB]">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[#0F0F0F] mb-2">
               User Experience Observation
             </h3>
-            <p className="text-sm text-charcoal-muted leading-relaxed">
+            <p className="text-sm text-[#4B5563] leading-relaxed">
               {td.uxObservation}
             </p>
           </div>
 
           {/* VitalsSniper Proof Box */}
-          <div className="rounded-xl border border-accent/30 bg-accent/5 p-4">
-            <div className="flex items-center gap-2 text-xs font-bold text-accent mb-1">
+          <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-4">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#2563EB] mb-1">
               <Cpu className="h-4 w-4" />
               <span>VitalsSniper PRO Forensic Telemetry:</span>
             </div>
-            <p className="text-xs text-charcoal">
+            <p className="text-xs text-[#0F0F0F]">
               {td.vitalsSniperProof}
             </p>
           </div>
         </div>
 
         {/* Actionable Engineering Recommendations */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-8 shadow-sm">
-          <h3 className="font-editorial text-xl font-bold text-charcoal mb-4">
+        <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-xs">
+          <h3 className="text-xl font-bold text-[#0F0F0F] mb-4">
             Actionable Optimization Roadmap
           </h3>
-          <ul className="space-y-3 text-xs text-charcoal">
+          <ul className="space-y-3 text-xs text-[#0F0F0F]">
             {td.recommendations.map((rec, idx) => (
               <li key={idx} className="flex items-start gap-2.5">
-                <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="h-4 w-4 text-[#2563EB] flex-shrink-0 mt-0.5" />
                 <span className="leading-relaxed">{rec}</span>
               </li>
             ))}
@@ -240,10 +240,10 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
 
         {/* Related Technical Guides */}
         {relatedGuides.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="h-5 w-5 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <BookOpen className="h-5 w-5 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Related Forensic Guides &amp; Architecture Tutorials
               </h3>
             </div>
@@ -252,16 +252,16 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
                 <Link
                   key={guide.slug}
                   href={`/articles/${guide.slug}`}
-                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                  className="group block p-4 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] hover:border-[#2563EB] hover:bg-white transition-all duration-200"
                 >
                   <div className="flex items-center justify-between gap-2 mb-1.5">
-                    <span className="editorial-pill text-[10px]">{guide.category}</span>
-                    <span className="text-[11px] text-charcoal-muted">{guide.readTime}</span>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-[#4B5563]">{guide.category}</span>
+                    <span className="text-[11px] text-[#6B7280]">{guide.readTime}</span>
                   </div>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors line-clamp-2 mb-1.5">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
                     {guide.title}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
                 </Link>
@@ -272,10 +272,10 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
 
         {/* Sibling Teardowns */}
         {otherTeardowns.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <Layers className="h-5 w-5 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <Layers className="h-5 w-5 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Explore More Real-World Website Teardowns
               </h3>
             </div>
@@ -284,18 +284,18 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
                 <Link
                   key={other.slug}
                   href={`/teardowns/${other.slug}`}
-                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                  className="group block p-4 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] hover:border-[#2563EB] hover:bg-white transition-all duration-200"
                 >
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="rounded bg-charcoal px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
+                    <span className="rounded bg-[#111827] px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
                       {other.id}
                     </span>
-                    <span className="text-xs text-rose-600 font-bold">LCP {other.lcpScore}</span>
+                    <span className="text-xs text-[#EF4444] font-bold">LCP {other.lcpScore}</span>
                   </div>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1 line-clamp-2">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1 line-clamp-2">
                     {other.title}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2">
                     {other.seoFinding}
                   </p>
                 </Link>
@@ -305,12 +305,12 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
         )}
 
         {/* Commercial Tool Bridge */}
-        <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="rounded-2xl bg-[#111827] text-[#F9FAFB] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937]">
           <div>
-            <h4 className="font-editorial text-xl font-bold mb-1">
+            <h4 className="text-xl font-bold mb-1 text-white">
               Run this exact diagnostic on any live website
             </h4>
-            <p className="text-xs text-[#F7F4EE]/70">
+            <p className="text-xs text-gray-400">
               VitalsSniper PRO inspects live tabs in 50ms and outputs white-label client tear sheets.
             </p>
           </div>
@@ -323,7 +323,7 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
             </Link>
             <Link
               href="/products/vitalssniper-pro"
-              className="rounded-xl bg-accent px-5 py-3 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
+              className="rounded-xl bg-[#2563EB] px-5 py-3 text-xs font-bold text-white hover:bg-[#1D4ED8] transition-all shadow-sm"
             >
               <span>Learn About VitalsSniper PRO</span>
             </Link>

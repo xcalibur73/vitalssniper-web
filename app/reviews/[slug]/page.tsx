@@ -141,7 +141,7 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org Review & Breadcrumbs JSON-LD */}
       <script
         type="application/ld+json"
@@ -153,41 +153,41 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
       />
       <Navbar />
 
-      <div className="py-12 border-b border-sand-300 bg-white">
+      <div className="py-12 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
           {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
-          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
-            <Link href="/" className="hover:text-charcoal transition-colors">
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-sand-400">/</span>
-            <Link href="/reviews" className="hover:text-charcoal transition-colors">
+            <span className="text-[#9CA3AF]">/</span>
+            <Link href="/reviews" className="hover:text-[#0F0F0F] transition-colors">
               Reviews
             </Link>
-            <span className="text-sand-400">/</span>
-            <span className="text-charcoal font-semibold" aria-current="page">
+            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {product.name}
             </span>
           </nav>
 
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="text-3xl">{product.iconEmoji}</span>
-            <span className="editorial-pill">{product.category}</span>
+            <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold">{product.category}</span>
             {product.isOwnProduct && (
-              <span className="rounded-md bg-accent px-2.5 py-0.5 text-xs font-bold text-white">
+              <span className="rounded-md bg-[#2563EB] px-2.5 py-0.5 text-xs font-semibold text-white">
                 Our Flagship Software
               </span>
             )}
-            <span className="rounded-md bg-[#F7F4EE] border border-sand-300 px-2.5 py-0.5 text-xs font-semibold text-charcoal">
+            <span className="rounded-md bg-[#F3F4F6] border border-[#E5E7EB] px-2.5 py-0.5 text-xs font-semibold text-[#4B5563]">
               {product.pricingModel}
             </span>
           </div>
 
-          <h1 className="font-editorial text-3xl sm:text-5xl font-bold text-charcoal mb-4 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F0F0F] mb-4 leading-tight">
             {product.name} Review &amp; Empirical Speed Benchmark
           </h1>
 
-          <p className="text-base text-charcoal-muted leading-relaxed max-w-3xl">
+          <p className="text-base text-[#4B5563] leading-relaxed max-w-3xl">
             {product.description}
           </p>
 
@@ -200,66 +200,66 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
       <div className="py-16 mx-auto max-w-4xl px-6 flex-1 w-full space-y-10">
         
         {/* Factual Attributes Matrix (Section 8) */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
           <div className="flex items-center gap-2 mb-4">
-            <Beaker className="h-4 w-4 text-accent" />
-            <h2 className="font-editorial text-xl font-bold text-charcoal">
+            <Beaker className="h-4 w-4 text-[#2563EB]" />
+            <h2 className="text-xl font-bold text-[#0F0F0F]">
               Factual Testing &amp; Technical Attributes
             </h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-            <div className="p-3.5 rounded-xl bg-accent/5 border border-accent/20">
-              <span className="text-accent block text-[10px] uppercase font-bold">Benchmark Score:</span>
-              <span className="font-bold text-accent text-sm">{product.editorialRating} / 5.0</span>
+            <div className="p-3.5 rounded-lg bg-[#2563EB]/5 border border-[#2563EB]/20">
+              <span className="text-[#2563EB] block text-[10px] uppercase font-bold">Benchmark Score:</span>
+              <span className="font-bold text-[#2563EB] text-sm">{product.editorialRating} / 5.0</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Tested Environment:</span>
-              <span className="font-bold text-charcoal">{product.testedStack}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Tested Environment:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.testedStack}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Observed Metric:</span>
-              <span className="font-bold text-charcoal">{product.observedMetric}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Observed Metric:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.observedMetric}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Best For:</span>
-              <span className="font-bold text-charcoal">{product.bestFor}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Best For:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.bestFor}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Pricing Model:</span>
-              <span className="font-bold text-charcoal">{product.pricingModel}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Pricing Model:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.pricingModel}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Primary Limitation:</span>
-              <span className="font-bold text-charcoal">{product.primaryLimitation}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Primary Limitation:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.primaryLimitation}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Testing Duration:</span>
-              <span className="font-bold text-charcoal">{product.testingPeriod}</span>
+            <div className="p-3.5 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+              <span className="text-[#6B7280] block text-[10px] uppercase font-bold">Testing Duration:</span>
+              <span className="font-bold text-[#0F0F0F]">{product.testingPeriod}</span>
             </div>
           </div>
         </div>
 
         {/* Quick Verdict */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-          <h3 className="font-editorial text-2xl font-bold text-charcoal mb-2">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+          <h3 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] mb-2">
             The Editorial Verdict
           </h3>
-          <p className="text-sm text-charcoal leading-relaxed mb-6">
+          <p className="text-sm text-[#4B5563] leading-relaxed mb-6">
             {product.verdict}
           </p>
 
           {/* Strengths & Limitations Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-5 rounded-xl bg-[#F7F4EE] border border-sand-300 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-5 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] text-xs">
             <div>
-              <h4 className="font-bold text-emerald-800 mb-3 flex items-center gap-1.5">
-                <Check className="h-4 w-4 text-emerald-600" />
+              <h4 className="font-bold text-[#10B981] mb-3 flex items-center gap-1.5">
+                <Check className="h-4 w-4 text-[#10B981]" />
                 <span>Documented Strengths</span>
               </h4>
               <ul className="space-y-2">
                 {product.pros.map((pro, i) => (
-                  <li key={i} className="flex items-start gap-2 text-charcoal">
-                    <Check className="h-3.5 w-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <li key={i} className="flex items-start gap-2 text-[#4B5563]">
+                    <Check className="h-3.5 w-3.5 text-[#10B981] flex-shrink-0 mt-0.5" />
                     <span>{pro}</span>
                   </li>
                 ))}
@@ -267,14 +267,14 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
             </div>
 
             <div>
-              <h4 className="font-bold text-rose-800 mb-3 flex items-center gap-1.5">
-                <XIcon className="h-4 w-4 text-rose-600" />
+              <h4 className="font-bold text-[#EF4444] mb-3 flex items-center gap-1.5">
+                <XIcon className="h-4 w-4 text-[#EF4444]" />
                 <span>Documented Limitations</span>
               </h4>
               <ul className="space-y-2">
                 {product.cons.map((con, i) => (
-                  <li key={i} className="flex items-start gap-2 text-charcoal">
-                    <XIcon className="h-3.5 w-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
+                  <li key={i} className="flex items-start gap-2 text-[#4B5563]">
+                    <XIcon className="h-3.5 w-3.5 text-[#EF4444] flex-shrink-0 mt-0.5" />
                     <span>{con}</span>
                   </li>
                 ))}
@@ -284,21 +284,21 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
         </div>
 
         {/* What We Tested & Testing Notes */}
-        <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-          <h3 className="font-editorial text-xl font-bold text-charcoal mb-3">
+        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+          <h3 className="text-xl font-bold text-[#0F0F0F] mb-3">
             Testing Methodology &amp; Lab Notes
           </h3>
-          <p className="text-xs text-charcoal-muted leading-relaxed mb-6">
+          <p className="text-xs text-[#4B5563] leading-relaxed mb-6">
             {product.methodologyNotes}
           </p>
 
-          <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal mb-3">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F0F0F] mb-3">
             Key Evaluated Features:
           </h4>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-charcoal">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[#4B5563]">
             {product.features.map((feat, i) => (
               <li key={i} className="flex items-start gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-accent flex-shrink-0 mt-0.5" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981] flex-shrink-0 mt-0.5" />
                 <span>{feat}</span>
               </li>
             ))}
@@ -307,10 +307,10 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
 
         {/* Head-to-Head Comparisons Bridge */}
         {relatedComparisons.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <Trophy className="h-4 w-4 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <Trophy className="h-4 w-4 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Head-to-Head Benchmark Showdowns
               </h3>
             </div>
@@ -319,18 +319,18 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
                 <Link
                   key={c.slug}
                   href={`/comparisons/${c.slug}`}
-                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                  className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#2563EB] transition-colors block group"
                 >
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent block mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#2563EB] block mb-1">
                     {c.category} Showdown
                   </span>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {c.title}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2 mb-3">
+                  <p className="text-xs text-[#4B5563] line-clamp-2 mb-3">
                     {c.summary}
                   </p>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-accent">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#2563EB]">
                     <span>View Scorecard &amp; Verdict</span>
                     <ArrowRight className="h-3 w-3" />
                   </span>
@@ -342,14 +342,14 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
 
         {/* Alternative Software Reviews */}
         {relatedTools.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center justify-between gap-4 mb-4">
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Alternative Tools &amp; Tested Software
               </h3>
               <Link
                 href="/reviews"
-                className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] hover:underline inline-flex items-center gap-1"
               >
                 <span>All Reviews</span>
                 <ArrowRight className="h-3 w-3" />
@@ -360,21 +360,21 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
                 <Link
                   key={alt.slug}
                   href={`/reviews/${alt.slug}`}
-                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                  className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#2563EB] transition-colors block group"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-2xl">{alt.iconEmoji}</span>
-                    <span className="text-[11px] font-bold text-accent bg-accent/10 px-2 py-0.5 rounded">
+                    <span className="text-[11px] font-bold text-[#2563EB] bg-[#2563EB]/10 border border-[#2563EB]/20 px-2 py-0.5 rounded">
                       {alt.editorialRating} / 5.0
                     </span>
                   </div>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {alt.name}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2 mb-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2 mb-2">
                     {alt.description}
                   </p>
-                  <span className="text-[11px] text-charcoal-muted font-medium block">
+                  <span className="text-[11px] text-[#6B7280] font-medium block">
                     {alt.pricingModel}
                   </span>
                 </Link>
@@ -385,10 +385,10 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
 
         {/* Related Technical Articles */}
         {relatedGuides.length > 0 && (
-          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="h-4 w-4 text-accent" />
-              <h3 className="font-editorial text-xl font-bold text-charcoal">
+              <BookOpen className="h-4 w-4 text-[#2563EB]" />
+              <h3 className="text-xl font-bold text-[#0F0F0F]">
                 Related Optimization Guides
               </h3>
             </div>
@@ -397,15 +397,15 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
                 <Link
                   key={guide.slug}
                   href={`/articles/${guide.slug}`}
-                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                  className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#2563EB] transition-colors block group"
                 >
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent block mb-1">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#2563EB] block mb-1">
                     {guide.category} Guide
                   </span>
-                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {guide.title}
                   </h4>
-                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                  <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
                 </Link>
@@ -415,12 +415,12 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
         )}
 
         {/* Commercial Action Bar */}
-        <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+        <div className="rounded-xl bg-[#111827] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937] shadow-xs">
           <div>
-            <span className="text-xs text-[#F7F4EE]/70 font-mono block mb-1">
+            <span className="text-xs text-[#9CA3AF] font-mono block mb-1">
               Pricing: {product.pricing}
             </span>
-            <h4 className="font-editorial text-2xl font-bold">
+            <h4 className="text-2xl font-bold">
               Ready to test {product.name}?
             </h4>
           </div>
@@ -429,7 +429,7 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
             {product.isOwnProduct ? (
               <Link
                 href="/products/vitalssniper-pro"
-                className="rounded-xl bg-accent px-6 py-3.5 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
+                className="rounded-lg bg-[#2563EB] px-6 py-3 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
               >
                 <span>View Product Teardown</span>
               </Link>
@@ -438,7 +438,7 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
                 href={product.affiliateUrl}
                 target="_blank"
                 rel="nofollow sponsored noopener"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-6 py-3 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
               >
                 <span>Visit Official {product.name}</span>
                 <ExternalLink className="h-3.5 w-3.5" />

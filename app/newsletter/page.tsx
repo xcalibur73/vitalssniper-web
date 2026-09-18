@@ -32,16 +32,16 @@ export default function NewsletterPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="py-16 border-b border-sand-300 bg-white">
+      <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <span className="editorial-pill mb-4">Weekly Publication</span>
-          <h1 className="font-editorial text-4xl sm:text-6xl font-bold text-charcoal mb-4">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-[#2563EB] border border-blue-200 mb-4">Weekly Publication</span>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0F0F0F] tracking-tight mb-4">
             The Web Audits Brief
           </h1>
-          <p className="text-base sm:text-lg text-charcoal-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#4B5563] max-w-2xl mx-auto leading-relaxed">
             Delivered every Thursday morning. 1 empirical benchmark finding, 1 vetted web tool, 1 teardown lesson, and zero sponsored fluff.
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function NewsletterPage() {
 
         {/* Past Dispatches Archive */}
         <div>
-          <h2 className="font-editorial text-2xl font-bold text-charcoal mb-6">
+          <h2 className="text-2xl font-bold text-[#0F0F0F] mb-6">
             Recent Editorial Dispatches
           </h2>
 
@@ -60,17 +60,17 @@ export default function NewsletterPage() {
             {previousIssues.map((issue) => (
               <div
                 key={issue.issue}
-                className="rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all"
+                className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs hover:border-[#2563EB]/40 transition-all"
               >
-                <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-2">
-                  <span className="font-bold text-accent">{issue.issue}</span>
+                <div className="flex items-center gap-3 text-xs text-[#6B7280] mb-2">
+                  <span className="font-bold text-[#2563EB]">{issue.issue}</span>
                   <span>&bull;</span>
                   <span>{issue.date}</span>
                 </div>
-                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                   {issue.title}
                 </h3>
-                <p className="text-xs text-charcoal-muted leading-relaxed">
+                <p className="text-xs text-[#4B5563] leading-relaxed">
                   {issue.summary}
                 </p>
               </div>

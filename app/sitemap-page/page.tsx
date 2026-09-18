@@ -21,26 +21,26 @@ export const metadata: Metadata = {
 
 export default function SitemapPage() {
   return (
-    <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <div className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
       <main className="flex-1 max-w-[1200px] mx-auto px-6 py-14 w-full">
         <header className="max-w-[760px] mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-white px-3.5 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-2xs">
-            <Layers className="h-3.5 w-3.5 text-terracotta" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#2563EB] mb-4 shadow-2xs">
+            <Layers className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Site Index & Content Architecture</span>
           </div>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold text-charcoal tracking-tight mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F0F0F] tracking-tight mb-4">
             HTML Content Sitemap
           </h1>
-          <p className="text-base text-charcoal-muted leading-relaxed">
+          <p className="text-base text-[#4B5563] leading-relaxed">
             Index of published web performance benchmarks, technical SEO articles, diagnostic tools, and teardown studies.
           </p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="paper-card rounded-2xl p-6 space-y-4">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Layers className="h-4 w-4" />
               <span>Topical Pillars</span>
             </div>
@@ -49,7 +49,7 @@ export default function SitemapPage() {
                 <li key={beat.slug}>
                   <Link
                     href={`/articles/${beat.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {beat.name} Hub
                   </Link>
@@ -58,8 +58,8 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="paper-card rounded-2xl p-6 space-y-4">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Wrench className="h-4 w-4" />
               <span>Diagnostic Tools</span>
             </div>
@@ -68,7 +68,7 @@ export default function SitemapPage() {
                 <li key={tool.slug}>
                   <Link
                     href={`/tools/${tool.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {tool.name}
                   </Link>
@@ -77,8 +77,8 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="paper-card rounded-2xl p-6 space-y-4">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <BookOpen className="h-4 w-4" />
               <span>Research & Teardowns</span>
             </div>
@@ -87,7 +87,7 @@ export default function SitemapPage() {
                 <li key={study.slug}>
                   <Link
                     href={`/research/${study.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {study.title}
                   </Link>
@@ -97,7 +97,7 @@ export default function SitemapPage() {
                 <li key={td.slug}>
                   <Link
                     href={`/teardowns/${td.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {td.title}
                   </Link>
@@ -106,8 +106,8 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="paper-card rounded-2xl p-6 space-y-4">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Shield className="h-4 w-4" />
               <span>Software Reviews</span>
             </div>
@@ -116,7 +116,7 @@ export default function SitemapPage() {
                 <li key={prod.slug}>
                   <Link
                     href={`/reviews/${prod.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {prod.name} Review
                   </Link>
@@ -125,8 +125,8 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="paper-card rounded-2xl p-6 space-y-4">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <FileText className="h-4 w-4" />
               <span>Comparisons</span>
             </div>
@@ -135,7 +135,7 @@ export default function SitemapPage() {
                 <li key={comp.slug}>
                   <Link
                     href={`/comparisons/${comp.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors"
                   >
                     {comp.title}
                   </Link>
@@ -144,8 +144,8 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="paper-card rounded-2xl p-6 space-y-4 md:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4 md:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <FileText className="h-4 w-4" />
               <span>Forensic Articles ({BLOG_POSTS.length})</span>
             </div>
@@ -154,7 +154,7 @@ export default function SitemapPage() {
                 <li key={post.slug}>
                   <Link
                     href={`/articles/${post.slug}`}
-                    className="font-medium text-charcoal hover:text-accent transition-colors block truncate"
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors block truncate"
                   >
                     {post.title}
                   </Link>
@@ -164,34 +164,34 @@ export default function SitemapPage() {
           </div>
         </div>
 
-        <div className="mt-8 paper-card rounded-2xl p-6">
-          <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="mt-8 rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs">
+          <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider mb-4">
             <Layers className="h-4 w-4" />
             <span>Agency Playbooks &amp; Trust Architecture</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-xs">
-            <Link href="/resources" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/resources" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Agency Resources &amp; Pitch Files
             </Link>
-            <Link href="/docs" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/docs" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               VitalsSniper PRO Documentation
             </Link>
-            <Link href="/free-audit-report" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/free-audit-report" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Free Audit Report Generator
             </Link>
-            <Link href="/pricing" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/pricing" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Pricing &amp; Commercial Licenses
             </Link>
-            <Link href="/about" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/about" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               About Web Audits
             </Link>
-            <Link href="/about/methodology" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/about/methodology" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Testing Methodology
             </Link>
-            <Link href="/editorial-policy" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/editorial-policy" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Editorial Policy
             </Link>
-            <Link href="/affiliate-disclosure" className="font-medium text-charcoal hover:text-accent transition-colors">
+            <Link href="/affiliate-disclosure" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Affiliate Disclosure
             </Link>
           </div>

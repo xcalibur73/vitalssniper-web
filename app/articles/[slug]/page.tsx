@@ -75,9 +75,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col items-center justify-center p-6">
-        <h1 className="font-editorial text-3xl font-bold mb-4">Article not found</h1>
-        <Link href="/articles" className="text-accent hover:underline flex items-center">
+      <div className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col items-center justify-center p-6">
+        <h1 className="text-3xl font-bold mb-4">Article not found</h1>
+        <Link href="/articles" className="text-[#2563EB] hover:text-[#1D4ED8] hover:underline flex items-center">
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Articles
         </Link>
       </div>
@@ -214,7 +214,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       : null;
 
   return (
-    <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <div className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
       <main className="flex-1 max-w-[1200px] mx-auto px-6 py-14 w-full">
@@ -237,27 +237,27 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         )}
 
         {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-8 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
-          <Link href="/" className="hover:text-charcoal transition-colors">
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+          <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
             Home
           </Link>
-          <span className="text-sand-400">/</span>
-          <Link href="/articles" className="hover:text-charcoal transition-colors">
+          <span className="text-[#9CA3AF]">/</span>
+          <Link href="/articles" className="hover:text-[#0F0F0F] transition-colors">
             Articles
           </Link>
           {catSlug && (
             <>
-              <span className="text-sand-400">/</span>
+              <span className="text-[#9CA3AF]">/</span>
               <Link
                 href={`/articles/${catSlug}`}
-                className="hover:text-charcoal transition-colors font-medium"
+                className="hover:text-[#0F0F0F] transition-colors font-medium"
               >
                 {post.category}
               </Link>
             </>
           )}
-          <span className="text-sand-400">/</span>
-          <span className="text-charcoal font-semibold truncate max-w-[240px] sm:max-w-md" aria-current="page">
+          <span className="text-[#9CA3AF]">/</span>
+          <span className="text-[#0F0F0F] font-semibold truncate max-w-[240px] sm:max-w-md" aria-current="page">
             {post.title}
           </span>
         </nav>
@@ -265,35 +265,35 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         {/* Article Header (Above the fold) */}
         <header className="max-w-[760px] mb-12">
           <div className="flex items-center gap-2 mb-4">
-            <span className="editorial-pill">
+            <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold">
               {post.category}
             </span>
-            <span className="text-xs font-semibold text-charcoal-subtle">
+            <span className="text-xs font-semibold text-[#6B7280]">
               {post.tag}
             </span>
           </div>
 
-          <h1 className="font-editorial text-3xl sm:text-5xl lg:text-6xl font-bold text-charcoal tracking-tight leading-[1.12] mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F0F0F] tracking-tight leading-[1.15] mb-6">
             {post.title}
           </h1>
 
-          <p className="text-base sm:text-xl text-charcoal-muted leading-relaxed font-normal mb-8">
+          <p className="text-base sm:text-lg text-[#4B5563] leading-relaxed font-normal mb-8">
             {post.excerpt}
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs text-charcoal-subtle pt-6 border-t border-sand-300">
-            <div className="flex items-center gap-1.5 font-medium text-charcoal">
-              <User className="h-3.5 w-3.5 text-accent" />
+          <div className="flex flex-wrap items-center gap-4 text-xs text-[#6B7280] pt-6 border-t border-[#E5E7EB]">
+            <div className="flex items-center gap-1.5 font-medium text-[#0F0F0F]">
+              <User className="h-3.5 w-3.5 text-[#2563EB]" />
               <span>{post.author}</span>
             </div>
             <span>&bull;</span>
             <div className="flex items-center gap-1.5 font-medium">
-              <Calendar className="h-3.5 w-3.5 text-charcoal-subtle" />
+              <Calendar className="h-3.5 w-3.5 text-[#6B7280]" />
               <span>{post.date}</span>
             </div>
             <span>&bull;</span>
             <div className="flex items-center gap-1.5 font-medium">
-              <Clock className="h-3.5 w-3.5 text-accent" />
+              <Clock className="h-3.5 w-3.5 text-[#2563EB]" />
               <span>{post.readTime}</span>
             </div>
           </div>
@@ -303,10 +303,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Main Article Content (8 Cols, max-w-[760px]) */}
-          <article className="lg:col-span-8 max-w-[760px] space-y-8 text-sm sm:text-base text-charcoal-light leading-relaxed">
+          <article className="lg:col-span-8 max-w-[760px] space-y-8 text-sm sm:text-base text-[#4B5563] leading-relaxed">
             
             {/* Featured Visual Banner */}
-            <div className="rounded-2xl overflow-hidden border border-sand-300 bg-white shadow-sm">
+            <div className="rounded-xl overflow-hidden border border-[#E5E7EB] bg-white shadow-xs">
               <Image
                 src="/assets/appsumo_hero_1920x1080.png"
                 alt={post.title}
@@ -327,8 +327,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             {articleContent ? (
               <div className="space-y-8">
                 {/* Lead Introduction */}
-                <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-4">
-                  <p className="text-sm sm:text-base text-charcoal leading-relaxed font-medium">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-4 shadow-xs">
+                  <p className="text-sm sm:text-base text-[#0F0F0F] leading-relaxed font-medium">
                     {articleContent.introLead}
                   </p>
                 </div>
@@ -336,31 +336,31 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 {/* Key Findings KPI Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {articleContent.keyFindings.map((kf, i) => (
-                    <div key={i} className="paper-card rounded-xl p-4 border-l-4 border-accent">
-                      <div className="text-[10px] font-bold text-accent uppercase tracking-wider mb-1">{kf.metric}</div>
-                      <div className="text-xs text-charcoal font-semibold mb-1 leading-snug">{kf.observation}</div>
-                      <div className="text-[11px] text-charcoal-muted leading-tight">{kf.impact}</div>
+                    <div key={i} className="bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl p-4 border-l-4 border-l-[#2563EB]">
+                      <div className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider mb-1">{kf.metric}</div>
+                      <div className="text-xs text-[#0F0F0F] font-semibold mb-1 leading-snug">{kf.observation}</div>
+                      <div className="text-[11px] text-[#4B5563] leading-tight">{kf.impact}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Structured Article Sections */}
                 {articleContent.sections.map((sec, sIdx) => (
-                  <div key={sIdx} id={`section-${sIdx}`} className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
-                    <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+                  <div key={sIdx} id={`section-${sIdx}`} className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-6 shadow-xs">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F]">
                       {sec.title}
                     </h2>
 
                     {sec.paragraphs.map((p, pIdx) => (
-                      <p key={pIdx} className="text-charcoal-light leading-relaxed">
+                      <p key={pIdx} className="text-[#4B5563] leading-relaxed">
                         {p}
                       </p>
                     ))}
 
                     {sec.callout && (
-                      <div className="p-4 rounded-xl bg-[#F7F4EE] border-l-4 border-accent text-xs sm:text-sm text-charcoal leading-relaxed italic">
+                      <div className="p-4 rounded-xl bg-[#F3F4F6] border-l-4 border-l-[#2563EB] text-xs sm:text-sm text-[#0F0F0F] leading-relaxed italic">
                         {sec.callout.label && (
-                          <span className="not-italic text-accent block mb-1 uppercase text-[10px] font-bold tracking-wider">
+                          <span className="not-italic text-[#2563EB] block mb-1 uppercase text-[10px] font-bold tracking-wider">
                             {sec.callout.label}
                           </span>
                         )}
@@ -369,22 +369,22 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     )}
 
                     {sec.table && (
-                      <div className="overflow-x-auto rounded-xl border border-sand-300 my-4">
+                      <div className="overflow-x-auto rounded-xl border border-[#E5E7EB] my-4">
                         <table className="w-full text-left text-xs">
-                          <thead className="bg-[#242321] text-[#F7F4EE]">
+                          <thead className="bg-[#111827] text-white">
                             <tr>
                               {sec.table.headers.map((h, hIdx) => (
                                 <th key={hIdx} className="px-4 py-2.5 font-semibold">{h}</th>
                               ))}
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-sand-300 bg-white">
+                          <tbody className="divide-y divide-[#E5E7EB] bg-white">
                             {sec.table.rows.map((row, rIdx) => (
-                              <tr key={rIdx} className="hover:bg-sand-50 transition-colors">
+                              <tr key={rIdx} className="hover:bg-[#F9FAFB] transition-colors">
                                 {row.map((cell, cIdx) => (
                                   <td
                                     key={cIdx}
-                                    className={`px-4 py-2.5 ${cIdx === 0 ? 'font-semibold text-charcoal' : 'text-charcoal-muted'}`}
+                                    className={`px-4 py-2.5 ${cIdx === 0 ? 'font-semibold text-[#0F0F0F]' : 'text-[#4B5563]'}`}
                                   >
                                     {cell}
                                   </td>
@@ -397,9 +397,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     )}
 
                     {sec.codeSnippet && (
-                      <div className="rounded-xl overflow-hidden border border-[#242321] bg-[#11131c] text-sand-100 font-mono text-xs my-4 shadow-sm">
+                      <div className="rounded-xl overflow-hidden border border-[#E5E7EB] bg-[#111827] text-[#F9FAFB] font-mono text-xs my-4 shadow-xs">
                         {sec.codeSnippet.caption && (
-                          <div className="px-4 py-2 bg-[#090a10] border-b border-white/10 text-charcoal-subtle text-[11px] font-medium">
+                          <div className="px-4 py-2 bg-[#1F2937] border-b border-[#374151] text-[#9CA3AF] text-[11px] font-medium">
                             {sec.codeSnippet.caption}
                           </div>
                         )}
@@ -410,14 +410,14 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     )}
 
                     {sec.checklist && (
-                      <div className="p-4 rounded-xl bg-sand-100/50 border border-sand-300 space-y-2.5">
-                        <div className="text-[11px] font-bold uppercase tracking-wider text-charcoal mb-2">
+                      <div className="p-4 rounded-xl bg-[#F3F4F6] border border-[#E5E7EB] space-y-2.5">
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-[#0F0F0F] mb-2">
                           Technical Action Checklist:
                         </div>
                         <ul className="space-y-2">
                           {sec.checklist.map((item, cIdx) => (
-                            <li key={cIdx} className="flex items-start gap-2.5 text-xs text-charcoal-light">
-                              <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                            <li key={cIdx} className="flex items-start gap-2.5 text-xs text-[#4B5563]">
+                              <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                               <span>{item}</span>
                             </li>
                           ))}
@@ -429,20 +429,20 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
                 {/* Native In-Content Tool CTA */}
                 {articleContent.ctaBox && (
-                  <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6">
-                    <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                  <div className="rounded-xl border border-[#2563EB]/20 bg-[#2563EB]/5 p-6 shadow-xs">
+                    <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider mb-2">
                       <Wrench className="h-4 w-4" />
                       <span>Live Verification Tool</span>
                     </div>
-                    <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                    <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                       {articleContent.ctaBox.title}
                     </h3>
-                    <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                    <p className="text-xs text-[#4B5563] mb-4 leading-relaxed">
                       {articleContent.ctaBox.desc}
                     </p>
                     <Link
                       href={articleContent.ctaBox.buttonHref}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2563EB] text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
                     >
                       <span>{articleContent.ctaBox.buttonText}</span>
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -452,25 +452,25 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
                 {/* Frequently Asked Questions */}
                 {articleContent.faq && articleContent.faq.length > 0 && (
-                  <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
-                    <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider">
+                  <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-6 shadow-xs">
+                    <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
                       <HelpCircle className="h-4 w-4" />
                       <span>Technical FAQ: Forensic and Engineering Clarifications</span>
                     </div>
-                    <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F]">
                       Frequently Asked Questions
                     </h3>
                     <div className="space-y-4 pt-2">
                       {articleContent.faq.map((item, fIdx) => (
                         <div
                           key={fIdx}
-                          className="rounded-xl border border-sand-300 bg-sand-50/50 p-5 space-y-2 hover:border-sand-400 transition-colors"
+                          className="rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] p-5 space-y-2 hover:border-[#D1D5DB] transition-colors"
                         >
-                          <h4 className="text-sm sm:text-base font-bold text-charcoal flex items-start gap-2">
-                            <span className="text-accent font-mono text-xs mt-0.5">Q{fIdx + 1}:</span>
+                          <h4 className="text-sm sm:text-base font-bold text-[#0F0F0F] flex items-start gap-2">
+                            <span className="text-[#2563EB] font-mono text-xs mt-0.5">Q{fIdx + 1}:</span>
                             <span>{item.question}</span>
                           </h4>
-                          <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed pl-6">
+                          <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed pl-6">
                             {item.answer}
                           </p>
                         </div>
@@ -480,75 +480,75 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 )}
 
                 {/* Verdict Summary Box */}
-                <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-3 border-l-4 border-[#242321]">
-                  <h3 className="font-editorial text-xl font-bold text-charcoal">
+                <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-3 border-l-4 border-l-[#111827] shadow-xs">
+                  <h3 className="text-xl font-bold text-[#0F0F0F]">
                     Architectural Verdict &amp; Summary
                   </h3>
-                  <p className="text-sm text-charcoal-muted leading-relaxed">
+                  <p className="text-sm text-[#4B5563] leading-relaxed">
                     {articleContent.verdictSummary}
                   </p>
                 </div>
               </div>
             ) : (
-              <div className="paper-card rounded-2xl p-6 sm:p-8 space-y-6">
-                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-6 shadow-xs">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F]">
                   The Core Bottleneck: Why Typical Audits Fail
                 </h2>
-                <p className="text-charcoal-muted leading-relaxed">
+                <p className="text-[#4B5563] leading-relaxed">
                   When auditing websites for performance and search visibility, most development teams jump straight into minifying JavaScript files or installing generic caching plugins. While those optimizations help marginally, they overlook the structural architectural flaws that actually determine Core Web Vitals rankings: container DOM nesting and uncompressed cellular payload budgets.
                 </p>
 
-                <div className="p-4 rounded-xl bg-[#F7F4EE] border-l-4 border-accent text-xs sm:text-sm text-charcoal leading-relaxed italic">
+                <div className="p-4 rounded-xl bg-[#F3F4F6] border-l-4 border-l-[#2563EB] text-xs sm:text-sm text-[#0F0F0F] leading-relaxed italic">
                   &ldquo;Over 82% of websites audited in our 500-site benchmark suffered from excessive DOM nesting (&gt;1,400 elements), triggering layout thrashing on mobile screens before a single interaction took place.&rdquo;
                 </div>
 
-                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F] pt-4">
                   Step-by-Step Diagnostic Protocol
                 </h2>
-                <p className="text-charcoal-muted leading-relaxed">
+                <p className="text-[#4B5563] leading-relaxed">
                   To identify the exact Largest Contentful Paint node sabotaging your load times, follow this systematic order of verification:
                 </p>
 
-                <ul className="space-y-3 text-xs sm:text-sm text-charcoal-light">
+                <ul className="space-y-3 text-xs sm:text-sm text-[#4B5563]">
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                     <span><strong>Inspect DOM Tree Depth:</strong> Ensure container wrappers do not exceed 32 levels of nesting. Replace multi-layer row/column builders with lightweight CSS grid.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                     <span><strong>Enforce 50KB HTML Ceiling:</strong> Strip unused inline base64 fonts, deferred tracking snippets, and empty tag clutter before transferring HTML across cellular networks.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span><strong>Set High Fetch Priority on Hero Images:</strong> Apply <code className="bg-sand-200 px-1.5 py-0.5 rounded text-charcoal font-mono">fetchpriority=&quot;high&quot;</code> to your top image and eliminate lazy-loading on viewport assets.</span>
+                    <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                    <span><strong>Set High Fetch Priority on Hero Images:</strong> Apply <code className="bg-[#F3F4F6] border border-[#E5E7EB] px-1.5 py-0.5 rounded text-[#0F0F0F] font-mono">fetchpriority=&quot;high&quot;</code> to your top image and eliminate lazy-loading on viewport assets.</span>
                   </li>
                 </ul>
 
                 {/* In-Content Native Tool Callout */}
-                <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6 mt-8">
-                  <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-2">
+                <div className="rounded-xl border border-[#2563EB]/20 bg-[#2563EB]/5 p-6 mt-8 shadow-xs">
+                  <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider mb-2">
                     <Wrench className="h-4 w-4" />
                     <span>Test Your Website in Real-Time</span>
                   </div>
-                  <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                  <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                     Find Your Site&apos;s Specific Flaws in 50 Milliseconds
                   </h3>
-                  <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                  <p className="text-xs text-[#4B5563] mb-4 leading-relaxed">
                     Run our free forensic auditor on your target URL to inspect DOM element bloat, identify active page builders, and calculate payload weights.
                   </p>
                   <Link
                     href="/tools/website-speed-test"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2563EB] text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
                   >
                     <span>Run Free Website Audit</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
 
-                <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal pt-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F] pt-4">
                   Recommended Architecture &amp; Conclusion
                 </h2>
-                <p className="text-charcoal-muted leading-relaxed">
+                <p className="text-[#4B5563] leading-relaxed">
                   By focusing on structural containment rather than masking problems with secondary caching layers, websites achieve sustainable sub-second mobile rendering times that pass Google Core Web Vitals and protect organic conversion rates.
                 </p>
               </div>
@@ -561,16 +561,16 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             <div className="sticky top-24 space-y-6">
               
               {/* Table of Contents Card */}
-              <div className="paper-card rounded-2xl p-6">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal mb-4">
-                  <BookOpen className="h-4 w-4 text-accent" />
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 shadow-xs">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0F0F0F] mb-4">
+                  <BookOpen className="h-4 w-4 text-[#2563EB]" />
                   <span>Table of Contents</span>
                 </div>
-                <ul className="space-y-2.5 text-xs text-charcoal-muted">
+                <ul className="space-y-2.5 text-xs text-[#4B5563]">
                   {articleContent ? (
                     articleContent.sections.map((sec, sIdx) => (
                       <li key={sIdx}>
-                        <a href={`#section-${sIdx}`} className="hover:text-accent transition-colors">
+                        <a href={`#section-${sIdx}`} className="hover:text-[#2563EB] transition-colors">
                           {sIdx + 1}. {sec.title}
                         </a>
                       </li>
@@ -578,22 +578,22 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                   ) : (
                     <>
                       <li>
-                        <a href="#bottlenecks" className="hover:text-accent transition-colors">
+                        <a href="#bottlenecks" className="hover:text-[#2563EB] transition-colors">
                           1. The Core Bottleneck: Why Typical Audits Fail
                         </a>
                       </li>
                       <li>
-                        <a href="#protocol" className="hover:text-accent transition-colors">
+                        <a href="#protocol" className="hover:text-[#2563EB] transition-colors">
                           2. Step-by-Step Diagnostic Protocol
                         </a>
                       </li>
                       <li>
-                        <a href="#tools" className="hover:text-accent transition-colors">
+                        <a href="#tools" className="hover:text-[#2563EB] transition-colors">
                           3. Live Forensic Testing &amp; Verification
                         </a>
                       </li>
                       <li>
-                        <a href="#conclusion" className="hover:text-accent transition-colors">
+                        <a href="#conclusion" className="hover:text-[#2563EB] transition-colors">
                           4. Recommended Architecture &amp; Conclusion
                         </a>
                       </li>
@@ -603,19 +603,19 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               </div>
 
               {/* Related Proprietary Tool: VitalsSniper PRO */}
-              <div className="rounded-2xl border-2 border-accent bg-white p-6 shadow-sm">
-                <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-1">
+              <div className="rounded-xl border-2 border-[#2563EB] bg-white p-6 shadow-xs">
+                <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider block mb-1">
                   Proprietary Agency Platform
                 </span>
-                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2">
+                <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                   VitalsSniper PRO
                 </h3>
-                <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
+                <p className="text-xs text-[#4B5563] leading-relaxed mb-4">
                   Inspect prospect websites in your active browser tab, highlight LCP flaws, and generate white-label PDF teardowns with your booking CTA.
                 </p>
                 <Link
                   href="/products/vitalssniper-pro"
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-accent text-white text-xs font-bold hover:bg-accent-dark transition-all shadow-xs"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-[#2563EB] text-white text-xs font-semibold hover:bg-[#1D4ED8] transition-colors shadow-xs"
                 >
                   <span>Explore Tool ($39 Lifetime)</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -623,38 +623,38 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               </div>
 
               {/* Newsletter Signup Card */}
-              <div className="paper-card rounded-2xl p-6 bg-[#F7F4EE]">
-                <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-1">
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 shadow-xs">
+                <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider block mb-1">
                   Weekly Dispatch
                 </span>
-                <h4 className="font-editorial text-lg font-bold text-charcoal mb-1">
+                <h4 className="text-lg font-bold text-[#0F0F0F] mb-1">
                   The Web Audits Brief
                 </h4>
-                <p className="text-xs text-charcoal-muted mb-4 leading-relaxed">
+                <p className="text-xs text-[#4B5563] mb-4 leading-relaxed">
                   Real performance benchmarks and technical guides delivered every Thursday.
                 </p>
                 <Link
                   href="/newsletter"
-                  className="w-full inline-flex items-center justify-center rounded-xl bg-accent py-2 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-2xs"
+                  className="w-full inline-flex items-center justify-center rounded-lg bg-[#2563EB] py-2 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
                 >
                   Subscribe Free
                 </Link>
               </div>
 
               {/* Relevant Affiliate Recommendation */}
-              <div className="paper-card rounded-2xl p-6">
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 shadow-xs">
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal-subtle">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280]">
                     Recommended Host
                   </span>
-                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  <span className="text-[10px] font-bold text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded border border-[#10B981]/20">
                     Tested Under Load
                   </span>
                 </div>
-                <h4 className="font-editorial text-lg font-bold text-charcoal mb-1">
+                <h4 className="text-lg font-bold text-[#0F0F0F] mb-1">
                   {affiliateTool.name}
                 </h4>
-                <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
+                <p className="text-xs text-[#4B5563] leading-relaxed mb-4">
                   {affiliateTool.verdict}
                 </p>
                 <div className="flex flex-col gap-2">
@@ -662,14 +662,14 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     href={affiliateTool.affiliateUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener"
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-sand-300 bg-[#F7F4EE] text-charcoal hover:border-accent/40 hover:text-accent text-xs font-bold transition-all"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-[#E5E7EB] bg-white text-[#0F0F0F] hover:border-[#2563EB] hover:text-[#2563EB] text-xs font-semibold transition-colors"
                   >
                     <span>Visit Official {affiliateTool.name}</span>
                     <ExternalLink className="h-3 w-3" />
                   </a>
                   <Link
                     href={`/reviews/${affiliateTool.slug}`}
-                    className="text-center text-[11px] font-semibold text-accent hover:underline pt-1"
+                    className="text-center text-[11px] font-semibold text-[#2563EB] hover:underline pt-1"
                   >
                     Read our full {affiliateTool.name} review
                   </Link>
@@ -677,8 +677,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               </div>
 
               {/* Related Articles */}
-              <div className="paper-card rounded-2xl p-6">
-                <h4 className="font-editorial text-base font-bold text-charcoal mb-3">
+              <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 shadow-xs">
+                <h4 className="text-base font-bold text-[#0F0F0F] mb-3">
                   Related Publications
                 </h4>
                 <div className="space-y-3">
@@ -688,8 +688,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                       href={`/articles/${rel.slug}`}
                       className="block group"
                     >
-                      <span className="text-[10px] font-bold text-accent uppercase">{rel.category}</span>
-                      <p className="text-xs font-semibold text-charcoal group-hover:text-accent transition-colors leading-snug">
+                      <span className="text-[10px] font-bold text-[#2563EB] uppercase">{rel.category}</span>
+                      <p className="text-xs font-semibold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors leading-snug">
                         {rel.title}
                       </p>
                     </Link>

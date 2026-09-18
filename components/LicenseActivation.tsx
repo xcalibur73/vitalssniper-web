@@ -50,33 +50,30 @@ export default function LicenseActivation() {
 
   return (
     <div id="activate" className="w-full max-w-2xl mx-auto">
-      <div className="rounded-2xl border border-white/15 bg-[#12141d] p-6 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.7)] backdrop-blur-xl relative overflow-hidden">
+      <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs relative overflow-hidden">
         
-        {/* Glow effect */}
-        <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-
-        <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
+        <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#E5E7EB]">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 border border-blue-200 text-[#2563EB]">
               <Key className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white">AppSumo Code Activation</h2>
-              <p className="text-xs text-gray-400">Enter your AppSumo voucher to unlock and download VitalsSniper PRO.</p>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0F0F0F]">AppSumo Code Activation</h2>
+              <p className="text-xs text-[#6B7280]">Enter your AppSumo voucher to unlock and download VitalsSniper PRO.</p>
             </div>
           </div>
-          <span className="hidden sm:inline-block rounded-full bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 text-[11px] font-bold text-emerald-400">
+          <span className="hidden sm:inline-block rounded-full bg-blue-50 border border-blue-200 px-2.5 py-1 text-[11px] font-bold text-[#2563EB]">
             Instant Delivery
           </span>
         </div>
 
         {/* Instructions banner */}
-        <div className="rounded-xl border border-white/10 bg-[#090a10]/70 p-3.5 mb-5 text-xs text-gray-400 flex items-start gap-2.5">
-          <HelpCircle className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+        <div className="rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] p-3.5 mb-5 text-xs text-[#4B5563] flex items-start gap-2.5">
+          <HelpCircle className="h-4 w-4 text-[#2563EB] flex-shrink-0 mt-0.5" />
           <div>
-            <span className="font-semibold text-gray-300">Where is my code?</span> Look in your{' '}
-            <strong className="text-white">AppSumo account &rarr; Products</strong>. It follows the format{' '}
-            <code className="text-[11px] bg-black/60 px-1 py-0.5 rounded text-emerald-300 font-mono">VS-PRO-XXXX-XXXX</code>.
+            <span className="font-semibold text-[#0F0F0F]">Where is my code?</span> Look in your{' '}
+            <strong className="text-[#0F0F0F]">AppSumo account &rarr; Products</strong>. It follows the format{' '}
+            <code className="text-[11px] bg-[#E5E7EB] px-1 py-0.5 rounded text-[#0F0F0F] font-mono">VS-PRO-XXXX-XXXX</code>.
           </div>
         </div>
 
@@ -84,7 +81,7 @@ export default function LicenseActivation() {
         {!verifiedData ? (
           <form onSubmit={handleVerify} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-gray-300 mb-1.5">
+              <label className="block text-xs font-bold text-[#0F0F0F] mb-1.5">
                 Enter Your AppSumo Redemption Code
               </label>
               <input
@@ -93,12 +90,12 @@ export default function LicenseActivation() {
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="e.g. VS-PRO-XXXX-XXXX"
-                className="w-full rounded-xl border border-white/10 bg-[#090a10] px-4 py-3 text-base font-mono uppercase tracking-wider text-white outline-none focus:border-emerald-500 transition-colors shadow-inner"
+                className="w-full rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] px-4 py-3 text-base font-mono uppercase tracking-wider text-[#0F0F0F] outline-none focus:border-[#2563EB] transition-colors"
               />
             </div>
 
             {error && (
-              <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-xs text-rose-300 flex items-center gap-2.5">
+              <div className="rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 flex items-center gap-2.5">
                 <AlertCircle className="h-4 w-4 flex-shrink-0" />
                 <span>{error}</span>
               </div>
@@ -107,11 +104,11 @@ export default function LicenseActivation() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-emerald-500 py-3.5 text-sm font-extrabold text-black transition-all hover:bg-emerald-400 disabled:opacity-50 shadow-[0_4px_20px_rgba(16,185,129,0.3)] flex items-center justify-center gap-2"
+              className="w-full rounded-xl bg-[#2563EB] py-3.5 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] disabled:opacity-50 shadow-xs flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                   <span>Verifying Code with Server...</span>
                 </>
               ) : (
@@ -125,33 +122,33 @@ export default function LicenseActivation() {
         ) : (
           /* Verified State */
           <div className="py-2 animate-in fade-in space-y-5">
-            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-              <CheckCircle2 className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
               <span>AppSumo License Verified & Unlocked</span>
             </div>
 
-            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-2 text-xs">
-              <div className="flex justify-between items-center text-gray-300">
-                <span className="text-gray-500">Tier:</span>
-                <span className="font-bold text-white">{verifiedData.tier}</span>
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 space-y-2 text-xs">
+              <div className="flex justify-between items-center text-[#4B5563]">
+                <span className="text-[#6B7280]">Tier:</span>
+                <span className="font-bold text-[#0F0F0F]">{verifiedData.tier}</span>
               </div>
-              <div className="flex justify-between items-center text-gray-300">
-                <span className="text-gray-500">Commercial Seats:</span>
-                <span className="font-bold text-emerald-400">{verifiedData.seats} Active Users</span>
+              <div className="flex justify-between items-center text-[#4B5563]">
+                <span className="text-[#6B7280]">Commercial Seats:</span>
+                <span className="font-bold text-emerald-700">{verifiedData.seats} Active Users</span>
               </div>
-              <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                <span className="text-gray-400 font-semibold">Your Lifetime Key:</span>
+              <div className="flex justify-between items-center pt-2 border-t border-emerald-200/60">
+                <span className="text-[#4B5563] font-semibold">Your Lifetime Key:</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-mono font-bold text-white text-sm bg-black/60 px-2 py-1 rounded border border-white/10 select-all">
+                  <span className="font-mono font-bold text-[#0F0F0F] text-sm bg-white px-2 py-1 rounded border border-[#E5E7EB] select-all">
                     {verifiedData.key}
                   </span>
                   <button
                     type="button"
                     onClick={() => handleCopy(verifiedData.key)}
-                    className="p-1 rounded bg-white/10 text-gray-300 hover:text-white"
+                    className="p-1 rounded bg-[#F8F8F8] border border-[#E5E7EB] text-[#4B5563] hover:text-[#0F0F0F]"
                     title="Copy Key"
                   >
-                    {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                    {copied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
                   </button>
                 </div>
               </div>
@@ -161,14 +158,14 @@ export default function LicenseActivation() {
             <a
               href={verifiedData.downloadUrl}
               download
-              className="flex items-center justify-center gap-2 w-full rounded-xl bg-white py-3.5 text-sm font-extrabold text-black transition-all hover:bg-gray-100 shadow-[0_4px_20px_rgba(255,255,255,0.25)]"
+              className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#2563EB] py-3.5 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] shadow-xs"
             >
               <Download className="h-4 w-4" />
               <span>Download VitalsSniper PRO (.zip)</span>
             </a>
 
             <div className="text-center">
-              <a href="#docs" className="text-xs text-emerald-400 hover:underline font-semibold">
+              <a href="#docs" className="text-xs text-[#2563EB] hover:underline font-semibold">
                 &darr; View 30-Second Chrome Installation Instructions
               </a>
             </div>
@@ -176,11 +173,11 @@ export default function LicenseActivation() {
         )}
 
         {/* Footer fallback */}
-        <div className="mt-5 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
+        <div className="mt-5 pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#6B7280]">
           <span>Want to test without a license key?</span>
           <a
             href="/vitalssniper#auditor"
-            className="text-emerald-400 font-bold hover:underline inline-flex items-center gap-1"
+            className="text-[#2563EB] font-bold hover:underline inline-flex items-center gap-1"
           >
             <span>Run Free In-Browser Audit &rarr;</span>
           </a>

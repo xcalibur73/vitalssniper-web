@@ -2,241 +2,194 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Clock, User, BookOpen, Layers, Terminal, Sparkles, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Activity, Layers, Terminal } from 'lucide-react';
+
+const ARTICLES = [
+  {
+    title: 'How to Fix High LCP in WordPress',
+    href: '/articles/why-your-lcp-score-tanks-on-mobile-how-to-fix-it',
+    category: 'Performance',
+    date: 'March 14, 2026',
+    readTime: '8 min read',
+    excerpt: 'A surgical guide to isolate and eliminate the real causes of Largest Contentful Paint delays on mobile viewports.',
+    previewType: 'lcp',
+  },
+  {
+    title: 'The Complete Guide to Technical SEO in 2026',
+    href: '/articles/rank-math-vs-yoast-definitive-seo-plugin-comparison',
+    category: 'Technical SEO',
+    date: 'March 10, 2026',
+    readTime: '7 min read',
+    excerpt: 'Selecting the right schema architecture determines how cleanly search engines index entity graphs and knowledge bases.',
+    previewType: 'terminal',
+  },
+  {
+    title: 'How to Optimize for ChatGPT Search and GEO',
+    href: '/articles/how-to-make-your-website-discoverable-by-ai-search-engines',
+    category: 'AI Search',
+    date: 'March 06, 2026',
+    readTime: '6 min read',
+    excerpt: 'Configure JSON-LD entity structures, llms.txt endpoints, and answer-ready passage formatting for generative engines.',
+    previewType: 'ai',
+  },
+  {
+    title: 'Modern Web Design Trends That Improve Performance',
+    href: '/articles/zero-cls-web-design-principles',
+    category: 'Web Design',
+    date: 'March 02, 2026',
+    readTime: '5 min read',
+    excerpt: 'How aspect ratio containers and fluid typography scales eliminate cumulative layout shift without sacrificing aesthetic craft.',
+    previewType: 'cls',
+  },
+  {
+    title: 'Best Website Audit Tools for Agencies in 2026',
+    href: '/articles/cloudways-vs-siteground-which-host-loads-faster',
+    category: 'Tools',
+    date: 'February 27, 2026',
+    readTime: '9 min read',
+    excerpt: 'Comparing in-browser forensics against synthetic laboratory probes to diagnose client performance bottlenecks accurately.',
+    previewType: 'tools',
+  },
+  {
+    title: '10 CRO Fixes That Actually Increase Revenue',
+    href: '/articles/the-agency-guide-to-white-label-website-audits',
+    category: 'Conversion',
+    date: 'February 22, 2026',
+    readTime: '6 min read',
+    excerpt: 'How technical proof-of-flaw audit teardowns convert cold website evaluations into high-value optimization contracts.',
+    previewType: 'cro',
+  },
+];
 
 export default function LatestArticlesSection() {
   return (
-    <section className="py-14 sm:py-16 border-b border-sand-300 bg-[#F7F4EE]">
+    <section className="py-16 md:py-20 border-b border-[#E5E7EB] bg-[#F8F8F8]">
       <div className="mx-auto max-w-7xl px-6">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal">
-              Latest Articles
+            <div className="text-xs font-semibold uppercase tracking-wider text-[#2563EB] mb-2">
+              Editorial Insights
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F0F0F]">
+              Latest Articles &amp; Guides
             </h2>
-            <p className="text-xs sm:text-sm text-charcoal-muted mt-1">
-              Practical guides, expert insights and real-world examples.
+            <p className="text-base text-[#4B5563] mt-1">
+              Field-tested performance engineering, Core Web Vitals remediation, and technical SEO.
             </p>
           </div>
 
           <Link
             href="/articles"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent uppercase tracking-wider hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
           >
             <span>View all articles</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        {/* Row 1: 1 Featured Large Card (Left) + 2 Companion Cards (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] gap-6 items-stretch mb-6">
-          
-          {/* Card 1: Large Featured Article */}
-          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
-            <div>
-              {/* Thumbnail / Visual Box */}
-              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-4 mb-4 relative overflow-hidden flex items-center justify-center">
-                <div className="w-full space-y-2">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-charcoal-muted pb-2 border-b border-sand-300">
-                    <span>Performance Diagnostic</span>
-                    <span className="text-emerald-600 font-bold">LCP 1.6s</span>
-                  </div>
-                  <div className="h-2 w-3/4 rounded bg-sand-300" />
-                  <div className="h-2 w-1/2 rounded bg-sand-300/70" />
-                  <div className="rounded border border-dashed border-accent/40 bg-accent/5 p-2 text-[10px] text-accent font-medium text-center">
-                    fetchpriority=&quot;high&quot; + WebP srcset
-                  </div>
-                </div>
-              </div>
-
-              {/* Tag */}
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                Performance
-              </span>
-
-              {/* Title */}
-              <h3 className="font-editorial text-xl sm:text-2xl font-bold text-charcoal group-hover:text-accent transition-colors mb-2">
-                <Link href="/articles/why-your-lcp-score-tanks-on-mobile-how-to-fix-it">
-                  How to Fix High LCP in WordPress
-                </Link>
-              </h3>
-
-              {/* Excerpt */}
-              <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed mb-4">
-                A step-by-step guide to identify and fix the real causes of LCP bloat and understand what helps content load under 2.5s.
-              </p>
-
-              {/* Evidence stats */}
-              <div className="flex items-center gap-4 py-2 border-y border-sand-200 text-xs font-bold text-charcoal mb-4">
-                <div>
-                  <span className="block text-sm text-emerald-600">-58%</span>
-                  <span className="text-[10px] text-charcoal-muted font-normal">mobile LCP</span>
-                </div>
-                <div className="h-6 w-px bg-sand-300" />
-                <div>
-                  <span className="block text-sm">30</span>
-                  <span className="text-[10px] text-charcoal-muted font-normal">sites tested</span>
-                </div>
-                <div className="h-6 w-px bg-sand-300" />
-                <div>
-                  <span className="block text-sm">10 min</span>
-                  <span className="text-[10px] text-charcoal-muted font-normal">remediation</span>
-                </div>
-              </div>
-            </div>
-
-            <Link
-              href="/articles/why-your-lcp-score-tanks-on-mobile-how-to-fix-it"
-              className="inline-flex items-center gap-2 rounded-xl bg-action px-5 py-2.5 text-xs font-bold text-white shadow-[0_2px_8px_rgba(194,65,12,0.22)] hover:bg-action-hover transition-all w-fit"
+        {/* 3-Column Clean Editorial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ARTICLES.map((article) => (
+            <article
+              key={article.href}
+              className="rounded-xl border border-[#E5E7EB] bg-white p-6 flex flex-col justify-between shadow-none transition-colors hover:border-[#D1D5DB] group"
             >
-              <span>Read the article</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
+              <div>
+                {/* 16:10 Aspect Ratio Graphic Preview */}
+                <div className="aspect-[16/10] w-full rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-4 mb-4 flex flex-col justify-center overflow-hidden">
+                  {article.previewType === 'lcp' && (
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs font-mono text-[#6B7280]">
+                        <span>Performance Lab</span>
+                        <span className="text-[#10B981] font-bold">LCP 1.6s</span>
+                      </div>
+                      <div className="h-1.5 w-3/4 rounded bg-[#E5E7EB]" />
+                      <div className="rounded border border-dashed border-[#2563EB]/40 bg-[#2563EB]/5 p-2 text-center text-xs font-mono text-[#2563EB]">
+                        fetchpriority=&quot;high&quot;
+                      </div>
+                    </div>
+                  )}
 
-          {/* Card 2: Technical SEO Guide */}
-          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
-            <div>
-              {/* Thumbnail / Code Terminal Preview */}
-              <div className="rounded-xl bg-[#14151B] p-3 mb-4 font-mono text-[10px] text-gray-400 space-y-1 overflow-hidden min-h-[112px] flex flex-col justify-center">
-                <div className="text-emerald-400">$ curl -I https://example.com</div>
-                <div className="text-gray-300">HTTP/2 200 OK</div>
-                <div className="text-gray-500">x-cache: HIT (LiteSpeed)</div>
-                <div className="text-accent">schema: JSON-LD Validated</div>
-              </div>
+                  {article.previewType === 'terminal' && (
+                    <div className="rounded bg-[#111827] p-3 text-[11px] font-mono text-gray-300 space-y-1">
+                      <div className="text-[#10B981]">$ curl -I https://example.com</div>
+                      <div className="text-[#9CA3AF]">HTTP/2 200 OK</div>
+                      <div className="text-[#60A5FA]">schema: JSON-LD Valid</div>
+                    </div>
+                  )}
 
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                SEO
-              </span>
+                  {article.previewType === 'ai' && (
+                    <div className="space-y-2 text-xs">
+                      <div className="flex items-center gap-1.5 font-semibold text-[#0F0F0F]">
+                        <Sparkles className="h-3.5 w-3.5 text-[#2563EB]" />
+                        <span>AI Engine Crawler</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-[#E5E7EB] rounded" />
+                      <div className="text-[11px] font-mono text-[#2563EB]">llms.txt indexed</div>
+                    </div>
+                  )}
 
-              <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-accent transition-colors mb-2">
-                <Link href="/articles/rank-math-vs-yoast-definitive-seo-plugin-comparison">
-                  The Complete Guide to Technical SEO in 2026
-                </Link>
-              </h3>
+                  {article.previewType === 'cls' && (
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-xs font-mono text-[#6B7280]">
+                        <span>Cumulative Layout Shift</span>
+                        <span className="text-[#10B981] font-bold">0.000</span>
+                      </div>
+                      <div className="h-1.5 w-4/5 rounded bg-[#E5E7EB]" />
+                      <div className="text-[11px] font-mono text-[#10B981]">0 layout shifts observed</div>
+                    </div>
+                  )}
 
-              <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
-                Selecting an SEO plugin determines how cleanly your WordPress site structures schema markup and metadata.
-              </p>
-            </div>
+                  {article.previewType === 'tools' && (
+                    <div className="space-y-2 text-xs font-mono">
+                      <div className="flex items-center justify-between text-[#6B7280]">
+                        <span>Synthetic TTFB</span>
+                        <span className="text-[#10B981] font-bold">340ms</span>
+                      </div>
+                      <div className="h-1.5 w-2/3 rounded bg-[#E5E7EB]" />
+                      <div className="text-[11px] text-[#2563EB]">DevTools + VitalsSniper</div>
+                    </div>
+                  )}
 
-            <div className="text-[11px] text-charcoal-muted font-medium pt-3 border-t border-sand-200">
-              By Elena Rostova : 7 min read
-            </div>
-          </div>
-
-          {/* Card 3: ChatGPT Search Optimization */}
-          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
-            <div>
-              {/* Thumbnail / AI Mockup */}
-              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-3 mb-4 font-sans text-[10px] text-charcoal-muted space-y-1.5 min-h-[112px] flex flex-col justify-center">
-                <div className="flex items-center gap-1.5 font-bold text-charcoal text-[11px]">
-                  <Sparkles className="h-3 w-3 text-accent" />
-                  <span>AI Crawler Query Response</span>
+                  {article.previewType === 'cro' && (
+                    <div className="space-y-2 text-xs">
+                      <div className="flex items-center justify-between font-mono text-[#6B7280]">
+                        <span>Audit Conversion Rate</span>
+                        <span className="text-[#10B981] font-bold">+28%</span>
+                      </div>
+                      <div className="h-1.5 w-3/4 rounded bg-[#E5E7EB]" />
+                      <div className="text-[11px] font-mono text-[#2563EB]">Proof-of-flaw sheet</div>
+                    </div>
+                  )}
                 </div>
-                <div className="h-1.5 w-full bg-sand-300 rounded" />
-                <div className="h-1.5 w-4/5 bg-sand-300/70 rounded" />
-                <div className="text-[9px] text-accent font-semibold">Structured claim syntax verified</div>
+
+                {/* Category Pill */}
+                <span className="inline-block rounded-full bg-[#F3F4F6] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#4B5563] mb-3">
+                  {article.category}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-lg font-bold tracking-tight text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-2">
+                  <Link href={article.href}>
+                    {article.title}
+                  </Link>
+                </h3>
+
+                {/* Excerpt */}
+                <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed mb-6">
+                  {article.excerpt}
+                </p>
               </div>
 
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                AI Search
-              </span>
-
-              <h3 className="font-editorial text-lg font-bold text-charcoal group-hover:text-accent transition-colors mb-2">
-                <Link href="/articles/how-to-make-your-website-discoverable-by-ai-search-engines">
-                  How to Optimize for ChatGPT Search
-                </Link>
-              </h3>
-
-              <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
-                Configure JSON-LD entity graphs, llms.txt endpoints, and answer-ready passage formatting for generative engines.
-              </p>
-            </div>
-
-            <div className="text-[11px] text-charcoal-muted font-medium pt-3 border-t border-sand-200">
-              By Devin Vance : 6 min read
-            </div>
-          </div>
-
-        </div>
-
-        {/* Row 2: 3 Secondary Articles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Article 4: Web Design */}
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all group flex flex-col justify-between">
-            <div>
-              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-2.5 mb-3 flex items-center justify-between text-xs font-mono text-charcoal-muted">
-                <span>CLS Metric</span>
-                <span className="text-emerald-600 font-bold">0.000 (Zero Shift)</span>
+              {/* Meta Date & Read Time */}
+              <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between text-xs text-[#6B7280]">
+                <span>{article.date}</span>
+                <span>{article.readTime}</span>
               </div>
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                Web Design
-              </span>
-              <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1.5">
-                <Link href="/articles/zero-cls-web-design-principles">
-                  Modern Web Design Trends That Improve Performance
-                </Link>
-              </h4>
-              <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
-                How aspect ratio containers and fluid typography scales eliminate cumulative layout shift forever.
-              </p>
-            </div>
-            <div className="text-[11px] text-charcoal-muted font-medium pt-3 border-t border-sand-200">
-              By Elena Rostova : 5 min read
-            </div>
-          </div>
-
-          {/* Article 5: Tools & Workflows */}
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all group flex flex-col justify-between">
-            <div>
-              <div className="rounded-xl bg-[#14151B] p-2.5 mb-3 flex items-center justify-between text-xs font-mono text-white">
-                <span className="text-gray-400">Diagnostic Suite</span>
-                <span className="text-accent font-bold">VitalsSniper + DevTools</span>
-              </div>
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                Tools
-              </span>
-              <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1.5">
-                <Link href="/articles/cloudways-vs-siteground-which-host-loads-faster">
-                  Best Website Audit Tools for Agencies in 2026
-                </Link>
-              </h4>
-              <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
-                Comparing in-browser forensics vs synthetic lab testing to diagnose client bottlenecks accurately.
-              </p>
-            </div>
-            <div className="text-[11px] text-charcoal-muted font-medium pt-3 border-t border-sand-200">
-              By Marcus Reed : 9 min read
-            </div>
-          </div>
-
-          {/* Article 6: Conversion & CRO */}
-          <div className="rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all group flex flex-col justify-between">
-            <div>
-              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-2.5 mb-3 flex items-center justify-between text-xs font-mono text-charcoal-muted">
-                <span>Speed to Revenue</span>
-                <span className="text-emerald-600 font-bold">+28% Discovery Calls</span>
-              </div>
-              <span className="inline-block rounded-full bg-sand-300/60 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2">
-                Conversion
-              </span>
-              <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1.5">
-                <Link href="/articles/the-agency-guide-to-white-label-website-audits">
-                  10 CRO Fixes That Actually Increase Revenue
-                </Link>
-              </h4>
-              <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
-                How technical proof-of-flaw audit tear sheets convert cold prospects into high-value optimization retainers.
-              </p>
-            </div>
-            <div className="text-[11px] text-charcoal-muted font-medium pt-3 border-t border-sand-200">
-              By Devin Vance : 6 min read
-            </div>
-          </div>
-
+            </article>
+          ))}
         </div>
 
       </div>

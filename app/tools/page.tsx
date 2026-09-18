@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function ToolsPage() {
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
       <ToolsPageClient />
       <Footer />

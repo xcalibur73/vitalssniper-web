@@ -6,12 +6,13 @@ import { useSearchParams } from 'next/navigation';
 import { WebTool } from '@/data/tools';
 import {
   Globe,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
+  AlertTriangle,
+  Info,
   Clock,
   ArrowRight,
-  Wrench,
+  Activity,
 } from 'lucide-react';
 
 export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
@@ -60,10 +61,12 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
 
   return (
     <>
-      <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
-        <div className="flex items-center gap-2 mb-4">
-          <Wrench className="h-5 w-5 text-accent" />
-          <h2 className="font-editorial text-xl font-bold text-charcoal">
+      <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-none">
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className="h-8 w-8 rounded-lg bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center text-[#2563EB]">
+            <Activity className="h-4 w-4" />
+          </div>
+          <h2 className="text-xl font-bold tracking-tight text-[#0F0F0F]">
             Run {tool.name}
           </h2>
         </div>
@@ -75,31 +78,31 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           }}
           className="flex flex-col sm:flex-row gap-3"
         >
-          <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl border border-sand-300 bg-[#F7F4EE] focus-within:border-accent focus-within:bg-white transition-all">
-            <Globe className="h-5 w-5 text-muted flex-shrink-0" />
+          <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] focus-within:border-[#2563EB] focus-within:bg-white transition-all">
+            <Globe className="h-4 w-4 text-[#6B7280] flex-shrink-0" />
             <input
               type="text"
               required
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
-              placeholder="Enter target URL (e.g. yoursite.com)"
-              className="w-full bg-transparent text-sm text-charcoal placeholder-muted focus:outline-none"
+              placeholder="Enter target website URL (e.g. example.com)"
+              className="w-full bg-transparent text-sm text-[#0F0F0F] placeholder-[#6B7280] focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={running}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-3.5 text-sm font-bold text-white shadow-sm hover:bg-accent-dark transition-all disabled:opacity-75 flex-shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563EB] px-8 py-3.5 text-sm font-semibold text-white hover:bg-[#1D4ED8] transition-colors disabled:opacity-75 flex-shrink-0"
           >
             {running ? (
               <>
                 <Clock className="h-4 w-4 animate-spin" />
-                <span>Scanning DOM...</span>
+                <span>Scanning Website...</span>
               </>
             ) : (
               <>
-                <Sparkles className="h-4 w-4" />
+                <Activity className="h-4 w-4" />
                 <span>Run Audit</span>
               </>
             )}
@@ -107,17 +110,17 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
         </form>
 
         {tool.referenceBenchmark && (
-          <div className="mt-3 text-[11px] text-charcoal-muted">
+          <div className="mt-3 text-xs text-[#6B7280]">
             {tool.referenceBenchmark}
           </div>
         )}
 
         {/* Error Notice */}
         {error && (
-          <div className="mt-8 rounded-xl border border-rose-300 bg-rose-50 p-4 text-xs text-rose-800 flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-rose-600 flex-shrink-0 mt-0.5" />
+          <div className="mt-8 rounded-lg border border-[#EF4444]/30 bg-[#EF4444]/10 p-4 text-xs text-[#991B1B] flex items-start gap-3">
+            <AlertCircle className="h-4 w-4 text-[#EF4444] flex-shrink-0 mt-0.5" />
             <div>
-              <strong className="font-bold block mb-1">Audit Failed</strong>
+              <strong className="font-semibold block mb-0.5">Audit Failed</strong>
               <p>{error}</p>
             </div>
           </div>
@@ -125,86 +128,140 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
 
         {/* Stage 2: Interactive Result Display */}
         {analyzed && auditResult && (
-          <div className="mt-8 rounded-xl border border-sand-300 bg-[#F7F4EE] p-6 space-y-6 animate-fadeIn">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-sand-300">
+          <div className="mt-8 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] p-6 space-y-6 animate-fadeIn">
+            
+            {/* Summary Top Bar: Summary First */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
-                  Live Telemetry for:
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                  Audit Target
                 </span>
-                <div className="font-mono text-sm font-bold text-charcoal break-all">
+                <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
                   {auditResult.domain}
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="text-right">
-                  <span className="text-[10px] text-charcoal-muted block">Performance Score</span>
-                  <span className={`font-editorial text-3xl font-bold ${
-                    auditResult.score >= 80 ? 'text-emerald-700' : auditResult.score >= 60 ? 'text-amber-700' : 'text-rose-700'
+
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] flex items-center gap-3">
+                  <div className="text-right">
+                    <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Health Score</span>
+                    <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                      {auditResult.score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                    </span>
+                  </div>
+                  <div className={`px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
+                    auditResult.score >= 80
+                      ? 'bg-[#10B981]/15 text-[#10B981]'
+                      : auditResult.score >= 60
+                      ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                      : 'bg-[#EF4444]/15 text-[#EF4444]'
                   }`}>
-                    {auditResult.score}/100
+                    {auditResult.score >= 80 ? (
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    ) : auditResult.score >= 60 ? (
+                      <AlertTriangle className="h-3.5 w-3.5" />
+                    ) : (
+                      <AlertCircle className="h-3.5 w-3.5" />
+                    )}
+                    <span>{auditResult.score >= 80 ? 'Good' : auditResult.score >= 60 ? 'Needs Attention' : 'Critical'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 6 Metric Grid with Standardized Severity Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Server TTFB</span>
+                <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.ttfb} ms</span>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded ${
+                    auditResult.ttfb < 300
+                      ? 'bg-[#10B981]/10 text-[#10B981]'
+                      : 'bg-[#F59E0B]/10 text-[#B45309]'
+                  }`}>
+                    {auditResult.ttfb < 300 ? 'Optimal Edge Delivery' : 'High Server Latency'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">DOM Element Count</span>
+                <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.telemetry.totalElements.toLocaleString()} nodes</span>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded ${
+                    auditResult.telemetry.totalElements <= 1200
+                      ? 'bg-[#10B981]/10 text-[#10B981]'
+                      : 'bg-[#F59E0B]/10 text-[#B45309]'
+                  }`}>
+                    {auditResult.telemetry.totalElements <= 1200 ? 'Optimal DOM Size' : 'Excessive Layout Nodes'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Max Tree Depth</span>
+                <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.telemetry.maxDepth} levels</span>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded ${
+                    auditResult.telemetry.maxDepth <= 18
+                      ? 'bg-[#10B981]/10 text-[#10B981]'
+                      : 'bg-[#EF4444]/10 text-[#EF4444]'
+                  }`}>
+                    {auditResult.telemetry.maxDepth <= 18 ? 'Clean Nesting' : 'Deep Wrapper Nesting'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Document Payload</span>
+                <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.telemetry.docKb} KB HTML</span>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded ${
+                    auditResult.telemetry.docKb <= 50
+                      ? 'bg-[#10B981]/10 text-[#10B981]'
+                      : 'bg-[#EF4444]/10 text-[#EF4444]'
+                  }`}>
+                    {auditResult.telemetry.docKb <= 50 ? 'Within Mobile Budget' : 'Exceeds 50KB Budget'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Detected Stack</span>
+                <span className="font-bold text-[#0F0F0F] text-base truncate block">{auditResult.telemetry.detectedCms}</span>
+                <div className="mt-2">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded bg-[#F3F4F6] text-[#4B5563]">
+                    CMS / Builder Engine
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-lg bg-white border border-[#E5E7EB]">
+                <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Structured Data</span>
+                <span className="font-bold text-[#0F0F0F] text-base block truncate">
+                  {auditResult.telemetry.hasSchema ? auditResult.telemetry.schemaType : 'Missing'}
+                </span>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded ${
+                    auditResult.telemetry.hasSchema
+                      ? 'bg-[#10B981]/10 text-[#10B981]'
+                      : 'bg-[#F59E0B]/10 text-[#B45309]'
+                  }`}>
+                    {auditResult.telemetry.hasSchema ? 'Schema Validated' : 'No JSON-LD Detected'}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* 6 Metric Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Server TTFB</span>
-                <span className="font-bold text-charcoal text-sm">{auditResult.ttfb} ms</span>
-                <span className={`block text-[10px] mt-1 ${auditResult.ttfb < 300 ? 'text-emerald-700' : 'text-amber-700'}`}>
-                  {auditResult.ttfb < 300 ? 'Fast Edge Delivery' : 'High Server Latency'}
-                </span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">DOM Element Count</span>
-                <span className="font-bold text-charcoal text-sm">{auditResult.telemetry.totalElements.toLocaleString()} nodes</span>
-                <span className={`block text-[10px] mt-1 ${auditResult.telemetry.totalElements <= 1200 ? 'text-emerald-700' : 'text-amber-700'}`}>
-                  {auditResult.telemetry.totalElements <= 1200 ? 'Optimal DOM Size' : 'Excessive Layout Nodes'}
-                </span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Max Tree Depth</span>
-                <span className="font-bold text-charcoal text-sm">{auditResult.telemetry.maxDepth} levels</span>
-                <span className={`block text-[10px] mt-1 ${auditResult.telemetry.maxDepth <= 18 ? 'text-emerald-700' : 'text-rose-700'}`}>
-                  {auditResult.telemetry.maxDepth <= 18 ? 'Clean Nesting' : 'Deep Wrapper Nesting'}
-                </span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Document Payload</span>
-                <span className="font-bold text-charcoal text-sm">{auditResult.telemetry.docKb} KB HTML</span>
-                <span className={`block text-[10px] mt-1 ${auditResult.telemetry.docKb <= 50 ? 'text-emerald-700' : 'text-rose-700'}`}>
-                  {auditResult.telemetry.docKb <= 50 ? 'Within Mobile Budget' : 'Exceeds 50KB Budget'}
-                </span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Detected Stack</span>
-                <span className="font-bold text-charcoal text-sm truncate block">{auditResult.telemetry.detectedCms}</span>
-                <span className="block text-[10px] text-charcoal-muted mt-1">CMS / Builder Engine</span>
-              </div>
-
-              <div className="p-3.5 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Structured Data</span>
-                <span className="font-bold text-charcoal text-sm block truncate">
-                  {auditResult.telemetry.hasSchema ? auditResult.telemetry.schemaType : 'Missing'}
-                </span>
-                <span className={`block text-[10px] mt-1 ${auditResult.telemetry.hasSchema ? 'text-emerald-700' : 'text-amber-700'}`}>
-                  {auditResult.telemetry.hasSchema ? 'Knowledge Graph Active' : 'No JSON-LD Detected'}
-                </span>
-              </div>
-            </div>
-
             {/* Primary Identified Flaw */}
             {auditResult.primaryFlaw && (
-              <div className="p-4 rounded-xl bg-white border border-sand-300 shadow-2xs">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-accent mb-1">
-                  Primary Architectural Bottleneck:
+              <div className="p-4 rounded-lg bg-[#F59E0B]/10 border border-[#F59E0B]/20">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-[#B45309] mb-1 flex items-center gap-1.5">
+                  <AlertTriangle className="h-3.5 w-3.5 text-[#F59E0B]" />
+                  <span>Primary Performance Bottleneck:</span>
                 </div>
-                <div className="text-xs font-semibold text-charcoal">
+                <div className="text-sm font-semibold text-[#0F0F0F]">
                   {auditResult.primaryFlaw}
                 </div>
               </div>
@@ -212,14 +269,14 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
 
             {/* Specific Improvement Steps */}
             {auditResult.improvements && auditResult.improvements.length > 0 && (
-              <div className="p-4 rounded-xl bg-white border border-sand-300 shadow-2xs space-y-2">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal mb-2">
+              <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
                   Recommended Engineering Fixes:
                 </div>
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {auditResult.improvements.map((fix: string, fIdx: number) => (
-                    <li key={fIdx} className="flex items-start gap-2 text-xs text-charcoal-light">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                      <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                       <span>{fix}</span>
                     </li>
                   ))}
@@ -227,21 +284,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
               </div>
             )}
 
-            {/* Bridge to VitalsSniper Beta */}
-            <div className="p-5 rounded-xl bg-charcoal text-sand-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            {/* Bottom Action Card */}
+            <div className="p-6 rounded-lg bg-[#111827] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <strong className="block text-xs font-bold text-white mb-0.5">
-                  Want to highlight these offending DOM elements live on screen?
+                <strong className="block text-sm font-bold text-white mb-1">
+                  Want to highlight offending elements live in your browser?
                 </strong>
-                <p className="text-[11px] text-sand-300">
-                  VitalsSniper PRO runs in your Chromium tab with zero server latency and exports white label client tear sheets.
+                <p className="text-xs text-[#9CA3AF]">
+                  VitalsSniper PRO highlights LCP candidates and DOM depth on active tabs with zero latency.
                 </p>
               </div>
               <Link
                 href={`/vitalssniper?url=${encodeURIComponent(auditResult.targetUrl || inputUrl)}#auditor`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent hover:bg-accent-dark text-white text-xs font-bold transition-colors whitespace-nowrap shadow-xs"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-semibold transition-colors whitespace-nowrap flex-shrink-0"
               >
-                <span>Open Free Public Beta</span>
+                <span>Explore VitalsSniper</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

@@ -13,19 +13,19 @@ export const metadata = {
 
 export default function ComparisonsPage() {
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="py-16 border-b border-sand-300 bg-white">
+      <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-[#F7F4EE] px-3 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-xs">
-            <Scale className="h-3.5 w-3.5 text-accent" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1 text-xs font-semibold text-[#4B5563] mb-4 shadow-xs">
+            <Scale className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Empirical Head-to-Head Tests</span>
           </div>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold text-charcoal mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F0F0F] mb-4">
             Head-to-Head Web Tool Comparisons
           </h1>
-          <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
+          <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
             We deploy competitors onto identical server infrastructure and measure real-world speed, database queries, and feature limits so you can make informed decisions.
           </p>
         </div>
@@ -35,38 +35,38 @@ export default function ComparisonsPage() {
         {COMPARISONS.map((comp) => (
           <article
             key={comp.slug}
-            className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm hover:border-accent/40 transition-all"
+            className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs hover:border-[#D1D5DB] transition-colors"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-              <span className="editorial-pill">
+              <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold">
                 {comp.category}
               </span>
-              <span className="text-xs font-bold text-accent">
+              <span className="text-xs font-bold text-[#2563EB]">
                 {comp.toolA} vs {comp.toolB}
               </span>
             </div>
 
             <Link href={`/comparisons/${comp.slug}`}>
-              <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-charcoal hover:text-accent transition-colors mb-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] hover:text-[#2563EB] transition-colors mb-3">
                 {comp.title}
               </h2>
             </Link>
 
-            <p className="text-sm text-charcoal-muted mb-6 leading-relaxed">
+            <p className="text-sm text-[#4B5563] mb-6 leading-relaxed">
               {comp.summary}
             </p>
 
             {/* Embedded Mini Comparison Table */}
             <ComparisonTable comparison={comp} />
 
-            <div className="mt-6 pt-4 border-t border-sand-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="text-xs text-charcoal-muted">
-                <span className="font-bold text-charcoal">Quick Recommendation:</span> {comp.bestForA}
+            <div className="mt-6 pt-4 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="text-xs text-[#4B5563]">
+                <span className="font-bold text-[#0F0F0F]">Quick Recommendation:</span> {comp.bestForA}
               </div>
 
               <Link
                 href={`/comparisons/${comp.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#2563EB] px-4 py-2 text-xs font-semibold text-white hover:bg-[#1D4ED8] transition-colors shadow-xs"
               >
                 <span>Read Full Investigation</span>
                 <ArrowRight className="h-3.5 w-3.5" />

@@ -4,11 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   AlertCircle,
-  Zap,
+  AlertTriangle,
   ArrowRight,
   Globe,
   Download,
   CheckCircle2,
+  Activity,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
@@ -88,31 +89,29 @@ export default function AuditFormClient() {
   };
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#12141d] p-6 sm:p-10 shadow-2xl relative overflow-hidden mb-12">
-      <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-
+    <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-10 shadow-none mb-12">
       {!result ? (
-        <form onSubmit={handleAuditSubmit} className="space-y-5">
+        <form onSubmit={handleAuditSubmit} className="space-y-6">
           <div>
-            <label className="block text-xs font-bold text-gray-300 mb-1.5">
-              Enter Website URL to Audit
+            <label className="block text-xs font-semibold uppercase tracking-wider text-[#0F0F0F] mb-2">
+              Website URL to Audit
             </label>
-            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#090a10] px-3.5 py-3 focus-within:border-emerald-500 transition-colors">
-              <Globe className="h-4 w-4 text-gray-500 flex-shrink-0" />
+            <div className="flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] px-4 py-3 focus-within:border-[#2563EB] focus-within:bg-white transition-all">
+              <Globe className="h-4 w-4 text-[#6B7280] flex-shrink-0" />
               <input
                 type="text"
                 required
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="e.g. apple.com or yourprospect.com"
-                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500 font-mono"
+                placeholder="Enter website URL (e.g. example.com)"
+                className="w-full bg-transparent text-sm text-[#0F0F0F] outline-none placeholder-[#6B7280]"
               />
             </div>
           </div>
 
           {error && (
-            <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-xs text-rose-300 flex items-center gap-2">
-              <AlertCircle className="h-4 w-4 text-rose-400 flex-shrink-0" />
+            <div className="rounded-lg border border-[#EF4444]/30 bg-[#EF4444]/10 p-4 text-xs text-[#991B1B] flex items-center gap-2.5">
+              <AlertCircle className="h-4 w-4 text-[#EF4444] flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
@@ -120,23 +119,23 @@ export default function AuditFormClient() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-white py-4 text-sm font-extrabold text-black hover:bg-gray-100 transition-all flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(255,255,255,0.2)] disabled:opacity-50 cursor-pointer"
+            className="w-full rounded-lg bg-[#2563EB] py-3.5 text-sm font-semibold text-white hover:bg-[#1D4ED8] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-none"
           >
             {loading ? (
               <>
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                 <span>Executing In-Browser Forensic Scan...</span>
               </>
             ) : (
               <>
-                <Zap className="h-4 w-4 text-emerald-600" />
+                <Activity className="h-4 w-4 text-white" />
                 <span>Run Free Audit (No Email Required)</span>
                 <ArrowRight className="h-4 w-4" />
               </>
             )}
           </button>
 
-          <div className="flex items-center justify-center gap-4 text-[11px] text-gray-500 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#6B7280] pt-1">
             <span>100% Free</span>
             <span>&bull;</span>
             <span>No Email Required to View Results</span>
@@ -145,14 +144,16 @@ export default function AuditFormClient() {
           </div>
         </form>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fadeIn">
           {/* Results Top Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#E5E7EB]">
             <div>
-              <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">
+              <span className="text-[11px] font-semibold text-[#10B981] uppercase tracking-wider block mb-1">
                 Audit Complete &bull; {result.domain}
               </span>
-              <h2 className="text-2xl font-black text-white">Forensic Performance Scorecard</h2>
+              <h2 className="text-2xl font-bold tracking-tight text-[#0F0F0F]">
+                Performance &amp; Health Scorecard
+              </h2>
             </div>
 
             <button
@@ -160,39 +161,39 @@ export default function AuditFormClient() {
                 setResult(null);
                 setEmailSubmitted(false);
               }}
-              className="text-xs text-gray-400 hover:text-white underline cursor-pointer"
+              className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] underline cursor-pointer"
             >
               Audit Another Website
             </button>
           </div>
 
-          {/* Score Dial & Metrics */}
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-            <div className="rounded-xl border border-white/5 bg-[#090a10] p-4 text-center">
-              <span className="text-gray-500 text-xs block mb-1">Health Score</span>
-              <span className="text-3xl font-black text-emerald-400">
+          {/* Score Dial & Metrics: Summary First */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-4 text-center">
+              <span className="text-[#6B7280] text-xs block mb-1">Overall Score</span>
+              <span className="text-3xl font-bold font-mono text-[#0F0F0F]">
                 {result.telemetry?.healthScore || 72}
-                <span className="text-xs text-gray-400 font-normal"> / 100</span>
+                <span className="text-xs text-[#6B7280] font-normal"> / 100</span>
               </span>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-[#090a10] p-4 text-center">
-              <span className="text-gray-500 text-xs block mb-1">CMS / Builder</span>
-              <span className="text-base font-bold text-white block mt-1">
+            <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-4 text-center">
+              <span className="text-[#6B7280] text-xs block mb-1">CMS / Builder</span>
+              <span className="text-base font-bold text-[#0F0F0F] block mt-1 truncate">
                 {result.telemetry?.cms || 'Custom'}
               </span>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-[#090a10] p-4 text-center">
-              <span className="text-gray-500 text-xs block mb-1">DOM Elements</span>
-              <span className="text-base font-bold text-amber-400 block mt-1">
+            <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-4 text-center">
+              <span className="text-[#6B7280] text-xs block mb-1">DOM Elements</span>
+              <span className="text-base font-bold font-mono text-[#0F0F0F] block mt-1">
                 {result.telemetry?.domCount?.toLocaleString() || '1,840'}
               </span>
             </div>
 
-            <div className="rounded-xl border border-white/5 bg-[#090a10] p-4 text-center">
-              <span className="text-gray-500 text-xs block mb-1">HTML Payload</span>
-              <span className="text-base font-bold text-rose-400 block mt-1">
+            <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-4 text-center">
+              <span className="text-[#6B7280] text-xs block mb-1">HTML Payload</span>
+              <span className="text-base font-bold font-mono text-[#0F0F0F] block mt-1">
                 {result.telemetry?.htmlPayloadKB || 142} KB
               </span>
             </div>
@@ -200,37 +201,38 @@ export default function AuditFormClient() {
 
           {/* Primary Bottleneck */}
           {result.flaw && (
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5 space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400">
-                Observed Performance Flaw
-              </span>
-              <h3 className="text-base font-bold text-white">{result.flaw.headline}</h3>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">{result.flaw.explanation}</p>
+            <div className="rounded-lg border border-[#F59E0B]/20 bg-[#F59E0B]/10 p-5 space-y-2">
+              <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#B45309]">
+                <AlertTriangle className="h-4 w-4 text-[#F59E0B]" />
+                <span>Observed Performance Flaw</span>
+              </div>
+              <h3 className="text-base font-bold text-[#0F0F0F]">{result.flaw.headline}</h3>
+              <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed">{result.flaw.explanation}</p>
             </div>
           )}
 
           {/* Pitch Hook */}
           {result.outreach?.email && (
-            <div className="rounded-xl border border-white/10 bg-[#090a10] p-5 space-y-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">
-                Generated Remediation Pitch Hook
+            <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-5 space-y-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                Generated Remediation Summary
               </span>
-              <div className="font-mono text-xs text-gray-300 whitespace-pre-wrap bg-black/40 p-4 rounded-lg border border-white/5">
+              <div className="font-mono text-xs text-[#4B5563] whitespace-pre-wrap bg-white p-4 rounded-lg border border-[#E5E7EB]">
                 {result.outreach.email}
               </div>
             </div>
           )}
 
           {/* Optional Stage 3: PDF Report Delivery Form */}
-          <div className="rounded-xl border border-white/10 bg-[#090a10] p-6">
+          <div className="rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] p-6">
             {!emailSubmitted ? (
               <form onSubmit={handleEmailSubmit} className="space-y-4">
-                <div className="flex items-center gap-2 text-white font-bold text-sm">
-                  <Download className="h-4 w-4 text-emerald-400" />
+                <div className="flex items-center gap-2 text-[#0F0F0F] font-bold text-sm">
+                  <Download className="h-4 w-4 text-[#2563EB]" />
                   <span>Want this audit exported as a branded PDF tear sheet?</span>
                 </div>
-                <p className="text-xs text-gray-400">
-                  Enter your email to receive a clean executive summary formatted for client presentations.
+                <p className="text-xs text-[#6B7280]">
+                  Enter your email to receive an executive summary formatted for client presentations.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -240,26 +242,26 @@ export default function AuditFormClient() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your-email@agency.com"
-                    className="rounded-lg border border-white/10 bg-black/50 px-3.5 py-2.5 text-xs text-white outline-none focus:border-emerald-500"
+                    className="rounded-lg border border-[#E5E7EB] bg-white px-3.5 py-2.5 text-xs text-[#0F0F0F] outline-none focus:border-[#2563EB]"
                   />
                   <input
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Agency Name (Optional)"
-                    className="rounded-lg border border-white/10 bg-black/50 px-3.5 py-2.5 text-xs text-white outline-none focus:border-emerald-500"
+                    className="rounded-lg border border-[#E5E7EB] bg-white px-3.5 py-2.5 text-xs text-[#0F0F0F] outline-none focus:border-[#2563EB]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="rounded-lg bg-emerald-500 hover:bg-emerald-600 px-5 py-2.5 text-xs font-bold text-black transition-colors cursor-pointer"
+                  className="rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] px-5 py-2.5 text-xs font-semibold text-white transition-colors cursor-pointer"
                 >
                   Send PDF Audit Tear Sheet
                 </button>
               </form>
             ) : (
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold">
+              <div className="flex items-center gap-2 text-[#10B981] text-xs font-semibold">
                 <CheckCircle2 className="h-4 w-4" />
                 <span>Report request recorded. Your audit tear sheet will be dispatched to {email}.</span>
               </div>
@@ -267,18 +269,18 @@ export default function AuditFormClient() {
           </div>
 
           {/* Upsell to PRO */}
-          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="rounded-lg border border-[#1F2937] bg-[#111827] text-white p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h4 className="font-bold text-white text-base">Need in-browser LCP highlighting & white-label branding?</h4>
-              <p className="text-xs text-gray-400">VitalsSniper PRO highlights elements live on active tabs and includes a built-in prospect CRM.</p>
+              <h4 className="font-bold text-white text-base">Need in-browser LCP highlighting &amp; white-label branding?</h4>
+              <p className="text-xs text-[#9CA3AF] mt-0.5">VitalsSniper PRO highlights elements live on active tabs and includes a built-in prospect CRM.</p>
             </div>
 
             <Link
               href="/vitalssniper#auditor"
-              className="rounded-xl bg-white px-6 py-3 text-xs font-bold text-black hover:bg-gray-100 transition-all flex items-center gap-2 flex-shrink-0 shadow-md"
+              className="rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] px-6 py-2.5 text-xs font-semibold text-white transition-colors flex items-center gap-2 flex-shrink-0"
             >
               <span>Test VitalsSniper Beta (Free)</span>
-              <ArrowRight className="h-3.5 w-3.5 text-emerald-600" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>

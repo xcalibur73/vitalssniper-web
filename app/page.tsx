@@ -1,8 +1,8 @@
-
 import React from 'react';
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import EditorialHero from '@/components/editorial/EditorialHero';
+import HowItWorksSection from '@/components/editorial/HowItWorksSection';
 import WebsiteIntelligenceSection from '@/components/editorial/WebsiteIntelligenceSection';
 import LatestResearchSection from '@/components/editorial/LatestResearchSection';
 import LatestArticlesSection from '@/components/editorial/LatestArticlesSection';
@@ -60,7 +60,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org WebSite & Organization Entity Knowledge Graph */}
       <script
         type="application/ld+json"
@@ -74,32 +74,35 @@ export default function HomePage() {
       {/* 1. Header Navigation */}
       <Navbar />
 
-      {/* 2. Editorial Two-Column Hero + Live Forensic Terminal */}
+      {/* 2. Hero + Honest Product Preview Card */}
       <EditorialHero />
 
-      {/* 3. Website Intelligence (4-card horizontal tools suite) */}
+      {/* 3. How It Works (3-step explanation) */}
+      <HowItWorksSection />
+
+      {/* 4. Website Intelligence (Featured Website Audit + Secondary Tools) */}
       <WebsiteIntelligenceSection />
 
-      {/* 4. Latest Research (Data Lab with Comparative Bar Chart) */}
+      {/* 5. Latest Research (Empirical Studies + Comparative Data Chart) */}
       <LatestResearchSection />
 
-      {/* 5. Latest Articles (Magazine Rhythm: Large Featured Story + Modular Guides) */}
+      {/* 6. Latest Articles (3-Column Clean Editorial Grid) */}
       <LatestArticlesSection />
 
-      {/* 6. Tested & Reviewed (4-card empirical software grid) */}
+      {/* 7. Tested & Reviewed (Software Benchmarks Matrix) */}
       <PopularReviewsSection />
 
-      {/* 7. Dark Action Callout Banner */}
+      {/* 8. Restrained Dark Action Callout Banner */}
       <ActionBanner />
 
-      {/* 8. The Web Audits Brief (Inline Newsletter Strip) */}
-      <section className="py-10 border-b border-sand-300 bg-[#F7F4EE]">
+      {/* 9. The Web Audits Brief (Inline Newsletter Strip) */}
+      <section className="py-12 border-b border-[#E5E7EB] bg-[#F8F8F8]">
         <div className="mx-auto max-w-7xl px-6">
           <NewsletterBrief />
         </div>
       </section>
 
-      {/* 9. Structured Editorial Masthead Footer */}
+      {/* 10. Structured Masthead Footer */}
       <Footer />
 
     </main>

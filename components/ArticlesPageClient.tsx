@@ -39,46 +39,46 @@ export default function ArticlesPageClient({ posts, beats }: ArticlesPageClientP
   });
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="mx-auto max-w-6xl px-6 py-16 flex-1 w-full">
+      <div className="mx-auto max-w-7xl px-6 py-16 flex-1 w-full">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-white px-3.5 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-2xs">
-            <span>The Publication Archive</span>
+        <div className="max-w-3xl mb-12">
+          <div className="text-xs font-semibold uppercase tracking-wider text-[#2563EB] mb-2">
+            Publication Archive
           </div>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold tracking-tight text-charcoal mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F0F0F] mb-4">
             Technical Articles &amp; Benchmarks
           </h1>
-          <p className="text-sm sm:text-base text-charcoal-muted leading-relaxed">
+          <p className="text-base text-[#4B5563] leading-relaxed">
             Evidence-driven guides on Core Web Vitals, technical SEO, AI citability, and website speed optimization.
           </p>
         </div>
 
         {/* Filter Bar & Search */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-sand-300">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-[#E5E7EB]">
           {/* Topic Pills */}
           <div className="flex items-center gap-2 flex-wrap w-full md:w-auto">
             <button
               onClick={() => setSelectedTopic('All')}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                 selectedTopic === 'All'
-                  ? 'bg-charcoal text-white'
-                  : 'bg-white border border-sand-300 text-charcoal-muted hover:text-charcoal'
+                  ? 'bg-[#2563EB] text-white'
+                  : 'bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#0F0F0F]'
               }`}
             >
-              All Beats ({posts.length})
+              All Topics ({posts.length})
             </button>
             {beats.map((beat) => (
               <button
                 key={beat.name}
                 onClick={() => setSelectedTopic(beat.name)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                   selectedTopic === beat.name
-                    ? 'bg-terracotta text-white'
-                    : 'bg-white border border-sand-300 text-charcoal-muted hover:text-charcoal'
+                    ? 'bg-[#2563EB] text-white'
+                    : 'bg-white border border-[#E5E7EB] text-[#4B5563] hover:text-[#0F0F0F]'
                 }`}
               >
                 {beat.name}
@@ -87,14 +87,14 @@ export default function ArticlesPageClient({ posts, beats }: ArticlesPageClientP
           </div>
 
           {/* Search Box */}
-          <div className="relative w-full md:w-64">
-            <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-charcoal-subtle" />
+          <div className="relative w-full md:w-72">
+            <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7280]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search publications..."
-              className="w-full rounded-xl border border-sand-300 bg-white pl-9 pr-4 py-2 text-xs text-charcoal outline-none placeholder:text-charcoal-subtle focus:border-terracotta"
+              placeholder="Search articles &amp; benchmarks..."
+              className="w-full rounded-lg border border-[#E5E7EB] bg-white pl-9 pr-4 py-2 text-xs sm:text-sm text-[#0F0F0F] outline-none placeholder-[#6B7280] focus:border-[#2563EB]"
             />
           </div>
         </div>
@@ -105,33 +105,33 @@ export default function ArticlesPageClient({ posts, beats }: ArticlesPageClientP
             {filteredPosts.map((post) => (
               <article
                 key={post.slug}
-                className="paper-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 group"
+                className="rounded-xl border border-[#E5E7EB] bg-white p-6 flex flex-col justify-between shadow-none transition-colors hover:border-[#D1D5DB] group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="editorial-pill">
+                    <span className="inline-block rounded-full bg-[#F3F4F6] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#4B5563]">
                       {post.category}
                     </span>
-                    <span className="text-[11px] font-semibold text-charcoal-subtle">
+                    <span className="text-[11px] font-medium text-[#6B7280]">
                       {post.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-editorial text-xl font-bold text-charcoal group-hover:text-terracotta transition-colors leading-snug mb-3">
-                    <Link href={`/articles/${post.slug}`} className="hover:underline">
+                  <h3 className="text-lg font-bold tracking-tight text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors leading-snug mb-3">
+                    <Link href={`/articles/${post.slug}`}>
                       {post.title}
                     </Link>
                   </h3>
 
-                  <p className="text-xs text-charcoal-muted leading-relaxed line-clamp-3 mb-6">
+                  <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed line-clamp-3 mb-6">
                     {post.excerpt}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-sand-300 flex items-center justify-between text-[11px] text-charcoal-subtle">
+                <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between text-xs text-[#6B7280]">
                   <span className="truncate max-w-[170px] font-medium">{post.author.split(',')[0]}</span>
                   <div className="flex items-center gap-1.5 font-medium">
-                    <Clock className="h-3 w-3 text-terracotta" />
+                    <Clock className="h-3.5 w-3.5 text-[#2563EB]" />
                     <span>{post.readTime}</span>
                   </div>
                 </div>
@@ -139,14 +139,14 @@ export default function ArticlesPageClient({ posts, beats }: ArticlesPageClientP
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-2xl border border-sand-300 p-8">
-            <p className="text-sm text-charcoal-muted mb-4">No articles match your current topic or search query.</p>
+          <div className="text-center py-20 bg-white rounded-xl border border-[#E5E7EB] p-8">
+            <p className="text-sm text-[#4B5563] mb-4">No articles match your current topic or search query.</p>
             <button
               onClick={() => {
                 setSelectedTopic('All');
                 setSearchQuery('');
               }}
-              className="px-4 py-2 rounded-xl bg-terracotta text-xs font-bold text-white"
+              className="px-4 py-2 rounded-lg bg-[#2563EB] text-xs font-semibold text-white hover:bg-[#1D4ED8]"
             >
               Reset Filters
             </button>

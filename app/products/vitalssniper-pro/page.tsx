@@ -126,7 +126,7 @@ export default function VitalsSniperProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       {/* Schema.org SoftwareApplication JSON-LD */}
       <script
         type="application/ld+json"
@@ -140,26 +140,26 @@ export default function VitalsSniperProductPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="py-20 border-b border-sand-300 bg-white">
+      <section className="py-20 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent mb-6 shadow-xs">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold text-[#2563EB] mb-6 shadow-xs">
             <Sparkles className="h-4 w-4" />
-            <span>VitalsSniper PRO &bull; Flagship Agency Software</span>
+            <span>VitalsSniper PRO : Flagship Agency Software</span>
           </div>
 
-          <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-charcoal mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F0F0F] mb-6 leading-tight">
             Find the Problem. <br />
-            Prove It. <span className="italic font-normal text-accent">Sell the Solution.</span>
+            Prove It. <span className="text-[#2563EB]">Sell the Solution.</span>
           </h1>
 
-          <p className="text-base sm:text-xl text-charcoal-muted max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg text-[#4B5563] max-w-3xl mx-auto mb-10 leading-relaxed">
             The in-browser performance forensics and client outreach engine. Built for web agencies, SEO specialists, and freelance consultants to close speed optimization retainers in minutes.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <Link
               href="/vitalssniper#auditor"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-4 text-sm font-bold text-white shadow-sm hover:bg-accent-dark hover:scale-[1.01] transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-8 py-4 text-sm font-bold text-white shadow-xs hover:bg-[#1D4ED8] hover:scale-[1.01] transition-all"
             >
               <span>Join Free Public Beta</span>
               <ArrowRight className="h-4 w-4" />
@@ -167,7 +167,7 @@ export default function VitalsSniperProductPage() {
 
             <Link
               href="/tools/website-speed-test"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-sand-300 bg-white px-8 py-4 text-sm font-bold text-charcoal shadow-sm hover:border-accent hover:text-accent transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-[#E5E7EB] bg-white px-8 py-4 text-sm font-bold text-[#0F0F0F] shadow-xs hover:bg-[#F3F4F6] transition-all"
             >
               <span>Try Free In-Browser Demo</span>
               <ArrowRight className="h-4 w-4" />
@@ -175,7 +175,7 @@ export default function VitalsSniperProductPage() {
           </div>
 
           {/* Screenshot Container */}
-          <div className="rounded-3xl border border-charcoal bg-[#242321] p-3 sm:p-5 shadow-2xl max-w-4xl mx-auto text-left">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-[#111827] p-3 sm:p-5 shadow-xl max-w-4xl mx-auto text-left">
             <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 text-xs text-white/60 mb-3">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80 inline-block" />
@@ -183,12 +183,12 @@ export default function VitalsSniperProductPage() {
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80 inline-block" />
               </div>
               <span className="font-mono text-[11px] text-white/70">
-                Chromium Active Tab Forensics &bull; VitalsSniper PRO
+                Chromium Active Tab Forensics : VitalsSniper PRO
               </span>
               <span className="text-[10px] text-emerald-400 font-bold hidden sm:inline">50ms Telemetry</span>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative rounded-xl overflow-hidden border border-white/10">
               <Image
                 src="/assets/appsumo_hero_1920x1080.png"
                 alt="VitalsSniper PRO Browser Extension Interface"
@@ -202,15 +202,17 @@ export default function VitalsSniperProductPage() {
         </div>
       </section>
 
-      {/* The 6-Stage Core Workflow (Section 11) */}
-      <section className="py-20 border-b border-sand-300 bg-[#F7F4EE]">
+      {/* The 6-Stage Core Workflow */}
+      <section className="py-20 border-b border-[#E5E7EB] bg-[#F8F8F8]">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="editorial-pill mb-2">The Complete Workflow</span>
-            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mt-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#2563EB] mb-3">
+              The Complete Workflow
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F0F0F] mt-2">
               From Flaw Detection to Signed Contract
             </h2>
-            <p className="text-sm text-charcoal-muted mt-2 leading-relaxed">
+            <p className="text-sm text-[#4B5563] mt-2 leading-relaxed">
               VitalsSniper PRO is not just a passive checker: it is an end-to-end client acquisition engine designed to convert technical issues into revenue.
             </p>
           </div>
@@ -219,21 +221,21 @@ export default function VitalsSniperProductPage() {
             {coreWorkflow.map((step) => (
               <div
                 key={step.num}
-                className="rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all flex flex-col justify-between"
+                className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs hover:border-[#2563EB]/40 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-sm font-bold text-accent">
+                    <span className="font-mono text-sm font-bold text-[#2563EB]">
                       {step.num}
                     </span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-charcoal-muted bg-[#F7F4EE] px-2.5 py-1 rounded">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B7280] bg-[#F3F4F6] px-2.5 py-1 rounded">
                       {step.subtitle}
                     </span>
                   </div>
-                  <h3 className="font-editorial text-2xl font-bold text-charcoal mb-2">
+                  <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed">
+                  <p className="text-xs text-[#4B5563] leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -243,41 +245,43 @@ export default function VitalsSniperProductPage() {
         </div>
       </section>
 
-      {/* Pricing Table (Section 11 & 25) */}
-      <section className="py-20 border-b border-sand-300 bg-white">
+      {/* Pricing Table */}
+      <section className="py-20 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="editorial-pill mb-2">Public Beta Program</span>
-            <h2 className="font-editorial text-3xl sm:text-4xl font-bold text-charcoal mt-2">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-semibold text-[#2563EB] mb-3">
+              Public Beta Program
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0F0F0F] mt-2">
               Open Beta: 100% Free Testing
             </h2>
-            <p className="text-sm text-charcoal-muted mt-2">
+            <p className="text-sm text-[#4B5563] mt-2">
               Test in-browser tab diagnostics and client proposal generation for free. No credit card, no paywall, and zero risk.
             </p>
           </div>
 
-          <div className="rounded-3xl border-2 border-accent bg-[#F7F4EE] p-8 sm:p-10 shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-accent text-white text-[11px] font-bold uppercase tracking-wider px-6 py-1.5 rounded-bl-xl">
+          <div className="rounded-3xl border-2 border-[#2563EB] bg-[#F8F8F8] p-8 sm:p-10 shadow-md relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#2563EB] text-white text-[11px] font-bold uppercase tracking-wider px-6 py-1.5 rounded-bl-xl">
               Public Beta
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-8 border-b border-sand-300 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 pb-8 border-b border-[#E5E7EB] mb-8">
               <div>
-                <h3 className="font-editorial text-3xl font-bold text-charcoal">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0F0F0F]">
                   VitalsSniper PRO
                 </h3>
-                <p className="text-xs text-charcoal-muted mt-1">
+                <p className="text-xs text-[#4B5563] mt-1">
                   Full agency client-acquisition suite with free access during public beta.
                 </p>
               </div>
 
               <div className="text-right">
-                <span className="font-editorial text-5xl font-bold text-charcoal">$0</span>
-                <span className="text-xs text-charcoal-muted ml-2 font-medium">during open beta</span>
+                <span className="font-black text-4xl sm:text-5xl text-[#0F0F0F]">$0</span>
+                <span className="text-xs text-[#6B7280] ml-2 font-medium">during open beta</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 text-xs text-charcoal">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 text-xs text-[#0F0F0F]">
               {planFeatures.map((feat, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
                   <Check className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -289,13 +293,13 @@ export default function VitalsSniperProductPage() {
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
               <Link
                 href="/vitalssniper#auditor"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-8 py-4 text-sm font-bold text-white shadow-sm hover:bg-accent-dark transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-8 py-4 text-sm font-bold text-white shadow-xs hover:bg-[#1D4ED8] transition-all"
               >
                 <span>Launch In-Browser Beta Audit</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
 
-              <span className="text-xs text-charcoal-muted flex items-center gap-1.5">
+              <span className="text-xs text-[#6B7280] flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-600" />
                 <span>100% Free Public Beta</span>
               </span>

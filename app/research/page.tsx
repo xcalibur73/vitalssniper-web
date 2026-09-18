@@ -13,19 +13,19 @@ export const metadata = {
 
 export default function ResearchIndexPage() {
   return (
-    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
       <Navbar />
 
-      <div className="py-16 border-b border-sand-300 bg-white">
+      <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sand-300 bg-[#F7F4EE] px-3 py-1 text-xs font-semibold text-charcoal-muted mb-4 shadow-xs">
-            <Database className="h-3.5 w-3.5 text-accent" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1 text-xs font-semibold text-[#4B5563] mb-4 shadow-xs">
+            <Database className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Primary Industry Datasets</span>
           </div>
-          <h1 className="font-editorial text-4xl sm:text-5xl font-bold text-charcoal mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F0F0F] mb-4">
             Original Empirical Research
           </h1>
-          <p className="text-base text-charcoal-muted max-w-2xl leading-relaxed">
+          <p className="text-base text-[#4B5563] max-w-2xl leading-relaxed">
             We crawl and analyze large production cohorts to publish original findings that AI search competitors cannot fabricate. Verifiable methodology, open datasets, and actionable engineering takeaways.
           </p>
         </div>
