@@ -72,7 +72,7 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
 
           <Link
             href="/tools/website-speed-test"
-            className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2 text-xs font-bold text-white shadow-sm transition-all hover:bg-accent-dark hover:shadow hover:scale-[1.02]"
+            className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-action px-4 py-2 text-xs font-bold text-white shadow-[0_2px_6px_rgba(194,65,12,0.2)] transition-all hover:bg-action-hover hover:shadow-[0_4px_10px_rgba(194,65,12,0.28)] hover:scale-[1.02]"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span>Free Audit</span>
