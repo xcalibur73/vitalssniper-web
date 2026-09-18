@@ -173,7 +173,6 @@ export default function EditorialHero() {
                 </div>
                 <Link
                   href="/tools/website-speed-test?url=https%3A%2F%2Fexample.com"
-                  aria-label="Inspect sample audit report"
                   className="font-semibold text-[#2563EB] hover:text-[#1D4ED8] flex items-center gap-1"
                 >
                   <span>Inspect Sample</span>

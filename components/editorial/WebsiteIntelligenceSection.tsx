@@ -146,7 +146,6 @@ export default function WebsiteIntelligenceSection() {
               </div>
               <Link
                 href="/vitalssniper"
-                aria-label="Explore VitalsSniper automated monitoring extension"
                 className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] flex items-center gap-1 flex-shrink-0"
               >
                 <span>Explore VitalsSniper</span>

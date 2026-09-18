@@ -113,7 +113,6 @@ export default function LatestResearchSection() {
             <div>
               <Link
                 href="/research/ai-search-readiness"
-                aria-label="Read the full AI search readiness study report"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
               >
                 <span>Read AI search study</span>
@@ -161,7 +160,6 @@ export default function LatestResearchSection() {
 
               <Link
                 href="/research/website-performance-report"
-                aria-label="Read the full mobile performance benchmark study"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
               >
                 <span>Read benchmark study</span>
@@ -205,7 +203,6 @@ export default function LatestResearchSection() {
 
               <Link
                 href="/research/agency-websites-study"
-                aria-label="Read the full schema and AI citations analysis study"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
               >
                 <span>Read citations study</span>
