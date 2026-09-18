@@ -80,7 +80,7 @@ export default function EditorialHero() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-accent-dark hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 flex-shrink-0 disabled:opacity-75"
+                  className="rounded-xl bg-action px-6 py-3.5 text-sm font-bold text-white shadow-[0_2px_8px_rgba(194,65,12,0.22)] transition-all hover:bg-action-hover hover:scale-[1.01] hover:shadow-[0_4px_14px_rgba(194,65,12,0.32)] active:scale-[0.99] flex items-center justify-center gap-2 flex-shrink-0 disabled:opacity-75"
                 >
                   <span>{isSubmitting ? 'Connecting...' : 'Analyze Website'}</span>
                   <ArrowRight className="h-4 w-4" />
@@ -135,7 +135,7 @@ export default function EditorialHero() {
               <div className="grid grid-cols-3 gap-2.5 mb-5">
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">LCP</div>
-                  <div className="text-base font-bold text-white mt-0.5">1.8s</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">1.8s</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>
@@ -143,7 +143,7 @@ export default function EditorialHero() {
 
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">INP</div>
-                  <div className="text-base font-bold text-white mt-0.5">142ms</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">142ms</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>
@@ -151,7 +151,7 @@ export default function EditorialHero() {
 
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">CLS</div>
-                  <div className="text-base font-bold text-white mt-0.5">0.04</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">0.04</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>
@@ -159,7 +159,7 @@ export default function EditorialHero() {
 
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">TTFB</div>
-                  <div className="text-base font-bold text-white mt-0.5">0.6s</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">0.6s</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>
@@ -167,7 +167,7 @@ export default function EditorialHero() {
 
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">Page Weight</div>
-                  <div className="text-base font-bold text-white mt-0.5">1.2 MB</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">1.2 MB</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>
@@ -175,7 +175,7 @@ export default function EditorialHero() {
 
                 <div className="rounded-xl bg-white/[0.04] border border-white/5 p-2.5">
                   <div className="text-[10px] uppercase font-bold text-gray-400">DOM Count</div>
-                  <div className="text-base font-bold text-white mt-0.5">842</div>
+                  <div className="text-base font-bold text-white mt-0.5 font-mono tabular-nums">842</div>
                   <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-medium mt-1">
                     <span className="h-1 w-1 rounded-full bg-emerald-400" /> Good
                   </span>

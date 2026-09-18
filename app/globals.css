@@ -94,3 +94,99 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a29e;
 }
+
+/* High-Converting Action CTA Button (Ahrefs / Stripe standard) */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #c2410c;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.22);
+  transition: all 180ms ease-out;
+}
+
+.btn-action:hover {
+  background-color: #9a3412;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.32);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+}
+
+/* Core Web Vitals Diagnostic Badges (Google CWV / RTINGS standard) */
+.badge-cwv-good {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #047857;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge-cwv-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #b45309;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge-cwv-poor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #b91c1c;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Laboratory Evidence Callout Box (Smashing / Wirecutter standard) */
+.evidence-callout {
+  background-color: #faf7f2;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid #c2410c;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(32, 32, 30, 0.03);
+}
+
+/* Bento Card Micro-Border (Linear / Vercel standard) */
+.bento-card {
+  background-color: var(--color-surface);
+  border: 1px solid rgba(32, 32, 30, 0.08);
+  border-radius: 1rem;
+  transition: all 200ms ease-out;
+}
+
+.bento-card:hover {
+  border-color: rgba(194, 65, 12, 0.3);
+  box-shadow: 0 4px 12px rgba(32, 32, 30, 0.04);
+}

@@ -75,19 +75,19 @@ export default function WebsiteIntelligenceSection() {
             return (
               <div
                 key={tool.name}
-                className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:shadow-md transition-all hover:border-accent/40 group"
+                className="bento-card flex flex-col justify-between p-5 shadow-xs hover:shadow-sm transition-all group"
               >
                 <div>
                   {/* Icon + Badge Row */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform">
+                    <div className="h-10 w-10 rounded-xl bg-action/10 border border-action/20 flex items-center justify-center text-action group-hover:scale-105 transition-transform">
                       <Icon className="h-5 w-5" />
                     </div>
 
                     <span
                       className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
                         tool.badgeType === 'premium'
-                          ? 'border-accent/30 bg-accent/10 text-accent'
+                          ? 'border-action/30 bg-action/10 text-action'
                           : 'border-emerald-500/30 bg-emerald-50 text-emerald-700'
                       }`}
                     >
@@ -96,7 +96,7 @@ export default function WebsiteIntelligenceSection() {
                   </div>
 
                   {/* Tool Title */}
-                  <h3 className="text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-2">
+                  <h3 className="text-base font-bold text-charcoal group-hover:text-action transition-colors mb-2">
                     {tool.name}
                   </h3>
 
@@ -109,7 +109,7 @@ export default function WebsiteIntelligenceSection() {
                 {/* Bottom Action Link */}
                 <Link
                   href={tool.link}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline group/link"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-action hover:underline group/link"
                 >
                   <span>{tool.linkText}</span>
                   <ArrowRight className="h-3.5 w-3.5 group-hover/link:translate-x-0.5 transition-transform" />

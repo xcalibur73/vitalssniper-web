@@ -26,10 +26,10 @@ export default function EvidenceBox({ evidence, compact = false }: EvidenceBoxPr
   }
 
   return (
-    <div className="my-8 rounded-2xl border border-sand-300 bg-white p-6 shadow-sm">
+    <div className="my-8 evidence-callout rounded-2xl p-6">
       <div className="flex items-center justify-between border-b border-sand-300 pb-4 mb-4">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-action/10 text-action">
             <Beaker className="h-4 w-4" />
           </div>
           <div>
@@ -41,8 +41,8 @@ export default function EvidenceBox({ evidence, compact = false }: EvidenceBoxPr
             </span>
           </div>
         </div>
-        <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-700 border border-emerald-200">
-          <CheckCircle2 className="h-3 w-3" /> Verified Data
+        <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[10px] font-bold text-emerald-800 border border-emerald-200">
+          <CheckCircle2 className="h-3 w-3 text-emerald-600" /> Verified Data
         </span>
       </div>
 
@@ -66,7 +66,7 @@ export default function EvidenceBox({ evidence, compact = false }: EvidenceBoxPr
         </div>
 
         <div className="flex items-center gap-2 pt-2 text-[11px] text-charcoal-muted border-t border-sand-300">
-          <FileText className="h-3.5 w-3.5 text-accent" />
+          <FileText className="h-3.5 w-3.5 text-action" />
           <span><strong>Source:</strong> {evidence.source}</span>
         </div>
       </div>

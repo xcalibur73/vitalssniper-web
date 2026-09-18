@@ -29,7 +29,7 @@ export default function ActionBanner() {
 
               <Link
                 href="/free-audit-report"
-                className="rounded-xl bg-accent px-6 py-3.5 text-xs sm:text-sm font-bold text-white shadow-sm transition-all hover:bg-accent-dark hover:scale-[1.01] flex items-center justify-center gap-2 flex-shrink-0"
+                className="btn-action text-xs sm:text-sm px-6 py-3.5 flex items-center justify-center gap-2 flex-shrink-0"
               >
                 <span>Run a Free Audit</span>
                 <ArrowRight className="h-4 w-4" />

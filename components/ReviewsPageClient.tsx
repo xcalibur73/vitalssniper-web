@@ -123,8 +123,8 @@ export default function ReviewsPageClient({ products, categories }: ReviewsPageC
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === cat
-                  ? 'bg-accent text-white shadow-xs'
-                  : 'bg-white border border-sand-300 text-charcoal-muted hover:text-charcoal hover:border-accent/40'
+                  ? 'bg-action text-white shadow-xs'
+                  : 'bg-white border border-sand-300 text-charcoal-muted hover:text-charcoal hover:border-action/40'
               }`}
             >
               {cat}
@@ -137,7 +137,7 @@ export default function ReviewsPageClient({ products, categories }: ReviewsPageC
           {filteredProducts.map((prod) => (
             <div
               key={prod.slug}
-              className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between"
+              className="bento-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xs"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
@@ -219,7 +219,7 @@ export default function ReviewsPageClient({ products, categories }: ReviewsPageC
                     href={prod.affiliateUrl}
                     target="_blank"
                     rel="nofollow sponsored noopener"
-                    className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-accent text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-xs"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-action text-xs font-bold text-white hover:bg-action-hover transition-all shadow-[0_2px_6px_rgba(194,65,12,0.2)] hover:shadow-[0_4px_10px_rgba(194,65,12,0.28)]"
                   >
                     <span>Visit Site</span>
                     <ExternalLink className="h-3 w-3" />

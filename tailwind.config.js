@@ -59,6 +59,25 @@ module.exports = {
           muted: '#716C64',
           subtle: '#8C867D',
         },
+        action: {
+          DEFAULT: '#C2410C',
+          hover: '#9A3412',
+          light: '#EA580C',
+          subtle: 'rgba(194, 65, 12, 0.08)',
+          glow: 'rgba(194, 65, 12, 0.25)',
+        },
+        flame: {
+          DEFAULT: '#C2410C',
+          hover: '#9A3412',
+          light: '#EA580C',
+          subtle: 'rgba(194, 65, 12, 0.08)',
+          glow: 'rgba(194, 65, 12, 0.25)',
+        },
+        cwv: {
+          good: '#10B981',
+          warning: '#F59E0B',
+          poor: '#EF4444',
+        },
         emerald: {
           DEFAULT: '#10b981',
           light: '#34d399',
