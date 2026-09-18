@@ -205,7 +205,7 @@ export default function VitalsSniperPage() {
               Test VitalsSniper In-Browser For Free
             </h2>
             <p className="text-xs sm:text-base text-[#4B5563] max-w-xl mx-auto mb-8">
-              Audit client websites directly from your browser in 50 milliseconds. Help shape our empirical benchmark dataset while testing client pitches for free.
+              Audit live websites directly from your browser in 50 milliseconds. Help shape our empirical benchmark dataset while beta testing on random sites for free.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
