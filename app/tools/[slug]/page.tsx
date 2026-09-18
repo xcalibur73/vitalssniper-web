@@ -151,11 +151,11 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
             <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <Link href="/tools" className="hover:text-[#0F0F0F] transition-colors">
               Tools
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {tool.name}
             </span>

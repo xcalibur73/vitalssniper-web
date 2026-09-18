@@ -11,12 +11,57 @@ export const metadata = {
 };
 
 export default function MethodologyPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Research',
+        item: 'https://www.webaudits.pro/research',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Testing Methodology',
+        item: 'https://www.webaudits.pro/about/methodology',
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <Link href="/research" className="hover:text-[#0F0F0F] transition-colors">
+              Research
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
+              Testing Methodology
+            </span>
+          </nav>
+
           <Link
             href="/research"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2563EB] hover:underline mb-6"

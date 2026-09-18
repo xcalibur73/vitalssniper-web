@@ -241,13 +241,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
             Home
           </Link>
-          <span className="text-[#9CA3AF]">/</span>
+          <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
           <Link href="/articles" className="hover:text-[#0F0F0F] transition-colors">
             Articles
           </Link>
           {catSlug && (
             <>
-              <span className="text-[#9CA3AF]">/</span>
+              <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
               <Link
                 href={`/articles/${catSlug}`}
                 className="hover:text-[#0F0F0F] transition-colors font-medium"
@@ -256,7 +256,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               </Link>
             </>
           )}
-          <span className="text-[#9CA3AF]">/</span>
+          <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
           <span className="text-[#0F0F0F] font-semibold truncate max-w-[240px] sm:max-w-md" aria-current="page">
             {post.title}
           </span>

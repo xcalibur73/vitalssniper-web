@@ -138,11 +138,11 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
             <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <Link href="/research" className="hover:text-[#0F0F0F] transition-colors">
               Research
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {study.title}
             </span>

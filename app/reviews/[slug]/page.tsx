@@ -166,11 +166,11 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
             <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
               Home
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <Link href="/reviews" className="hover:text-[#0F0F0F] transition-colors">
               Reviews
             </Link>
-            <span className="text-[#9CA3AF]">/</span>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
             <span className="text-[#0F0F0F] font-semibold" aria-current="page">
               {product.name}
             </span>

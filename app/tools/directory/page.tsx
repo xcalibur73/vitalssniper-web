@@ -11,12 +11,57 @@ export const metadata = {
 };
 
 export default function ToolDirectoryPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Tools',
+        item: 'https://www.webaudits.pro/tools',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Directory',
+        item: 'https://www.webaudits.pro/tools/directory',
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6">
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <Link href="/tools" className="hover:text-[#0F0F0F] transition-colors">
+              Tools
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
+              Directory
+            </span>
+          </nav>
+
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#2563EB] mb-4 shadow-xs">
             <Wrench className="h-3.5 w-3.5 text-[#2563EB]" />
             <span>Curated Software Index</span>

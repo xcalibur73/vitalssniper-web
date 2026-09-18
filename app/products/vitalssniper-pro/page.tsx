@@ -142,6 +142,21 @@ export default function VitalsSniperProductPage() {
       {/* Hero Section */}
       <section className="py-20 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6 text-center">
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-8 flex items-center justify-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <Link href="/vitalssniper" className="hover:text-[#0F0F0F] transition-colors">
+              Products
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
+              VitalsSniper PRO
+            </span>
+          </nav>
+
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold text-[#2563EB] mb-6 shadow-xs">
             <Sparkles className="h-4 w-4" />
             <span>VitalsSniper PRO : Flagship Agency Software</span>

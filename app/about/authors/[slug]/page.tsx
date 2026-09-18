@@ -107,6 +107,21 @@ export default function AuthorProfilePage({ params }: AuthorPageProps) {
 
       <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-4xl px-6">
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <Link href="/about" className="hover:text-[#0F0F0F] transition-colors">
+              Editorial Team
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <span className="text-[#0F0F0F] font-semibold" aria-current="page">
+              {author.name}
+            </span>
+          </nav>
+
           <Link
             href="/articles"
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2563EB] hover:underline mb-6"

@@ -47,19 +47,56 @@ export default function TopicHubTemplate({
   products,
   faqs,
 }: TopicHubProps) {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.webaudits.pro',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Articles',
+        item: 'https://www.webaudits.pro/articles',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: categoryName,
+        item: `https://www.webaudits.pro/articles/${slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
+      {/* Schema.org BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       {/* Hero Header */}
       <div className="py-16 border-b border-[#E5E7EB] bg-white">
         <div className="mx-auto max-w-5xl px-6">
-          <nav className="flex items-center gap-2 text-xs text-[#6B7280] mb-6">
-            <Link href="/" className="hover:underline">Home</Link>
-            <span>/</span>
-            <Link href="/articles" className="hover:underline">Articles</Link>
-            <span>/</span>
-            <span className="font-semibold text-[#0F0F0F]">{categoryName}</span>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-[#4B5563]">
+            <Link href="/" className="hover:text-[#0F0F0F] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <Link href="/articles" className="hover:text-[#0F0F0F] transition-colors">
+              Articles
+            </Link>
+            <span className="text-[#9CA3AF]" aria-hidden="true">/</span>
+            <span className="font-semibold text-[#0F0F0F]" aria-current="page">
+              {categoryName}
+            </span>
           </nav>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#2563EB] mb-4 shadow-xs">
