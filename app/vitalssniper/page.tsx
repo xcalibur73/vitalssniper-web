@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import LicenseActivation from '@/components/LicenseActivation';
 import LiveAuditor from '@/components/LiveAuditor';
+import WhyWeBuiltThis from '@/components/WhyWeBuiltThis';
 import Deliverables from '@/components/Deliverables';
 import ComparisonTable from '@/components/ComparisonTable';
 import RoiCalculator from '@/components/RoiCalculator';
@@ -154,6 +155,9 @@ export default function VitalsSniperPage() {
 
       {/* Interactive Live Demo */}
       <LiveAuditor />
+
+      {/* Founder Manifesto & Persona Transformations */}
+      <WhyWeBuiltThis />
 
       {/* Commercial Deliverables (9 Powerhouse Features) */}
       <Deliverables />

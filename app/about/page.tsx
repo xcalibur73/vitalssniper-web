@@ -88,11 +88,22 @@ export default function AboutPage() {
 
           <div>
             <h2 className="text-2xl font-bold text-[#0F0F0F] mb-3">
-              About VitalsSniper PRO
+              About VitalsSniper: Why We Built It
             </h2>
-            <p className="leading-relaxed">
-              VitalsSniper PRO is our proprietary browser extension engineered for web agencies, freelance developers, and performance consultants. It was built out of frustration with generic 50-page Lighthouse PDF dumps that prospective clients never read. By combining 50ms client-side execution, pulsing LCP visual element overlays, and white-label executive tear sheets, VitalsSniper turns technical bottlenecks into high-value retainers.
+            <p className="leading-relaxed mb-4">
+              VitalsSniper was born out of frustration with how broken website auditing had become. We spent years watching agencies burn hours assembling 50-page PDF reports that clients deleted in seconds, solo freelancers struggle to pitch without an army of sales staff, and solo website owners panic over abstract red scores they could not understand.
             </p>
+            <p className="leading-relaxed font-semibold text-[#0F0F0F] mb-4">
+              We built VitalsSniper because we were exhausted by this entire charade.
+            </p>
+            <p className="leading-relaxed mb-4">
+              By moving diagnostics directly into the browser toolbar with 50-millisecond local execution, VitalsSniper replaces confusing scorecards with visible, undeniable proof:
+            </p>
+            <ul className="space-y-2 text-xs sm:text-sm text-[#4B5563] list-disc list-inside">
+              <li><strong className="text-[#0F0F0F]">Solo Website Owners:</strong> Identify the exact heavy hero image or bloated plugin slowing your mobile site and fix it in 10 minutes free without hiring a consultant.</li>
+              <li><strong className="text-[#0F0F0F]">Solo Freelancers:</strong> Pitch prospective clients with 3-sentence proof-of-flaw notes and 1-page branded tear sheets that establish instant technical authority.</li>
+              <li><strong className="text-[#0F0F0F]">Digital Agencies:</strong> Triage 50 prospect domains in an afternoon directly from active tabs and close speed retainers with undeniable visual evidence.</li>
+            </ul>
           </div>
         </div>
 

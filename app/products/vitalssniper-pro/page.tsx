@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WhyWeBuiltThis from '@/components/WhyWeBuiltThis';
 import { SITE_CONFIG } from '@/config/site';
 import {
   Check,
@@ -259,6 +260,9 @@ export default function VitalsSniperProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Founder Manifesto: Why We Built VitalsSniper */}
+      <WhyWeBuiltThis />
 
       {/* Pricing Table */}
       <section className="py-20 border-b border-[#E5E7EB] bg-white">
