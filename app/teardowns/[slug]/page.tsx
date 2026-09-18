@@ -51,6 +51,18 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
         p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site'
       );
     }
+    if (td.slug === 'website-teardown-029') {
+      return (
+        p.slug === 'why-mobile-lcp-is-slow-on-shopify' ||
+        p.slug === 'why-your-hero-image-becomes-the-lcp-element'
+      );
+    }
+    if (td.slug === 'website-teardown-030') {
+      return (
+        p.slug === 'how-many-dom-elements-is-too-many' ||
+        p.slug === 'we-measured-it-elementor-vs-gutenberg-performance'
+      );
+    }
     return (
       p.slug === 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it' ||
       p.slug === 'how-to-audit-50-client-sites-in-1-week'

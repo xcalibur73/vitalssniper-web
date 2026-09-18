@@ -47,7 +47,7 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
     }
     if (study.slug === 'agency-websites-study') {
       return (
-        p.slug === 'how-to-audit-50-client-sites-in-1-week' ||
+        p.slug === '100-agency-websites-study-speed-and-seo' ||
         p.slug === 'the-agency-guide-to-white-label-website-audits'
       );
     }

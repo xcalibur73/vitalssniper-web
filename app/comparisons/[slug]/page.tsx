@@ -67,6 +67,24 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
         p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site'
       );
     }
+    if (comp.slug === 'perfmatters-vs-wp-rocket') {
+      return (
+        p.slug === '5-best-wordpress-speed-plugins-2026' ||
+        p.slug === 'the-real-cost-of-third-party-scripts'
+      );
+    }
+    if (comp.slug === 'nitropack-vs-wp-rocket') {
+      return (
+        p.slug === '5-best-wordpress-speed-plugins-2026' ||
+        p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site'
+      );
+    }
+    if (comp.slug === 'elementor-vs-bricks') {
+      return (
+        p.slug === 'we-measured-it-elementor-vs-gutenberg-performance' ||
+        p.slug === 'how-many-dom-elements-is-too-many'
+      );
+    }
     return p.category === 'Web Performance';
   }).slice(0, 2);
 

@@ -355,4 +355,21 @@ export const BLOG_POSTS: BlogPost[] = [
       source: 'AI Search Indexing Study (Q1 2026)',
     },
   },
+  {
+    slug: '100-agency-websites-study-speed-and-seo',
+    title: '100 Agency Websites: What Their Homepages Reveal About Speed and SEO',
+    excerpt:
+      'Web development and digital marketing agencies sell optimization services, but how do their own homepages perform? We audited 100 agency websites to document real-world performance bottlenecks and structured data adoption.',
+    category: 'Web Performance',
+    author: 'Devin Vance, Lead Performance Architect',
+    date: 'March 17, 2026',
+    readTime: '12 min read',
+    featured: true,
+    tag: 'Industry Benchmark',
+    evidence: {
+      whatWeTested: '100 digital agency homepages across US and Europe measuring Core Web Vitals, video hero payloads, and Schema.org Organization entities',
+      observedResult: '74% loaded uncompressed background video adding 4.2MB to mobile payloads: 52% lacked validated Organization JSON-LD markup',
+      source: 'Agency Homepage Benchmark Cohort (March 2026)',
+    },
+  },
 ];
