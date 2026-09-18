@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test:schemas": "node tests/validate_schemas.mjs",
-    "test:e2e": "node tests/run_editorial_e2e.mjs"
+    "test:e2e": "node tests/run_editorial_e2e.mjs",
+    "indexnow": "node scripts/submit_indexnow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
