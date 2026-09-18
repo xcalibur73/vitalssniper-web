@@ -70,24 +70,35 @@ export default function LatestResearchSection() {
                 </div>
 
                 {/* Comparative Bar Chart */}
-                <div className="sm:col-span-6 flex flex-col items-center">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-2 text-center w-full">
+                <div className="sm:col-span-6 flex flex-col items-center justify-center">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-charcoal-muted mb-3 text-center w-full">
                     Observed Citation Frequency
                   </div>
                   
-                  <div className="flex items-end justify-center gap-6 h-28 w-full px-2 border-b border-sand-300 pb-1">
-                    {/* Bar 1: Structured Claims (3.2x) */}
-                    <div className="flex flex-col items-center gap-1 w-14">
-                      <span className="text-[10px] font-bold text-charcoal">3.2x</span>
-                      <div className="w-full bg-[#20201E] rounded-t-md h-24 transition-all group-hover:bg-accent" />
-                      <span className="text-[9px] font-medium text-charcoal text-center leading-tight whitespace-nowrap">Structured</span>
+                  <div className="w-full max-w-[190px]">
+                    {/* Plot Area with Baseline */}
+                    <div className="flex items-end justify-center gap-7 h-24 w-full border-b border-sand-300 pb-0">
+                      {/* Bar 1: Structured Claims (3.2x) */}
+                      <div className="flex flex-col items-center gap-1 w-14">
+                        <span className="text-[11px] font-bold text-charcoal">3.2x</span>
+                        <div className="w-full bg-accent rounded-t-md h-16 transition-all group-hover:bg-accent-dark" />
+                      </div>
+
+                      {/* Bar 2: Unstructured (Baseline 1.0x) */}
+                      <div className="flex flex-col items-center gap-1 w-14">
+                        <span className="text-[11px] font-medium text-charcoal-muted">1.0x</span>
+                        <div className="w-full bg-sand-300 rounded-t-md h-5" />
+                      </div>
                     </div>
 
-                    {/* Bar 2: Unstructured (Baseline 1.0x) */}
-                    <div className="flex flex-col items-center gap-1 w-14">
-                      <span className="text-[10px] font-bold text-charcoal-muted">1.0x</span>
-                      <div className="w-full bg-sand-400/60 rounded-t-md h-8" />
-                      <span className="text-[9px] font-medium text-charcoal-muted text-center leading-tight">Unstructured</span>
+                    {/* X-Axis Category Labels */}
+                    <div className="flex items-start justify-center gap-7 w-full pt-1.5">
+                      <span className="w-14 text-center text-[10px] font-medium text-charcoal leading-tight">
+                        Structured
+                      </span>
+                      <span className="w-14 text-center text-[10px] font-medium text-charcoal-muted leading-tight">
+                        Unstructured
+                      </span>
                     </div>
                   </div>
                 </div>
