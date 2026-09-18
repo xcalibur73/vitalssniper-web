@@ -30,10 +30,10 @@ export default function LatestArticlesSection() {
         </div>
 
         {/* Row 1: 1 Featured Large Card (Left) + 2 Companion Cards (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr_1fr] gap-6 items-stretch mb-6">
           
-          {/* Card 1: Large Featured Article (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all group">
+          {/* Card 1: Large Featured Article */}
+          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-6 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
             <div>
               {/* Thumbnail / Visual Box */}
               <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-4 mb-4 relative overflow-hidden flex items-center justify-center">
@@ -95,8 +95,8 @@ export default function LatestArticlesSection() {
             </Link>
           </div>
 
-          {/* Card 2: Technical SEO Guide (3.5 cols) */}
-          <div className="lg:col-span-3.5 flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all group">
+          {/* Card 2: Technical SEO Guide */}
+          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
             <div>
               {/* Thumbnail / Code Terminal Preview */}
               <div className="rounded-xl bg-[#14151B] p-3 mb-4 font-mono text-[10px] text-gray-400 space-y-1 overflow-hidden h-28 flex flex-col justify-center">
@@ -126,8 +126,8 @@ export default function LatestArticlesSection() {
             </div>
           </div>
 
-          {/* Card 3: ChatGPT Search Optimization (3.5 cols) */}
-          <div className="lg:col-span-3.5 flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all group">
+          {/* Card 3: ChatGPT Search Optimization */}
+          <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
             <div>
               {/* Thumbnail / AI Mockup */}
               <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-3 mb-4 font-sans text-[10px] text-charcoal-muted space-y-1.5 h-28 flex flex-col justify-center">
