@@ -50,7 +50,7 @@ export default function DocsPage() {
                   01
                 </span>
                 <div>
-                  <h4 className="font-bold text-[#0F0F0F] mb-1">Download and Extract the ZIP</h4>
+                  <h3 className="font-bold text-[#0F0F0F] mb-1">Download and Extract the ZIP</h3>
                   <p className="text-[#4B5563] mb-2 leading-relaxed">
                     Download your extension package from the <Link href="/license" className="text-[#2563EB] font-semibold hover:text-[#1D4ED8] hover:underline">License Portal</Link> using your activation key and extract the folder on your computer.
                   </p>
@@ -62,7 +62,7 @@ export default function DocsPage() {
                   02
                 </span>
                 <div>
-                  <h4 className="font-bold text-[#0F0F0F] mb-1">Open Browser Extensions Manager</h4>
+                  <h3 className="font-bold text-[#0F0F0F] mb-1">Open Browser Extensions Manager</h3>
                   <p className="text-[#4B5563] mb-1 leading-relaxed">
                     Open your Chromium browser and navigate to:
                   </p>
@@ -80,7 +80,7 @@ export default function DocsPage() {
                   03
                 </span>
                 <div>
-                  <h4 className="font-bold text-[#0F0F0F] mb-1">Load Unpacked and Pin to Toolbar</h4>
+                  <h3 className="font-bold text-[#0F0F0F] mb-1">Load Unpacked and Pin to Toolbar</h3>
                   <p className="text-[#4B5563] leading-relaxed">
                     Click <strong>Load unpacked</strong> in the top-left toolbar, select your extracted folder, and pin VitalsSniper to your browser toolbar.
                   </p>
@@ -92,7 +92,7 @@ export default function DocsPage() {
                   04
                 </span>
                 <div>
-                  <h4 className="font-bold text-[#0F0F0F] mb-1">Activate Your Lifetime License</h4>
+                  <h3 className="font-bold text-[#0F0F0F] mb-1">Activate Your Lifetime License</h3>
                   <p className="text-[#4B5563] leading-relaxed">
                     Click the VitalsSniper icon on any website, click the <strong>UPGRADE</strong> badge in the top bar, and paste your license key (<code className="text-xs bg-[#F3F4F6] border border-[#E5E7EB] px-1 py-0.5 rounded text-[#2563EB]">VS-PRO-XXXX-XXXX</code>). PRO features unlock instantly.
                   </p>

@@ -2,6 +2,8 @@ export interface TeardownStudy {
   id: string;
   slug: string;
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   targetType: string;
   date: string;
   lcpScore: string;
@@ -18,6 +20,8 @@ export const TEARDOWNS: TeardownStudy[] = [
     id: '#027',
     slug: 'website-teardown-027',
     title: 'Website Teardown #027: Why This 7-Figure E-Commerce Store Has a 4.8s Mobile LCP',
+    metaTitle: 'Teardown #027: E-Commerce 4.8s Mobile LCP | Web Audits',
+    metaDescription: 'Forensic teardown of a 7-figure Shopify store with 4.8s mobile LCP caused by carousel slider CSS background-image loading and render-blocking scripts.',
     targetType: 'Direct-to-Consumer Apparel Store (Shopify)',
     date: 'March 2026',
     lcpScore: '4.8s (Failed)',
@@ -36,6 +40,8 @@ export const TEARDOWNS: TeardownStudy[] = [
     id: '#028',
     slug: 'website-teardown-028',
     title: 'Website Teardown #028: Excessive DOM Depth and Script Execution in Enterprise SaaS',
+    metaTitle: 'Teardown #028: DOM Depth in Enterprise SaaS | Web Audits',
+    metaDescription: 'Forensic teardown of an enterprise SaaS site with 3,820 DOM nodes, 24 nested wrapper DIV levels, and mobile style recalculation latency issues.',
     targetType: 'B2B Enterprise Analytics Platform (Custom React/Next)',
     date: 'February 2026',
     lcpScore: '3.9s (Failed)',
@@ -54,6 +60,8 @@ export const TEARDOWNS: TeardownStudy[] = [
     id: '#001',
     slug: 'website-autopsy-001',
     title: 'Website Autopsy #001: A Full Mobile Performance Teardown',
+    metaTitle: 'Teardown #001: Mobile Performance Teardown | Web Audits',
+    metaDescription: 'Performance autopsy of a SaaS landing page with 5.4s mobile LCP, uncompressed 4.2MB video hero payload, and 18 unbundled tracking tags.',
     targetType: 'High-Growth SaaS Landing Page (Next.js / Tailwind)',
     date: 'March 2026',
     lcpScore: '5.4s (Failed)',
@@ -72,6 +80,8 @@ export const TEARDOWNS: TeardownStudy[] = [
     id: '#029',
     slug: 'website-teardown-029',
     title: 'Website Teardown #029: Why This High-Growth Shopify Brand Has a 5.1s Mobile LCP',
+    metaTitle: 'Teardown #029: Shopify 5.1s Mobile LCP | Web Audits',
+    metaDescription: 'Teardown of a DTC Shopify Plus brand with 5.1s mobile LCP caused by uncompressed hero images and 22 third-party Shopify app scripts.',
     targetType: 'Direct-to-Consumer Beauty Brand (Shopify Plus)',
     date: 'March 2026',
     lcpScore: '5.1s (Failed)',
@@ -90,6 +100,8 @@ export const TEARDOWNS: TeardownStudy[] = [
     id: '#030',
     slug: 'website-teardown-030',
     title: 'Website Teardown #030: 3,800 DOM Elements and 24 Nested Levels in a Page Builder',
+    metaTitle: 'Teardown #030: 3,800 DOM Elements in WP | Web Audits',
+    metaDescription: 'Teardown of a real estate portal with 3,840 DOM elements, 24 nested wrapper levels, and 420ms scroll recalculation latency in Elementor.',
     targetType: 'Commercial Real Estate Portal (WordPress + Elementor)',
     date: 'March 2026',
     lcpScore: '4.6s (Failed)',

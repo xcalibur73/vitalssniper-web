@@ -21,9 +21,13 @@ export function generateMetadata({ params }: TeardownPageProps) {
   const td = TEARDOWNS.find((t) => t.slug === params.slug);
   if (!td) return { title: 'Teardown Not Found | Web Audits' };
 
+  const description =
+    td.metaDescription ||
+    (td.seoFinding.length > 155 ? `${td.seoFinding.slice(0, 152)}...` : td.seoFinding);
+
   return {
-    title: `${td.title} | Web Audits`,
-    description: td.seoFinding,
+    title: td.metaTitle || `${td.title.slice(0, 44)}... | Web Audits`,
+    description,
   };
 }
 
@@ -225,9 +229,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
 
         {/* Actionable Engineering Recommendations */}
         <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 shadow-xs">
-          <h3 className="text-xl font-bold text-[#0F0F0F] mb-4">
+          <h2 className="text-xl font-bold text-[#0F0F0F] mb-4">
             Actionable Optimization Roadmap
-          </h3>
+          </h2>
           <ul className="space-y-3 text-xs text-[#0F0F0F]">
             {td.recommendations.map((rec, idx) => (
               <li key={idx} className="flex items-start gap-2.5">
@@ -243,9 +247,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-xl font-bold text-[#0F0F0F]">
+              <h2 className="text-xl font-bold text-[#0F0F0F]">
                 Related Forensic Guides &amp; Architecture Tutorials
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {relatedGuides.map((guide) => (
@@ -258,9 +262,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-[#4B5563]">{guide.category}</span>
                     <span className="text-[11px] text-[#6B7280]">{guide.readTime}</span>
                   </div>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
                     {guide.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
@@ -275,9 +279,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <Layers className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-xl font-bold text-[#0F0F0F]">
+              <h2 className="text-xl font-bold text-[#0F0F0F]">
                 Explore More Real-World Website Teardowns
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {otherTeardowns.map((other) => (
@@ -292,9 +296,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
                     </span>
                     <span className="text-xs text-[#EF4444] font-bold">LCP {other.lcpScore}</span>
                   </div>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1 line-clamp-2">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1 line-clamp-2">
                     {other.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {other.seoFinding}
                   </p>
@@ -307,9 +311,9 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
         {/* Commercial Tool Bridge */}
         <div className="rounded-2xl bg-[#111827] text-[#F9FAFB] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937]">
           <div>
-            <h4 className="text-xl font-bold mb-1 text-white">
+            <p className="text-xl font-bold mb-1 text-white">
               Run this exact diagnostic on any live website
-            </h4>
+            </p>
             <p className="text-xs text-gray-400">
               VitalsSniper PRO inspects live tabs in 50ms and outputs white-label client tear sheets.
             </p>

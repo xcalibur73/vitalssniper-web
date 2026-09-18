@@ -37,6 +37,8 @@ export const RESEARCH_DATASETS: DatasetRegistry[] = [
 export interface ResearchStudy {
   slug: string;
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   subtitle: string;
   summary: string;
   sampleSize: string;
@@ -57,6 +59,8 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
   {
     slug: 'website-performance-report',
     title: 'The State of WordPress Performance 2026: 500-Site Empirical Benchmark',
+    metaTitle: 'WP Performance 2026: 500-Site Benchmark | Web Audits',
+    metaDescription: 'Auditing 500 active WordPress domains to measure real-world performance, plugin weight, and mobile Largest Contentful Paint compliance under lab conditions.',
     subtitle: 'An empirical teardown of mobile Core Web Vitals, page weight, DOM depth, and cache hit ratios across production websites.',
     summary: 'Our engineering lab audited 500 active WordPress domains across varying traffic tiers to measure real-world performance, plugin weight, and mobile Largest Contentful Paint compliance.',
     sampleSize: '500 active production domains',
@@ -81,6 +85,8 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
   {
     slug: 'agency-websites-study',
     title: '100 Agency Websites: What Their Homepages Reveal About Speed and SEO',
+    metaTitle: '100 Agency Sites: Speed & SEO Study | Web Audits',
+    metaDescription: 'We inspected 100 digital agency homepages to document real-world performance bottlenecks, mobile video payloads, and structured data schema adoption.',
     subtitle: 'We audited 100 digital agency homepages to document real-world performance bottlenecks and structured data adoption.',
     summary: 'Web development and marketing agencies sell speed and optimization services, but how do their own websites perform? We inspected 100 agency homepages to measure common performance patterns.',
     sampleSize: '100 digital agency homepages',
@@ -105,6 +111,8 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
   {
     slug: 'ai-search-readiness',
     title: 'AI Search Readiness Study: How AI Crawlers Parse Technical Content',
+    metaTitle: 'AI Search Readiness: How Bots Parse Sites | Web Audits',
+    metaDescription: 'Observational study analyzing server access logs and citation patterns for GPTBot, PerplexityBot, and ClaudeBot across 200 technical documentation URLs.',
     subtitle: 'Observational research examining GPTBot, PerplexityBot, and ClaudeBot crawling behavior across 200 technical documents.',
     summary: 'Generative search engines and AI assistants are introducing new discovery patterns. We monitored server access logs and citation behavior across 200 technical articles to understand machine readability.',
     sampleSize: '200 technical publishing URLs',
@@ -127,6 +135,8 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
   {
     slug: 'javascript-payload-study',
     title: 'How Much JavaScript Do SaaS Websites Actually Ship?',
+    metaTitle: 'How Much JavaScript Do SaaS Sites Ship? | Web Audits',
+    metaDescription: 'Benchmarking 250 B2B SaaS marketing homepages for script execution time, tracking pixel bloat, and main-thread hydration delays on mobile devices.',
     subtitle: 'Benchmarking 250 B2B SaaS marketing homepages for script execution time, tracking pixel bloat, and hydration overhead.',
     summary: 'Modern SaaS marketing pages are increasingly built like full web apps, shipping megabytes of client-side code for simple static copy. We measured the real impact on user experience.',
     sampleSize: '250 B2B SaaS marketing homepages',

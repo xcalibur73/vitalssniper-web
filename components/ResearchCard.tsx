@@ -19,9 +19,9 @@ export default function ResearchCard({ study }: ResearchCardProps) {
             <span className="text-xs text-[#4B5563]">Sample: {study.sampleSize}</span>
           </div>
           <Link href={`/research/${study.slug}`}>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               {study.title}
-            </h3>
+            </h2>
           </Link>
           <p className="text-sm text-[#4B5563] mt-2 max-w-3xl leading-relaxed">
             {study.subtitle}
@@ -56,9 +56,9 @@ export default function ResearchCard({ study }: ResearchCardProps) {
 
       {/* Key Findings List */}
       <div className="pt-6">
-        <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F0F0F] mb-3">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-[#0F0F0F] mb-3">
           Key Empirical Findings:
-        </h4>
+        </h3>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-[#4B5563]">
           {study.keyFindings.map((finding, idx) => (
             <li key={idx} className="flex items-start gap-2">

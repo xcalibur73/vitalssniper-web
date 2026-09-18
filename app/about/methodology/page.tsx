@@ -97,7 +97,7 @@ export default function MethodologyPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="p-4 rounded-xl bg-[#F8F8F8] border border-[#E5E7EB] space-y-2">
-              <h4 className="font-bold text-[#0F0F0F]">Mobile Device Emulation</h4>
+              <h3 className="font-bold text-[#0F0F0F]">Mobile Device Emulation</h3>
               <ul className="space-y-1.5 text-[#4B5563]">
                 <li>&bull; Viewport: 390 x 844 pixels (DPR: 3.0)</li>
                 <li>&bull; CPU Throttling: 4x slowdown (simulating mid-tier mobile hardware)</li>
@@ -106,7 +106,7 @@ export default function MethodologyPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-[#F8F8F8] border border-[#E5E7EB] space-y-2">
-              <h4 className="font-bold text-[#0F0F0F]">Network Emulation</h4>
+              <h3 className="font-bold text-[#0F0F0F]">Network Emulation</h3>
               <ul className="space-y-1.5 text-[#4B5563]">
                 <li>&bull; Simulated 4G Profile: 4.0 Mbps download, 3.0 Mbps upload</li>
                 <li>&bull; Latency: 40ms RTT round-trip delay</li>

@@ -192,9 +192,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
 
         {/* Stage 4: How to Improve This Score */}
         <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
-          <h3 className="text-xl font-bold text-[#0F0F0F] mb-4">
+          <h2 className="text-xl font-bold text-[#0F0F0F] mb-4">
             How to Improve Your Score (Actionable Fixes)
-          </h3>
+          </h2>
           <ul className="space-y-3 text-xs text-[#4B5563]">
             {tool.howToImprove.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2.5">
@@ -210,9 +210,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
           <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold mb-2 inline-block">Recommended Guide</span>
-              <h4 className="text-base font-bold text-[#0F0F0F]">
+              <p className="text-base font-bold text-[#0F0F0F]">
                 {relatedGuide.title}
-              </h4>
+              </p>
               <p className="text-xs text-[#4B5563] mt-1 line-clamp-1">
                 {relatedGuide.excerpt}
               </p>
@@ -234,9 +234,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
               <span className="text-3xl">{relatedSisterTool.icon}</span>
               <div>
                 <span className="text-[10px] uppercase font-bold text-[#6B7280] block">Sister Free Tool</span>
-                <h4 className="text-base font-bold text-[#0F0F0F]">
+                <p className="text-base font-bold text-[#0F0F0F]">
                   {relatedSisterTool.name}
-                </h4>
+                </p>
                 <p className="text-xs text-[#4B5563] line-clamp-1">
                   {relatedSisterTool.shortDescription}
                 </p>
@@ -258,9 +258,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
             <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] block mb-1">
               Need Deeper Client Diagnostics?
             </span>
-            <h4 className="text-2xl font-bold mb-2">
+            <p className="text-2xl font-bold mb-2">
               VitalsSniper PRO In-Tab Forensics
-            </h4>
+            </p>
             <p className="text-xs text-[#9CA3AF] max-w-xl leading-relaxed">
               Isolate exact DOM elements, generate white label PDF audit summaries, and export outreach lead lists in 50ms from any live Chromium tab.
             </p>

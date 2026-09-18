@@ -51,7 +51,7 @@ export default function PricingPage() {
           {/* Card 1: FREE */}
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 flex flex-col justify-between shadow-xs">
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2">Free Community</div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2">Free Community</h2>
               <div className="flex items-baseline gap-1 my-3">
                 <span className="text-4xl sm:text-5xl font-black text-[#0F0F0F]">$0</span>
                 <span className="text-xs text-[#6B7280] font-medium">/ forever</span>
@@ -99,7 +99,7 @@ export default function PricingPage() {
             </div>
 
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#2563EB] mb-2">VitalsSniper PRO (Beta Cohort)</div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB] mb-2">VitalsSniper PRO (Beta Cohort)</h2>
               
               <div>
                 <div className="flex items-baseline gap-2 my-3">
@@ -152,7 +152,7 @@ export default function PricingPage() {
           {/* Card 3: ENTERPRISE */}
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-8 flex flex-col justify-between shadow-xs">
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2">Enterprise Agency</div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#6B7280] mb-2">Enterprise Agency</h2>
               <div className="flex items-baseline gap-1 my-3">
                 <span className="text-3xl sm:text-4xl font-black text-[#0F0F0F]">Custom</span>
                 <span className="text-xs text-[#6B7280] font-medium">/ SLA</span>

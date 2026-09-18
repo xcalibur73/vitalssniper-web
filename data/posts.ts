@@ -15,6 +15,7 @@ export interface EvidenceData {
 export interface BlogPost {
   slug: string;
   title: string;
+  metaTitle?: string;
   excerpt: string;
   category: EditorialCategory;
   author: string;
@@ -69,6 +70,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-audit-50-client-sites-in-1-week',
     title: 'How to Audit 50 Client Sites in 1 Week: The VitalsSniper PRO Method',
+    metaTitle: 'How to Audit 50 Client Sites in 1 Week | Web Audits',
     excerpt:
       'Agencies waste 10+ hours every week manually running PageSpeed tests and copy-pasting generic PDF dumps. Here is the exact forensic workflow our agency partners use to inspect 50 prospect sites in 5 business days and close high-ticket retainers.',
     category: 'Conversion',
@@ -86,6 +88,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: '5-best-wordpress-speed-plugins-2026',
     title: '5 Best WordPress Speed Plugins in 2026 Tested on Real Servers',
+    metaTitle: '5 Best WordPress Speed Plugins (2026) | Web Audits',
     excerpt:
       'Speed optimization in WordPress often suffers from plugin bloat and conflicting cache layers. We tested the leading performance plugins to see which tools actually improve Core Web Vitals without breaking your layouts.',
     category: 'Web Performance',
@@ -103,6 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'cloudways-vs-siteground-which-host-loads-faster',
     title: 'Cloudways vs SiteGround: Which Host Loads Faster Under Stress?',
+    metaTitle: 'Cloudways vs SiteGround: Speed Test Under Load | Audits',
     excerpt:
       'Hosting architecture directly impacts your Time to First Byte and server responsiveness under load. We deployed identical test setups on Cloudways and SiteGround to measure real-world performance under heavy traffic.',
     category: 'Tools',
@@ -120,6 +124,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-make-your-website-discoverable-by-ai-search-engines',
     title: 'How to Make Your Website Citational in ChatGPT, Perplexity, and Copilot',
+    metaTitle: 'Make Your Website Citational in AI Search | Web Audits',
     excerpt:
       'Traditional search optimizes for 10 blue links: generative search engines extract structured semantic claims. Here is how to configure JSON-LD entity graphs, llms.txt endpoints, and answer-ready passage formatting for AI crawlers.',
     category: 'AI Search',
@@ -137,6 +142,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
     title: 'How to Score 100 on PageSpeed Without Breaking Conversion Tracking',
+    metaTitle: 'Score 100 on PageSpeed Without Breaking Site Tracking',
     excerpt:
       'Striving for a perfect PageSpeed score often tempts developers to disable crucial analytics and tracking scripts. Here is a battle-tested approach to hitting green metrics while keeping your conversion tracking intact.',
     category: 'Web Performance',
@@ -154,6 +160,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'rank-math-vs-yoast-definitive-seo-plugin-comparison',
     title: 'Rank Math vs Yoast: The Definitive SEO Plugin Comparison',
+    metaTitle: 'Rank Math vs Yoast: SEO Plugin Comparison | Web Audits',
     excerpt:
       'Selecting an SEO plugin determines how cleanly your WordPress site structures schema markup and metadata. We compare Rank Math and Yoast across page weight, schema flexibility, and indexing controls to find the best fit.',
     category: 'SEO',
@@ -171,6 +178,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it',
     title: 'Why Mobile LCP Is Slow: 7 Patterns We Keep Finding',
+    metaTitle: 'Why Mobile LCP Is Slow: 7 Key Patterns | Web Audits',
     excerpt:
       'Largest Contentful Paint delays on mobile are repeatedly tied to unprioritized hero media and render-blocking scripts. We break down the 7 most common bottleneck patterns observed across our audit cohorts and how to resolve them.',
     category: 'Web Performance',
@@ -188,6 +196,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'the-agency-guide-to-white-label-website-audits',
     title: 'The Agency Playbook: How to Turn Proof-of-Flaw Audits Into $3,500 Retainers',
+    metaTitle: 'Agency Guide to White-Label Website Audits | Web Audits',
     excerpt:
       'Prospects delete generic 50-page automated PDF audit dumps. Learn how top web agencies use targeted 1-page technical tear sheets highlighting exact DOM bloat flaws to close high-value optimization retainers.',
     category: 'Conversion',
@@ -205,6 +214,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'zero-cls-web-design-principles',
     title: 'Zero CLS Web Design: How to Diagnose and Prevent Layout Shifts',
+    metaTitle: 'Zero CLS Web Design: Prevent Layout Shifts | Web Audits',
     excerpt:
       'Cumulative Layout Shift degrades user experience and lowers Core Web Vitals pass rates. Learn how aspect ratio containers, font fallback overrides, and fluid clamp typography prevent sudden visual jumps on mobile devices.',
     category: 'Web Design',
@@ -222,6 +232,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-many-dom-elements-is-too-many',
     title: 'How Many DOM Elements Is Too Many? We Analyzed 500 Websites',
+    metaTitle: 'How Many DOM Elements Is Too Many? | Web Audits Study',
     excerpt:
       'Google recommends staying under 1,400 DOM nodes. We audited 1,000 pages to see at what exact point layout tree complexity begins degrading mobile frame rates and interaction latency.',
     category: 'Web Performance',
@@ -239,6 +250,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'we-measured-it-elementor-vs-gutenberg-performance',
     title: 'We Measured It: Does Elementor Actually Make WordPress Slower?',
+    metaTitle: 'Elementor vs Gutenberg Performance Test | Web Audits',
     excerpt:
       'We deployed identical layout designs in native Gutenberg blocks and Elementor on the same hosting stack to measure the exact differences in DOM depth, asset requests, and mobile LCP.',
     category: 'Web Performance',
@@ -256,6 +268,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'why-mobile-lcp-is-slow-on-shopify',
     title: 'Why Mobile LCP Is Slow on Shopify (And How to Fix It)',
+    metaTitle: 'Why Mobile LCP Is Slow on Shopify & Fixes | Web Audits',
     excerpt:
       'Shopify themes frequently bundle carousels, customer review apps, and tracking pixels that delay critical hero rendering. Here is how to diagnose and resolve Shopify mobile LCP bottlenecks.',
     category: 'Web Performance',
@@ -273,6 +286,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'what-makes-a-website-feel-fast-when-it-isnt',
     title: 'What Makes a Website Feel Fast When It Is Not?',
+    metaTitle: 'What Makes a Website Feel Fast When It Is Not? | Audits',
     excerpt:
       'Perceived performance often diverges from raw network telemetry. We inspect how skeleton placeholders, font display strategies, and instantaneous input feedback mask heavy background workloads.',
     category: 'Web Design',
@@ -290,6 +304,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'the-real-cost-of-third-party-scripts',
     title: 'The Real Cost of Third-Party Scripts on Modern Websites',
+    metaTitle: 'Cost of Third-Party Scripts on Web Speed | Web Audits',
     excerpt:
       'Marketing pixels, chat widgets, and tag managers regularly hijack the main thread. We measured the exact CPU execution time and mobile memory cost of the web 20 most popular third-party tags.',
     category: 'Web Performance',
@@ -307,6 +322,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'webp-vs-avif-vs-jpeg-tested',
     title: 'WebP vs AVIF vs JPEG: We Tested Real Website Images',
+    metaTitle: 'WebP vs AVIF vs JPEG: Image Speed Tested | Web Audits',
     excerpt:
       'Modern image formats promise dramatic bandwidth savings, but browser decode overhead on mobile CPUs is rarely discussed. We tested 100 real website hero images to find the true winner.',
     category: 'Web Performance',
@@ -324,6 +340,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'why-your-hero-image-becomes-the-lcp-element',
     title: 'Why Your Hero Image Becomes the LCP Element',
+    metaTitle: 'Why Your Hero Image Becomes the LCP Element | Audits',
     excerpt:
       'Largest Contentful Paint is a geometric measurement of viewport visual weight. Learn why hero images almost always win the LCP race and how to prevent them from delaying page readiness.',
     category: 'Web Performance',
@@ -341,6 +358,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'does-llms-txt-actually-matter-test',
     title: 'Does llms.txt Actually Matter? An Evidence-Based Test',
+    metaTitle: 'Does llms.txt Actually Matter? Empirical Test | Audits',
     excerpt:
       'We deployed llms.txt endpoints across 10 production domains and tracked verified AI search crawler requests over 90 days. Here is what our server logs actually showed.',
     category: 'AI Search',
@@ -358,6 +376,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: '100-agency-websites-study-speed-and-seo',
     title: '100 Agency Websites: What Their Homepages Reveal About Speed and SEO',
+    metaTitle: '100 Agency Websites: Speed & SEO Study | Web Audits',
     excerpt:
       'Web development and digital marketing agencies sell optimization services, but how do their own homepages perform? We audited 100 agency websites to document real-world performance bottlenecks and structured data adoption.',
     category: 'Web Performance',

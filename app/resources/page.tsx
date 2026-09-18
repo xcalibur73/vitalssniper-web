@@ -87,9 +87,9 @@ export default function ResourcesPage() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
+                <h2 className="text-xl font-bold text-[#0F0F0F] mb-2">
                   {item.title}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed mb-5">
                   {item.description}
                 </p>

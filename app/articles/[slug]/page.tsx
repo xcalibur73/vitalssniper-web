@@ -34,7 +34,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     return { title: 'Article Not Found | Web Audits' };
   }
 
-  const title = `${post.title} | Web Audits`;
+  const title = post.metaTitle || (post.title.length > 55 ? `${post.title.slice(0, 52)}...` : `${post.title} | Web Audits`);
   const description = post.excerpt.length > 155 ? `${post.excerpt.slice(0, 152)}...` : post.excerpt;
 
   return {
@@ -627,9 +627,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider block mb-1">
                   Weekly Dispatch
                 </span>
-                <h4 className="text-lg font-bold text-[#0F0F0F] mb-1">
+                <h3 className="text-lg font-bold text-[#0F0F0F] mb-1">
                   The Web Audits Brief
-                </h4>
+                </h3>
                 <p className="text-xs text-[#4B5563] mb-4 leading-relaxed">
                   Real performance benchmarks and technical guides delivered every Thursday.
                 </p>
@@ -651,9 +651,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                     Tested Under Load
                   </span>
                 </div>
-                <h4 className="text-lg font-bold text-[#0F0F0F] mb-1">
+                <h3 className="text-lg font-bold text-[#0F0F0F] mb-1">
                   {affiliateTool.name}
-                </h4>
+                </h3>
                 <p className="text-xs text-[#4B5563] leading-relaxed mb-4">
                   {affiliateTool.verdict}
                 </p>
@@ -678,9 +678,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
               {/* Related Articles */}
               <div className="bg-white border border-[#E5E7EB] rounded-xl p-6 shadow-xs">
-                <h4 className="text-base font-bold text-[#0F0F0F] mb-3">
+                <h3 className="text-base font-bold text-[#0F0F0F] mb-3">
                   Related Publications
-                </h4>
+                </h3>
                 <div className="space-y-3">
                   {relatedPosts.map((rel) => (
                     <Link

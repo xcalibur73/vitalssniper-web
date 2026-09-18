@@ -1,10 +1,11 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ShieldCheck, CheckCircle2, DollarSign } from 'lucide-react';
 
-export const metadata = {
-  title: 'Affiliate Disclosure & Commercial Transparency | Web Audits',
+export const metadata: Metadata = {
+  title: 'Affiliate Disclosure & Transparency | Web Audits',
   description: 'FTC compliance disclosure explaining our affiliate partnerships, rel="sponsored" link standards, and editorial boundaries.',
 };
 

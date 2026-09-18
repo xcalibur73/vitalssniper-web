@@ -21,9 +21,9 @@ export default function TeardownCard({ teardown }: TeardownCardProps) {
         </div>
 
         <Link href={`/teardowns/${teardown.slug}`}>
-          <h4 className="text-lg font-bold text-[#0F0F0F] hover:text-[#2563EB] transition-colors mb-3 leading-snug">
+          <h2 className="text-lg font-bold text-[#0F0F0F] hover:text-[#2563EB] transition-colors mb-3 leading-snug">
             {teardown.title}
-          </h4>
+          </h2>
         </Link>
 
         {/* Metric Badges */}

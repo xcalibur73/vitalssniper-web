@@ -49,9 +49,9 @@ export default function Footer() {
           
           {/* Column 1: Editorial Articles */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Articles
-            </h4>
+            </p>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/articles/web-performance" className="hover:text-white transition-colors">
@@ -88,9 +88,9 @@ export default function Footer() {
 
           {/* Column 2: Web Tools */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Web Tools
-            </h4>
+            </p>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/tools/website-speed-test" className="font-medium text-[#60A5FA] hover:underline">
@@ -122,9 +122,9 @@ export default function Footer() {
 
           {/* Column 3: Reviews & Comparisons */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Reviews &amp; Compares
-            </h4>
+            </p>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/reviews" className="hover:text-white transition-colors">
@@ -156,9 +156,9 @@ export default function Footer() {
 
           {/* Column 4: Research & Showroom */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Research &amp; Data
-            </h4>
+            </p>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/research" className="hover:text-white transition-colors">
@@ -185,9 +185,9 @@ export default function Footer() {
 
           {/* Column 5: Legal & Policy */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
               Trust &amp; Legal
-            </h4>
+            </p>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/affiliate-disclosure" className="hover:text-white transition-colors">

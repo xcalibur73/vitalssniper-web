@@ -33,9 +33,9 @@ export default function EvidenceBox({ evidence, compact = false }: EvidenceBoxPr
             <Beaker className="h-4 w-4" />
           </div>
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F0F0F]">
+            <div className="text-sm font-bold uppercase tracking-wider text-[#0F0F0F]">
               Empirical Testing Evidence
-            </h4>
+            </div>
             <span className="text-[11px] text-[#6B7280]">
               Standard Laboratory &amp; Production Verification
             </span>

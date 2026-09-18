@@ -21,9 +21,13 @@ export function generateMetadata({ params }: ResearchPageProps) {
   const study = RESEARCH_STUDIES.find((s) => s.slug === params.slug);
   if (!study) return { title: 'Research Study Not Found | Web Audits' };
 
+  const description =
+    study.metaDescription ||
+    (study.summary.length > 155 ? `${study.summary.slice(0, 152)}...` : study.summary);
+
   return {
-    title: `${study.title} | Web Audits`,
-    description: study.summary,
+    title: study.metaTitle || `${study.title.slice(0, 44)}... | Web Audits`,
+    description,
   };
 }
 
@@ -206,9 +210,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
 
         {/* Methodology Specification */}
         <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
-          <h3 className="text-lg font-bold text-[#0F0F0F] mb-3">
+          <h2 className="text-lg font-bold text-[#0F0F0F] mb-3">
             Testing Methodology &amp; Reproducibility
-          </h3>
+          </h2>
           <p className="text-xs text-[#4B5563] leading-relaxed">
             {study.methodology}
           </p>
@@ -219,9 +223,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
           <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-lg font-bold text-[#0F0F0F]">
+              <h2 className="text-lg font-bold text-[#0F0F0F]">
                 Related Research Guides &amp; Actionable Analysis
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {relatedGuides.map((guide) => (
@@ -234,9 +238,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
                     <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2 py-0.5 text-[10px] font-semibold">{guide.category}</span>
                     <span className="text-[11px] text-[#4B5563]">{guide.readTime}</span>
                   </div>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
                     {guide.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
@@ -251,9 +255,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
           <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <Layers className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-lg font-bold text-[#0F0F0F]">
+              <h2 className="text-lg font-bold text-[#0F0F0F]">
                 Explore More Original Benchmark Datasets
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {otherStudies.map((other) => (
@@ -263,9 +267,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
                   className="group block p-4 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] hover:border-[#2563EB] hover:bg-white transition-colors"
                 >
                   <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2 py-0.5 text-[10px] font-semibold mb-2 inline-block">Sample: {other.sampleSize}</span>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {other.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {other.subtitle}
                   </p>
@@ -278,9 +282,9 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
         {/* Navigation & Research CTA */}
         <div className="rounded-xl bg-[#111827] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937] shadow-xs">
           <div>
-            <h4 className="text-xl font-bold mb-1">
+            <p className="text-xl font-bold mb-1">
               Want custom performance telemetry for your site?
-            </h4>
+            </p>
             <p className="text-xs text-[#9CA3AF]">
               Run our in-browser diagnostic tools or test your site with VitalsSniper PRO.
             </p>

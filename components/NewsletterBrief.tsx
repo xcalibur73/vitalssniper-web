@@ -24,9 +24,9 @@ export default function NewsletterBrief() {
             <Mail className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#0F0F0F] leading-tight">
+            <p className="text-lg sm:text-xl font-bold tracking-tight text-[#0F0F0F] leading-tight">
               The Web Audits Brief
-            </h3>
+            </p>
             <p className="text-xs sm:text-sm text-[#4B5563] mt-1 leading-relaxed">
               Weekly field notes on performance engineering, SEO schemas, AI search, and web tools. Zero spam.
             </p>

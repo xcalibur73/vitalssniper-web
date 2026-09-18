@@ -23,6 +23,7 @@ export interface Product {
   editorialRating: number;
   verdict: string;
   description: string;
+  metaDescription?: string;
   pricing: string;
   bestFor: string;
   pricingModel: string;
@@ -51,6 +52,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'In-browser diagnostic inspector for active-tab website forensics and client proposal proof sheets.',
     description:
       'VitalsSniper PRO is an active-tab website inspector designed for agencies, SEO consultants, and performance specialists. It executes client-side diagnostics in your browser, isolates LCP elements visually on screen, and generates white-label tear sheets for client proposals.',
+    metaDescription:
+      'VitalsSniper PRO is an in-browser inspector for digital agencies. Isolate LCP bottlenecks visually on screen and build branded proposal tear sheets.',
     pricing: 'Free Public Beta',
     bestFor: 'Agencies, SEO Consultants, and Performance Specialists',
     pricingModel: 'Free Public Beta',
@@ -91,6 +94,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Managed cloud hosting platform with built-in server-level caching across top cloud providers.',
     description:
       'Cloudways simplifies managed cloud hosting on infrastructure providers like DigitalOcean, AWS, and Google Cloud. It provides built-in server-level caches, staging environments, and automated backups for mission-critical web properties.',
+    metaDescription:
+      'Cloudways managed cloud hosting review. We benchmark real-world TTFB, Redis caching efficiency, and server response times under concurrent user load.',
     pricing: 'From $14/mo',
     bestFor: 'Growing WordPress websites and agency client hosting',
     pricingModel: 'Monthly Usage Subscription',
@@ -131,6 +136,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Ultra-lightweight WordPress theme engineered for speed, accessibility, and zero layout shift.',
     description:
       'GeneratePress is an open-source, performance-first WordPress theme. Designed with strict accessibility and Core Web Vitals standards, it adds less than 10KB to initial page payloads while offering modular block-based layout elements.',
+    metaDescription:
+      'GeneratePress WordPress theme review. We benchmark Core Web Vitals, 0 CLS, and page payload weight across standard Gutenberg block architectures.',
     pricing: 'From $59/yr or $249 lifetime',
     bestFor: 'Performance-conscious publishers, developers, and speed specialists',
     pricingModel: 'Annual / Lifetime License',
@@ -171,6 +178,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Global edge network delivering CDN caching, DNS resolution, and DDoS mitigation.',
     description:
       'Cloudflare operates a global edge network spanning hundreds of cities. It accelerates web delivery, protects domains against automated DDoS attacks, and provides edge computing via Cloudflare Workers.',
+    metaDescription:
+      'Cloudflare edge network review. We audit global DNS speeds, edge caching hit ratios, and DDoS mitigation for performance-focused websites.',
     pricing: 'Free tier available: Pro from $20/mo',
     bestFor: 'All web properties requiring edge caching and DDoS security',
     pricingModel: 'Freemium Subscription',
@@ -211,6 +220,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Modular WordPress SEO plugin featuring granular Schema.org generator and search analytics.',
     description:
       'Rank Math is a modern WordPress SEO plugin designed to streamline on-page optimization. It features a modular architecture, structured data generator, Google Search Console integration, and automated redirection monitoring.',
+    metaDescription:
+      'Rank Math WordPress SEO review. We benchmark memory usage, database queries, and Schema.org structured data generators against legacy SEO plugins.',
     pricing: 'Free: Pro from $6.99/mo (billed annually)',
     bestFor: 'WordPress bloggers, agencies, and e-commerce stores',
     pricingModel: 'Freemium Subscription',
@@ -251,6 +262,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Comprehensive SEO toolset with fresh backlink index, keyword explorer, and SERP diagnostics.',
     description:
       'Ahrefs provides a comprehensive and frequently updated backlink index in search marketing. Its Site Explorer, Keywords Explorer, and Content Explorer empower SEO specialists to discover ranking opportunities and diagnose competitor gaps.',
+    metaDescription:
+      'Ahrefs SEO toolset review. We evaluate backlink discovery speed, keyword explorer accuracy, and competitive domain audit capabilities for agencies.',
     pricing: 'From $99/mo',
     bestFor: 'Professional SEO consultants, agencies, and media companies',
     pricingModel: 'Monthly / Annual Subscription',
@@ -291,6 +304,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Turnkey WordPress caching and asset optimization plugin with automated script delay.',
     description:
       'WP Rocket is a premium caching plugin for WordPress designed to deliver fast Core Web Vitals improvements with minimal manual configuration. It handles page caching, CSS/JS minimization, lazy loading, and delay of unused JavaScript.',
+    metaDescription:
+      'WP Rocket caching plugin review. We test delay JavaScript execution, critical CSS extraction, and real-world Core Web Vitals reductions on WordPress.',
     pricing: 'From $59/yr',
     bestFor: 'Site owners and agencies wanting automated speed gains without manual coding',
     pricingModel: 'Annual License',
@@ -331,6 +346,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Lightweight, privacy-first web analytics platform requiring zero cookie consent banners.',
     description:
       'Plausible Analytics is an open-source, lightweight alternative to Google Analytics that complies fully with GDPR, CCPA, and PECR without requiring cookie banners. Its script weighs less than 1KB, preventing main-thread blocking.',
+    metaDescription:
+      'Plausible Analytics review. We evaluate script weight, GDPR compliance, and real-time dashboard analytics with zero cookies and zero layout shift.',
     pricing: 'From $9/mo (self-hosted option is free and open-source)',
     bestFor: 'Privacy-focused publishers, agencies, and modern web applications',
     pricingModel: 'Monthly / Annual Subscription',
@@ -371,6 +388,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Lightweight WordPress performance plugin with a surgical script manager to disable unused assets per page.',
     description:
       'Perfmatters is an asset optimization plugin engineered to eliminate WordPress bloat. It features an intuitive script manager that lets you selectively disable unnecessary CSS and JavaScript files from plugins on pages where they are not needed, preventing main-thread blocking.',
+    metaDescription:
+      'Perfmatters asset optimization review. We benchmark surgical script manager disabling, JS execution delay, and mobile Core Web Vitals improvements.',
     pricing: 'From $24.95/yr',
     bestFor: 'Developers, agencies, and performance purists wanting granular control over asset loading',
     pricingModel: 'Annual License',
@@ -411,6 +430,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'All-in-one cloud-based speed optimization platform that offloads caching, compression, and CDN delivery.',
     description:
       'NitroPack is an automated cloud optimization service for WordPress, WooCommerce, and other platforms. It executes HTML caching, CSS minification, image optimization, and code execution offsite on its cloud infrastructure, returning fully pre-rendered pages to visitors through a global CDN.',
+    metaDescription:
+      'NitroPack speed optimization review. We test automated cloud caching, critical CSS extraction, and Core Web Vitals scores under heavy mobile traffic.',
     pricing: 'Free tier available (up to 5K pageviews), paid from $21/mo',
     bestFor: 'Non-technical business owners and e-commerce stores wanting automated turnkey speed',
     pricingModel: 'Monthly / Annual Subscription (Usage-based)',
@@ -451,6 +472,8 @@ export const PRODUCTS: Product[] = [
     verdict: 'Developer-first WordPress visual site builder engineered for semantic HTML, minimal DOM depth, and instant load speeds.',
     description:
       'Bricks Builder is a modern, performance-oriented WordPress theme and visual builder designed for developers and agencies. Unlike legacy visual builders, Bricks compiles clean semantic HTML with minimal wrapper DIVs, native CSS grid and flexbox, and dynamic data integration, scoring near-flawless Core Web Vitals out of the box.',
+    metaDescription:
+      'Bricks Builder WordPress theme review. We benchmark DOM tree depth, semantic HTML output, and mobile speed compared to legacy visual page builders.',
     pricing: 'From $99 one-time (lifetime license available)',
     bestFor: 'Agencies, professional web designers, and developers building high-performance client sites',
     pricingModel: 'One-time / Lifetime License',

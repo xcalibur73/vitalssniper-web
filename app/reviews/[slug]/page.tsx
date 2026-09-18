@@ -35,9 +35,15 @@ export function generateMetadata({ params }: ReviewPageProps) {
   const product = PRODUCTS.find((p) => p.slug === params.slug);
   if (!product) return { title: 'Review Not Found | Web Audits' };
 
+  const description =
+    product.metaDescription ||
+    (product.description.length > 155
+      ? `${product.description.slice(0, 152)}...`
+      : product.description);
+
   return {
     title: `${product.name} Review & Benchmarks | Web Audits`,
-    description: product.description,
+    description,
     alternates: {
       canonical: `https://www.webaudits.pro/reviews/${product.slug}`,
     },

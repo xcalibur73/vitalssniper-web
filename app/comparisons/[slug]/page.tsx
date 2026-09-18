@@ -24,7 +24,7 @@ export function generateMetadata({ params }: ComparisonPageProps) {
   if (!comp) return { title: 'Comparison Not Found | Web Audits' };
 
   return {
-    title: `${comp.title} | Web Audits`,
+    title: comp.metaTitle || `${comp.toolA} vs ${comp.toolB} | Web Audits`,
     description: comp.summary,
   };
 }
@@ -227,9 +227,9 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
 
         {/* Detailed In-Depth Analysis */}
         <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
-          <h3 className="text-2xl font-bold text-[#0F0F0F] mb-4">
+          <h2 className="text-2xl font-bold text-[#0F0F0F] mb-4">
             Laboratory Testing Notes &amp; Stress Analysis
-          </h3>
+          </h2>
           <div className="text-sm text-[#4B5563] leading-relaxed space-y-4">
             <p>{comp.detailedAnalysis}</p>
             <p>
@@ -243,9 +243,9 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-xl font-bold text-[#0F0F0F]">
+              <h2 className="text-xl font-bold text-[#0F0F0F]">
                 Related Forensic Guides &amp; Benchmarks
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {relatedGuides.map((guide) => (
@@ -258,9 +258,9 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-[#4B5563]">{guide.category}</span>
                     <span className="text-[11px] text-[#6B7280]">{guide.readTime}</span>
                   </div>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors line-clamp-2 mb-1.5">
                     {guide.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {guide.excerpt}
                   </p>
@@ -275,9 +275,9 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-2 mb-4">
               <Layers className="h-5 w-5 text-[#2563EB]" />
-              <h3 className="text-xl font-bold text-[#0F0F0F]">
+              <h2 className="text-xl font-bold text-[#0F0F0F]">
                 Explore Sibling Benchmark Showdowns
-              </h3>
+              </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {otherComparisons.map((other) => (
@@ -287,9 +287,9 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                   className="group block p-4 rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] hover:border-[#2563EB] hover:bg-white transition-all duration-200"
                 >
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-50 text-[#2563EB] border border-blue-200 mb-2 inline-block">{other.category}</span>
-                  <h4 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
+                  <h3 className="text-base font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors mb-1">
                     {other.toolA} vs {other.toolB}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#4B5563] line-clamp-2">
                     {other.summary}
                   </p>

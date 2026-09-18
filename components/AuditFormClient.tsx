@@ -271,7 +271,7 @@ export default function AuditFormClient() {
           {/* Upsell to PRO */}
           <div className="rounded-lg border border-[#1F2937] bg-[#111827] text-white p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <h4 className="font-bold text-white text-base">Need in-browser LCP highlighting &amp; white-label branding?</h4>
+              <p className="font-bold text-white text-base">Need in-browser LCP highlighting &amp; white-label branding?</p>
               <p className="text-xs text-[#9CA3AF] mt-0.5">VitalsSniper PRO highlights elements live on active tabs and includes a built-in prospect CRM.</p>
             </div>
 

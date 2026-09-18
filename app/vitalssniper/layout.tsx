@@ -2,13 +2,13 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'VitalsSniper PRO | Fast In-Browser Website Audits & Agency Pitches',
+  title: 'VitalsSniper PRO | In-Browser Web Audits & Pitches',
   description: 'Audit prospect websites in 15 seconds, locate Core Web Vitals and DOM bloat bottlenecks, and generate evidence-grounded proposals with VitalsSniper PRO.',
   alternates: {
     canonical: 'https://www.webaudits.pro/vitalssniper',
   },
   openGraph: {
-    title: 'VitalsSniper PRO | Fast In-Browser Website Audits & Agency Pitches',
+    title: 'VitalsSniper PRO | In-Browser Web Audits & Pitches',
     description: 'Audit prospect websites in 15 seconds, locate Core Web Vitals and DOM bloat bottlenecks, and generate evidence-grounded proposals with VitalsSniper PRO.',
     url: 'https://www.webaudits.pro/vitalssniper',
     siteName: 'Web Audits',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VitalsSniper PRO | Fast In-Browser Website Audits & Agency Pitches',
+    title: 'VitalsSniper PRO | In-Browser Web Audits & Pitches',
     description: 'Audit prospect websites in 15 seconds, locate Core Web Vitals and DOM bloat bottlenecks, and generate evidence-grounded proposals with VitalsSniper PRO.',
     images: ['/assets/appsumo_hero_1920x1080.png'],
   },

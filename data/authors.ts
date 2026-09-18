@@ -1,6 +1,8 @@
 export interface Author {
   slug: string;
   name: string;
+  metaTitle?: string;
+  metaDescription?: string;
   role: string;
   bio: string;
   avatarUrl?: string;
@@ -14,6 +16,8 @@ export const AUTHORS: Record<string, Author> = {
   'devin-vance': {
     slug: 'devin-vance',
     name: 'Devin Vance',
+    metaTitle: 'Devin Vance: Performance Architect | Web Audits',
+    metaDescription: 'Devin Vance specializes in web performance and Core Web Vitals engineering, leading diagnostic research and mobile LCP benchmarks at Web Audits.',
     role: 'Principal Performance Architect & Technical Editor',
     bio: 'Devin has specialized in web performance and Core Web Vitals engineering for over a decade. He leads diagnostic research and benchmark testing at Web Audits, focusing on mobile LCP reduction, JavaScript execution profiling, and zero-shift layout engineering.',
     specialization: [
@@ -29,6 +33,8 @@ export const AUTHORS: Record<string, Author> = {
   'marcus-reed': {
     slug: 'marcus-reed',
     name: 'Marcus Reed',
+    metaTitle: 'Marcus Reed: Systems & Hosting Architect | Web Audits',
+    metaDescription: 'Marcus Reed is a systems and hosting architect leading real-world TTFB, edge cache hit ratio, and Redis server response benchmarks at Web Audits.',
     role: 'Senior Systems & Hosting Architect',
     bio: 'Marcus has spent 12 years configuring enterprise Linux hosting stacks, NGINX edge caches, and LiteSpeed servers. He leads the publication-s hosting benchmarks, measuring real-world TTFB, Redis caching efficiency, and server response times under concurrent synthetic load.',
     specialization: [
@@ -44,6 +50,8 @@ export const AUTHORS: Record<string, Author> = {
   'elena-rostova': {
     slug: 'elena-rostova',
     name: 'Elena Rostova',
+    metaTitle: 'Elena Rostova: Semantic Search Researcher | Web Audits',
+    metaDescription: 'Elena Rostova researches knowledge graphs, Schema.org structured data, and AI crawler access patterns across technical publishing platforms.',
     role: 'Semantic Search & AI Crawler Researcher',
     bio: 'Elena focuses on knowledge graphs, Schema.org structured data, and search engine crawler behavior. Her research explores how emerging AI agents (GPTBot, ClaudeBot, PerplexityBot) parse and index structured technical content versus unstructured prose.',
     specialization: [

@@ -22,9 +22,13 @@ export function generateMetadata({ params }: AuthorPageProps) {
   const author = AUTHORS[params.slug];
   if (!author) return { title: 'Author Not Found | Web Audits' };
 
+  const description =
+    author.metaDescription ||
+    (author.bio.length > 155 ? `${author.bio.slice(0, 152)}...` : author.bio);
+
   return {
-    title: `${author.name} - ${author.role} | Web Audits`,
-    description: author.bio,
+    title: author.metaTitle || `${author.name} | Web Audits`,
+    description,
     alternates: {
       canonical: `https://www.webaudits.pro/about/authors/${author.slug}`,
     },

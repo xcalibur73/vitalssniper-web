@@ -6,13 +6,13 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 
 export const metadata = {
-  title: 'Agency Toolstacks & Diagnostic Workflows Hub | Web Audits',
+  title: 'Agency Toolstacks & Workflows Hub | Web Audits',
   description: 'Workflows, software stacks, and consultative sales frameworks for web performance consultants and digital marketing agencies.',
   alternates: {
     canonical: 'https://www.webaudits.pro/articles/tools',
   },
   openGraph: {
-    title: 'Agency Toolstacks & Diagnostic Workflows Hub | Web Audits',
+    title: 'Agency Toolstacks & Workflows Hub | Web Audits',
     description: 'Workflows, software stacks, and consultative sales frameworks for web performance consultants and digital marketing agencies.',
     url: 'https://www.webaudits.pro/articles/tools',
   },

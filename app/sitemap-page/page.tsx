@@ -42,7 +42,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Layers className="h-4 w-4" />
-              <span>Topical Pillars</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Topical Pillars</h2>
             </div>
             <ul className="space-y-2.5 text-xs">
               {EDITORIAL_BEATS.map((beat) => (
@@ -61,7 +61,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Wrench className="h-4 w-4" />
-              <span>Diagnostic Tools</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Diagnostic Tools</h2>
             </div>
             <ul className="space-y-2.5 text-xs">
               {FREE_TOOLS.map((tool) => (
@@ -80,7 +80,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <BookOpen className="h-4 w-4" />
-              <span>Research & Teardowns</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Research &amp; Teardowns</h2>
             </div>
             <ul className="space-y-2.5 text-xs">
               {RESEARCH_STUDIES.map((study) => (
@@ -109,7 +109,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <Shield className="h-4 w-4" />
-              <span>Software Reviews</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Software Reviews</h2>
             </div>
             <ul className="space-y-2.5 text-xs">
               {PRODUCTS.map((prod) => (
@@ -128,7 +128,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <FileText className="h-4 w-4" />
-              <span>Comparisons</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Comparisons</h2>
             </div>
             <ul className="space-y-2.5 text-xs">
               {COMPARISONS.map((comp) => (
@@ -147,7 +147,7 @@ export default function SitemapPage() {
           <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4 md:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
               <FileText className="h-4 w-4" />
-              <span>Forensic Articles ({BLOG_POSTS.length})</span>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Forensic Articles ({BLOG_POSTS.length})</h2>
             </div>
             <ul className="space-y-2 text-xs max-h-[340px] overflow-y-auto pr-2">
               {BLOG_POSTS.map((post) => (
@@ -167,7 +167,7 @@ export default function SitemapPage() {
         <div className="mt-8 rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs">
           <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider mb-4">
             <Layers className="h-4 w-4" />
-            <span>Agency Playbooks &amp; Trust Architecture</span>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Agency Playbooks &amp; Trust Architecture</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-xs">
             <Link href="/resources" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">

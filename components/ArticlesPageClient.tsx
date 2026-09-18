@@ -117,11 +117,11 @@ export default function ArticlesPageClient({ posts, beats }: ArticlesPageClientP
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold tracking-tight text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors leading-snug mb-3">
+                  <h2 className="text-lg font-bold tracking-tight text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors leading-snug mb-3">
                     <Link href={`/articles/${post.slug}`}>
                       {post.title}
                     </Link>
-                  </h3>
+                  </h2>
 
                   <p className="text-xs sm:text-sm text-[#4B5563] leading-relaxed line-clamp-3 mb-6">
                     {post.excerpt}

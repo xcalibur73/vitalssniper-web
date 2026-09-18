@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'VitalsSniper PRO: Proof-of-Flaw Web Inspector & Outreach Engine',
+  title: 'VitalsSniper PRO | In-Browser Web Inspector',
   description: 'Instant Chromium tab forensics, live LCP element highlighting, white-label client tear sheets, and lead CRM export for performance agencies.',
 };
 

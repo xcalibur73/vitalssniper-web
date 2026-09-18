@@ -45,9 +45,9 @@ export default function ToolDirectoryPage() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-[#0F0F0F] mb-2">
+                <h2 className="text-xl font-bold text-[#0F0F0F] mb-2">
                   {tool.name}
-                </h3>
+                </h2>
 
                 <div className="space-y-1.5 text-xs text-[#4B5563] mb-4 bg-[#F8F8F8] p-3 rounded-xl border border-[#E5E7EB]">
                   <div className="flex justify-between">

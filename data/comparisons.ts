@@ -1,6 +1,7 @@
 export interface ComparisonItem {
   slug: string;
   title: string;
+  metaTitle?: string;
   toolA: string;
   toolB: string;
   category: string;
@@ -21,6 +22,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'cloudways-vs-siteground',
     title: 'Cloudways vs SiteGround: Head-to-Head Speed, Architecture, and Pricing Comparison',
+    metaTitle: 'Cloudways vs SiteGround: Speed & Hosting | Web Audits',
     toolA: 'Cloudways',
     toolB: 'SiteGround',
     category: 'Hosting & Infrastructure',
@@ -41,6 +43,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'rank-math-vs-yoast',
     title: 'Rank Math vs Yoast SEO: Feature Breakdown, Schema Flexibility, and Performance',
+    metaTitle: 'Rank Math vs Yoast SEO: Speed & Schema | Web Audits',
     toolA: 'Rank Math',
     toolB: 'Yoast SEO',
     category: 'SEO Plugins',
@@ -61,6 +64,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'wp-rocket-vs-litespeed',
     title: 'WP Rocket vs LiteSpeed Cache: Server-Level vs Application-Level Speed Optimization',
+    metaTitle: 'WP Rocket vs LiteSpeed: Cache Speed Test | Web Audits',
     toolA: 'WP Rocket',
     toolB: 'LiteSpeed Cache (LSCache)',
     category: 'Speed & Caching',
@@ -80,6 +84,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'perfmatters-vs-wp-rocket',
     title: 'Perfmatters vs WP Rocket: Surgical Script Disabling vs Complete Caching Suite',
+    metaTitle: 'Perfmatters vs WP Rocket: Speed Comparison | Web Audits',
     toolA: 'Perfmatters',
     toolB: 'WP Rocket',
     category: 'Speed & Performance',
@@ -100,6 +105,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'nitropack-vs-wp-rocket',
     title: 'NitroPack vs WP Rocket: Cloud-Based Optimization vs Native Origin Caching',
+    metaTitle: 'NitroPack vs WP Rocket: Speed & Vitals | Web Audits',
     toolA: 'NitroPack',
     toolB: 'WP Rocket',
     category: 'Speed & Caching',
@@ -120,6 +126,7 @@ export const COMPARISONS: ComparisonItem[] = [
   {
     slug: 'elementor-vs-bricks',
     title: 'Elementor vs Bricks Builder: Page Builder Bloat vs Modern Semantic Architecture',
+    metaTitle: 'Elementor vs Bricks Builder: Speed & DOM | Web Audits',
     toolA: 'Elementor',
     toolB: 'Bricks Builder',
     category: 'Page Builders',
