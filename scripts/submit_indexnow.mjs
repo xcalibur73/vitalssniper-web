@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const HOST = 'www.webaudits.pro';
-const KEY = 'f4e7ea9ae6665ee6d303c0457e31c7f0';
+const KEY = '9483a411288c4717188fb59101446620';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 async function fetchSitemapUrls() {
