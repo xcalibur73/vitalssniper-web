@@ -66,7 +66,7 @@ export default function WebsiteIntelligenceSection() {
                 <div className="h-10 w-10 rounded-lg border border-[#2563EB]/20 bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB]">
                   <Activity className="h-5 w-5" />
                 </div>
-                <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/10 text-[#2563EB]">
+                <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-[#2563EB]/25 bg-[#2563EB]/10 text-[#1D4ED8]">
                   Featured Tool
                 </span>
               </div>
@@ -92,8 +92,8 @@ export default function WebsiteIntelligenceSection() {
             </div>
 
             <div className="pt-6 border-t border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-[#6B7280]">
-                <CheckCircle2 className="h-4 w-4 text-[#10B981]" />
+              <div className="flex items-center gap-2 text-xs text-[#4B5563]">
+                <CheckCircle2 className="h-4 w-4 text-[#047857]" />
                 <span>Zero registration required</span>
               </div>
               <Link
@@ -140,15 +140,16 @@ export default function WebsiteIntelligenceSection() {
             {/* VitalsSniper Pro Promotion Strip */}
             <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 flex items-center justify-between gap-4">
               <div className="flex items-center gap-2.5">
-                <span className="h-2 w-2 rounded-full bg-[#10B981]" />
+                <span className="h-2 w-2 rounded-full bg-[#047857]" />
                 <span className="text-xs font-semibold text-[#0F0F0F]">Need automated monitoring?</span>
                 <span className="text-xs text-[#6B7280] hidden sm:inline">VitalsSniper PRO runs 24/7 audits.</span>
               </div>
               <Link
                 href="/vitalssniper"
+                aria-label="Explore VitalsSniper automated monitoring extension"
                 className="text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] flex items-center gap-1 flex-shrink-0"
               >
-                <span>Learn more</span>
+                <span>Explore VitalsSniper</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>

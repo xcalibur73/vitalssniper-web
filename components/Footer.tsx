@@ -220,12 +220,12 @@ export default function Footer() {
         </div>
 
         {/* FTC Disclosure & Attribution */}
-        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-[#6B7280]">
+        <div className="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-[11px] text-[#9CA3AF]">
           <div>
             <p className="mb-1 text-[#9CA3AF]">
               &copy; {new Date().getFullYear()} Web Audits &bull; webaudits.pro &bull; All rights reserved.
             </p>
-            <p className="max-w-3xl text-[10px] leading-relaxed text-[#6B7280]">
+            <p className="max-w-3xl text-[10px] leading-relaxed text-[#9CA3AF]">
               Editorial &amp; Affiliate Disclosure: Web Audits is an independent digital publication. We test all software, web hosts, and SEO plugins in laboratory and field conditions. Outbound affiliate links carry rel=&quot;sponsored&quot;. We may earn a commission if you make a purchase through our links at zero extra cost to you. This never compromises our testing data or verdicts.
             </p>
           </div>

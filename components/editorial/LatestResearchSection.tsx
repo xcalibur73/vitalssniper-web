@@ -39,7 +39,7 @@ export default function LatestResearchSection() {
           <div className="lg:col-span-7 flex flex-col justify-between rounded-xl border border-[#E5E7EB] bg-[#F8F8F8] p-6 sm:p-8 transition-colors hover:border-[#D1D5DB] group">
             <div>
               {/* Category Pill */}
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 px-2.5 py-0.5 text-[11px] font-semibold text-[#2563EB] mb-4">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/25 px-2.5 py-0.5 text-[11px] font-semibold text-[#1D4ED8] mb-4">
                 <span>AI Search &amp; GEO</span>
               </div>
 
@@ -113,9 +113,10 @@ export default function LatestResearchSection() {
             <div>
               <Link
                 href="/research/ai-search-readiness"
+                aria-label="Read the full AI search readiness study report"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#2563EB] px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
               >
-                <span>Read the full study</span>
+                <span>Read AI search study</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -160,9 +161,10 @@ export default function LatestResearchSection() {
 
               <Link
                 href="/research/website-performance-report"
+                aria-label="Read the full mobile performance benchmark study"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
               >
-                <span>Read the study</span>
+                <span>Read benchmark study</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -203,9 +205,10 @@ export default function LatestResearchSection() {
 
               <Link
                 href="/research/agency-websites-study"
+                aria-label="Read the full schema and AI citations analysis study"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8]"
               >
-                <span>Read the study</span>
+                <span>Read citations study</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

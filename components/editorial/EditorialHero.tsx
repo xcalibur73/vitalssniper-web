@@ -67,6 +67,7 @@ export default function EditorialHero() {
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
                     placeholder="Enter a website URL (e.g. example.com)"
+                    aria-label="Target website URL for audit"
                     className="w-full bg-transparent text-sm text-[#0F0F0F] placeholder-[#6B7280] focus:outline-none"
                     required
                   />
@@ -85,15 +86,15 @@ export default function EditorialHero() {
             {/* Trust Strip */}
             <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#6B7280] font-medium">
               <div className="flex items-center gap-1.5">
-                <Check className="h-3.5 w-3.5 text-[#10B981]" />
+                <Check className="h-3.5 w-3.5 text-[#047857]" />
                 <span>No signup required</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Check className="h-3.5 w-3.5 text-[#10B981]" />
+                <Check className="h-3.5 w-3.5 text-[#047857]" />
                 <span>Fast analysis</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Check className="h-3.5 w-3.5 text-[#10B981]" />
+                <Check className="h-3.5 w-3.5 text-[#047857]" />
                 <span>Instant results</span>
               </div>
             </div>
@@ -107,10 +108,10 @@ export default function EditorialHero() {
               {/* Preview Card Header */}
               <div className="flex items-center justify-between pb-4 border-b border-[#E5E7EB] mb-5">
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-[#10B981]" />
+                  <div className="h-2 w-2 rounded-full bg-[#047857]" />
                   <span className="text-xs font-mono text-[#4B5563]">https://example.com</span>
                 </div>
-                <span className="text-[11px] font-semibold text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded">
+                <span className="text-[11px] font-semibold text-[#047857] bg-[#10B981]/15 px-2 py-0.5 rounded border border-[#10B981]/25">
                   Audit Completed
                 </span>
               </div>
@@ -123,8 +124,8 @@ export default function EditorialHero() {
                     92<span className="text-sm font-normal text-[#6B7280]">/100</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10B981]/15 text-[#10B981] text-xs font-semibold">
-                  <CheckCircle2 className="h-4 w-4" />
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10B981]/15 text-[#047857] text-xs font-semibold">
+                  <CheckCircle2 className="h-4 w-4 text-[#047857]" />
                   <span>Good</span>
                 </div>
               </div>
@@ -135,7 +136,7 @@ export default function EditorialHero() {
                   <div className="text-[11px] font-medium text-[#6B7280]">Performance</div>
                   <div className="flex items-baseline justify-between mt-1">
                     <span className="text-lg font-bold text-[#0F0F0F] font-mono">92</span>
-                    <span className="text-[11px] text-[#10B981] font-medium">LCP 1.8s</span>
+                    <span className="text-[11px] text-[#047857] font-medium">LCP 1.8s</span>
                   </div>
                 </div>
 
@@ -143,7 +144,7 @@ export default function EditorialHero() {
                   <div className="text-[11px] font-medium text-[#6B7280]">Technical SEO</div>
                   <div className="flex items-baseline justify-between mt-1">
                     <span className="text-lg font-bold text-[#0F0F0F] font-mono">87</span>
-                    <span className="text-[11px] text-[#10B981] font-medium">Valid JSON-LD</span>
+                    <span className="text-[11px] text-[#047857] font-medium">Valid JSON-LD</span>
                   </div>
                 </div>
 
@@ -151,7 +152,7 @@ export default function EditorialHero() {
                   <div className="text-[11px] font-medium text-[#6B7280]">Technical Health</div>
                   <div className="flex items-baseline justify-between mt-1">
                     <span className="text-lg font-bold text-[#0F0F0F] font-mono">94</span>
-                    <span className="text-[11px] text-[#10B981] font-medium">HTTP/2 OK</span>
+                    <span className="text-[11px] text-[#047857] font-medium">HTTP/2 OK</span>
                   </div>
                 </div>
 
@@ -159,7 +160,7 @@ export default function EditorialHero() {
                   <div className="text-[11px] font-medium text-[#6B7280]">UX / Stability</div>
                   <div className="flex items-baseline justify-between mt-1">
                     <span className="text-lg font-bold text-[#0F0F0F] font-mono">90</span>
-                    <span className="text-[11px] text-[#10B981] font-medium">CLS 0.02</span>
+                    <span className="text-[11px] text-[#047857] font-medium">CLS 0.02</span>
                   </div>
                 </div>
               </div>
@@ -172,9 +173,10 @@ export default function EditorialHero() {
                 </div>
                 <Link
                   href="/tools/website-speed-test?url=https%3A%2F%2Fexample.com"
+                  aria-label="Inspect sample audit report"
                   className="font-semibold text-[#2563EB] hover:text-[#1D4ED8] flex items-center gap-1"
                 >
-                  <span>Inspect</span>
+                  <span>Inspect Sample</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>

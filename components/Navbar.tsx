@@ -105,6 +105,7 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search performance guides, tool reviews, or benchmarks..."
+              aria-label="Search performance guides, tool reviews, or benchmarks"
               className="flex-1 border-none bg-transparent px-2 py-1 text-sm text-[#0F0F0F] placeholder-[#6B7280] focus:outline-none"
               autoFocus
             />

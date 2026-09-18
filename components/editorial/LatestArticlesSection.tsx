@@ -103,7 +103,7 @@ export default function LatestArticlesSection() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-xs font-mono text-[#6B7280]">
                         <span>Performance Lab</span>
-                        <span className="text-[#10B981] font-bold">LCP 1.6s</span>
+                        <span className="text-[#047857] font-bold">LCP 1.6s</span>
                       </div>
                       <div className="h-1.5 w-3/4 rounded bg-[#E5E7EB]" />
                       <div className="rounded border border-dashed border-[#2563EB]/40 bg-[#2563EB]/5 p-2 text-center text-xs font-mono text-[#2563EB]">
@@ -135,10 +135,10 @@ export default function LatestArticlesSection() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-xs font-mono text-[#6B7280]">
                         <span>Cumulative Layout Shift</span>
-                        <span className="text-[#10B981] font-bold">0.000</span>
+                        <span className="text-[#047857] font-bold">0.000</span>
                       </div>
                       <div className="h-1.5 w-4/5 rounded bg-[#E5E7EB]" />
-                      <div className="text-[11px] font-mono text-[#10B981]">0 layout shifts observed</div>
+                      <div className="text-[11px] font-mono text-[#047857]">0 layout shifts observed</div>
                     </div>
                   )}
 
@@ -146,7 +146,7 @@ export default function LatestArticlesSection() {
                     <div className="space-y-2 text-xs font-mono">
                       <div className="flex items-center justify-between text-[#6B7280]">
                         <span>Synthetic TTFB</span>
-                        <span className="text-[#10B981] font-bold">340ms</span>
+                        <span className="text-[#047857] font-bold">340ms</span>
                       </div>
                       <div className="h-1.5 w-2/3 rounded bg-[#E5E7EB]" />
                       <div className="text-[11px] text-[#2563EB]">DevTools + VitalsSniper</div>
@@ -157,7 +157,7 @@ export default function LatestArticlesSection() {
                     <div className="space-y-2 text-xs">
                       <div className="flex items-center justify-between font-mono text-[#6B7280]">
                         <span>Audit Conversion Rate</span>
-                        <span className="text-[#10B981] font-bold">+28%</span>
+                        <span className="text-[#047857] font-bold">+28%</span>
                       </div>
                       <div className="h-1.5 w-3/4 rounded bg-[#E5E7EB]" />
                       <div className="text-[11px] font-mono text-[#2563EB]">Proof-of-flaw sheet</div>

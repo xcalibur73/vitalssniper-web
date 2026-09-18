@@ -36,8 +36,8 @@ export default function NewsletterBrief() {
         {/* Right Input Form */}
         <div className="w-full lg:w-auto">
           {submitted ? (
-            <div className="inline-flex items-center gap-2 rounded-lg bg-[#10B981]/10 border border-[#10B981]/30 px-4 py-2.5 text-xs font-semibold text-[#10B981] animate-fadeIn">
-              <CheckCircle2 className="h-4 w-4 text-[#10B981]" />
+            <div className="inline-flex items-center gap-2 rounded-lg bg-[#10B981]/15 border border-[#10B981]/30 px-4 py-2.5 text-xs font-semibold text-[#047857] animate-fadeIn">
+              <CheckCircle2 className="h-4 w-4 text-[#047857]" />
               <span>You are subscribed to the weekly brief.</span>
             </div>
           ) : (

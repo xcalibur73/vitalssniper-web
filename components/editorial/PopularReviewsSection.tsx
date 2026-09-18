@@ -84,9 +84,10 @@ export default function PopularReviewsSection() {
               <div className="pt-4 border-t border-[#E5E7EB]">
                 <Link
                   href={`/reviews/${prod.slug}`}
+                  aria-label={`Read full benchmark review for ${prod.name}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] transition-colors"
                 >
-                  <span>Read full benchmark</span>
+                  <span>Read {prod.name} benchmark</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
