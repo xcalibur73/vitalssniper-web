@@ -88,8 +88,22 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   // Find related tools and articles
   const relatedTool = PRODUCTS.find((p) => p.isOwnProduct) || PRODUCTS[0];
-  const affiliateTool = PRODUCTS.find((p) => !p.isOwnProduct) || PRODUCTS[1];
-  const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const affiliateTool =
+    (post.category === 'SEO'
+      ? PRODUCTS.find((p) => p.slug === 'rank-math')
+      : post.category === 'Web Design'
+      ? PRODUCTS.find((p) => p.slug === 'generatepress')
+      : PRODUCTS.find((p) => p.slug === 'cloudways')) ||
+    PRODUCTS.find((p) => !p.isOwnProduct) ||
+    PRODUCTS[1];
+
+  const sameCategoryPosts = BLOG_POSTS.filter(
+    (p) => p.category === post.category && p.slug !== post.slug
+  );
+  const otherPosts = BLOG_POSTS.filter(
+    (p) => p.category !== post.category && p.slug !== post.slug
+  );
+  const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
 
   const authorSlug = post.author.toLowerCase().includes('marcus')
     ? 'marcus-reed'
@@ -222,15 +236,31 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           />
         )}
 
-        {/* Navigation Breadcrumb */}
-        <div className="mb-8">
-          <Link
-            href="/articles"
-            className="inline-flex items-center text-xs font-semibold text-charcoal-muted hover:text-charcoal transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 mr-1.5" /> Back to Articles Archive
+        {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+          <Link href="/" className="hover:text-charcoal transition-colors">
+            Home
           </Link>
-        </div>
+          <span className="text-sand-400">/</span>
+          <Link href="/articles" className="hover:text-charcoal transition-colors">
+            Articles
+          </Link>
+          {catSlug && (
+            <>
+              <span className="text-sand-400">/</span>
+              <Link
+                href={`/articles/${catSlug}`}
+                className="hover:text-charcoal transition-colors font-medium"
+              >
+                {post.category}
+              </Link>
+            </>
+          )}
+          <span className="text-sand-400">/</span>
+          <span className="text-charcoal font-semibold truncate max-w-[240px] sm:max-w-md" aria-current="page">
+            {post.title}
+          </span>
+        </nav>
 
         {/* Article Header (Above the fold) */}
         <header className="max-w-[760px] mb-12">
@@ -627,15 +657,23 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 <p className="text-xs text-charcoal-muted leading-relaxed mb-4">
                   {affiliateTool.verdict}
                 </p>
-                <a
-                  href={affiliateTool.affiliateUrl}
-                  target="_blank"
-                  rel="nofollow sponsored noopener"
-                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-sand-300 bg-[#F7F4EE] text-charcoal hover:border-accent/40 hover:text-accent text-xs font-bold transition-all"
-                >
-                  <span>Check {affiliateTool.name}</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href={affiliateTool.affiliateUrl}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-sand-300 bg-[#F7F4EE] text-charcoal hover:border-accent/40 hover:text-accent text-xs font-bold transition-all"
+                  >
+                    <span>Visit Official {affiliateTool.name}</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                  <Link
+                    href={`/reviews/${affiliateTool.slug}`}
+                    className="text-center text-[11px] font-semibold text-accent hover:underline pt-1"
+                  >
+                    Read our full {affiliateTool.name} review
+                  </Link>
+                </div>
               </div>
 
               {/* Related Articles */}

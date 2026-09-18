@@ -142,13 +142,20 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
       {/* Header Breadcrumb */}
       <div className="py-12 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline mb-6"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All Web Tools</span>
-          </Link>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+            <Link href="/" className="hover:text-charcoal transition-colors">
+              Home
+            </Link>
+            <span className="text-sand-400">/</span>
+            <Link href="/tools" className="hover:text-charcoal transition-colors">
+              Tools
+            </Link>
+            <span className="text-sand-400">/</span>
+            <span className="text-charcoal font-semibold" aria-current="page">
+              {tool.name}
+            </span>
+          </nav>
 
           <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-3">
             <span className="text-2xl">{tool.icon}</span>

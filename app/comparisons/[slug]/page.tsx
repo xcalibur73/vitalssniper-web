@@ -5,7 +5,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ComparisonTable from '@/components/ComparisonTable';
 import { COMPARISONS } from '@/data/comparisons';
-import { ArrowLeft, ArrowRight, CheckCircle2, Trophy, ExternalLink, ShieldCheck } from 'lucide-react';
+import { PRODUCTS } from '@/data/products';
+import { BLOG_POSTS } from '@/data/posts';
+import { ArrowLeft, ArrowRight, CheckCircle2, Trophy, ExternalLink, ShieldCheck, BookOpen, Layers } from 'lucide-react';
 
 interface ComparisonPageProps {
   params: { slug: string };
@@ -33,6 +35,40 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
   if (!comp) {
     notFound();
   }
+
+  // Cross-reference tools with in-depth product reviews
+  const productA = PRODUCTS.find(
+    (p) => p.name.toLowerCase() === comp.toolA.toLowerCase() || comp.toolA.toLowerCase().includes(p.name.toLowerCase())
+  );
+  const productB = PRODUCTS.find(
+    (p) => p.name.toLowerCase() === comp.toolB.toLowerCase() || comp.toolB.toLowerCase().includes(p.name.toLowerCase())
+  );
+
+  // Sibling comparisons
+  const otherComparisons = COMPARISONS.filter((c) => c.slug !== comp.slug);
+
+  // Related technical guides
+  const relatedGuides = BLOG_POSTS.filter((p) => {
+    if (comp.slug === 'cloudways-vs-siteground') {
+      return (
+        p.slug === 'cloudways-vs-siteground-which-host-loads-faster' ||
+        p.slug === 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it'
+      );
+    }
+    if (comp.slug === 'rank-math-vs-yoast') {
+      return (
+        p.slug === 'rank-math-vs-yoast-definitive-seo-plugin-comparison' ||
+        p.slug === 'how-to-make-your-website-discoverable-by-ai-search-engines'
+      );
+    }
+    if (comp.slug === 'wp-rocket-vs-litespeed') {
+      return (
+        p.slug === '5-best-wordpress-speed-plugins-2026' ||
+        p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site'
+      );
+    }
+    return p.category === 'Web Performance';
+  }).slice(0, 2);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -70,13 +106,20 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
 
       <div className="py-12 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <Link
-            href="/comparisons"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline mb-6"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All Comparisons</span>
-          </Link>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+            <Link href="/" className="hover:text-charcoal transition-colors">
+              Home
+            </Link>
+            <span className="text-sand-400">/</span>
+            <Link href="/comparisons" className="hover:text-charcoal transition-colors">
+              Comparisons
+            </Link>
+            <span className="text-sand-400">/</span>
+            <span className="text-charcoal font-semibold" aria-current="page">
+              {comp.title}
+            </span>
+          </nav>
 
           <div className="flex items-center gap-2 mb-3">
             <span className="editorial-pill">{comp.category}</span>
@@ -108,13 +151,55 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <strong className="text-charcoal block mb-1">Pick {comp.toolA} if:</strong>
-              <p className="text-charcoal-muted">{comp.bestForA}</p>
+            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 flex flex-col justify-between">
+              <div>
+                <strong className="text-charcoal block mb-1">
+                  Pick {productA ? (
+                    <Link href={`/reviews/${productA.slug}`} className="hover:underline text-accent">
+                      {comp.toolA}
+                    </Link>
+                  ) : (
+                    comp.toolA
+                  )} if:
+                </strong>
+                <p className="text-charcoal-muted">{comp.bestForA}</p>
+              </div>
+              {productA && (
+                <div className="mt-3 pt-2 border-t border-sand-300">
+                  <Link
+                    href={`/reviews/${productA.slug}`}
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline"
+                  >
+                    <span>Read our in-depth {productA.name} review</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              )}
             </div>
-            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300">
-              <strong className="text-charcoal block mb-1">Pick {comp.toolB} if:</strong>
-              <p className="text-charcoal-muted">{comp.bestForB}</p>
+            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 flex flex-col justify-between">
+              <div>
+                <strong className="text-charcoal block mb-1">
+                  Pick {productB ? (
+                    <Link href={`/reviews/${productB.slug}`} className="hover:underline text-accent">
+                      {comp.toolB}
+                    </Link>
+                  ) : (
+                    comp.toolB
+                  )} if:
+                </strong>
+                <p className="text-charcoal-muted">{comp.bestForB}</p>
+              </div>
+              {productB && (
+                <div className="mt-3 pt-2 border-t border-sand-300">
+                  <Link
+                    href={`/reviews/${productB.slug}`}
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-accent hover:underline"
+                  >
+                    <span>Read our in-depth {productB.name} review</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -134,6 +219,67 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
             </p>
           </div>
         </div>
+
+        {/* Related Technical Guides */}
+        {relatedGuides.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <BookOpen className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Related Forensic Guides &amp; Benchmarks
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/articles/${guide.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="editorial-pill text-[10px]">{guide.category}</span>
+                    <span className="text-[11px] text-charcoal-muted">{guide.readTime}</span>
+                  </div>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors line-clamp-2 mb-1.5">
+                    {guide.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {guide.excerpt}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Other Head-to-Head Comparisons */}
+        {otherComparisons.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <Layers className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Explore Sibling Benchmark Showdowns
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {otherComparisons.map((other) => (
+                <Link
+                  key={other.slug}
+                  href={`/comparisons/${other.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <span className="editorial-pill text-[10px] mb-2 inline-block">{other.category}</span>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                    {other.toolA} vs {other.toolB}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {other.summary}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* FTC Disclosure & Navigation */}
         <div className="rounded-xl border border-sand-300 bg-white p-4 text-xs text-charcoal-muted flex items-center justify-between">

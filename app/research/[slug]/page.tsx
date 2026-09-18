@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { RESEARCH_STUDIES } from '@/data/research';
-import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, ShieldCheck, Database, FileSpreadsheet } from 'lucide-react';
+import { BLOG_POSTS } from '@/data/posts';
+import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, ShieldCheck, Database, FileSpreadsheet, BookOpen, Layers } from 'lucide-react';
 
 interface ResearchPageProps {
   params: { slug: string };
@@ -32,6 +33,38 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
   if (!study) {
     notFound();
   }
+
+  // Sibling research studies
+  const otherStudies = RESEARCH_STUDIES.filter((s) => s.slug !== study.slug);
+
+  // Relevant articles mapped from study context
+  const relatedGuides = BLOG_POSTS.filter((p) => {
+    if (study.slug === 'website-performance-report') {
+      return (
+        p.slug === 'how-many-dom-elements-is-too-many' ||
+        p.slug === 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it'
+      );
+    }
+    if (study.slug === 'agency-websites-study') {
+      return (
+        p.slug === 'how-to-audit-50-client-sites-in-1-week' ||
+        p.slug === 'the-agency-guide-to-white-label-website-audits'
+      );
+    }
+    if (study.slug === 'ai-search-readiness') {
+      return (
+        p.slug === 'how-to-make-your-website-discoverable-by-ai-search-engines' ||
+        p.slug === 'does-llms-txt-actually-matter-test'
+      );
+    }
+    if (study.slug === 'javascript-payload-study') {
+      return (
+        p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site' ||
+        p.slug === '5-best-wordpress-speed-plugins-2026'
+      );
+    }
+    return p.category === 'Web Performance';
+  }).slice(0, 2);
 
   const datasetSchema = {
     '@context': 'https://schema.org',
@@ -96,13 +129,20 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
 
       <div className="py-12 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <Link
-            href="/research"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline mb-6"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All Research Studies</span>
-          </Link>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+            <Link href="/" className="hover:text-charcoal transition-colors">
+              Home
+            </Link>
+            <span className="text-sand-400">/</span>
+            <Link href="/research" className="hover:text-charcoal transition-colors">
+              Research
+            </Link>
+            <span className="text-sand-400">/</span>
+            <span className="text-charcoal font-semibold" aria-current="page">
+              {study.title}
+            </span>
+          </nav>
 
           <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-3">
             <span className="editorial-pill">Primary Dataset</span>
@@ -173,6 +213,67 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
             {study.methodology}
           </p>
         </div>
+
+        {/* Related Technical Guides */}
+        {relatedGuides.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <BookOpen className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Related Research Guides &amp; Actionable Analysis
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/articles/${guide.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="editorial-pill text-[10px]">{guide.category}</span>
+                    <span className="text-[11px] text-charcoal-muted">{guide.readTime}</span>
+                  </div>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors line-clamp-2 mb-1.5">
+                    {guide.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {guide.excerpt}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sibling Research Studies */}
+        {otherStudies.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <Layers className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Explore More Original Benchmark Datasets
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {otherStudies.map((other) => (
+                <Link
+                  key={other.slug}
+                  href={`/research/${other.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <span className="editorial-pill text-[10px] mb-2 inline-block">Sample: {other.sampleSize}</span>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                    {other.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {other.subtitle}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Navigation & Research CTA */}
         <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6">

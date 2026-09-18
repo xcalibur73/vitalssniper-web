@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure';
 import { PRODUCTS, Product } from '@/data/products';
+import { COMPARISONS } from '@/data/comparisons';
+import { BLOG_POSTS } from '@/data/posts';
 import {
   ArrowLeft,
   Check,
@@ -15,6 +17,8 @@ import {
   ShieldCheck,
   Beaker,
   CheckCircle2,
+  Trophy,
+  BookOpen,
 } from 'lucide-react';
 
 interface ReviewPageProps {
@@ -47,9 +51,37 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
     notFound();
   }
 
-  const relatedTools = PRODUCTS.filter(
+  // Find head-to-head comparisons featuring this product
+  const relatedComparisons = COMPARISONS.filter(
+    (c) =>
+      c.toolA.toLowerCase().includes(product.name.toLowerCase()) ||
+      c.toolB.toLowerCase().includes(product.name.toLowerCase()) ||
+      product.name.toLowerCase().includes(c.toolA.toLowerCase()) ||
+      product.name.toLowerCase().includes(c.toolB.toLowerCase())
+  );
+
+  // Alternative tools in the same category (or fallback)
+  const categoryAlternatives = PRODUCTS.filter(
     (p) => p.category === product.category && p.slug !== product.slug
-  ).slice(0, 3);
+  );
+  const fallbackAlternatives = PRODUCTS.filter(
+    (p) => p.slug !== product.slug && !categoryAlternatives.some((ca) => ca.slug === p.slug)
+  );
+  const relatedTools = [...categoryAlternatives, ...fallbackAlternatives].slice(0, 3);
+
+  // Related editorial articles
+  const relatedGuides = BLOG_POSTS.filter((p) => {
+    if (product.category === 'Hosting & CDN' || product.category === 'Speed & Performance') {
+      return p.category === 'Web Performance';
+    }
+    if (product.category === 'Page Builders') {
+      return p.category === 'Web Design' || p.category === 'Web Performance';
+    }
+    if (product.category === 'SEO Tools') {
+      return p.category === 'SEO' || p.category === 'AI Search';
+    }
+    return true;
+  }).slice(0, 2);
 
   const reviewSchema = {
     '@context': 'https://schema.org',
@@ -123,13 +155,20 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
 
       <div className="py-12 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <Link
-            href="/reviews"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline mb-6"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All Reviews</span>
-          </Link>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+            <Link href="/" className="hover:text-charcoal transition-colors">
+              Home
+            </Link>
+            <span className="text-sand-400">/</span>
+            <Link href="/reviews" className="hover:text-charcoal transition-colors">
+              Reviews
+            </Link>
+            <span className="text-sand-400">/</span>
+            <span className="text-charcoal font-semibold" aria-current="page">
+              {product.name}
+            </span>
+          </nav>
 
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="text-3xl">{product.iconEmoji}</span>
@@ -265,6 +304,115 @@ export default function ProductReviewPage({ params }: ReviewPageProps) {
             ))}
           </ul>
         </div>
+
+        {/* Head-to-Head Comparisons Bridge */}
+        {relatedComparisons.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <Trophy className="h-4 w-4 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Head-to-Head Benchmark Showdowns
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {relatedComparisons.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/comparisons/${c.slug}`}
+                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent block mb-1">
+                    {c.category} Showdown
+                  </span>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                    {c.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2 mb-3">
+                    {c.summary}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-accent">
+                    <span>View Scorecard &amp; Verdict</span>
+                    <ArrowRight className="h-3 w-3" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Alternative Software Reviews */}
+        {relatedTools.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Alternative Tools &amp; Tested Software
+              </h3>
+              <Link
+                href="/reviews"
+                className="text-xs font-bold text-accent hover:underline inline-flex items-center gap-1"
+              >
+                <span>All Reviews</span>
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {relatedTools.map((alt) => (
+                <Link
+                  key={alt.slug}
+                  href={`/reviews/${alt.slug}`}
+                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-2xl">{alt.iconEmoji}</span>
+                    <span className="text-[11px] font-bold text-accent bg-accent/10 px-2 py-0.5 rounded">
+                      {alt.editorialRating} / 5.0
+                    </span>
+                  </div>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                    {alt.name}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2 mb-2">
+                    {alt.description}
+                  </p>
+                  <span className="text-[11px] text-charcoal-muted font-medium block">
+                    {alt.pricingModel}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Related Technical Articles */}
+        {relatedGuides.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <BookOpen className="h-4 w-4 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Related Optimization Guides
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/articles/${guide.slug}`}
+                  className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300 hover:border-accent/40 transition-all block group"
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent block mb-1">
+                    {guide.category} Guide
+                  </span>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1">
+                    {guide.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {guide.excerpt}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Commercial Action Bar */}
         <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">

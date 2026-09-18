@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { TEARDOWNS } from '@/data/teardowns';
-import { ArrowLeft, ArrowRight, Eye, ShieldAlert, CheckCircle2, Cpu, Wrench } from 'lucide-react';
+import { BLOG_POSTS } from '@/data/posts';
+import { ArrowLeft, ArrowRight, Eye, ShieldAlert, CheckCircle2, Cpu, Wrench, BookOpen, Layers } from 'lucide-react';
 
 interface TeardownPageProps {
   params: { slug: string };
@@ -33,6 +34,29 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
     notFound();
   }
 
+  // Sibling teardowns
+  const otherTeardowns = TEARDOWNS.filter((t) => t.slug !== td.slug);
+
+  // Relevant forensic guides
+  const relatedGuides = BLOG_POSTS.filter((p) => {
+    if (td.slug === 'website-teardown-027') {
+      return (
+        p.slug === 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it' ||
+        p.slug === 'zero-cls-web-design-principles'
+      );
+    }
+    if (td.slug === 'website-teardown-028') {
+      return (
+        p.slug === 'how-many-dom-elements-is-too-many' ||
+        p.slug === 'how-to-score-100-on-pagespeed-without-breaking-your-site'
+      );
+    }
+    return (
+      p.slug === 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it' ||
+      p.slug === 'how-to-audit-50-client-sites-in-1-week'
+    );
+  }).slice(0, 2);
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
@@ -50,10 +74,10 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
       '@type': 'Organization',
       name: 'Web Audits',
       url: 'https://www.webaudits.pro',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.webaudits.pro/favicon.svg',
-      },
+    },
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://www.webaudits.pro/favicon.svg',
     },
     about: {
       '@type': 'Thing',
@@ -101,13 +125,20 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
 
       <div className="py-12 border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-4xl px-6">
-          <Link
-            href="/teardowns"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline mb-6"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All Teardowns</span>
-          </Link>
+          {/* Semantic 3-Tier Visual Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center flex-wrap gap-1.5 text-xs text-charcoal-muted">
+            <Link href="/" className="hover:text-charcoal transition-colors">
+              Home
+            </Link>
+            <span className="text-sand-400">/</span>
+            <Link href="/teardowns" className="hover:text-charcoal transition-colors">
+              Teardowns
+            </Link>
+            <span className="text-sand-400">/</span>
+            <span className="text-charcoal font-semibold" aria-current="page">
+              {td.title}
+            </span>
+          </nav>
 
           <div className="flex items-center gap-3 text-xs text-charcoal-muted mb-3">
             <span className="rounded bg-charcoal px-2 py-0.5 text-[11px] font-bold text-white uppercase tracking-wider">
@@ -195,6 +226,72 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
           </ul>
         </div>
 
+        {/* Related Technical Guides */}
+        {relatedGuides.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <BookOpen className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Related Forensic Guides &amp; Architecture Tutorials
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={`/articles/${guide.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="editorial-pill text-[10px]">{guide.category}</span>
+                    <span className="text-[11px] text-charcoal-muted">{guide.readTime}</span>
+                  </div>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors line-clamp-2 mb-1.5">
+                    {guide.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {guide.excerpt}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sibling Teardowns */}
+        {otherTeardowns.length > 0 && (
+          <div className="rounded-2xl border border-sand-300 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <Layers className="h-5 w-5 text-accent" />
+              <h3 className="font-editorial text-xl font-bold text-charcoal">
+                Explore More Real-World Website Teardowns
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {otherTeardowns.map((other) => (
+                <Link
+                  key={other.slug}
+                  href={`/teardowns/${other.slug}`}
+                  className="group block p-4 rounded-xl border border-sand-300 bg-[#F7F4EE] hover:border-accent hover:bg-white transition-all duration-200"
+                >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="rounded bg-charcoal px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
+                      {other.id}
+                    </span>
+                    <span className="text-xs text-rose-600 font-bold">LCP {other.lcpScore}</span>
+                  </div>
+                  <h4 className="font-editorial text-base font-bold text-charcoal group-hover:text-accent transition-colors mb-1 line-clamp-2">
+                    {other.title}
+                  </h4>
+                  <p className="text-xs text-charcoal-muted line-clamp-2">
+                    {other.seoFinding}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Commercial Tool Bridge */}
         <div className="rounded-2xl bg-[#242321] text-[#F7F4EE] p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
@@ -205,12 +302,20 @@ export default function TeardownDetailPage({ params }: TeardownPageProps) {
               VitalsSniper PRO inspects live tabs in 50ms and outputs white-label client tear sheets.
             </p>
           </div>
-          <Link
-            href="/products/vitalssniper-pro"
-            className="rounded-xl bg-accent px-5 py-3 text-xs font-bold text-white hover:bg-accent-dark transition-all flex-shrink-0 shadow-sm"
-          >
-            <span>Learn About VitalsSniper PRO</span>
-          </Link>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <Link
+              href="/tools/website-speed-test"
+              className="rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-bold text-white hover:bg-white/20 transition-all"
+            >
+              <span>Free Speed Test</span>
+            </Link>
+            <Link
+              href="/products/vitalssniper-pro"
+              className="rounded-xl bg-accent px-5 py-3 text-xs font-bold text-white hover:bg-accent-dark transition-all shadow-sm"
+            >
+              <span>Learn About VitalsSniper PRO</span>
+            </Link>
+          </div>
         </div>
 
       </div>
