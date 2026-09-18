@@ -30,13 +30,14 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
         
         {/* Brand Logo & Editorial Wordmark */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-9 w-9 overflow-hidden rounded-lg border border-sand-300 bg-white shadow-sm transition-transform group-hover:scale-105">
+          <div className="relative h-9 w-9 overflow-hidden rounded-lg shadow-sm transition-transform group-hover:scale-105">
             <Image
-              src="/assets/appsumo_icon_512x512.png"
+              src="/favicon.svg"
               alt="Web Audits"
               width={36}
               height={36}
               className="h-full w-full object-cover"
+              priority
             />
           </div>
           <div className="flex items-center gap-2">
