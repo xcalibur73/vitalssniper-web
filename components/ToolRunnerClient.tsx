@@ -40,7 +40,7 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
     setError(null);
 
     try {
-      const endpoint = tool.slug === 'geo-audit' ? '/api/geo' : '/api/audit';
+      const endpoint = tool.slug === 'geo-audit' ? '/api/geo' : (tool.slug === 'index-trace' ? '/api/trace' : '/api/audit');
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -273,6 +273,175 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                     </div>
                     <ul className="space-y-2">
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#B76345] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'index-trace' ? (
+              /* IndexTrace GSC Diagnosis View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Indexing Triage Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.start_url}
+                    </div>
+                    {auditResult.final_url !== auditResult.start_url && (
+                      <div className="text-xs text-[#6B7280] mt-1 font-mono">
+                        Destination: {auditResult.final_url}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Search Console Status</span>
+                      <span className={`text-sm sm:text-base font-bold font-mono ${
+                        auditResult.verdict?.severity === 'OK'
+                          ? 'text-[#10B981]'
+                          : auditResult.verdict?.severity === 'WARNING'
+                          ? 'text-[#B45309]'
+                          : 'text-[#EF4444]'
+                      }`}>
+                        {auditResult.verdict?.gsc_status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Root Cause Banner */}
+                <div className={`p-4 rounded-lg border text-xs sm:text-sm ${
+                  auditResult.verdict?.severity === 'OK'
+                    ? 'bg-[#10B981]/10 border-[#10B981]/25 text-[#065F46]'
+                    : auditResult.verdict?.severity === 'WARNING'
+                    ? 'bg-[#F59E0B]/10 border-[#F59E0B]/25 text-[#92400E]'
+                    : 'bg-[#EF4444]/10 border-[#EF4444]/25 text-[#991B1B]'
+                }`}>
+                  <strong className="font-bold block mb-1">Diagnostic Root Cause:</strong>
+                  <span>{auditResult.verdict?.root_cause}</span>
+                </div>
+
+                {/* Hop-by-Hop Redirect Tracer */}
+                <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                    <span>Hop-by-Hop Redirect Tracer ({auditResult.total_hops} Hops)</span>
+                    <span className="text-[#6B7280]">Final HTTP Status: {auditResult.final_status}</span>
+                  </div>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs border-collapse">
+                      <thead>
+                        <tr className="border-b border-[#E5E7EB] text-[#6B7280]">
+                          <th className="py-2 pr-3 font-semibold">Hop</th>
+                          <th className="py-2 pr-3 font-semibold">Status</th>
+                          <th className="py-2 pr-3 font-semibold">Latency</th>
+                          <th className="py-2 pr-3 font-semibold">URL</th>
+                          <th className="py-2 font-semibold">Next Location</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#E5E7EB]">
+                        {auditResult.hops?.map((h: any, idx: number) => (
+                          <tr key={idx} className="font-mono">
+                            <td className="py-2 pr-3 text-[#6B7280]">{h.hop}</td>
+                            <td className="py-2 pr-3">
+                              <span className={`px-2 py-0.5 rounded font-bold ${
+                                h.statusCode === 200
+                                  ? 'bg-[#10B981]/15 text-[#065F46]'
+                                  : h.statusCode >= 300 && h.statusCode < 400
+                                  ? 'bg-[#F59E0B]/15 text-[#92400E]'
+                                  : 'bg-[#EF4444]/15 text-[#991B1B]'
+                              }`}>
+                                {h.statusCode}
+                              </span>
+                            </td>
+                            <td className="py-2 pr-3 text-[#6B7280]">{h.latencyMs}ms</td>
+                            <td className="py-2 pr-3 text-[#0F0F0F] break-all">{h.url}</td>
+                            <td className="py-2 text-[#2563EB] break-all">{h.location || '-'}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Robots.txt RFC 9309 Collision Box */}
+                <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                    <span>Robots.txt Crawl Collision Analysis (RFC 9309)</span>
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
+                      auditResult.robots?.status === 'ALLOWED'
+                        ? 'bg-[#10B981]/15 text-[#065F46]'
+                        : 'bg-[#EF4444]/15 text-[#991B1B]'
+                    }`}>
+                      {auditResult.robots?.status}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div className="p-3 rounded border border-[#E5E7EB] bg-[#F8F8F8]">
+                      <span className="text-[#6B7280] block mb-1">Matching Directive:</span>
+                      <div className="font-mono font-bold text-[#0F0F0F]">
+                        {auditResult.robots?.matching_rule || 'None (Default Allow)'}
+                        {auditResult.robots?.line_number ? ` (Line ${auditResult.robots.line_number})` : ''}
+                      </div>
+                    </div>
+
+                    <div className="p-3 rounded border border-[#E5E7EB] bg-[#F8F8F8]">
+                      <span className="text-[#6B7280] block mb-1">Evaluated User-Agent:</span>
+                      <div className="font-mono font-bold text-[#0F0F0F]">
+                        {auditResult.robots?.user_agent_applied || 'googlebot'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Directives & Canonical Alignment Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block mb-1">X-Robots-Tag (Header)</span>
+                    <span className={`font-bold ${auditResult.directives?.x_robots_tag?.toLowerCase().includes('noindex') ? 'text-[#EF4444]' : 'text-[#10B981]'}`}>
+                      {auditResult.directives?.x_robots_tag || 'Clean (No Header)'}
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block mb-1">Meta Robots (HTML)</span>
+                    <span className={`font-bold ${auditResult.directives?.meta_robots?.toLowerCase().includes('noindex') ? 'text-[#EF4444]' : 'text-[#10B981]'}`}>
+                      {auditResult.directives?.meta_robots || 'Clean (Default Index)'}
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block mb-1">Canonical Tag</span>
+                    <span className={`font-bold ${auditResult.directives?.canonical_status === 'CLEAN_SELF' ? 'text-[#10B981]' : 'text-[#B45309]'}`}>
+                      {auditResult.directives?.canonical_status}
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block mb-1">Soft-404 Risk</span>
+                    <span className={`font-bold ${auditResult.soft404?.is_soft404 ? 'text-[#EF4444]' : 'text-[#10B981]'}`}>
+                      {auditResult.soft404?.risk_percent}% Risk ({auditResult.directives?.word_count || 0} words)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Step-by-Step Engineering Remediation */}
+                {auditResult.verdict?.remediation && auditResult.verdict.remediation.length > 0 && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Step-by-Step Engineering Remediation:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.verdict.remediation.map((rec: string, rIdx: number) => (
                         <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
                           <CheckCircle2 className="h-4 w-4 text-[#B76345] flex-shrink-0 mt-0.5" />
                           <span>{rec}</span>

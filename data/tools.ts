@@ -199,6 +199,25 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'how-to-audit-50-client-sites-in-1-week',
     relatedToolSlug: 'website-speed-test',
   },
+  {
+    slug: 'index-trace',
+    name: 'GSC Indexing Triage & Crawler Tracer',
+    shortDescription: 'Triage Google Search Console indexing dropouts, RFC 9309 robots collisions, and redirect chains.',
+    fullDescription: 'Isolates infinite redirect loops, line-by-line robots.txt collisions, hidden edge X-Robots-Tag noindex headers, and soft-404 patterns with automated engineering remediation steps.',
+    tier: 'free',
+    category: 'Technical SEO',
+    icon: '🔍',
+    referenceBenchmark: 'Reference Benchmark: Clean HTTP 200, 0 Robots Collisions, Self-Canonicalized',
+    whatItMeans: 'Search engines abandon indexation when encountering redirect loops, line-level robots collisions, or conflicting noindex headers. Immediate root-cause diagnosis prevents traffic losses.',
+    howToImprove: [
+      'Eliminate intermediate 302/307 redirect hops to preserve crawl budget and equity transfer.',
+      'Audit robots.txt with RFC 9309 longest-match precedence to prevent unintentional line collisions.',
+      'Align HTTP transport headers (X-Robots-Tag) with HTML document meta robots tags.',
+      'Ensure HTTP 200 responses contain substantial content to prevent heuristic soft-404 tagging.',
+    ],
+    relatedGuideSlug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
+    relatedToolSlug: 'hydration-audit',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [
@@ -299,4 +318,5 @@ export const DIRECTORY_TOOLS: DirectoryTool[] = [
   { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: '#', testedMetric: 'Automated AVIF/WebP conversion', bestFor: 'Heavy Photography Catalogs' },
   { name: 'CitationPulse', category: 'AI Search & GEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/geo-audit', testedMetric: 'Princeton KDD 2024 passage citability scoring', bestFor: 'GEO & Generative Engine Optimization' },
   { name: 'DOMHydrate', category: 'Technical SEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/hydration-audit', testedMetric: 'Headless Chromium SSR vs CSR DOM diffing', bestFor: 'JavaScript SEO & Hydration Parity' },
+  { name: 'IndexTrace', category: 'Technical SEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/index-trace', testedMetric: 'RFC 9309 line-by-line robots collision tracing', bestFor: 'Google Search Console Emergency Triage' },
 ];
