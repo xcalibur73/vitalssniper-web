@@ -102,4 +102,4 @@ The platform adheres to strict typography, color, and accessibility constraints:
 
 ## Author & Engineering Attribution
 
-Architected and maintained by **Sadikeen Firoz** ([@xcalibur73](https://github.com/xcalibur73)).
+Architected and maintained by [@xcalibur73](https://github.com/xcalibur73).
