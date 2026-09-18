@@ -8,7 +8,7 @@ import { SITE_CONFIG } from '@/config/site';
 
 export default function BlogIndex() {
   return (
-    <div className="min-h-screen bg-[#faf8f5] text-[#18181b] flex flex-col justify-between">
+    <div className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1 max-w-6xl mx-auto px-6 py-16 w-full">
         <header className="mb-14 flex flex-col items-center text-center">

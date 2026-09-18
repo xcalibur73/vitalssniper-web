@@ -37,14 +37,14 @@ export default function FreeToolsSuite() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           
           {/* Flagship Pro Card (Pinned) */}
-          <div className="p-6 sm:p-7 rounded-2xl border-2 border-terracotta bg-[#faf8f5] flex flex-col justify-between shadow-sm relative group">
-            <div className="absolute -top-3 left-6 rounded-full bg-terracotta px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-xs">
+          <div className="p-6 sm:p-7 rounded-2xl border-2 border-action bg-[#F7F4EE] flex flex-col justify-between shadow-sm relative group transition-all duration-200 hover:-translate-y-0.5">
+            <div className="absolute -top-3 left-6 rounded-full bg-action px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-xs">
               Commercial Flagship
             </div>
 
             <div>
               <div className="flex items-center justify-between gap-2 mb-3 mt-1">
-                <span className="text-xs font-bold text-terracotta font-mono">Pro Platform</span>
+                <span className="text-xs font-bold text-action font-mono">Pro Platform</span>
                 <span className="text-[11px] font-bold text-charcoal bg-sand-300 px-2 py-0.5 rounded">
                   Public Beta
                 </span>
@@ -59,15 +59,15 @@ export default function FreeToolsSuite() {
 
               <div className="space-y-2 text-xs text-charcoal-light mb-6 border-t border-sand-300/80 pt-4">
                 <div className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 text-terracotta flex-shrink-0" />
+                  <Check className="h-3.5 w-3.5 text-action flex-shrink-0" />
                   <span>50ms in-tab client execution</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 text-terracotta flex-shrink-0" />
+                  <Check className="h-3.5 w-3.5 text-action flex-shrink-0" />
                   <span>White-label PDF with booking CTA</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 text-terracotta flex-shrink-0" />
+                  <Check className="h-3.5 w-3.5 text-action flex-shrink-0" />
                   <span>1-Click Lead CRM &amp; CSV export</span>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function FreeToolsSuite() {
 
             <Link
               href="/vitalssniper#auditor"
-              className="w-full rounded-xl bg-terracotta py-3 text-center text-xs font-bold text-white hover:bg-terracotta-dark transition-all block shadow-xs"
+              className="w-full rounded-xl bg-action py-3 text-center text-xs font-bold text-white hover:bg-action-hover transition-all block shadow-[0_2px_8px_rgba(194,65,12,0.22)] hover:shadow-[0_4px_12px_rgba(194,65,12,0.3)]"
             >
               Test VitalsSniper Beta (Free)
             </Link>
@@ -85,7 +85,7 @@ export default function FreeToolsSuite() {
           {FREE_TOOLS.slice(0, 5).map((tool) => (
             <div
               key={tool.slug}
-              className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all group"
+              className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 group"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
@@ -99,7 +99,7 @@ export default function FreeToolsSuite() {
                   )}
                 </div>
 
-                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2 group-hover:text-terracotta transition-colors">
+                <h3 className="font-editorial text-xl font-bold text-charcoal mb-2 group-hover:text-action transition-colors">
                   {tool.name}
                 </h3>
                 <p className="text-xs text-charcoal-muted leading-relaxed mb-5">
@@ -118,7 +118,7 @@ export default function FreeToolsSuite() {
 
               <Link
                 href={`/tools/${tool.slug}`}
-                className="w-full rounded-xl border border-sand-300 bg-[#faf8f5] py-2.5 text-center text-xs font-bold text-charcoal hover:border-terracotta/40 hover:text-terracotta hover:bg-white transition-all block"
+                className="w-full rounded-xl border border-sand-300 bg-[#F7F4EE] py-2.5 text-center text-xs font-bold text-charcoal hover:border-action/40 hover:text-action hover:bg-white transition-all block"
               >
                 Launch Free Tool &rarr;
               </Link>

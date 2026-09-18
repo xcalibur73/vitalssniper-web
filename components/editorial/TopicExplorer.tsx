@@ -44,7 +44,7 @@ export default function TopicExplorer() {
             <Link
               key={beat.name}
               href={`/articles?topic=${encodeURIComponent(beat.name)}`}
-              className="p-5 rounded-2xl border border-sand-300 bg-[#faf8f5] hover:border-terracotta/40 hover:bg-white transition-all group flex flex-col justify-between"
+              className="p-5 rounded-2xl border border-sand-300 bg-[#F7F4EE] hover:border-terracotta/40 hover:bg-white transition-all group flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">

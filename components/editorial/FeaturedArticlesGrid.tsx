@@ -17,7 +17,7 @@ export default function FeaturedArticlesGrid({
   const displayPosts = posts.slice(0, limit);
 
   return (
-    <section className="py-20 border-b border-sand-300 bg-[#faf8f5]">
+    <section className="py-20 border-b border-sand-300 bg-[#F7F4EE]">
       <div className="mx-auto max-w-6xl px-6">
         
         {/* Section Header */}
@@ -48,7 +48,7 @@ export default function FeaturedArticlesGrid({
           {displayPosts.map((post) => (
             <article
               key={post.slug}
-              className="paper-card rounded-2xl p-6 flex flex-col justify-between transition-all group"
+              className="paper-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 group"
             >
               <div>
                 {/* Category Pill & Tag */}

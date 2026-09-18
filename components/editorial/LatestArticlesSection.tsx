@@ -88,7 +88,7 @@ export default function LatestArticlesSection() {
 
             <Link
               href="/articles/why-your-lcp-score-tanks-on-mobile-how-to-fix-it"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-accent-dark transition-all w-fit"
+              className="inline-flex items-center gap-2 rounded-xl bg-action px-5 py-2.5 text-xs font-bold text-white shadow-[0_2px_8px_rgba(194,65,12,0.22)] hover:bg-action-hover transition-all w-fit"
             >
               <span>Read the article</span>
               <ArrowRight className="h-3.5 w-3.5" />

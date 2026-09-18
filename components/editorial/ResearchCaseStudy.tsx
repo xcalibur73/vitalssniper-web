@@ -9,7 +9,7 @@ export default function ResearchCaseStudy() {
   const { title, subtitle, sampleSize, date, findings } = CASE_STUDY_100_SITES;
 
   return (
-    <section className="py-20 border-b border-sand-300 bg-[#faf8f5]">
+    <section className="py-20 border-b border-sand-300 bg-[#F7F4EE]">
       <div className="mx-auto max-w-6xl px-6">
         
         {/* Section Header */}
@@ -31,7 +31,7 @@ export default function ResearchCaseStudy() {
           {findings.map((item, idx) => (
             <div
               key={item.label}
-              className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between"
+              className="paper-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -51,7 +51,7 @@ export default function ResearchCaseStudy() {
                   <strong className="text-charcoal">The Flaw:</strong> {item.problem}
                 </p>
 
-                <div className="p-3.5 rounded-xl bg-[#faf8f5] border border-sand-300 text-xs text-charcoal-light leading-relaxed mb-4">
+                <div className="p-3.5 rounded-xl bg-[#F7F4EE] border border-sand-300 text-xs text-charcoal-light leading-relaxed mb-4">
                   <strong className="text-rose-700">Performance Penalty:</strong> {item.impact}
                 </div>
               </div>

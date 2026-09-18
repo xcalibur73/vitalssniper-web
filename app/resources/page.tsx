@@ -51,7 +51,7 @@ export default function ResourcesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#faf8f5] text-[#18181b] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
 
       <div className="mx-auto max-w-6xl px-6 py-16 flex-1 w-full">

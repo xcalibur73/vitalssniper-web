@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#faf8f5] text-[#18181b] flex flex-col justify-between">
+    <main className="min-h-screen bg-[#F7F4EE] text-[#20201E] flex flex-col justify-between">
       <Navbar />
 
       <div className="mx-auto max-w-4xl px-6 py-16 flex-1 w-full">
@@ -45,19 +45,19 @@ export default function AboutPage() {
             Our Three Connected Engines
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-charcoal-muted">
-            <div className="p-4 rounded-xl bg-[#faf8f5] border border-sand-300">
+            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <strong className="text-charcoal block text-sm mb-1">1. The Content Engine</strong>
               <p className="leading-relaxed">
                 Independent articles, tutorials, Core Web Vitals benchmarks, and 100-site teardowns designed to build durable organic search authority.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-[#faf8f5] border border-sand-300">
+            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <strong className="text-charcoal block text-sm mb-1">2. The Affiliate Engine</strong>
               <p className="leading-relaxed">
                 Rigorous testing of web hosts, page builders, and SEO tools with transparent disclosures and unbiased pros and limitations.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-[#faf8f5] border border-sand-300">
+            <div className="p-4 rounded-xl bg-[#F7F4EE] border border-sand-300">
               <strong className="text-charcoal block text-sm mb-1">3. The Proprietary Tools</strong>
               <p className="leading-relaxed">
                 Free in-browser scanners for instant flaw discovery, feeding into VitalsSniper PRO for commercial agency client acquisition.

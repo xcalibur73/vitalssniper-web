@@ -58,7 +58,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}>
-      <body className="bg-[#faf8f5] text-[#18181b] antialiased selection:bg-terracotta/20 selection:text-terracotta-dark min-h-screen flex flex-col font-sans">
+      <body className="bg-[#F7F4EE] text-[#20201E] antialiased selection:bg-terracotta/20 selection:text-terracotta-dark min-h-screen flex flex-col font-sans">
         {children}
       </body>
     </html>
