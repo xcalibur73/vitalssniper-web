@@ -99,7 +99,7 @@ export default function LatestArticlesSection() {
           <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
             <div>
               {/* Thumbnail / Code Terminal Preview */}
-              <div className="rounded-xl bg-[#14151B] p-3 mb-4 font-mono text-[10px] text-gray-400 space-y-1 overflow-hidden h-28 flex flex-col justify-center">
+              <div className="rounded-xl bg-[#14151B] p-3 mb-4 font-mono text-[10px] text-gray-400 space-y-1 overflow-hidden min-h-[112px] flex flex-col justify-center">
                 <div className="text-emerald-400">$ curl -I https://example.com</div>
                 <div className="text-gray-300">HTTP/2 200 OK</div>
                 <div className="text-gray-500">x-cache: HIT (LiteSpeed)</div>
@@ -130,7 +130,7 @@ export default function LatestArticlesSection() {
           <div className="flex flex-col justify-between rounded-2xl border border-sand-300 bg-white p-5 shadow-sm hover:border-accent/40 transition-all duration-200 hover:-translate-y-0.5 group">
             <div>
               {/* Thumbnail / AI Mockup */}
-              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-3 mb-4 font-sans text-[10px] text-charcoal-muted space-y-1.5 h-28 flex flex-col justify-center">
+              <div className="rounded-xl bg-[#F7F4EE] border border-sand-300 p-3 mb-4 font-sans text-[10px] text-charcoal-muted space-y-1.5 min-h-[112px] flex flex-col justify-center">
                 <div className="flex items-center gap-1.5 font-bold text-charcoal text-[11px]">
                   <Sparkles className="h-3 w-3 text-accent" />
                   <span>AI Crawler Query Response</span>
