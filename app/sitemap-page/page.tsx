@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
@@ -161,6 +161,39 @@ export default function SitemapPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        <div className="mt-8 paper-card rounded-2xl p-6">
+          <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-wider mb-4">
+            <Layers className="h-4 w-4" />
+            <span>Agency Playbooks &amp; Trust Architecture</span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-xs">
+            <Link href="/resources" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Agency Resources &amp; Pitch Files
+            </Link>
+            <Link href="/docs" className="font-medium text-charcoal hover:text-accent transition-colors">
+              VitalsSniper PRO Documentation
+            </Link>
+            <Link href="/free-audit-report" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Free Audit Report Generator
+            </Link>
+            <Link href="/pricing" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Pricing &amp; Commercial Licenses
+            </Link>
+            <Link href="/about" className="font-medium text-charcoal hover:text-accent transition-colors">
+              About Web Audits
+            </Link>
+            <Link href="/about/methodology" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Testing Methodology
+            </Link>
+            <Link href="/editorial-policy" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Editorial Policy
+            </Link>
+            <Link href="/affiliate-disclosure" className="font-medium text-charcoal hover:text-accent transition-colors">
+              Affiliate Disclosure
+            </Link>
           </div>
         </div>
       </main>

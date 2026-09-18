@@ -8,7 +8,27 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/dashboard/', '/license/'],
       },
+      {
+        userAgent: [
+          'GPTBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'ClaudeBot',
+          'anthropic-ai',
+          'Google-Extended',
+          'Applebot-Extended',
+          'OAI-SearchBot',
+          'Bingbot',
+        ],
+        allow: '/',
+        disallow: ['/api/', '/dashboard/', '/license/'],
+      },
+      {
+        userAgent: ['CCBot'],
+        disallow: ['/'],
+      },
     ],
     sitemap: 'https://www.webaudits.pro/sitemap.xml',
+    host: 'https://www.webaudits.pro',
   };
 }

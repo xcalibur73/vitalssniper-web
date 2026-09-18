@@ -10,38 +10,41 @@ import { FREE_TOOLS } from '@/data/tools';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.webaudits.pro';
 
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}`, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
-    { url: `${baseUrl}/articles`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${baseUrl}/articles/web-performance`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/articles/seo`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/articles/ai-search`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/articles/web-design`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/articles/conversion`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/articles/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/tools/directory`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/reviews`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/comparisons`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/research`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/teardowns`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/free-audit-report`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/products/vitalssniper-pro`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/vitalssniper`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/pricing`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/about/methodology`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/editorial-policy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/affiliate-disclosure`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/cookies`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/newsletter`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/sitemap-page`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-  ];
+  // Release and freshness timestamps for Q1 2026 updates
+  const currentReleaseDate = new Date('2026-03-18T00:00:00.000Z');
+  const evergreenDate = new Date('2026-03-15T00:00:00.000Z');
 
-  // Stable baseline date for editorial static routes and evergreen datasets (Q1 2026)
-  const baselineDate = new Date('2026-03-01T00:00:00.000Z');
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}`, lastModified: currentReleaseDate, changeFrequency: 'daily', priority: 1.0 },
+    { url: `${baseUrl}/articles`, lastModified: currentReleaseDate, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${baseUrl}/articles/web-performance`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/articles/seo`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/articles/ai-search`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/articles/web-design`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/articles/conversion`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/articles/tools`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/tools`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/tools/directory`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/reviews`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/comparisons`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/research`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/teardowns`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/resources`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/docs`, lastModified: currentReleaseDate, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/free-audit-report`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/products/vitalssniper-pro`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/vitalssniper`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/pricing`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/about`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/about/methodology`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/editorial-policy`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/affiliate-disclosure`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/privacy`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/terms`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/cookies`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${baseUrl}/newsletter`, lastModified: evergreenDate, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/sitemap-page`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.7 },
+  ];
 
   const articleRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/articles/${post.slug}`,
@@ -52,44 +55,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const reviewRoutes: MetadataRoute.Sitemap = PRODUCTS.map((product) => ({
     url: `${baseUrl}/reviews/${product.slug}`,
-    lastModified: baselineDate,
+    lastModified: currentReleaseDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const comparisonRoutes: MetadataRoute.Sitemap = COMPARISONS.map((comp) => ({
     url: `${baseUrl}/comparisons/${comp.slug}`,
-    lastModified: baselineDate,
+    lastModified: currentReleaseDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const researchRoutes: MetadataRoute.Sitemap = RESEARCH_STUDIES.map((study) => ({
     url: `${baseUrl}/research/${study.slug}`,
-    lastModified: baselineDate,
+    lastModified: currentReleaseDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const teardownRoutes: MetadataRoute.Sitemap = TEARDOWNS.map((td) => ({
     url: `${baseUrl}/teardowns/${td.slug}`,
-    lastModified: baselineDate,
+    lastModified: currentReleaseDate,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const authorRoutes: MetadataRoute.Sitemap = AUTHORS_LIST.map((author) => ({
     url: `${baseUrl}/about/authors/${author.slug}`,
-    lastModified: baselineDate,
+    lastModified: evergreenDate,
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
 
   const toolRoutes: MetadataRoute.Sitemap = FREE_TOOLS.map((tool) => ({
     url: `${baseUrl}/tools/${tool.slug}`,
-    lastModified: baselineDate,
+    lastModified: currentReleaseDate,
     changeFrequency: 'monthly',
-    priority: 0.7,
+    priority: 0.8,
   }));
 
   return [
