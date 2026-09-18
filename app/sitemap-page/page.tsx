@@ -9,7 +9,8 @@ import { PRODUCTS } from '@/data/products';
 import { RESEARCH_STUDIES } from '@/data/research';
 import { TEARDOWNS } from '@/data/teardowns';
 import { COMPARISONS } from '@/data/comparisons';
-import { FileText, Wrench, Shield, BookOpen, Layers } from 'lucide-react';
+import { AUTHORS_LIST } from '@/data/authors';
+import { FileText, Wrench, Shield, BookOpen, Layers, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'HTML Sitemap & Index Directory | Web Audits',
@@ -34,7 +35,7 @@ export default function SitemapPage() {
             HTML Content Sitemap
           </h1>
           <p className="text-base text-[#4B5563] leading-relaxed">
-            Index of published web performance benchmarks, technical SEO articles, diagnostic tools, and teardown studies.
+            Index of published web performance benchmarks, technical SEO articles, diagnostic tools, software reviews, and teardown studies.
           </p>
         </header>
 
@@ -144,23 +145,42 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4 md:col-span-2 lg:col-span-1">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
-              <FileText className="h-4 w-4" />
-              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Forensic Articles ({BLOG_POSTS.length})</h2>
+              <Users className="h-4 w-4" />
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Authors &amp; Researchers</h2>
             </div>
-            <ul className="space-y-2 text-xs max-h-[340px] overflow-y-auto pr-2">
-              {BLOG_POSTS.map((post) => (
-                <li key={post.slug}>
+            <ul className="space-y-2.5 text-xs">
+              {AUTHORS_LIST.map((author) => (
+                <li key={author.slug}>
                   <Link
-                    href={`/articles/${post.slug}`}
-                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors block truncate"
+                    href={`/about/authors/${author.slug}`}
+                    className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors block"
                   >
-                    {post.title}
+                    <span>{author.name}</span>
+                    <span className="block text-[11px] text-[#6B7280]">{author.role}</span>
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-xs space-y-4 md:col-span-2 lg:col-span-3">
+            <div className="flex items-center gap-2 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
+              <FileText className="h-4 w-4" />
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Forensic Articles ({BLOG_POSTS.length})</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-xs">
+              {BLOG_POSTS.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/articles/${post.slug}`}
+                  className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors truncate block py-0.5"
+                >
+                  {post.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -179,8 +199,23 @@ export default function SitemapPage() {
             <Link href="/free-audit-report" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Free Audit Report Generator
             </Link>
+            <Link href="/vitalssniper" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              VitalsSniper Chrome Extension
+            </Link>
+            <Link href="/products/vitalssniper-pro" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              VitalsSniper PRO Package
+            </Link>
             <Link href="/pricing" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Pricing &amp; Commercial Licenses
+            </Link>
+            <Link href="/newsletter" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              The Web Audits Brief
+            </Link>
+            <Link href="/tools/directory" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              Web Tools Directory
+            </Link>
+            <Link href="/blog" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              Editorial Blog Index
             </Link>
             <Link href="/about" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               About Web Audits
@@ -193,6 +228,15 @@ export default function SitemapPage() {
             </Link>
             <Link href="/affiliate-disclosure" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
               Affiliate Disclosure
+            </Link>
+            <Link href="/privacy" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="font-medium text-[#0F0F0F] hover:text-[#2563EB] transition-colors">
+              Cookie Policy
             </Link>
           </div>
         </div>

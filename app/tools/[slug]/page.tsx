@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -43,6 +43,10 @@ export function generateMetadata({ params }: ToolPageProps): Metadata {
   }
 
   return {};
+}
+
+export function generateStaticParams() {
+  return FREE_TOOLS.map((tool) => ({ slug: tool.slug }));
 }
 
 export default function ToolLandingPage({ params }: ToolPageProps) {
@@ -178,7 +182,9 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
       <div className="py-16 mx-auto max-w-4xl px-6 flex-1 w-full space-y-12">
         
         {/* Stage 1: Interactive Tool Widget & Stage 2: Results */}
-        <ToolRunnerClient tool={tool} />
+        <Suspense fallback={<div className="p-8 text-center text-sm text-[#4B5563]">Loading diagnostic engine...</div>}>
+          <ToolRunnerClient tool={tool} />
+        </Suspense>
 
         {/* Stage 3: What This Metric Means */}
         <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">

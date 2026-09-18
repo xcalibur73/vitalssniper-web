@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -5,6 +6,14 @@ import FeaturedArticlesGrid from '@/components/editorial/FeaturedArticlesGrid';
 import { BLOG_POSTS } from '@/data/posts';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'Web Performance & Technical SEO Blog | Web Audits',
+  description: 'In-depth engineering guides, speed benchmarks, Core Web Vitals diagnostics, and hands-on case studies published by the Web Audits research team.',
+  alternates: {
+    canonical: 'https://www.webaudits.pro/blog',
+  },
+};
 
 export default function BlogIndex() {
   return (

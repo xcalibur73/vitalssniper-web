@@ -10,9 +10,9 @@ import { FREE_TOOLS } from '@/data/tools';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.webaudits.pro';
 
-  // Release and freshness timestamps for Q1 2026 updates
-  const currentReleaseDate = new Date('2026-03-18T00:00:00.000Z');
-  const evergreenDate = new Date('2026-03-15T00:00:00.000Z');
+  // Release and freshness timestamps for current 2026 updates
+  const currentReleaseDate = new Date('2026-09-18T00:00:00.000Z');
+  const evergreenDate = new Date('2026-09-15T00:00:00.000Z');
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${baseUrl}`, lastModified: currentReleaseDate, changeFrequency: 'daily', priority: 1.0 },
@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/articles/web-design`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/articles/conversion`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/articles/tools`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${baseUrl}/blog`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/tools`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/tools/directory`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/reviews`, lastModified: currentReleaseDate, changeFrequency: 'weekly', priority: 0.9 },
