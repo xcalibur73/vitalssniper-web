@@ -11,3 +11,5 @@ yarn-error.log*
 test-results/
 playwright-report/
 tests/screenshots/
+private_releases/
+*.zip
