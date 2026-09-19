@@ -206,6 +206,14 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* Beta Dashboard Access */}
+        <div className="mt-8 text-center text-xs text-[#6B7280]">
+          Already testing our research suite or licensed an enterprise tier? Access your{' '}
+          <Link href="/dashboard" className="text-[#2563EB] font-semibold underline hover:text-[#1D4ED8]">
+            Client Dashboard
+          </Link>
+          .
+        </div>
       </div>
 
       <Footer />

@@ -4,8 +4,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ShieldCheck, Target, Award, Wrench, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Target, Award, Wrench, CheckCircle2, ArrowRight, Users } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+import { AUTHORS_LIST } from '@/data/authors';
 
 export const metadata: Metadata = {
   title: 'About Web Audits - Editorial Standards & Mission',
@@ -104,6 +105,64 @@ export default function AboutPage() {
               <li><strong className="text-[#0F0F0F]">Solo Freelancers:</strong> Pitch prospective clients with 3-sentence proof-of-flaw notes and 1-page branded tear sheets that establish instant technical authority.</li>
               <li><strong className="text-[#0F0F0F]">Digital Agencies:</strong> Triage 50 prospect domains in an afternoon directly from active tabs and close speed retainers with undeniable visual evidence.</li>
             </ul>
+          </div>
+        </div>
+
+        {/* Editorial Team & Authors */}
+        <div className="mb-14">
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] block mb-1">
+                Editorial Contributors
+              </span>
+              <h2 className="text-2xl font-bold text-[#0F0F0F]">
+                Our Research &amp; Engineering Team
+              </h2>
+            </div>
+            <Link
+              href="/about/methodology"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1D4ED8] hover:underline"
+            >
+              <span>Testing Methodology</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {AUTHORS_LIST.map((author) => (
+              <div
+                key={author.slug}
+                className="p-6 rounded-2xl border border-[#E5E7EB] bg-white flex flex-col justify-between shadow-xs hover:border-[#D1D5DB] transition-colors"
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-10 w-10 rounded-full bg-[#2563EB]/10 border border-[#2563EB]/20 flex items-center justify-center font-bold text-sm text-[#2563EB]">
+                      {author.name.split(' ').map((n) => n[0]).join('')}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[#0F0F0F] text-base">
+                        {author.name}
+                      </h3>
+                      <p className="text-[11px] text-[#6B7280]">
+                        {author.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-[#4B5563] leading-relaxed mb-4 line-clamp-3">
+                    {author.bio}
+                  </p>
+                </div>
+
+                <Link
+                  href={`/about/authors/${author.slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:underline pt-3 border-t border-[#E5E7EB]"
+                >
+                  <span>View Author Profile &amp; Research</span>
+                  <ArrowRight className="h-3 w-3" />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
 

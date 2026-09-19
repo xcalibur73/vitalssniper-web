@@ -83,6 +83,11 @@ export default function Footer() {
                   Tools &amp; Workflows
                 </Link>
               </li>
+              <li>
+                <Link href="/blog" className="hover:text-white transition-colors">
+                  Blog Archive
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -98,18 +103,28 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/tools/overflow-trace" className="hover:text-white transition-colors">
+                  Mobile Overflow Tracer
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/hydration-audit" className="hover:text-white transition-colors">
+                  Hydration &amp; SSR Auditor
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/index-trace" className="hover:text-white transition-colors">
+                  GSC Indexing Tracer
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/geo-audit" className="hover:text-white transition-colors">
+                  AI Citability &amp; GEO
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools/lcp-checker" className="hover:text-white transition-colors">
                   LCP Element Finder
-                </Link>
-              </li>
-              <li>
-                <Link href="/tools/page-weight-checker" className="hover:text-white transition-colors">
-                  Page Weight Checker
-                </Link>
-              </li>
-              <li>
-                <Link href="/products/vitalssniper-pro" className="hover:text-white transition-colors">
-                  VitalsSniper PRO
                 </Link>
               </li>
               <li>
@@ -166,13 +181,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/about/methodology" className="hover:text-white transition-colors">
+                  Testing Methodology
+                </Link>
+              </li>
+              <li>
                 <Link href="/teardowns" className="hover:text-white transition-colors">
                   Website Teardowns
                 </Link>
               </li>
               <li>
-                <Link href="/newsletter" className="hover:text-white transition-colors">
-                  The Web Audits Brief
+                <Link href="/free-audit-report" className="hover:text-white transition-colors">
+                  Free Audit Report
                 </Link>
               </li>
               <li>
@@ -183,12 +203,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 5: Legal & Policy */}
+          {/* Column 5: Company & Legal */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
-              Trust &amp; Legal
+              Company &amp; Legal
             </p>
             <ul className="space-y-2.5">
+              <li>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About Web Audits
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-white transition-colors">
+                  Plans &amp; Licensing
+                </Link>
+              </li>
               <li>
                 <Link href="/affiliate-disclosure" className="hover:text-white transition-colors">
                   Affiliate Disclosure
@@ -210,8 +240,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="hover:text-white transition-colors">
-                  Cookie Policy
+                <Link href="/sitemap-page" className="hover:text-white transition-colors">
+                  HTML Sitemap
                 </Link>
               </li>
             </ul>

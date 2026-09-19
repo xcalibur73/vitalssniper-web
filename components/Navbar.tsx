@@ -19,7 +19,8 @@ export default function Navbar({ onOpenCheckout }: NavbarProps = {}) {
     { label: 'Research', href: '/research' },
     { label: 'Reviews', href: '/reviews' },
     { label: 'Articles', href: '/articles' },
-    { label: 'Resources', href: '/resources' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'About', href: '/about' },
   ];
 
   return (

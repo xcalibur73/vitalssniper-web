@@ -120,14 +120,14 @@ export default function ToolsPageClient() {
                 </div>
 
                 <Link
-                  href={tool.slug === 'vitalssniper-pro' ? '/products/vitalssniper-pro' : `/tools/${tool.slug}`}
+                  href={tool.slug === 'vitalssniper-pro' ? '/products/vitalssniper-pro' : '/vitalssniper#auditor'}
                   className={`w-full py-2.5 rounded-lg text-center text-xs font-semibold transition-colors block ${
                     tool.slug === 'vitalssniper-pro'
                       ? 'bg-[#2563EB] text-white hover:bg-[#1D4ED8]'
                       : 'border border-[#E5E7EB] bg-white text-[#0F0F0F] hover:border-[#2563EB] hover:text-[#2563EB]'
                   }`}
                 >
-                  {tool.slug === 'vitalssniper-pro' ? 'Explore VitalsSniper PRO' : 'Learn More'} &rarr;
+                  {tool.slug === 'vitalssniper-pro' ? 'Explore VitalsSniper PRO' : 'Explore in VitalsSniper'} &rarr;
                 </Link>
               </div>
             ))}
