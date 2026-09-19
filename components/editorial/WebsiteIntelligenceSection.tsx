@@ -2,29 +2,36 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Activity, Gauge, Search, Layers, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Activity, Search, Layers, CheckCircle2, Smartphone } from 'lucide-react';
 
 const SECONDARY_TOOLS = [
   {
-    name: 'LCP Element Finder',
-    description: 'Pinpoint the Largest Contentful Paint node, calculate render delays, and optimize hero media.',
-    link: '/tools/lcp-checker',
-    icon: Gauge,
-    metric: '< 2.5s Target',
+    name: 'Mobile Overflow Tracer',
+    description: 'Isolate horizontal scroll breakages, rogue 100vw offsets, and unconstrained flex containers on mobile screens.',
+    link: '/tools/overflow-trace',
+    icon: Smartphone,
+    metric: '0px Spill Target',
   },
   {
-    name: 'Page Weight Checker',
-    description: 'Inspect asset distribution, JavaScript payload size, font budgets, and uncompressed CSS.',
-    link: '/tools/page-weight-checker',
+    name: 'Hydration & SSR Parity Auditor',
+    description: 'Compare initial server HTML against hydrated client DOM to detect dropped Schema.org scripts and link graph loss.',
+    link: '/tools/hydration-audit',
     icon: Layers,
-    metric: '< 1.5MB Target',
+    metric: '100% Parity Target',
   },
   {
-    name: 'Technical SEO Inspector',
-    description: 'Validate Schema.org JSON-LD, Open Graph tags, canonical headers, and robots directives.',
-    link: '/tools/website-speed-test',
+    name: 'GSC Indexing Triage & Crawler Tracer',
+    description: 'Triage Google Search Console indexing dropouts, intermediate redirect chains, and RFC 9309 robots collisions.',
+    link: '/tools/index-trace',
     icon: Search,
-    metric: '100% Validated',
+    metric: 'RFC 9309 Validated',
+  },
+  {
+    name: 'AI Search & GEO Citability Auditor',
+    description: 'Audit Princeton KDD passage citability scores, search bot crawler permissions, and llms.txt citation readiness.',
+    link: '/tools/geo-audit',
+    icon: Activity,
+    metric: 'GEO Citability Score',
   },
 ];
 

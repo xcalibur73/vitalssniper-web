@@ -52,9 +52,9 @@ export default function EditorialHero() {
               Understand what is happening inside your website.
             </h1>
 
-            {/* Supporting Paragraph */}
+            {/* Supporting Paragraph: GEO Citable Definition Block */}
             <p className="text-base sm:text-lg text-[#4B5563] max-w-2xl leading-relaxed mb-8">
-              Analyze performance, SEO, page weight, technical issues and more: in one place.
+              Web Audits provides deterministic website intelligence and browser telemetry. We test websites against strict engineering standards: sub-2.5s Largest Contentful Paint (LCP), sub-200ms Interaction to Next Paint (INP), 0.00 Cumulative Layout Shift (CLS), and 100% SSR hydration parity. Run free diagnostic audits to isolate performance bottlenecks, crawler collisions, and mobile viewport breakages.
             </p>
 
             {/* Interactive URL Analyzer Bar */}

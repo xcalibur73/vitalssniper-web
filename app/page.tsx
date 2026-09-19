@@ -57,11 +57,41 @@ export default function HomePage() {
       'DOM Tree Optimization',
       'Generative Engine Optimization (GEO)',
     ],
+    sameAs: [
+      'https://github.com/xcalibur73',
+      'https://github.com/xcalibur73/vitalssniper-web',
+      'https://github.com/xcalibur73/overflow-trace',
+      'https://github.com/xcalibur73/dom-hydrate',
+      'https://github.com/xcalibur73/citation-pulse',
+      'https://github.com/xcalibur73/index-trace',
+    ],
+    founder: {
+      '@type': 'Person',
+      '@id': 'https://github.com/xcalibur73/#person',
+      name: 'xcalibur73',
+      url: 'https://github.com/xcalibur73',
+      jobTitle: 'Technical SEO Architect & Performance Systems Engineer',
+    },
+  };
+
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': 'https://github.com/xcalibur73/#person',
+    name: 'xcalibur73',
+    url: 'https://github.com/xcalibur73',
+    jobTitle: 'Technical SEO Architect & Performance Systems Engineer',
+    sameAs: [
+      'https://github.com/xcalibur73',
+    ],
+    worksFor: {
+      '@id': 'https://www.webaudits.pro/#organization',
+    },
   };
 
   return (
     <main className="min-h-screen bg-[#F8F8F8] text-[#0F0F0F] flex flex-col justify-between">
-      {/* Schema.org WebSite & Organization Entity Knowledge Graph */}
+      {/* Schema.org WebSite, Organization & Person Entity Knowledge Graph */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
@@ -69,6 +99,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
       
       {/* 1. Header Navigation */}

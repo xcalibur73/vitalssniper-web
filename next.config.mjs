@@ -21,6 +21,21 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'webaudits.pro',
+          },
+        ],
+        destination: 'https://www.webaudits.pro/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
