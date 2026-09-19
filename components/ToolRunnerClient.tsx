@@ -60,6 +60,8 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           ? '/api/schemagraph'
           : tool.slug === 'img-spec'
           ? '/api/imgspec'
+          : tool.slug === 'payload-sniper'
+          ? '/api/payloadsniper'
           : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -983,6 +985,147 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
                     <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
                       Image Performance Recommendations:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'payload-sniper' ? (
+              /* PayloadSniper INP & Script Performance View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Script Profiling Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.target_url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Grade: <span className="font-bold text-[#0F0F0F]">{auditResult.grade}</span> | Scripts: {auditResult.total_scripts} | Third-Party Tags: {auditResult.stats?.third_party_scripts ?? 0}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Script Score</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.overall_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.overall_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.overall_score >= 50
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.overall_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>Grade {auditResult.grade}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4-Metric Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Total Blocking Time</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.estimated_tbt_ms ?? 0}ms</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.total_blocking_time ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Estimated INP</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.inp_estimate?.estimated_inp_ms ?? 0}ms</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">{auditResult.inp_estimate?.status}</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Third-Party Tags</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.third_party_scripts ?? 0} tag(s)</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.third_party_overhead ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Render Blocking</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.render_blocking_scripts ?? 0} script(s)</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.script_loading_hygiene ?? 0}/100</p>
+                  </div>
+                </div>
+
+                {/* INP Vulnerability Card */}
+                {auditResult.inp_estimate && (
+                  <div className={`p-4 rounded-lg border text-xs space-y-2 ${
+                    auditResult.inp_estimate.meets_google_target
+                      ? 'bg-[#10B981]/10 border-[#10B981]/25 text-[#065F46]'
+                      : 'bg-[#EF4444]/10 border-[#EF4444]/25 text-[#991B1B]'
+                  }`}>
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold uppercase tracking-wider block">
+                        Google Interaction to Next Paint (INP) Status:
+                      </span>
+                      <span className="font-mono font-bold">
+                        {auditResult.inp_estimate.meets_google_target ? 'PASSED (< 200ms)' : 'FAILED (> 200ms)'}
+                      </span>
+                    </div>
+                    <p className="leading-relaxed">
+                      {auditResult.inp_estimate.status}. Estimated interaction delay: {auditResult.inp_estimate.estimated_inp_ms}ms based on main-thread blocking tasks and script congestion.
+                    </p>
+                  </div>
+                )}
+
+                {/* Vendor Breakdown */}
+                {auditResult.vendor_breakdown && auditResult.vendor_breakdown.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                      Discovered Script Vendors & Origins:
+                    </span>
+                    <div className="divide-y divide-[#E5E7EB]">
+                      {auditResult.vendor_breakdown.map((v: any, vIdx: number) => (
+                        <div key={vIdx} className="py-2 flex items-center justify-between">
+                          <div>
+                            <span className="font-bold text-[#0F0F0F]">{v.vendor}</span>
+                            <span className="text-[#6B7280] ml-2 font-mono text-[11px]">({v.category})</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                              v.is_third_party ? 'bg-[#F59E0B]/15 text-[#B45309]' : 'bg-[#10B981]/15 text-[#059669]'
+                            }`}>
+                              {v.is_third_party ? 'Third-Party' : 'First-Party'}
+                            </span>
+                            <span className="font-mono text-xs font-semibold text-[#0F0F0F]">
+                              {v.script_count} tag(s)
+                            </span>
+                            {v.blocking_scripts > 0 && (
+                              <span className="px-1.5 py-0.5 rounded bg-[#EF4444]/15 text-[#DC2626] font-mono text-[10px] font-bold">
+                                {v.blocking_scripts} blocking
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Remediation Steps */}
+                {auditResult.recommendations && auditResult.recommendations.length > 0 && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Actionable INP & Core Web Vitals Fixes:
                     </div>
                     <ul className="space-y-2">
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (

@@ -297,6 +297,27 @@ export const FREE_TOOLS: WebTool[] = [
     githubUrl: 'https://github.com/xcalibur73/img-spec',
     cliInstallCmd: 'pip install img-spec',
   },
+  {
+    slug: 'payload-sniper',
+    name: 'PayloadSniper INP & Script Bloat-Tracer',
+    shortDescription: 'Profile JavaScript hydration delays, main-thread Long Tasks (>50ms), and third-party script congestion.',
+    fullDescription: 'Analyzes main-thread execution timelines to identify scripts degrading Interaction to Next Paint (INP) and Total Blocking Time (TBT). Maps blocking durations to third-party marketing vendors.',
+    tier: 'free',
+    category: 'Performance',
+    icon: '⚡',
+    referenceBenchmark: 'Reference Benchmark: TBT < 150ms, Estimated INP < 200ms, 0 Render-Blocking Scripts',
+    whatItMeans: 'Interaction to Next Paint measures page responsiveness to user input. Unoptimized hydration bundles and heavy third-party marketing tags freeze the main thread, causing noticeable input delays.',
+    howToImprove: [
+      'Add defer or async attributes to external head scripts to unblock First Contentful Paint.',
+      'Break up monolithic execution blocks exceeding 50ms using scheduler.yield() or requestIdleCallback().',
+      'Offload non-critical third-party trackers (GTM, Meta Pixel, Hotjar) via web workers or delayed hydration.',
+      'Audit bundle splits with dynamic imports to defer JavaScript needed only on user interaction.',
+    ],
+    relatedGuideSlug: '5-best-wordpress-speed-plugins-2026',
+    relatedToolSlug: 'website-speed-test',
+    githubUrl: 'https://github.com/xcalibur73/payload-sniper',
+    cliInstallCmd: 'pip install payload-sniper',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [
