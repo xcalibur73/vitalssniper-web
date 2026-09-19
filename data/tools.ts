@@ -318,6 +318,27 @@ export const FREE_TOOLS: WebTool[] = [
     githubUrl: 'https://github.com/xcalibur73/payload-sniper',
     cliInstallCmd: 'pip install payload-sniper',
   },
+  {
+    slug: 'link-bleed',
+    name: 'LinkBleed Internal Link Graph & Orphan Tracer',
+    shortDescription: 'Audit internal link architecture, calculate PageRank equity leakage, and uncover orphan pages.',
+    fullDescription: 'Constructs a directed internal link graph, runs power iteration PageRank simulation, and quantifies equity leaked through dead ends, nofollow tags, and redirect chains. Ingests XML sitemaps to isolate orphan URLs.',
+    tier: 'free',
+    category: 'SEO',
+    icon: '🕸️',
+    referenceBenchmark: 'Reference Benchmark: PageRank Leakage < 5%, Crawl Depth <= 3 Clicks, 0 Orphan Pages',
+    whatItMeans: 'Internal links distribute organic authority (PageRank) across your domain. When links point to redirects, 404 errors, or use internal nofollow tags, link equity evaporates instead of ranking conversion pages.',
+    howToImprove: [
+      'Update internal redirect links (301/302) to point directly to their final canonical URLs.',
+      'Eliminate internal rel="nofollow" attributes to allow PageRank to flow freely through navigation.',
+      'Add contextual internal links from high-authority hub pages to connect orphan content.',
+      'Flatten deep architectures so every indexable page is accessible within 3 clicks of the homepage.',
+    ],
+    relatedGuideSlug: 'website-speed-audit-checklist-2026',
+    relatedToolSlug: 'schema-graph',
+    githubUrl: 'https://github.com/xcalibur73/link-bleed',
+    cliInstallCmd: 'pip install link-bleed',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [

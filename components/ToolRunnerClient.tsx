@@ -62,6 +62,8 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           ? '/api/imgspec'
           : tool.slug === 'payload-sniper'
           ? '/api/payloadsniper'
+          : tool.slug === 'link-bleed'
+          ? '/api/linkbleed'
           : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -1126,6 +1128,188 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
                     <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
                       Actionable INP & Core Web Vitals Fixes:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'link-bleed' ? (
+              /* LinkBleed Internal Link Graph & Orphan Page View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Internal Link Graph Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Grade: <span className="font-bold text-[#0F0F0F]">{auditResult.grade}</span> | Pages Crawled: {auditResult.stats?.total_internal_pages ?? 0} | Internal Edges: {auditResult.stats?.total_internal_edges ?? 0}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Architecture Score</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.overall_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.overall_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.overall_score >= 60
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.overall_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>Grade {auditResult.grade}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4-Metric Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">PageRank Leakage</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.pagerank_leakage_ratio ?? 0}%</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.equity_preservation ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Orphan Pages</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.orphan_count ?? 0} page(s)</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.orphan_prevention ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Internal Directed Edges</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.total_internal_edges ?? 0}</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">External: {auditResult.stats?.total_external_edges ?? 0}</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Crawl Depth Max</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">Depth {auditResult.stats?.max_crawl_depth ?? 0}</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.crawl_depth_efficiency ?? 0}/100</p>
+                  </div>
+                </div>
+
+                {/* PageRank Leakage Alert Card */}
+                <div className={`p-4 rounded-lg border text-xs space-y-2 ${
+                  (auditResult.stats?.pagerank_leakage_ratio ?? 0) <= 8
+                    ? 'bg-[#10B981]/10 border-[#10B981]/25 text-[#065F46]'
+                    : (auditResult.stats?.pagerank_leakage_ratio ?? 0) <= 15
+                    ? 'bg-[#F59E0B]/10 border-[#F59E0B]/25 text-[#92400E]'
+                    : 'bg-[#EF4444]/10 border-[#EF4444]/25 text-[#991B1B]'
+                }`}>
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold uppercase tracking-wider block">
+                      PageRank Equity Status:
+                    </span>
+                    <span className="font-mono font-bold">
+                      {(auditResult.stats?.pagerank_leakage_ratio ?? 0) <= 8 ? 'OPTIMAL PRESERVATION (< 8%)' : 'EQUITY LEAKAGE DETECTED'}
+                    </span>
+                  </div>
+                  <p className="leading-relaxed">
+                    {(auditResult.stats?.pagerank_leakage_ratio ?? 0) <= 8
+                      ? 'Link equity flows efficiently through internal navigation with minimal authority leakage.'
+                      : `${auditResult.stats?.pagerank_leakage_ratio}% of internal PageRank is dissipating through outbound links, redirects, or nofollow tags.`}
+                  </p>
+                </div>
+
+                {/* Crawl Depth Hierarchy */}
+                {auditResult.crawl_depth_distribution && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                      Crawl Depth Hierarchy (Clicks from Root):
+                    </span>
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pt-1">
+                      {[0, 1, 2, 3, 4].map((depth) => {
+                        const count = auditResult.crawl_depth_distribution[depth] ?? 0;
+                        const label = depth < 4 ? `Depth ${depth}` : 'Depth 4+';
+                        const isSafe = depth <= 2;
+                        const isWarn = depth === 3;
+                        return (
+                          <div key={depth} className="p-2.5 rounded border border-[#E5E7EB] bg-[#F9FAFB] text-center">
+                            <span className="text-[10px] text-[#6B7280] uppercase block font-semibold">{label}</span>
+                            <span className="font-mono font-bold text-sm text-[#0F0F0F]">{count} page(s)</span>
+                            <span className={`block text-[10px] font-medium mt-0.5 ${
+                              isSafe ? 'text-[#059669]' : isWarn ? 'text-[#B45309]' : 'text-[#DC2626]'
+                            }`}>
+                              {isSafe ? 'Optimal' : isWarn ? 'Acceptable' : 'High Latency'}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Top Internal Pages by PageRank */}
+                {auditResult.top_pages && auditResult.top_pages.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                      Top Internal Pages by Calculated PageRank:
+                    </span>
+                    <div className="divide-y divide-[#E5E7EB]">
+                      {auditResult.top_pages.map((page: any, pIdx: number) => (
+                        <div key={pIdx} className="py-2 flex items-center justify-between gap-4">
+                          <span className="font-mono text-[#0F0F0F] truncate max-w-[280px] sm:max-w-md">
+                            {page.url}
+                          </span>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            <span className="px-2 py-0.5 rounded bg-[#F3F4F6] text-[#4B5563] font-mono text-[11px]">
+                              {page.in_links} in / {page.out_links} out
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#10B981]/15 text-[#059669] font-mono font-bold text-[11px]">
+                              PR: {page.pagerank}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Detected Orphan Pages */}
+                {auditResult.orphan_pages && auditResult.orphan_pages.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#EF4444]/25 space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#DC2626] block">
+                      Detected Orphan URLs ({auditResult.orphan_pages.length} sample):
+                    </span>
+                    <p className="text-[#6B7280] text-[11px]">
+                      These URLs are declared in sitemaps or routing arrays but receive zero internal inbound links:
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {auditResult.orphan_pages.map((o: any, oIdx: number) => (
+                        <span key={oIdx} className="px-2.5 py-1 rounded bg-white border border-[#EF4444]/30 font-mono text-xs text-[#991B1B]">
+                          {o.url}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Remediation Steps */}
+                {auditResult.recommendations && auditResult.recommendations.length > 0 && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Actionable Internal Linking Fixes:
                     </div>
                     <ul className="space-y-2">
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (
