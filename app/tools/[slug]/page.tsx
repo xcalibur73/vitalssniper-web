@@ -270,6 +270,49 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
           </div>
         )}
 
+        {/* Authoritative Standard or GitHub CLI Repository */}
+        {(tool.externalUrl || tool.githubUrl) && (
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-[#6B7280] block mb-1">
+                Authoritative Specification &amp; Source
+              </span>
+              <p className="text-base font-bold text-[#0F0F0F]">
+                {tool.githubUrl ? `${tool.name} Open Source Engine` : `Official ${tool.category} Standard Documentation`}
+              </p>
+              <p className="text-xs text-[#4B5563] mt-1">
+                {tool.githubUrl
+                  ? 'View the headless CLI implementation and inspect the source code on GitHub.'
+                  : 'Read the official technical guidelines and documentation governing this metric.'}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              {tool.externalUrl && (
+                <a
+                  href={tool.externalUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F8F8F8] text-xs font-semibold text-[#0F0F0F] hover:bg-white hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
+                >
+                  <span>Official Standard</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
+              {tool.githubUrl && (
+                <a
+                  href={tool.githubUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#111827] text-xs font-semibold text-white hover:bg-[#1F2937] transition-colors"
+                >
+                  <span>GitHub Repository</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Stage 7: Relevant Product (VitalsSniper PRO Bridge) */}
         <div className="rounded-xl bg-[#111827] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border border-[#1F2937] shadow-xs">
           <div>

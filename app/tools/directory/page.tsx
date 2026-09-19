@@ -111,13 +111,25 @@ export default function ToolDirectoryPage() {
               </div>
 
               <div className="pt-4 border-t border-[#E5E7EB] flex items-center justify-between">
-                <Link
-                  href={tool.url}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#2563EB] hover:underline"
-                >
-                  <span>View Details</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
+                {tool.url.startsWith('http') ? (
+                  <a
+                    href={tool.url}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#2563EB] hover:underline"
+                  >
+                    <span>Visit Website</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                ) : (
+                  <Link
+                    href={tool.url}
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#2563EB] hover:underline"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                )}
               </div>
             </div>
           ))}

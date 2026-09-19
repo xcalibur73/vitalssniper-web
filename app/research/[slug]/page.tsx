@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { RESEARCH_STUDIES } from '@/data/research';
 import { BLOG_POSTS } from '@/data/posts';
-import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, ShieldCheck, Database, FileSpreadsheet, BookOpen, Layers } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, ShieldCheck, Database, FileSpreadsheet, BookOpen, Layers, ExternalLink } from 'lucide-react';
 
 interface ResearchPageProps {
   params: { slug: string };
@@ -217,6 +217,39 @@ export default function ResearchDetailPage({ params }: ResearchPageProps) {
             {study.methodology}
           </p>
         </div>
+
+        {/* Authoritative Standards & External Data Sources */}
+        {study.externalReferences && study.externalReferences.length > 0 && (
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-2 mb-4">
+              <Database className="h-5 w-5 text-[#2563EB]" />
+              <h2 className="text-lg font-bold text-[#0F0F0F]">
+                Authoritative Standards &amp; Data Sources
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {study.externalReferences.map((ref, rIdx) => (
+                <a
+                  key={rIdx}
+                  href={ref.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] hover:border-[#2563EB] hover:bg-white transition-colors block group"
+                >
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <span className="text-xs font-bold text-[#0F0F0F] group-hover:text-[#2563EB] transition-colors">
+                      {ref.label}
+                    </span>
+                    <ExternalLink className="h-3 w-3 text-[#6B7280] group-hover:text-[#2563EB] flex-shrink-0" />
+                  </div>
+                  <p className="text-[11px] text-[#6B7280] leading-snug">
+                    {ref.note}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Related Technical Guides */}
         {relatedGuides.length > 0 && (

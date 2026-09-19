@@ -37,6 +37,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
     relatedToolSlug: 'lcp-checker',
+    externalUrl: 'https://pagespeed.web.dev/',
   },
   {
     slug: 'lcp-checker',
@@ -55,6 +56,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it',
     relatedToolSlug: 'page-weight-checker',
+    externalUrl: 'https://web.dev/articles/lcp',
   },
   {
     slug: 'page-weight-checker',
@@ -73,6 +75,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: '5-best-wordpress-speed-plugins-2026',
     relatedToolSlug: 'image-size-analyzer',
+    externalUrl: 'https://almanac.httparchive.org/en/2024/page-weight',
   },
   {
     slug: 'seo-meta-checker',
@@ -91,6 +94,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'rank-math-vs-yoast-definitive-seo-plugin-comparison',
     relatedToolSlug: 'schema-validator',
+    externalUrl: 'https://developers.google.com/search/docs/crawling-indexing/special-tags',
   },
   {
     slug: 'schema-validator',
@@ -109,6 +113,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'how-to-make-your-website-discoverable-by-ai-search-engines',
     relatedToolSlug: 'http-header-checker',
+    externalUrl: 'https://validator.schema.org/',
   },
   {
     slug: 'http-header-checker',
@@ -127,6 +132,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'cloudways-vs-siteground-which-host-loads-faster',
     relatedToolSlug: 'broken-link-checker',
+    externalUrl: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers',
   },
   {
     slug: 'broken-link-checker',
@@ -145,6 +151,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'rank-math-vs-yoast-definitive-seo-plugin-comparison',
     relatedToolSlug: 'website-speed-test',
+    externalUrl: 'https://www.w3.org/Provider/Style/URI',
   },
   {
     slug: 'image-size-analyzer',
@@ -163,6 +170,7 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'zero-cls-web-design-principles',
     relatedToolSlug: 'page-weight-checker',
+    externalUrl: 'https://web.dev/articles/serve-images-webp',
   },
   {
     slug: 'geo-audit',
@@ -341,10 +349,10 @@ export const DIRECTORY_TOOLS: DirectoryTool[] = [
   { name: 'Ahrefs', category: 'SEO & Keywords', pricing: 'From $99/mo', freePlan: true, url: '/reviews/ahrefs', testedMetric: 'Live backlink crawler freshness', bestFor: 'Competitive Gap Analysis' },
   { name: 'WP Rocket', category: 'Caching & Speed', pricing: 'From $59/yr', freePlan: false, url: '/reviews/wp-rocket', testedMetric: '1.4s avg mobile LCP reduction', bestFor: 'Automated Script Deferral' },
   { name: 'Plausible Analytics', category: 'Privacy Analytics', pricing: 'From $9/mo', freePlan: false, url: '/reviews/plausible-analytics', testedMetric: '0.9KB script / 0.0ms blocking', bestFor: 'Cookieless Compliance' },
-  { name: 'LiteSpeed Cache', category: 'Caching & Speed', pricing: 'Free (Open Source)', freePlan: true, url: '#', testedMetric: 'Native LiteSpeed server caching', bestFor: 'LiteSpeed Server Environments' },
-  { name: 'Screaming Frog', category: 'SEO Crawlers', pricing: 'Free / $259/yr', freePlan: true, url: '#', testedMetric: 'Deep on-page crawl diagnostics', bestFor: 'Full Domain Technical Audits' },
-  { name: 'Kinsta', category: 'Hosting & CDN', pricing: 'From $35/mo', freePlan: false, url: '#', testedMetric: 'Google C2 enterprise infrastructure', bestFor: 'High-Traffic Enterprise WordPress' },
-  { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: '#', testedMetric: 'Automated AVIF/WebP conversion', bestFor: 'Heavy Photography Catalogs' },
+  { name: 'LiteSpeed Cache', category: 'Caching & Speed', pricing: 'Free (Open Source)', freePlan: true, url: 'https://www.litespeedtech.com/products/cache-plugins/wordpress-acceleration', testedMetric: 'Native LiteSpeed server caching', bestFor: 'LiteSpeed Server Environments' },
+  { name: 'Screaming Frog', category: 'SEO Crawlers', pricing: 'Free / $259/yr', freePlan: true, url: 'https://www.screamingfrog.co.uk/seo-spider/', testedMetric: 'Deep on-page crawl diagnostics', bestFor: 'Full Domain Technical Audits' },
+  { name: 'Kinsta', category: 'Hosting & CDN', pricing: 'From $35/mo', freePlan: false, url: 'https://kinsta.com', testedMetric: 'Google C2 enterprise infrastructure', bestFor: 'High-Traffic Enterprise WordPress' },
+  { name: 'ShortPixel', category: 'Image Compression', pricing: 'From $4.99/mo', freePlan: true, url: 'https://shortpixel.com', testedMetric: 'Automated AVIF/WebP conversion', bestFor: 'Heavy Photography Catalogs' },
   { name: 'CitationPulse', category: 'AI Search & GEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/geo-audit', testedMetric: 'Princeton KDD 2024 passage citability scoring', bestFor: 'GEO & Generative Engine Optimization' },
   { name: 'DOMHydrate', category: 'Technical SEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/hydration-audit', testedMetric: 'Headless Chromium SSR vs CSR DOM diffing', bestFor: 'JavaScript SEO & Hydration Parity' },
   { name: 'IndexTrace', category: 'Technical SEO', pricing: 'Free (Open Source & Web)', freePlan: true, url: '/tools/index-trace', testedMetric: 'RFC 9309 line-by-line robots collision tracing', bestFor: 'Google Search Console Emergency Triage' },

@@ -124,7 +124,7 @@ export const PRODUCTS: Product[] = [
       'Free Let-s Encrypt SSL certificates with automated renewal',
       'Granular team permission controls and multi-project organization',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://www.cloudways.com',
     iconEmoji: '☁️',
   },
   {
@@ -166,7 +166,7 @@ export const PRODUCTS: Product[] = [
       'Pure vanilla CSS output without jQuery or heavy utility bloat',
       'Full compatibility with WooCommerce and Rank Math structured data',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://generatepress.com',
     iconEmoji: '⚡',
   },
   {
@@ -208,7 +208,7 @@ export const PRODUCTS: Product[] = [
       'Crawler protection with AI bot management and rate limiting',
       'Edge caching for static assets and dynamic HTML responses',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://www.cloudflare.com',
     iconEmoji: '🛡️',
   },
   {
@@ -250,7 +250,7 @@ export const PRODUCTS: Product[] = [
       'Automated image SEO with dynamic alt and title tag generation',
       'Breadcrumb generation compatible with WCAG accessibility standards',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://rankmath.com',
     iconEmoji: '📈',
   },
   {
@@ -292,7 +292,7 @@ export const PRODUCTS: Product[] = [
       'Rank Tracker with daily SERP position alerts and competitor tracking',
       'Content Gap tool mapping missing competitor keywords with 1 click',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://ahrefs.com',
     iconEmoji: '🔍',
   },
   {
@@ -334,7 +334,7 @@ export const PRODUCTS: Product[] = [
       'Native lazy loading for images, videos, and embedded iframes',
       'Local Google Analytics and Facebook Pixel script hosting',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://wp-rocket.me',
     iconEmoji: '🚀',
   },
   {
@@ -376,7 +376,7 @@ export const PRODUCTS: Product[] = [
       'Automated email or Slack reports delivered daily, weekly, or monthly',
       'Public dashboard sharing option for transparent open metrics',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://plausible.io',
     iconEmoji: '📊',
   },
   {
@@ -418,7 +418,7 @@ export const PRODUCTS: Product[] = [
       'Native image lazy loading and missing dimension attribute injection',
       'Heartbeat frequency control and limit/disable WordPress revisions',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://perfmatters.io',
     iconEmoji: '⚡',
   },
   {
@@ -460,7 +460,7 @@ export const PRODUCTS: Product[] = [
       'Global CDN integration with edge page caching across 200+ POPs',
       'Automated DNS prefetching and resource preloading engine',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://nitropack.io',
     iconEmoji: '🏎️',
   },
   {
@@ -502,7 +502,7 @@ export const PRODUCTS: Product[] = [
       'Accessible keyboard navigation and ARIA tag controls on all elements',
       'Built-in query loop builder for complex post, taxonomy, and relational queries',
     ],
-    affiliateUrl: '#',
+    affiliateUrl: 'https://bricksbuilder.io',
     iconEmoji: '🧱',
   },
 ];

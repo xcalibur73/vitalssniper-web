@@ -53,6 +53,11 @@ export interface ResearchStudy {
   }[];
   methodology: string;
   featured: boolean;
+  externalReferences?: {
+    label: string;
+    url: string;
+    note: string;
+  }[];
 }
 
 export const RESEARCH_STUDIES: ResearchStudy[] = [
@@ -81,6 +86,11 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
       { label: 'Average DOM Node Count', value: '1,420', description: 'Higher node counts correlated with complex visual page builders' },
     ],
     methodology: 'All 500 URLs were crawled using headless Chromium instances emulating a mid-tier mobile profile (Moto G4 on a simulated 4G network) following W3C Navigation Timing standards. Results represent multiple runs with warm and cold cache states.',
+    externalReferences: [
+      { label: 'W3C Navigation Timing Level 2', url: 'https://www.w3.org/TR/navigation-timing-2/', note: 'Official W3C specification for measuring page navigation metrics' },
+      { label: 'Google Core Web Vitals Standards', url: 'https://web.dev/vitals/', note: 'Official performance thresholds for LCP, INP, and CLS' },
+      { label: 'HTTP Archive Web Almanac', url: 'https://almanac.httparchive.org/', note: 'Global dataset of real-world web performance and technology adoption' },
+    ],
   },
   {
     slug: 'agency-websites-study',
@@ -107,6 +117,11 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
       { label: 'Average Long Task Duration', value: '240ms', description: 'Main-thread execution measured during interaction emulation' },
     ],
     methodology: 'A randomized cohort of 100 agencies across the US and Western Europe was audited for Core Web Vitals, accessibility, SEO metadata, and resource breakdown using Chrome DevTools Protocol.',
+    externalReferences: [
+      { label: 'Schema.org Organization Guidelines', url: 'https://schema.org/Organization', note: 'Official vocabulary specification for business entity definitions' },
+      { label: 'Google Search Central Structured Data', url: 'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data', note: 'Technical documentation for machine-readable web data' },
+      { label: 'Chrome DevTools Protocol', url: 'https://chromedevtools.github.io/devtools-protocol/', note: 'Browser automation and performance profiling interface' },
+    ],
   },
   {
     slug: 'ai-search-readiness',
@@ -131,6 +146,11 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
       { label: 'Static HTML Read Rate', value: '98%', description: 'Static crawlable HTML achieved the highest parsing reliability' },
     ],
     methodology: 'Monitored server access logs from 10 high-traffic technical publishing domains over a 90-day period, filtering for verified AI crawler user-agents (GPTBot, PerplexityBot, ClaudeBot, OAI-SearchBot). Note: llms.txt remains an emerging specification and does not guarantee ranking or citations.',
+    externalReferences: [
+      { label: 'llms.txt Specification', url: 'https://llmstxt.org/', note: 'Emerging standard for curating content for LLM ingestion' },
+      { label: 'OpenAI GPTBot Documentation', url: 'https://platform.openai.com/docs/bots', note: 'Official technical specifications for AI web crawlers' },
+      { label: 'Anthropic ClaudeBot Documentation', url: 'https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-manage-it', note: 'Robots.txt directives and crawler indexing documentation' },
+    ],
   },
   {
     slug: 'javascript-payload-study',
@@ -155,5 +175,10 @@ export const RESEARCH_STUDIES: ResearchStudy[] = [
       { label: 'Average Blocking Time', value: '820ms', description: 'Total blocking time recorded on simulated mobile hardware' },
     ],
     methodology: 'Automated Chrome DevTools Protocol tracing measured script parse, compile, and evaluation times across 250 SaaS marketing domains under controlled network emulation.',
+    externalReferences: [
+      { label: 'Chrome Performance Profiling Guide', url: 'https://developer.chrome.com/docs/devtools/performance', note: 'Official DevTools guide for analyzing runtime main-thread bottlenecks' },
+      { label: 'W3C Long Tasks API', url: 'https://www.w3.org/TR/longtasks-1/', note: 'Web standard for detecting UI thread execution exceeding 50 milliseconds' },
+      { label: 'Grafana K6 Load Testing Engine', url: 'https://k6.io/', note: 'Open-source load testing tool for concurrency benchmarking' },
+    ],
   },
 ];

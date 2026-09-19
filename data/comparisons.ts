@@ -4,6 +4,8 @@ export interface ComparisonItem {
   metaTitle?: string;
   toolA: string;
   toolB: string;
+  urlA?: string;
+  urlB?: string;
   category: string;
   summary: string;
   verdict: string;
@@ -25,6 +27,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'Cloudways vs SiteGround: Speed & Hosting | Web Audits',
     toolA: 'Cloudways',
     toolB: 'SiteGround',
+    urlA: 'https://www.cloudways.com',
+    urlB: 'https://www.siteground.com',
     category: 'Hosting & Infrastructure',
     summary: 'Both Cloudways and SiteGround are top choices for WordPress hosting, but their underlying architectures serve distinct customer profiles.',
     verdict: 'Cloudways wins decisively for high-traffic sites and agencies requiring scalable cloud infrastructure: SiteGround remains a solid pick for small business brochure sites.',
@@ -46,6 +50,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'Rank Math vs Yoast SEO: Speed & Schema | Web Audits',
     toolA: 'Rank Math',
     toolB: 'Yoast SEO',
+    urlA: 'https://rankmath.com',
+    urlB: 'https://yoast.com',
     category: 'SEO Plugins',
     summary: 'The battle between the modern challenger and the legacy standard of WordPress search engine optimization.',
     verdict: 'Rank Math provides significantly more advanced schema and indexing tools in its free tier with lower database overhead, making it our top recommendation.',
@@ -67,6 +73,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'WP Rocket vs LiteSpeed: Cache Speed Test | Web Audits',
     toolA: 'WP Rocket',
     toolB: 'LiteSpeed Cache (LSCache)',
+    urlA: 'https://wp-rocket.me',
+    urlB: 'https://litespeedtech.com',
     category: 'Speed & Caching',
     summary: 'Comparing the most popular commercial cache plugin against the open-source server-integrated cache engine.',
     verdict: 'If your host runs LiteSpeed Web Server, LSCache is unbeatable and free. If you run Apache or Nginx, WP Rocket is the superior turnkey solution.',
@@ -87,6 +95,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'Perfmatters vs WP Rocket: Speed Comparison | Web Audits',
     toolA: 'Perfmatters',
     toolB: 'WP Rocket',
+    urlA: 'https://perfmatters.io',
+    urlB: 'https://wp-rocket.me',
     category: 'Speed & Performance',
     summary: 'Comparing the leading script manager against the most popular all-in-one caching suite: how to choose or combine both for Core Web Vitals.',
     verdict: 'If your hosting provides robust server-level page caching (Cloudways, LiteSpeed, Kinsta), Perfmatters is the superior surgical tool for disabling unused assets. If you lack server caching and want a turnkey all-in-one suite, WP Rocket is the standard.',
@@ -108,6 +118,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'NitroPack vs WP Rocket: Speed & Vitals | Web Audits',
     toolA: 'NitroPack',
     toolB: 'WP Rocket',
+    urlA: 'https://nitropack.io',
+    urlB: 'https://wp-rocket.me',
     category: 'Speed & Caching',
     summary: 'Evaluating proprietary cloud-side speed processing against native on-server WordPress optimization for Core Web Vitals pass rates.',
     verdict: 'WP Rocket is superior for predictable hosting expenses, origin server control, and strict data privacy. NitroPack delivers effortless instant 95+ mobile PageSpeed scores on complex layouts but introduces monthly usage limits and cloud lock-in.',
@@ -129,6 +141,8 @@ export const COMPARISONS: ComparisonItem[] = [
     metaTitle: 'Elementor vs Bricks Builder: Speed & DOM | Web Audits',
     toolA: 'Elementor',
     toolB: 'Bricks Builder',
+    urlA: 'https://elementor.com',
+    urlB: 'https://bricksbuilder.io',
     category: 'Page Builders',
     summary: 'The battle between the undisputed WordPress market share leader and the high-performance modern developer favorite.',
     verdict: 'Bricks Builder wins decisively on DOM cleanliness, asset weight, and mobile Core Web Vitals scores. Elementor remains the practical choice for non-technical creators who rely on vast third-party template libraries and marketing addons.',

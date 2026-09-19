@@ -182,17 +182,28 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                 </strong>
                 <p className="text-[#4B5563]">{comp.bestForA}</p>
               </div>
-              {productA && (
-                <div className="mt-3 pt-2 border-t border-[#E5E7EB]">
+              <div className="mt-3 pt-2 border-t border-[#E5E7EB] flex flex-wrap items-center justify-between gap-2">
+                {productA && (
                   <Link
                     href={`/reviews/${productA.slug}`}
                     className="inline-flex items-center gap-1 text-[11px] font-bold text-[#2563EB] hover:underline"
                   >
-                    <span>Read our in-depth {productA.name} review</span>
+                    <span>Read {productA.name} review</span>
                     <ArrowRight className="h-3 w-3" />
                   </Link>
-                </div>
-              )}
+                )}
+                {comp.urlA && (
+                  <a
+                    href={comp.urlA}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4B5563] hover:text-[#0F0F0F] hover:underline"
+                  >
+                    <span>Visit {comp.toolA}</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
             </div>
             <div className="p-4 rounded-xl bg-[#F8F8F8] border border-[#E5E7EB] flex flex-col justify-between">
               <div>
@@ -207,17 +218,28 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                 </strong>
                 <p className="text-[#4B5563]">{comp.bestForB}</p>
               </div>
-              {productB && (
-                <div className="mt-3 pt-2 border-t border-[#E5E7EB]">
+              <div className="mt-3 pt-2 border-t border-[#E5E7EB] flex flex-wrap items-center justify-between gap-2">
+                {productB && (
                   <Link
                     href={`/reviews/${productB.slug}`}
                     className="inline-flex items-center gap-1 text-[11px] font-bold text-[#2563EB] hover:underline"
                   >
-                    <span>Read our in-depth {productB.name} review</span>
+                    <span>Read {productB.name} review</span>
                     <ArrowRight className="h-3 w-3" />
                   </Link>
-                </div>
-              )}
+                )}
+                {comp.urlB && (
+                  <a
+                    href={comp.urlB}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4B5563] hover:text-[#0F0F0F] hover:underline"
+                  >
+                    <span>Visit {comp.toolB}</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
