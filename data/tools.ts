@@ -339,6 +339,27 @@ export const FREE_TOOLS: WebTool[] = [
     githubUrl: 'https://github.com/xcalibur73/link-bleed',
     cliInstallCmd: 'pip install link-bleed',
   },
+  {
+    slug: 'context-silo',
+    name: 'ContextSilo Semantic Anchor Text & Vector Auditor',
+    shortDescription: 'Audit semantic anchor text profiles, passage vector contiguity, and keyword cannibalization collisions.',
+    fullDescription: 'Analyzes enclosing passage contexts for internal links, computes vector cosine similarity against destination document entities, detects identical anchors linking to competing URLs, and generates entity-rich anchor replacements.',
+    tier: 'free',
+    category: 'SEO',
+    icon: '🎯',
+    referenceBenchmark: 'Reference Benchmark: Generic Anchors < 3%, Vector Contiguity > 25%, 0 Cannibalization Collisions',
+    whatItMeans: 'Internal link anchor text signals topical relevance to search engines. When internal links use generic words ("click here") or repeat identical anchors to different pages, search engine algorithms experience vector drift and keyword cannibalization.',
+    howToImprove: [
+      'Replace low-value phrases ("click here", "read more") with descriptive entity-rich anchors derived from target H1s.',
+      'Resolve anchor cannibalization by assigning unique, distinct anchor phrases to each destination URL.',
+      'Ensure surrounding sentences provide natural topical context before placing internal links.',
+      'Maintain a healthy anchor diversity profile with long-tail descriptive variations rather than repetitive exact matches.',
+    ],
+    relatedGuideSlug: 'how-to-audit-50-client-sites-in-1-week',
+    relatedToolSlug: 'link-bleed',
+    githubUrl: 'https://github.com/xcalibur73/context-silo',
+    cliInstallCmd: 'pip install context-silo',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [

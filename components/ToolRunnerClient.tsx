@@ -64,6 +64,8 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           ? '/api/payloadsniper'
           : tool.slug === 'link-bleed'
           ? '/api/linkbleed'
+          : tool.slug === 'context-silo'
+          ? '/api/contextsilo'
           : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -1310,6 +1312,189 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
                     <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
                       Actionable Internal Linking Fixes:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'context-silo' ? (
+              /* ContextSilo Semantic Anchor Text & Vector Contiguity View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Anchor Text & Vector Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Grade: <span className="font-bold text-[#0F0F0F]">{auditResult.grade}</span> | Links Analyzed: {auditResult.stats?.total_links_analyzed ?? 0} | Collisions: {auditResult.stats?.cannibalization_collisions_count ?? 0}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Silo Score</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.overall_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.overall_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.overall_score >= 60
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.overall_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>Grade {auditResult.grade}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4-Metric Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Vector Contiguity</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.average_vector_contiguity ?? 0}%</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.semantic_contiguity ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Generic Anchors</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.generic_anchor_count ?? 0} ({auditResult.stats?.generic_anchor_ratio ?? 0}%)</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.generic_anchor_prevention ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Cannibalization Collisions</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.cannibalization_collisions_count ?? 0} detected</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.cannibalization_prevention ?? 0}/100</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Anchor Diversity</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.stats?.unique_anchors ?? 0} unique</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Score: {auditResult.component_scores?.anchor_diversity ?? 0}/100</p>
+                  </div>
+                </div>
+
+                {/* Vector Contiguity Alert Card */}
+                <div className={`p-4 rounded-lg border text-xs space-y-2 ${
+                  (auditResult.stats?.average_vector_contiguity ?? 0) >= 25
+                    ? 'bg-[#10B981]/10 border-[#10B981]/25 text-[#065F46]'
+                    : (auditResult.stats?.average_vector_contiguity ?? 0) >= 18
+                    ? 'bg-[#F59E0B]/10 border-[#F59E0B]/25 text-[#92400E]'
+                    : 'bg-[#EF4444]/10 border-[#EF4444]/25 text-[#991B1B]'
+                }`}>
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold uppercase tracking-wider block">
+                      Topical Silo & Vector Signal Status:
+                    </span>
+                    <span className="font-mono font-bold">
+                      {(auditResult.stats?.average_vector_contiguity ?? 0) >= 25 ? 'STRONG TOPICAL CONTIGUITY' : 'TOPICAL DRIFT DETECTED'}
+                    </span>
+                  </div>
+                  <p className="leading-relaxed">
+                    {(auditResult.stats?.average_vector_contiguity ?? 0) >= 25
+                      ? 'Internal link passages share strong contextual vocabulary with destination document titles and headings.'
+                      : 'Internal links lack surrounding topical context. Search engines may treat abruptly placed anchors as weak or irrelevant vector bridges.'}
+                  </p>
+                </div>
+
+                {/* Anchor Classification Distribution */}
+                {auditResult.anchor_type_distribution && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                      Anchor Text Classification Profile:
+                    </span>
+                    <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 pt-1">
+                      {Object.entries(auditResult.anchor_type_distribution).map(([type, count]: [string, any]) => (
+                        <div key={type} className="p-2.5 rounded border border-[#E5E7EB] bg-[#F9FAFB] text-center">
+                          <span className="text-[10px] text-[#6B7280] uppercase block font-semibold">{type.replace('_', ' ')}</span>
+                          <span className="font-mono font-bold text-sm text-[#0F0F0F]">{count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Cannibalization Collisions */}
+                {auditResult.cannibalization_collisions && auditResult.cannibalization_collisions.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#EF4444]/25 space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#DC2626] block">
+                      Anchor Cannibalization Collisions ({auditResult.cannibalization_collisions.length} detected):
+                    </span>
+                    <p className="text-[#6B7280] text-[11px]">
+                      Identical anchor text is linking to multiple distinct URLs, confusing search engine topical attribution:
+                    </p>
+                    <div className="divide-y divide-[#E5E7EB]">
+                      {auditResult.cannibalization_collisions.map((col: any, cIdx: number) => (
+                        <div key={cIdx} className="py-2.5 space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-[#991B1B] bg-[#EF4444]/15 px-2 py-0.5 rounded font-mono text-xs">
+                              &ldquo;{col.anchor_text}&rdquo;
+                            </span>
+                            <span className="text-[#6B7280] text-[11px]">
+                              links to {col.conflicting_target_count} URLs:
+                            </span>
+                          </div>
+                          <div className="flex flex-wrap gap-1 pl-2">
+                            {col.conflicting_urls.map((u: string, uIdx: number) => (
+                              <span key={uIdx} className="px-2 py-0.5 rounded bg-white border border-[#E5E7EB] font-mono text-[11px] text-[#4B5563]">
+                                {u}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Generic Anchors & Smart Replacements */}
+                {auditResult.generic_links && auditResult.generic_links.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#F59E0B]/30 space-y-2 text-xs">
+                    <span className="font-semibold uppercase tracking-wider text-[#B45309] block">
+                      Generic Anchors & Recommended Replacements:
+                    </span>
+                    <div className="divide-y divide-[#E5E7EB]">
+                      {auditResult.generic_links.map((g: any, gIdx: number) => (
+                        <div key={gIdx} className="py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                          <div>
+                            <span className="font-bold text-[#DC2626] line-through mr-2">{g.anchor_text}</span>
+                            <span className="text-[#6B7280] font-mono text-[11px] truncate max-w-xs inline-block align-middle">
+                              {g.target_url}
+                            </span>
+                          </div>
+                          <span className="px-2.5 py-1 rounded bg-[#10B981]/15 text-[#059669] font-bold text-xs">
+                            &rarr; {g.suggested_replacement}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Remediation Steps */}
+                {auditResult.recommendations && auditResult.recommendations.length > 0 && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Actionable Anchor Text & Silo Recommendations:
                     </div>
                     <ul className="space-y-2">
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (
