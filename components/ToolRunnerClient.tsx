@@ -20,6 +20,14 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
+import LcpResult from '@/components/tool-results/LcpResult';
+import HttpHeaderResult from '@/components/tool-results/HttpHeaderResult';
+import SeoMetaResult from '@/components/tool-results/SeoMetaResult';
+import SchemaValidatorResult from '@/components/tool-results/SchemaValidatorResult';
+import BrokenLinkResult from '@/components/tool-results/BrokenLinkResult';
+import PageWeightResult from '@/components/tool-results/PageWeightResult';
+import ImageSizeResult from '@/components/tool-results/ImageSizeResult';
+import WebsiteSpeedResult from '@/components/tool-results/WebsiteSpeedResult';
 
 export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
   const searchParams = useSearchParams();
@@ -70,7 +78,7 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: target }),
+        body: JSON.stringify({ url: target, tool: tool.slug }),
       });
       const data = await res.json();
       if (!res.ok || data.error) {
@@ -1507,8 +1515,24 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   </div>
                 )}
               </>
+            ) : tool.slug === 'lcp-checker' ? (
+              <LcpResult result={auditResult} />
+            ) : tool.slug === 'http-header-checker' ? (
+              <HttpHeaderResult result={auditResult} />
+            ) : tool.slug === 'seo-meta-checker' ? (
+              <SeoMetaResult result={auditResult} />
+            ) : tool.slug === 'schema-validator' ? (
+              <SchemaValidatorResult result={auditResult} />
+            ) : tool.slug === 'broken-link-checker' ? (
+              <BrokenLinkResult result={auditResult} />
+            ) : tool.slug === 'page-weight-checker' ? (
+              <PageWeightResult result={auditResult} />
+            ) : tool.slug === 'image-size-analyzer' ? (
+              <ImageSizeResult result={auditResult} />
+            ) : tool.slug === 'website-speed-test' ? (
+              <WebsiteSpeedResult result={auditResult} />
             ) : (
-              /* Performance / Core Web Vitals Audit View */
+              /* Performance / Core Web Vitals Audit View (Fallback) */
               <>
                 {/* Summary Top Bar: Summary First */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">

@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
+import { analyzeLcp } from '@/lib/tool-analyzers/lcpAnalyzer';
+import { analyzeHeaders } from '@/lib/tool-analyzers/headersAnalyzer';
+import { analyzeSeoMeta } from '@/lib/tool-analyzers/seoMetaAnalyzer';
+import { validateSchema } from '@/lib/tool-analyzers/schemaValidator';
+import { analyzeBrokenLinks } from '@/lib/tool-analyzers/brokenLinkAnalyzer';
+import { analyzePageWeight } from '@/lib/tool-analyzers/pageWeightAnalyzer';
+import { analyzeImages } from '@/lib/tool-analyzers/imageAnalyzer';
+import { analyzeSpeed } from '@/lib/tool-analyzers/speedAnalyzer';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: NextRequest) {
   try {
-    const { url } = await req.json();
+    const { url, tool } = await req.json();
 
     if (!url || typeof url !== 'string') {
       return NextResponse.json({ error: 'A valid URL is required.' }, { status: 400 });
@@ -49,6 +57,33 @@ export async function POST(req: NextRequest) {
     const ttfb = Date.now() - startTime;
     const html = await response.text();
     const docBytes = new Blob([html]).size;
+
+    // Route to dedicated tool analyzer if tool parameter is specified
+    if (tool === 'lcp-checker') {
+      return NextResponse.json(analyzeLcp(html, targetUrl, ttfb));
+    }
+    if (tool === 'http-header-checker') {
+      return NextResponse.json(analyzeHeaders(response, targetUrl));
+    }
+    if (tool === 'seo-meta-checker') {
+      return NextResponse.json(analyzeSeoMeta(html, targetUrl, response.headers));
+    }
+    if (tool === 'schema-validator') {
+      return NextResponse.json(validateSchema(html, targetUrl));
+    }
+    if (tool === 'broken-link-checker') {
+      return NextResponse.json(await analyzeBrokenLinks(html, targetUrl));
+    }
+    if (tool === 'page-weight-checker') {
+      return NextResponse.json(analyzePageWeight(html, targetUrl, docBytes, response.headers));
+    }
+    if (tool === 'image-size-analyzer') {
+      return NextResponse.json(analyzeImages(html, targetUrl));
+    }
+    if (tool === 'website-speed-test') {
+      return NextResponse.json(analyzeSpeed(html, targetUrl, ttfb, docBytes, response.headers));
+    }
+
     const docKb = Math.round(docBytes / 1024);
 
     // Parse HTML with cheerio
