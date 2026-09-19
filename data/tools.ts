@@ -255,6 +255,27 @@ export const FREE_TOOLS: WebTool[] = [
     githubUrl: 'https://github.com/xcalibur73/overflow-trace',
     cliInstallCmd: 'pip install overflow-trace',
   },
+  {
+    slug: 'schema-graph',
+    name: 'SchemaGraph Entity & Knowledge Graph Tracer',
+    shortDescription: 'Trace cross-page Schema.org JSON-LD entity integrity, broken @id references, and Knowledge Graph connectivity.',
+    fullDescription: 'Constructs an in-memory directed knowledge graph across site clusters. Isolates broken @id references, circular loops, orphan Person/Organization nodes, and publisher metadata drift.',
+    tier: 'free',
+    category: 'Technical SEO',
+    icon: '🕸️',
+    referenceBenchmark: 'Reference Benchmark: Graph Integrity >= 85/100, 0 Broken @id References, 0 Cycles',
+    whatItMeans: 'Modern search engines and AI Overviews evaluate connected entity graphs rather than isolated page snippets. Broken @id references or orphan nodes break entity resolution and drop rich results.',
+    howToImprove: [
+      'Ensure every referenced @id URI resolves to a defined entity node on the site.',
+      'Connect isolated Organization and WebSite nodes to content-level Article and Product entities via publisher or isPartOf.',
+      'Add sameAs links to Wikidata, Wikipedia, and official profiles on primary entity nodes.',
+      'Standardize publisher name, url, and logo attributes across all page templates to prevent entity fragmentation.',
+    ],
+    relatedGuideSlug: 'how-to-make-your-website-discoverable-by-ai-search-engines',
+    relatedToolSlug: 'schema-validator',
+    githubUrl: 'https://github.com/xcalibur73/schema-graph',
+    cliInstallCmd: 'pip install schema-graph',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [

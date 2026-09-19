@@ -56,6 +56,8 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           ? '/api/overflow'
           : tool.slug === 'hydration-audit'
           ? '/api/hydration'
+          : tool.slug === 'schema-graph'
+          ? '/api/schemagraph'
           : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -727,6 +729,119 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (
                         <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
                           <CheckCircle2 className="h-4 w-4 text-[#B76345] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'schema-graph' ? (
+              /* SchemaGraph Entity & Knowledge Graph View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Entity Graph Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.target_url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Grade: <span className="font-bold text-[#0F0F0F]">{auditResult.grade}</span> | Entities: {auditResult.total_entities} | Relationships: {auditResult.total_edges}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Graph Integrity</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.overall_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.overall_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.overall_score >= 50
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.overall_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>Grade {auditResult.grade}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3-Metric Score Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Reference Integrity (35%)</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.reference_integrity ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Resolved @id target nodes</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Entity Connectivity (25%)</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.entity_connectivity ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Connected vs orphan entities</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Disambiguation Depth (20%)</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.disambiguation_depth ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Wikidata / Wikipedia sameAs</p>
+                  </div>
+                </div>
+
+                {/* Broken References Alert */}
+                {auditResult.broken_references && auditResult.broken_references.length > 0 && (
+                  <div className="p-4 rounded-lg bg-[#EF4444]/10 border border-[#EF4444]/25 space-y-2 text-xs">
+                    <span className="font-bold text-[#991B1B] uppercase tracking-wider block">
+                      Broken @id References (Critical):
+                    </span>
+                    <ul className="space-y-1 text-[#7F1D1D] font-mono text-[11px]">
+                      {auditResult.broken_references.map((b: any, bIdx: number) => (
+                        <li key={bIdx} className="flex items-start gap-2">
+                          <AlertCircle className="h-3.5 w-3.5 text-[#DC2626] flex-shrink-0 mt-0.5" />
+                          <span>{b.property} -&gt; {b.target_id} (not defined in graph)</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Orphan Nodes */}
+                {auditResult.orphan_nodes && auditResult.orphan_nodes.length > 0 && (
+                  <div className="p-4 rounded-lg bg-[#F59E0B]/10 border border-[#F59E0B]/25 space-y-2 text-xs">
+                    <span className="font-bold text-[#B45309] uppercase tracking-wider block">
+                      Orphan Entity Nodes (Warning: Defined but never referenced):
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {auditResult.orphan_nodes.map((o: any, oIdx: number) => (
+                        <span key={oIdx} className="px-2.5 py-1 rounded bg-white border border-[#E5E7EB] font-mono text-xs text-[#0F0F0F]">
+                          {o.type}: {o.name || o.id}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Recommendations */}
+                {auditResult.recommendations && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Knowledge Graph Recommendations:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
                           <span>{rec}</span>
                         </li>
                       ))}
