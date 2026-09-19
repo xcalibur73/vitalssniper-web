@@ -276,6 +276,27 @@ export const FREE_TOOLS: WebTool[] = [
     githubUrl: 'https://github.com/xcalibur73/schema-graph',
     cliInstallCmd: 'pip install schema-graph',
   },
+  {
+    slug: 'img-spec',
+    name: 'ImgSpec Responsive Breakpoint & LCP Auditor',
+    shortDescription: 'Audit mobile image byte waste, LCP fetchpriority hints, and auto-generate responsive picture markup.',
+    fullDescription: 'Simulates 5 responsive viewports to detect oversized desktop assets delivered to mobile devices, audits lazy-loaded LCP hero anti-patterns, and generates calibrated picture elements.',
+    tier: 'free',
+    category: 'Performance',
+    icon: '📸',
+    referenceBenchmark: 'Reference Benchmark: 0% Mobile Pixel Waste, LCP fetchpriority="high", WebP/AVIF',
+    whatItMeans: 'Serving desktop-resolution images to mobile viewports wastes 40%-70% of network data and is the primary driver of mobile LCP failures. Adding fetchpriority and responsive srcset resolves the bottleneck.',
+    howToImprove: [
+      'Add fetchpriority="high" and loading="eager" to your above-the-fold hero image.',
+      'Deploy responsive <picture> or <img> srcset with calibrated sizes queries.',
+      'Serve modern AVIF or WebP formats to reduce transfer size by up to 50%.',
+      'Lock layout geometry with explicit width and height attributes to guarantee 0.00 CLS.',
+    ],
+    relatedGuideSlug: 'zero-cls-web-design-principles',
+    relatedToolSlug: 'image-size-analyzer',
+    githubUrl: 'https://github.com/xcalibur73/img-spec',
+    cliInstallCmd: 'pip install img-spec',
+  },
 ];
 
 export const PRO_TOOLS: WebTool[] = [

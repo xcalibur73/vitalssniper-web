@@ -58,6 +58,8 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
           ? '/api/hydration'
           : tool.slug === 'schema-graph'
           ? '/api/schemagraph'
+          : tool.slug === 'img-spec'
+          ? '/api/imgspec'
           : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -837,6 +839,150 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
                     <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
                       Knowledge Graph Recommendations:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'img-spec' ? (
+              /* ImgSpec Responsive Viewport & LCP Auditor View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Image Audit Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.target_url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Grade: <span className="font-bold text-[#0F0F0F]">{auditResult.grade}</span> | Discovered Images: {auditResult.total_images} | Oversized: {auditResult.stats?.oversized_images ?? 0}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">Image Score</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.overall_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.overall_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.overall_score >= 50
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.overall_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>Grade {auditResult.grade}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4-Metric Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">LCP Priority</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.lcp_priority ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">fetchpriority & eager hints</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Pixel Efficiency</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.byte_waste_efficiency ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">{auditResult.stats?.average_byte_waste_percent ?? 0}% avg waste</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Modern Formats</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.format_modernity ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">AVIF / WebP adoption</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">CLS Protection</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.component_scores?.layout_shift_protection ?? 0}/100</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">width/height attributes</p>
+                  </div>
+                </div>
+
+                {/* LCP Hero Candidate Status */}
+                {auditResult.lcp_candidate && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                        Largest Contentful Paint (LCP) Hero Element:
+                      </span>
+                      <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
+                        auditResult.lcp_candidate.score >= 80 ? 'bg-[#10B981]/15 text-[#059669]' : 'bg-[#EF4444]/15 text-[#DC2626]'
+                      }`}>
+                        {auditResult.lcp_candidate.verdict}
+                      </span>
+                    </div>
+                    <div className="font-mono text-[11px] text-[#2563EB] truncate">
+                      {auditResult.lcp_candidate.src}
+                    </div>
+                    <div className="flex gap-4 text-[11px] text-[#6B7280]">
+                      <span>loading: <strong className="text-[#0F0F0F]">{auditResult.lcp_candidate.loading}</strong></span>
+                      <span>fetchpriority: <strong className="text-[#0F0F0F]">{auditResult.lcp_candidate.fetchpriority}</strong></span>
+                    </div>
+                    {auditResult.lcp_candidate.defects && auditResult.lcp_candidate.defects.length > 0 && (
+                      <ul className="space-y-1 text-[#DC2626] text-[11px] pt-1">
+                        {auditResult.lcp_candidate.defects.map((def: string, dIdx: number) => (
+                          <li key={dIdx} className="flex items-start gap-1.5">
+                            <AlertCircle className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+                            <span>{def}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+
+                {/* Recommended Responsive Picture Markup */}
+                {auditResult.recommended_markup && (
+                  <div className="p-4 rounded-lg bg-[#0F0F0F] text-[#F8F8F8] space-y-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[11px] text-[#9CA3AF] uppercase">
+                        Drop-in Responsive Picture Markup (LCP & 0 CLS):
+                      </span>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(auditResult.recommended_markup);
+                          setCopiedCli(true);
+                          setTimeout(() => setCopiedCli(false), 2000);
+                        }}
+                        className="inline-flex items-center gap-1 text-[11px] text-[#9CA3AF] hover:text-white transition-colors"
+                      >
+                        {copiedCli ? <Check className="h-3.5 w-3.5 text-[#10B981]" /> : <Copy className="h-3.5 w-3.5" />}
+                        <span>{copiedCli ? 'Copied' : 'Copy'}</span>
+                      </button>
+                    </div>
+                    <pre className="overflow-x-auto p-3 bg-black/40 rounded font-mono text-[11px] leading-relaxed text-[#A7F3D0]">
+                      {auditResult.recommended_markup}
+                    </pre>
+                  </div>
+                )}
+
+                {/* Remediation Steps */}
+                {auditResult.recommendations && auditResult.recommendations.length > 0 && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Image Performance Recommendations:
                     </div>
                     <ul className="space-y-2">
                       {auditResult.recommendations.map((rec: string, rIdx: number) => (
