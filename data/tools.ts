@@ -17,6 +17,9 @@ export interface WebTool {
   isOwnProduct?: boolean;
   githubUrl?: string;
   cliInstallCmd?: string;
+  serpTitle?: string;
+  serpDescription?: string;
+  targetKeywords?: string[];
 }
 
 export const FREE_TOOLS: WebTool[] = [
@@ -38,6 +41,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
     relatedToolSlug: 'lcp-checker',
     externalUrl: 'https://pagespeed.web.dev/',
+    serpTitle: 'Free Website Speed Test: TTFB & Latency Benchmark',
+    serpDescription: 'Test website speed and server TTFB in real time. Isolate render-blocking assets and hosting bottlenecks without queue delays.',
   },
   {
     slug: 'lcp-checker',
@@ -57,6 +62,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'why-your-lcp-score-tanks-on-mobile-how-to-fix-it',
     relatedToolSlug: 'page-weight-checker',
     externalUrl: 'https://web.dev/articles/lcp',
+    serpTitle: 'Free LCP Checker: Isolate Hero Element Lag',
+    serpDescription: 'Find the exact hero image or headline slowing down Largest Contentful Paint. Audit fetchpriority and image dimensions instantly.',
   },
   {
     slug: 'page-weight-checker',
@@ -76,6 +83,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: '5-best-wordpress-speed-plugins-2026',
     relatedToolSlug: 'image-size-analyzer',
     externalUrl: 'https://almanac.httparchive.org/en/2024/page-weight',
+    serpTitle: 'Page Weight Calculator & 1.5MB Budget Meter',
+    serpDescription: 'Analyze page payload distribution across JavaScript, CSS, images, and fonts. Detect uncompressed media and script bloat.',
   },
   {
     slug: 'seo-meta-checker',
@@ -95,6 +104,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'rank-math-vs-yoast-definitive-seo-plugin-comparison',
     relatedToolSlug: 'schema-validator',
     externalUrl: 'https://developers.google.com/search/docs/crawling-indexing/special-tags',
+    serpTitle: 'Free SEO Meta Tag Checker & SERP Simulator',
+    serpDescription: 'Audit title tags, meta descriptions, canonical headers, and social cards. Test SERP display cutoffs before publishing.',
   },
   {
     slug: 'schema-validator',
@@ -114,6 +125,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'how-to-make-your-website-discoverable-by-ai-search-engines',
     relatedToolSlug: 'http-header-checker',
     externalUrl: 'https://validator.schema.org/',
+    serpTitle: 'Free Schema.org JSON-LD Validator & Checker',
+    serpDescription: 'Validate Schema.org JSON-LD structured data for Google rich snippets. Check Article, WebApplication, Breadcrumb, and Review schemas.',
   },
   {
     slug: 'http-header-checker',
@@ -133,6 +146,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'cloudways-vs-siteground-which-host-loads-faster',
     relatedToolSlug: 'broken-link-checker',
     externalUrl: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers',
+    serpTitle: 'HTTP Security Header Checker: HSTS & CSP Audit',
+    serpDescription: 'Inspect live HTTP response headers, SSL security flags, HSTS, CSP, and edge CDN cache hit states in seconds.',
   },
   {
     slug: 'broken-link-checker',
@@ -152,6 +167,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'rank-math-vs-yoast-definitive-seo-plugin-comparison',
     relatedToolSlug: 'website-speed-test',
     externalUrl: 'https://www.w3.org/Provider/Style/URI',
+    serpTitle: 'Free Broken Link Checker: Find 404s & Dead Ends',
+    serpDescription: 'Crawl on-page links to catch 404 errors, broken internal anchors, and invalid redirects before they hurt SEO and conversions.',
   },
   {
     slug: 'image-size-analyzer',
@@ -171,6 +188,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedGuideSlug: 'zero-cls-web-design-principles',
     relatedToolSlug: 'page-weight-checker',
     externalUrl: 'https://web.dev/articles/serve-images-webp',
+    serpTitle: 'Image Size & CLS Checker: Audit Layout Shifts',
+    serpDescription: 'Inspect image dimensions, aspect ratios, and modern WebP/AVIF adoption. Eliminate layout shifts and mobile bandwidth waste.',
   },
   {
     slug: 'geo-audit',
@@ -192,6 +211,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'schema-validator',
     githubUrl: 'https://github.com/xcalibur73/citation-pulse',
     cliInstallCmd: 'pip install citation-pulse',
+    serpTitle: 'GEO Citability & AI Search Auditor | Free Tool',
+    serpDescription: 'Audit content citability for ChatGPT Search, Perplexity, and Google AI Overviews using Princeton KDD 2024 passage scoring.',
   },
   {
     slug: 'hydration-audit',
@@ -212,6 +233,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'website-speed-test',
     githubUrl: 'https://github.com/xcalibur73/dom-hydrate',
     cliInstallCmd: 'pip install dom-hydrate',
+    serpTitle: 'DOM Hydration & SSR Parity Engine | Free Tool',
+    serpDescription: 'Compare server-rendered HTML against client DOM to catch dropped JSON-LD schemas, rogue noindex tags, and hydration drift.',
   },
   {
     slug: 'index-trace',
@@ -233,6 +256,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'hydration-audit',
     githubUrl: 'https://github.com/xcalibur73/index-trace',
     cliInstallCmd: 'pip install index-trace',
+    serpTitle: 'GSC Indexing Triage & Crawler Tracer | Free Tool',
+    serpDescription: 'Diagnose Google Search Console indexing dropouts, RFC 9309 robots.txt collisions, infinite redirect loops, and soft-404s.',
   },
   {
     slug: 'overflow-trace',
@@ -254,6 +279,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'lcp-checker',
     githubUrl: 'https://github.com/xcalibur73/overflow-trace',
     cliInstallCmd: 'pip install overflow-trace',
+    serpTitle: 'Mobile Overflow & Viewport Breakage Tracer',
+    serpDescription: 'Detect horizontal scrolling and layout breakage on mobile viewports. Isolate rogue 100vw containers with drop-in CSS fixes.',
   },
   {
     slug: 'schema-graph',
@@ -275,6 +302,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'schema-validator',
     githubUrl: 'https://github.com/xcalibur73/schema-graph',
     cliInstallCmd: 'pip install schema-graph',
+    serpTitle: 'SchemaGraph: Entity & Knowledge Graph Tracer',
+    serpDescription: 'Trace cross-page JSON-LD entity integrity, unresolving author IDs, orphan nodes, and Knowledge Graph connectivity.',
   },
   {
     slug: 'img-spec',
@@ -296,6 +325,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'image-size-analyzer',
     githubUrl: 'https://github.com/xcalibur73/img-spec',
     cliInstallCmd: 'pip install img-spec',
+    serpTitle: 'ImgSpec: Responsive Breakpoint & LCP Auditor',
+    serpDescription: 'Audit mobile image byte waste, test LCP fetchpriority hints, and generate calibrated responsive picture markup.',
   },
   {
     slug: 'payload-sniper',
@@ -317,6 +348,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'website-speed-test',
     githubUrl: 'https://github.com/xcalibur73/payload-sniper',
     cliInstallCmd: 'pip install payload-sniper',
+    serpTitle: 'PayloadSniper: INP & Script Bloat-Tracer',
+    serpDescription: 'Profile main-thread Long Tasks over 50ms, third-party marketing tags, and interaction delays degrading INP performance.',
   },
   {
     slug: 'link-bleed',
@@ -338,6 +371,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'schema-graph',
     githubUrl: 'https://github.com/xcalibur73/link-bleed',
     cliInstallCmd: 'pip install link-bleed',
+    serpTitle: 'LinkBleed: Internal Link Graph & Orphan Tracer',
+    serpDescription: 'Construct internal link graphs, calculate PageRank equity leakage, and uncover orphan URLs hidden from search crawlers.',
   },
   {
     slug: 'context-silo',
@@ -359,6 +394,8 @@ export const FREE_TOOLS: WebTool[] = [
     relatedToolSlug: 'link-bleed',
     githubUrl: 'https://github.com/xcalibur73/context-silo',
     cliInstallCmd: 'pip install context-silo',
+    serpTitle: 'ContextSilo: Anchor Text & Semantic Vector Audit',
+    serpDescription: 'Audit internal anchor text profiles, detect keyword cannibalization collisions, and improve passage semantic relevance.',
   },
 ];
 

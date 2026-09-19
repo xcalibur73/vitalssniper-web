@@ -17,6 +17,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.webaudits.pro',
   },
+  openGraph: {
+    title: 'Web Audits - Core Web Vitals, SEO & Speed Benchmarks',
+    description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization. Includes VitalsSniper PRO.',
+    url: 'https://www.webaudits.pro',
+    siteName: 'Web Audits',
+    type: 'website',
+    images: [
+      {
+        url: '/assets/appsumo_hero_1920x1080.png',
+        width: 1200,
+        height: 675,
+        alt: 'Web Audits Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Web Audits - Core Web Vitals, SEO & Speed Benchmarks',
+    description: 'Digital publication and tools platform for web performance, technical SEO, AI and GEO readiness, and conversion optimization.',
+    images: ['/assets/appsumo_hero_1920x1080.png'],
+  },
 };
 
 export default function HomePage() {

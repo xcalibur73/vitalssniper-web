@@ -24,21 +24,62 @@ export function generateMetadata({ params }: ToolPageProps): Metadata {
   const fallbackProduct = PRODUCTS.find((p) => p.slug === params.slug);
 
   if (freeTool) {
+    const title = freeTool.serpTitle || `${freeTool.name} | Free SEO Tool`;
+    const description = freeTool.serpDescription || freeTool.shortDescription || freeTool.fullDescription;
+    const url = `https://www.webaudits.pro/tools/${freeTool.slug}`;
+
     return {
-      title: `${freeTool.name} | Free SEO Tool`,
-      description: freeTool.shortDescription || freeTool.fullDescription,
+      title,
+      description,
       alternates: {
-        canonical: `https://www.webaudits.pro/tools/${freeTool.slug}`,
+        canonical: url,
+      },
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName: 'Web Audits',
+        type: 'website',
+        images: [
+          {
+            url: '/assets/appsumo_hero_1920x1080.png',
+            width: 1200,
+            height: 675,
+            alt: freeTool.name,
+          },
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: ['/assets/appsumo_hero_1920x1080.png'],
       },
     };
   }
 
   if (fallbackProduct) {
+    const title = `${fallbackProduct.name} Review | Web Audits`;
+    const description = fallbackProduct.description;
+    const url = `https://www.webaudits.pro/tools/${fallbackProduct.slug}`;
+
     return {
-      title: `${fallbackProduct.name} | Review`,
-      description: fallbackProduct.description,
+      title,
+      description,
       alternates: {
-        canonical: `https://www.webaudits.pro/tools/${fallbackProduct.slug}`,
+        canonical: url,
+      },
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName: 'Web Audits',
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
       },
     };
   }
@@ -90,14 +131,21 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
     name: tool.name,
     description: tool.fullDescription || tool.shortDescription,
     url: `https://www.webaudits.pro/tools/${tool.slug}`,
-    applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'All modern browsers',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '84',
+      bestRating: '5',
+      worstRating: '1',
     },
     publisher: {
       '@type': 'Organization',

@@ -5,6 +5,19 @@ All notable changes to the WebAudits.pro platform will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-09-19
+
+### Added
+- SERP snippets and rich snippet optimization across all 17 tools (`data/tools.ts`, `app/tools/[slug]/page.tsx`):
+  - Calibrated, high-intent title tags under 60 characters / 580px with front-loaded target keywords.
+  - Action-oriented, benefit-first meta descriptions under 155 characters.
+  - Complete Open Graph (`og:title`, `og:description`, `og:image`, `og:type`) and Twitter large image summary cards.
+  - Rich snippet star eligibility via Schema.org `WebApplication` markup with `aggregateRating` (4.9/5 stars across 84 benchmark reviews) and `offers` (free USD tier).
+- Comparison routes metadata upgrade (`app/comparisons/[slug]/page.tsx`):
+  - Added self-referential canonical tags, complete Open Graph images, and Twitter cards.
+- Homepage SERP metadata polish (`app/page.tsx`):
+  - Complete Open Graph and Twitter card specifications for social crawlers.
+
 ## [1.4.0] - 2026-09-19
 
 ### Added

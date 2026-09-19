@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -19,13 +20,41 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: ComparisonPageProps) {
+export function generateMetadata({ params }: ComparisonPageProps): Metadata {
   const comp = COMPARISONS.find((c) => c.slug === params.slug);
   if (!comp) return { title: 'Comparison Not Found | Web Audits' };
 
+  const title = comp.metaTitle || `${comp.toolA} vs ${comp.toolB} | Web Audits`;
+  const description = comp.summary;
+  const url = `https://www.webaudits.pro/comparisons/${comp.slug}`;
+
   return {
-    title: comp.metaTitle || `${comp.toolA} vs ${comp.toolB} | Web Audits`,
-    description: comp.summary,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'Web Audits',
+      type: 'article',
+      images: [
+        {
+          url: '/assets/appsumo_hero_1920x1080.png',
+          width: 1200,
+          height: 675,
+          alt: `${comp.toolA} vs ${comp.toolB}`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/assets/appsumo_hero_1920x1080.png'],
+    },
   };
 }
 
