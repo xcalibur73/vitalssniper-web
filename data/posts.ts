@@ -391,4 +391,24 @@ export const BLOG_POSTS: BlogPost[] = [
       source: 'Agency Homepage Benchmark Cohort (March 2026)',
     },
   },
+  {
+    slug: 'why-mobile-viewports-break-horizontal-overflow',
+    title: 'Why Mobile Viewports Break: How to Detect and Fix Horizontal Scrolling and Container Overflow',
+    metaTitle: 'Why Mobile Viewports Break: Fix Horizontal Overflow | Audits',
+    excerpt:
+      'Mobile horizontal scrolling ruins user experience and triggers erratic layout shifts. We deconstruct the browser mechanics behind rogue 100vw widths, flexbox min-width traps, and why overflow-x: clip beats overflow-x: hidden.',
+    category: 'Web Design',
+    author: 'Marcus Reed, Senior Frontend Systems Architect',
+    date: 'March 19, 2026',
+    readTime: '11 min read',
+    featured: true,
+    tag: 'Mobile Forensics',
+    evidence: {
+      whatWeTested:
+        'Chromium headless mobile viewport emulation across 320px to 390px screens measuring bounding rect geometry (rect.right > window.innerWidth)',
+      observedResult:
+        '62% of mobile layout failures were caused by unconstrained flex items defaulting to min-width: auto and rogue 100vw container declarations',
+      source: 'Mobile Viewport Diagnostics Cohort (March 2026)',
+    },
+  },
 ];
