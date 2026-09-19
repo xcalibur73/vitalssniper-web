@@ -115,7 +115,7 @@ export default function ToolDirectoryPage() {
                   <a
                     href={tool.url}
                     target="_blank"
-                    rel="noopener"
+                    rel="nofollow noopener"
                     className="inline-flex items-center gap-1 text-xs font-bold text-[#2563EB] hover:underline"
                   >
                     <span>Visit Website</span>

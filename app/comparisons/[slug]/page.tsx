@@ -196,7 +196,7 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                   <a
                     href={comp.urlA}
                     target="_blank"
-                    rel="noopener"
+                    rel="nofollow noopener"
                     className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4B5563] hover:text-[#0F0F0F] hover:underline"
                   >
                     <span>Visit {comp.toolA}</span>
@@ -232,7 +232,7 @@ export default function ComparisonDetailPage({ params }: ComparisonPageProps) {
                   <a
                     href={comp.urlB}
                     target="_blank"
-                    rel="noopener"
+                    rel="nofollow noopener"
                     className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#4B5563] hover:text-[#0F0F0F] hover:underline"
                   >
                     <span>Visit {comp.toolB}</span>
