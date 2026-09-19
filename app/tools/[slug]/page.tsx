@@ -12,6 +12,7 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  ExternalLink,
 } from 'lucide-react';
 
 interface ToolPageProps {
@@ -161,12 +162,23 @@ export default function ToolLandingPage({ params }: ToolPageProps) {
             </span>
           </nav>
 
-          <div className="flex items-center gap-3 text-xs text-[#4B5563] mb-3">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-[#4B5563] mb-3">
             <span className="text-2xl">{tool.icon}</span>
             <span className="rounded-md bg-[#2563EB]/10 border border-[#2563EB]/20 text-[#2563EB] px-2.5 py-0.5 text-xs font-semibold">{tool.category}</span>
             <span className="text-[#10B981] font-semibold bg-[#10B981]/10 px-2.5 py-0.5 rounded border border-[#10B981]/20">
               100% Free Utility
             </span>
+            {tool.githubUrl && (
+              <a
+                href={tool.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-[#E5E7EB] bg-[#F8F8F8] hover:bg-[#E5E7EB] text-xs font-medium text-[#0F0F0F] transition-colors"
+              >
+                <ExternalLink className="h-3 w-3 text-[#4B5563]" />
+                <span>Open-Source CLI</span>
+              </a>
+            )}
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F0F0F] mb-4 leading-tight">

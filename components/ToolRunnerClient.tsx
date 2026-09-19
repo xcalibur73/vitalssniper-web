@@ -13,6 +13,12 @@ import {
   Clock,
   ArrowRight,
   Activity,
+  Terminal,
+  ExternalLink,
+  Smartphone,
+  Layers,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
@@ -24,6 +30,7 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
   const [analyzed, setAnalyzed] = useState(false);
   const [auditResult, setAuditResult] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [copiedCli, setCopiedCli] = useState(false);
 
   useEffect(() => {
     if (initialUrl) {
@@ -40,7 +47,16 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
     setError(null);
 
     try {
-      const endpoint = tool.slug === 'geo-audit' ? '/api/geo' : (tool.slug === 'index-trace' ? '/api/trace' : '/api/audit');
+      const endpoint =
+        tool.slug === 'geo-audit'
+          ? '/api/geo'
+          : tool.slug === 'index-trace'
+          ? '/api/trace'
+          : tool.slug === 'overflow-trace'
+          ? '/api/overflow'
+          : tool.slug === 'hydration-audit'
+          ? '/api/hydration'
+          : '/api/audit';
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -113,6 +129,27 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
         {tool.referenceBenchmark && (
           <div className="mt-3 text-xs text-[#6B7280]">
             {tool.referenceBenchmark}
+          </div>
+        )}
+
+        {/* CLI Quick Reference */}
+        {tool.cliInstallCmd && (
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-[#6B7280]">
+            <span className="inline-flex items-center gap-1.5 font-mono text-[11px] bg-[#F8F8F8] border border-[#E5E7EB] px-2.5 py-1 rounded text-[#0F0F0F]">
+              <Terminal className="h-3.5 w-3.5 text-[#2563EB]" />
+              <span>{tool.cliInstallCmd}</span>
+            </span>
+            {tool.githubUrl && (
+              <a
+                href={tool.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[#2563EB] hover:underline"
+              >
+                <span>CLI source on GitHub</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
           </div>
         )}
 
@@ -451,6 +488,252 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   </div>
                 )}
               </>
+            ) : tool.slug === 'overflow-trace' ? (
+              /* OverflowTrace Mobile Viewport Breakage View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Mobile Responsive Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.target_url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Emulated Device: {auditResult.emulated_device}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">
+                        Scroll Width vs Viewport
+                      </span>
+                      <span className="text-sm sm:text-base font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.scroll_width}px <span className="text-xs text-[#6B7280]">/ {auditResult.visual_viewport_width}px</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.has_horizontal_overflow
+                        ? 'bg-[#EF4444]/15 text-[#DC2626]'
+                        : 'bg-[#10B981]/15 text-[#059669]'
+                    }`}>
+                      {auditResult.has_horizontal_overflow ? (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>
+                        {auditResult.has_horizontal_overflow
+                          ? `+${auditResult.total_overflow_px}px Spill`
+                          : '0px Overflow'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Viewport Meta Tag Audit Card */}
+                {auditResult.viewport_audit && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-semibold text-[#0F0F0F] uppercase tracking-wider">
+                        Viewport Meta Tag Integrity:
+                      </span>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                        auditResult.viewport_audit.has_device_width
+                          ? 'bg-[#10B981]/15 text-[#059669]'
+                          : 'bg-[#EF4444]/15 text-[#DC2626]'
+                      }`}>
+                        {auditResult.viewport_audit.status}
+                      </span>
+                    </div>
+                    <div className="font-mono text-xs text-[#4B5563] bg-[#F8F8F8] p-2.5 rounded border border-[#E5E7EB]">
+                      {auditResult.viewport_audit.content || 'Missing <meta name="viewport"> tag'}
+                    </div>
+                  </div>
+                )}
+
+                {/* Culprits Section */}
+                <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-4">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                    <span>Detected Viewport Overflow Culprits ({auditResult.culprits_count || 0})</span>
+                    <span className="text-[#6B7280]">Sorted by Overflow Severity</span>
+                  </div>
+
+                  {auditResult.culprits && auditResult.culprits.length > 0 ? (
+                    <div className="space-y-3">
+                      {auditResult.culprits.map((c: any, cIdx: number) => (
+                        <div key={cIdx} className="p-3.5 rounded-lg bg-[#F8F8F8] border border-[#E5E7EB] space-y-2">
+                          <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <span className="font-bold font-mono text-[#0F0F0F]">
+                              #{cIdx + 1} {c.selector}
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#EF4444]/10 text-[#DC2626] font-mono font-bold">
+                              +{c.overflow_px}px {c.spill_direction}
+                            </span>
+                          </div>
+
+                          <div className="text-xs text-[#6B7280]">
+                            <strong className="text-[#374151]">Root Cause:</strong> {c.root_cause}
+                          </div>
+
+                          <div className="p-2.5 rounded bg-white border border-[#DDD7CE] text-xs">
+                            <span className="text-[10px] uppercase font-bold text-[#B76345] block mb-0.5">
+                              Drop-in CSS Fix:
+                            </span>
+                            <code className="font-mono text-[#20201E] font-medium">{c.suggested_fix}</code>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="p-4 rounded-lg bg-[#10B981]/10 border border-[#10B981]/25 text-xs sm:text-sm text-[#065F46] flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      <span>
+                        No horizontal overflow detected. All containers, preformatted blocks, and tables fit within the 375px mobile screen.
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Recommendations */}
+                {auditResult.recommendations && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      Recommended Remediation Steps:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#B76345] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : tool.slug === 'hydration-audit' ? (
+              /* HydrationAudit SSR vs CSR Parity View */
+              <>
+                {/* Summary Top Bar */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
+                      Hydration & SSR Target
+                    </span>
+                    <div className="font-mono text-base font-bold text-[#0F0F0F] break-all">
+                      {auditResult.target_url}
+                    </div>
+                    <div className="text-xs text-[#6B7280] mt-1">
+                      Detected Architecture: {auditResult.framework_detected}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-lg bg-white border border-[#E5E7EB] text-right">
+                      <span className="text-[10px] uppercase font-semibold text-[#6B7280] block">SSR Parity Score</span>
+                      <span className="text-2xl font-bold font-mono text-[#0F0F0F]">
+                        {auditResult.ssr_parity_score}<span className="text-xs font-normal text-[#6B7280]">/100</span>
+                      </span>
+                    </div>
+
+                    <div className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                      auditResult.ssr_parity_score >= 80
+                        ? 'bg-[#10B981]/15 text-[#059669]'
+                        : auditResult.ssr_parity_score >= 50
+                        ? 'bg-[#F59E0B]/15 text-[#B45309]'
+                        : 'bg-[#EF4444]/15 text-[#DC2626]'
+                    }`}>
+                      {auditResult.ssr_parity_score >= 80 ? (
+                        <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                      )}
+                      <span>{auditResult.verdict?.status || 'Evaluated'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4-Metric Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Server Schemas</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.schemas_count} block(s)</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Rendered in initial server HTML</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Internal Link Graph</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.internal_links_count} links</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Server-side navigation nodes</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Content Density</span>
+                    <span className="font-bold text-[#0F0F0F] text-base font-mono">{auditResult.word_count} words</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">{auditResult.is_thin_shell ? 'Thin Hydration Shell' : 'Substantial Content'}</p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
+                    <span className="text-[#6B7280] block text-[11px] font-medium mb-1">Meta Robots</span>
+                    <span className="font-bold text-[#0F0F0F] text-xs font-mono truncate block">{auditResult.meta_robots}</span>
+                    <p className="text-[10px] text-[#6B7280] mt-1">Server-rendered directives</p>
+                  </div>
+                </div>
+
+                {/* Schemas List */}
+                {auditResult.schemas_found && auditResult.schemas_found.length > 0 && (
+                  <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F] block">
+                      Server-Rendered Schema.org Types:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {auditResult.schemas_found.map((s: string, sIdx: number) => (
+                        <span key={sIdx} className="px-2.5 py-1 rounded bg-[#F8F8F8] border border-[#E5E7EB] font-mono text-xs text-[#2563EB]">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Defects Detected */}
+                {auditResult.defects && auditResult.defects.length > 0 && (
+                  <div className="p-4 rounded-lg bg-[#EF4444]/10 border border-[#EF4444]/25 space-y-2 text-xs">
+                    <span className="font-bold text-[#991B1B] uppercase tracking-wider block">
+                      Hydration Regressions & Search Defects Detected:
+                    </span>
+                    <ul className="space-y-1 text-[#7F1D1D]">
+                      {auditResult.defects.map((def: string, dIdx: number) => (
+                        <li key={dIdx} className="flex items-start gap-2">
+                          <AlertTriangle className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+                          <span>{def}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Recommendations */}
+                {auditResult.recommendations && (
+                  <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
+                      SSR Forensic Recommendations:
+                    </div>
+                    <ul className="space-y-2">
+                      {auditResult.recommendations.map((rec: string, rIdx: number) => (
+                        <li key={rIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
+                          <CheckCircle2 className="h-4 w-4 text-[#B76345] flex-shrink-0 mt-0.5" />
+                          <span>{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
             ) : (
               /* Performance / Core Web Vitals Audit View */
               <>
@@ -608,6 +891,66 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
                   </div>
                 )}
               </>
+            )}
+
+            {/* Open-Source Automation Engine Card */}
+            {(tool.githubUrl || tool.cliInstallCmd) && (
+              <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <Terminal className="h-4 w-4 text-[#2563EB]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#0F0F0F]">
+                      Open-Source Automation Engine
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#4B5563]">
+                    Automate this diagnostic check in your CI/CD pipelines or run it locally using the Python CLI.
+                  </p>
+                  {tool.cliInstallCmd && (
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <code className="px-2.5 py-1.5 rounded bg-[#F8F8F8] border border-[#E5E7EB] font-mono text-[11px] text-[#0F0F0F] select-all">
+                        {tool.cliInstallCmd}
+                      </code>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (tool.cliInstallCmd) {
+                            navigator.clipboard.writeText(tool.cliInstallCmd);
+                            setCopiedCli(true);
+                            setTimeout(() => setCopiedCli(false), 2000);
+                          }
+                        }}
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded bg-[#F8F8F8] border border-[#E5E7EB] hover:bg-[#E5E7EB] text-xs font-medium text-[#4B5563] transition-colors"
+                        title="Copy install command"
+                      >
+                        {copiedCli ? (
+                          <>
+                            <Check className="h-3.5 w-3.5 text-[#10B981]" />
+                            <span className="text-[11px] text-[#10B981]">Copied</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="h-3.5 w-3.5" />
+                            <span className="text-[11px]">Copy</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {tool.githubUrl && (
+                  <a
+                    href={tool.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#0F0F0F] hover:bg-[#262626] text-xs font-semibold text-white transition-colors whitespace-nowrap flex-shrink-0"
+                  >
+                    <span>View on GitHub</span>
+                    <ExternalLink className="h-3.5 w-3.5 text-white/70" />
+                  </a>
+                )}
+              </div>
             )}
 
             {/* Bottom Action Card */}

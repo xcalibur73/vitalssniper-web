@@ -15,6 +15,8 @@ export interface WebTool {
   relatedToolSlug: string;
   externalUrl?: string;
   isOwnProduct?: boolean;
+  githubUrl?: string;
+  cliInstallCmd?: string;
 }
 
 export const FREE_TOOLS: WebTool[] = [
@@ -180,6 +182,8 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'ai-search-readiness',
     relatedToolSlug: 'schema-validator',
+    githubUrl: 'https://github.com/xcalibur73/citation-pulse',
+    cliInstallCmd: 'pip install citation-pulse',
   },
   {
     slug: 'hydration-audit',
@@ -198,6 +202,8 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'how-to-audit-50-client-sites-in-1-week',
     relatedToolSlug: 'website-speed-test',
+    githubUrl: 'https://github.com/xcalibur73/dom-hydrate',
+    cliInstallCmd: 'pip install dom-hydrate',
   },
   {
     slug: 'index-trace',
@@ -217,6 +223,29 @@ export const FREE_TOOLS: WebTool[] = [
     ],
     relatedGuideSlug: 'how-to-score-100-on-pagespeed-without-breaking-your-site',
     relatedToolSlug: 'hydration-audit',
+    githubUrl: 'https://github.com/xcalibur73/index-trace',
+    cliInstallCmd: 'pip install index-trace',
+  },
+  {
+    slug: 'overflow-trace',
+    name: 'Mobile Overflow & Viewport Breakage Tracer',
+    shortDescription: 'Isolate mobile horizontal scroll breakages, rogue 100vw containers, and unconstrained flex elements on mobile viewports.',
+    fullDescription: 'Simulates mobile viewports (iPhone SE 375px, compact 320px) to identify elements exceeding viewport bounds, isolate rogue 100vw offsets, and provide drop-in CSS remediation.',
+    tier: 'free',
+    category: 'Responsive & UX',
+    icon: '📱',
+    referenceBenchmark: 'Reference Benchmark: Mobile Viewport 375px, 0px Horizontal Overflow',
+    whatItMeans: 'Elements exceeding mobile screen widths trigger horizontal scrolling, disrupting touch navigation and causing mobile usability penalties in Google Search Console.',
+    howToImprove: [
+      "Replace 'width: 100vw' with 'width: 100%' to prevent scrollbar gutter width offset bugs.",
+      "Apply 'min-width: 0' on flex children to allow text and code snippets to shrink inside rows.",
+      "Wrap data tables and code blocks in dedicated containers with 'overflow-x: auto'.",
+      "Apply 'overflow-x: clip' to root HTML/body containers to contain layouts without breaking sticky positioning.",
+    ],
+    relatedGuideSlug: 'zero-cls-web-design-principles',
+    relatedToolSlug: 'lcp-checker',
+    githubUrl: 'https://github.com/xcalibur73/overflow-trace',
+    cliInstallCmd: 'pip install overflow-trace',
   },
 ];
 
