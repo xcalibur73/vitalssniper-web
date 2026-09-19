@@ -2,15 +2,49 @@
 
 import React from 'react';
 import { SpeedAuditResult } from '@/lib/tool-analyzers/speedAnalyzer';
-import { CheckCircle2, AlertTriangle, AlertCircle, Clock, Zap, ExternalLink, Activity } from 'lucide-react';
+import PlainEnglishVerdict from '@/components/ui/PlainEnglishVerdict';
+import { CheckCircle2, AlertTriangle, AlertCircle, Clock, Zap, ExternalLink, HelpCircle, Wrench } from 'lucide-react';
 
 export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResult }) {
   const isGood = result.score >= 80;
   const isWarning = result.score >= 50 && result.score < 80;
+  const impact = isGood ? 'safe' : isWarning ? 'warning' : 'critical';
+
+  const headline = isGood
+    ? 'Your web hosting responds swiftly with minimal delay.'
+    : isWarning
+    ? 'Your server takes ' + result.ttfbMs + 'ms to respond: a modest delay before pages load.'
+    : 'Your web host is sluggish (' + result.ttfbMs + 'ms response time), holding back page speed.';
+
+  const summary =
+    'When a visitor taps your link, your server takes ' +
+    result.ttfbMs +
+    ' milliseconds to send the first piece of data. ' +
+    (result.renderBlockingSummary.totalBlockingAssets > 0
+      ? 'Also, ' + result.renderBlockingSummary.totalBlockingAssets + ' code file(s) freeze the screen until they finish downloading.'
+      : 'No render-blocking scripts are freezing the screen.');
+
+  const businessImpact = isGood
+    ? 'Fast initial response creates an instant first impression and keeps search crawlers happy.'
+    : 'If a server takes over 500ms to respond, visitors experience a blank white screen and are prone to closing the tab.';
+
+  const topFix = result.recommendations[0] || 'Turn on page caching and an edge CDN to respond in under 200ms.';
 
   return (
     <div className="space-y-6">
-      {/* Top Summary Bar */}
+      {/* 1. Plain English Human Verdict */}
+      <PlainEnglishVerdict
+        toolName="Website Speed Test"
+        targetDomain={result.domain}
+        impact={impact}
+        headline={headline}
+        summary={summary}
+        businessImpact={businessImpact}
+        topFix={topFix}
+        noCodeTip="In WordPress, install a trusted caching plugin like LiteSpeed Cache or WP Rocket. In Shopify, uninstall unused third-party tracking apps from your theme."
+      />
+
+      {/* 2. Top Summary Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
@@ -53,6 +87,17 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
         </div>
       </div>
 
+      {/* ELI5 Jargon Explainer Box */}
+      <div className="p-4 rounded-lg bg-[#F8F8F8] border border-[#E5E7EB] text-xs text-[#4B5563] space-y-1">
+        <div className="flex items-center gap-1.5 font-bold text-[#0F0F0F]">
+          <HelpCircle className="h-3.5 w-3.5 text-[#2563EB]" />
+          <span>Explain Like I am 5: What is Server TTFB and Render-Blocking?</span>
+        </div>
+        <p className="leading-relaxed">
+          Imagine ordering coffee at a drive-thru. <strong>TTFB</strong> is the delay between you speaking and the cashier answering you. <strong>Render-blocking</strong> is like when they make you wait in line while they restock napkins before they give you your cup: visitors stare at a blank screen until those files finish loading.
+        </p>
+      </div>
+
       {/* Speed Metrics Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
@@ -68,6 +113,7 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
           >
             {result.ttfbMs} ms
           </span>
+          <span className="text-[10px] text-[#6B7280] block mt-0.5">Goal: &lt; 200 ms</span>
         </div>
         <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
           <span className="text-[10px] uppercase font-semibold text-[#6B7280] block mb-1">Compression</span>
@@ -80,9 +126,10 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
               <span className="text-[#DC2626] text-base font-bold uppercase">NONE</span>
             )}
           </span>
+          <span className="text-[10px] text-[#6B7280] block mt-0.5">Shrinks HTML size</span>
         </div>
         <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
-          <span className="text-[10px] uppercase font-semibold text-[#6B7280] block mb-1">Blocking Assets</span>
+          <span className="text-[10px] uppercase font-semibold text-[#6B7280] block mb-1">Blocking Files</span>
           <span
             className={`text-xl font-mono font-bold ${
               result.renderBlockingSummary.totalBlockingAssets > 0 ? 'text-[#DC2626]' : 'text-[#059669]'
@@ -90,12 +137,14 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
           >
             {result.renderBlockingSummary.totalBlockingAssets}
           </span>
+          <span className="text-[10px] text-[#6B7280] block mt-0.5">Pause screen render</span>
         </div>
         <div className="p-3.5 rounded-lg bg-white border border-[#E5E7EB]">
-          <span className="text-[10px] uppercase font-semibold text-[#6B7280] block mb-1">DOM Elements</span>
+          <span className="text-[10px] uppercase font-semibold text-[#6B7280] block mb-1">Page Complexity</span>
           <span className="text-xl font-mono font-bold text-[#0F0F0F]">
             {result.totalElements}
           </span>
+          <span className="text-[10px] text-[#6B7280] block mt-0.5">Total HTML tags</span>
         </div>
       </div>
 
@@ -104,7 +153,7 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
         <div className="flex items-center gap-2">
           <Clock className="h-4 w-4 text-[#2563EB]" />
           <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-            Network Latency Waterfall Breakdown
+            Where Does the Time Go? (Latency Waterfall)
           </h3>
         </div>
         <div className="space-y-2 pt-1">
@@ -142,7 +191,7 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 text-[#F59E0B]" />
             <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-              Render-Blocking Head Resources ({result.renderBlockingSummary.totalBlockingAssets})
+              Files Pausing the Screen ({result.renderBlockingSummary.totalBlockingAssets})
             </h3>
           </div>
           <span className="text-xs text-[#6B7280]">
@@ -164,7 +213,7 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
                 <tr>
                   <th className="p-3">Type</th>
                   <th className="p-3">Asset URL</th>
-                  <th className="p-3">Recommended Fix</th>
+                  <th className="p-3">Simple Fix</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5E7EB]">
@@ -205,22 +254,49 @@ export default function WebsiteSpeedResult({ result }: { result: SpeedAuditResul
         )}
       </div>
 
-      {/* Recommendations */}
-      {result.recommendations.length > 0 && (
-        <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+      {/* Dual Remediation Guidance */}
+      <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-4">
+        <div className="flex items-center gap-2">
+          <Wrench className="h-4 w-4 text-[#2563EB]" />
           <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-            Speed Optimization Recommendations
+            How to Accelerate This Page
           </h3>
-          <ul className="space-y-2">
-            {result.recommendations.map((rec, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-[#4B5563]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
-                <span>{rec}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#2563EB]">
+              For Site Owners (No Code):
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Activate Page Caching:</strong> Ensure page caching is enabled in your web host (e.g. Cloudways, SiteGround, Kinsta) or caching plugin so pages do not require fresh database queries every time.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Use a Free CDN:</strong> Connect Cloudflare (free) to cache your HTML pages at servers closest to your visitors.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#0F0F0F]">
+              For Developers:
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0F0F0F] mt-1.5 flex-shrink-0" />
+                <span>Add <code>defer</code> or <code>async</code> to head scripts: <code>{`<script src="app.js" defer></script>`}</code></span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0F0F0F] mt-1.5 flex-shrink-0" />
+                <span>Ensure gzip/brotli compression is enabled on the web server (Nginx <code>gzip on;</code> or Apache <code>mod_deflate</code>).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

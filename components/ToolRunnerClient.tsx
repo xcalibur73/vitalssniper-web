@@ -28,6 +28,7 @@ import BrokenLinkResult from '@/components/tool-results/BrokenLinkResult';
 import PageWeightResult from '@/components/tool-results/PageWeightResult';
 import ImageSizeResult from '@/components/tool-results/ImageSizeResult';
 import WebsiteSpeedResult from '@/components/tool-results/WebsiteSpeedResult';
+import PlainEnglishVerdict from '@/components/ui/PlainEnglishVerdict';
 
 export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
   const searchParams = useSearchParams();
@@ -188,6 +189,23 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             {tool.slug === 'geo-audit' ? (
               /* GEO Citability Audit View */
               <>
+                <PlainEnglishVerdict
+                  toolName="GEO Citability & AI Crawler Auditor"
+                  targetDomain={auditResult.domain}
+                  impact={auditResult.overall_score >= 70 ? 'safe' : auditResult.overall_score >= 45 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overall_score >= 70
+                      ? 'AI search engines (ChatGPT, Google Gemini) can easily extract and quote your facts.'
+                      : auditResult.overall_score >= 45
+                      ? 'Moderate AI citability: some answers are formatted well, but AI bots may overlook key details.'
+                      : 'Low AI readiness: content lacks citable answer passages and AI bots may be blocked.'
+                  }
+                  summary={`Evaluated AI search readiness for ${auditResult.domain}. Overall citability score is ${auditResult.overall_score}/100. AI search engines synthesize answers by finding concise, fact-dense passages in your first 40 words.`}
+                  businessImpact="When potential buyers ask ChatGPT, Perplexity, or Google AI Overviews for product or topic answers, high-scoring pages are cited as sources with clickable links."
+                  topFix={auditResult.recommendations?.[0] || 'Allow AI search bots in robots.txt and put direct answers in the first 40 words of each section.'}
+                  noCodeTip="Format key definitions, pricing, or product specs into short bullet points directly under your H2 headings."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -340,6 +358,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'index-trace' ? (
               /* IndexTrace GSC Diagnosis View */
               <>
+                <PlainEnglishVerdict
+                  toolName="GSC Indexing Triage & Crawler Tracer"
+                  targetDomain={auditResult.domain || auditResult.start_url}
+                  impact={auditResult.verdict?.severity === 'OK' ? 'safe' : auditResult.verdict?.severity === 'WARNING' ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.verdict?.severity === 'OK'
+                      ? 'Google can successfully crawl and index this destination page.'
+                      : `Indexing Blocked: ${auditResult.verdict?.gsc_status || 'Crawler Error'}`
+                  }
+                  summary={auditResult.verdict?.root_cause || 'Traced HTTP redirect chain and robots.txt rules for Googlebot.'}
+                  businessImpact="If Google cannot index this page, it will never show up in Google search results, cutting off potential search visitors entirely."
+                  topFix={auditResult.verdict?.remediation?.[0] || 'Ensure the final destination returns HTTP 200 without noindex tags or crawler blocks.'}
+                  noCodeTip="In WordPress Settings > Reading, verify that 'Discourage search engines from indexing this site' is unchecked."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -509,6 +542,25 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'overflow-trace' ? (
               /* OverflowTrace Mobile Viewport Breakage View */
               <>
+                <PlainEnglishVerdict
+                  toolName="Mobile Overflow & Viewport Breakage Tracer"
+                  targetDomain={auditResult.domain || auditResult.target_url}
+                  impact={auditResult.overflow_pixels === 0 ? 'safe' : auditResult.overflow_pixels < 20 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overflow_pixels === 0
+                      ? 'Your page fits phone screens with zero horizontal scrolling.'
+                      : `Screen Breakage: Elements push sideways by ${auditResult.overflow_pixels}px on mobile.`
+                  }
+                  summary={
+                    auditResult.overflow_pixels === 0
+                      ? 'Tested on 375px mobile viewport. Every layout element fits within the screen without side-scrolling.'
+                      : `Tested on a standard mobile screen (375px). Some elements overflow by ${auditResult.overflow_pixels}px, causing the page to wiggle or scroll horizontally.`
+                  }
+                  businessImpact="Mobile horizontal scroll breaks thumb scrolling, looks unprofessional, and triggers Google Search Console mobile usability errors."
+                  topFix={auditResult.recommendations?.[0] || 'Replace fixed-width containers or 100vw styles with width: 100% and max-width: 100%.'}
+                  noCodeTip="In your page builder, ensure tables, images, and preformatted text boxes have responsive width enabled."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -636,6 +688,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'hydration-audit' ? (
               /* HydrationAudit SSR vs CSR Parity View */
               <>
+                <PlainEnglishVerdict
+                  toolName="DOM Hydration & SSR Parity Engine"
+                  targetDomain={auditResult.domain || auditResult.target_url}
+                  impact={auditResult.diff_stats?.parity_score >= 85 ? 'safe' : auditResult.diff_stats?.parity_score >= 60 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.diff_stats?.parity_score >= 85
+                      ? 'Server HTML and interactive browser content match cleanly.'
+                      : 'JavaScript alters your text or links after loading, hiding them from simple bots.'
+                  }
+                  summary={`Compared server-delivered HTML with the rendered page. Parity score: ${auditResult.diff_stats?.parity_score ?? 100}/100 with ${auditResult.diff_stats?.dropped_schemas ?? 0} dropped schemas.`}
+                  businessImpact="Simpler search engine crawlers and social media link preview bots only read raw server HTML. If critical links or schemas only show up after JavaScript runs, they might get skipped."
+                  topFix={auditResult.recommendations?.[0] || 'Render critical navigation links and Schema.org metadata in the initial server HTML response.'}
+                  noCodeTip="If using a modern React/Next.js theme, ensure Server-Side Rendering (SSR) is active so search engines see your full text on first fetch."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -755,6 +822,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'schema-graph' ? (
               /* SchemaGraph Entity & Knowledge Graph View */
               <>
+                <PlainEnglishVerdict
+                  toolName="SchemaGraph Entity & Knowledge Graph Tracer"
+                  targetDomain={auditResult.domain || auditResult.target_url}
+                  impact={auditResult.overall_score >= 80 ? 'safe' : auditResult.overall_score >= 50 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overall_score >= 80
+                      ? 'Your brand and author entities are connected into a strong knowledge graph.'
+                      : 'Your structured data has disconnected or broken entity relationships.'
+                  }
+                  summary={`Graph integrity score: ${auditResult.overall_score}/100 across ${auditResult.total_entities} entities and ${auditResult.total_edges} relationships. ${auditResult.broken_references_count ? auditResult.broken_references_count + ' broken link(s) found.' : 'Zero broken @id links.'}`}
+                  businessImpact="Google uses connected entity graphs to build Knowledge Panels and confirm who wrote an article before displaying rich search results."
+                  topFix={auditResult.recommendations?.[0] || 'Connect isolated author Person entities to your main Organization via publisher or worksFor.'}
+                  noCodeTip="In your SEO plugin, verify that your author profiles are linked to your official brand website and social media profiles."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -868,6 +950,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'img-spec' ? (
               /* ImgSpec Responsive Viewport & LCP Auditor View */
               <>
+                <PlainEnglishVerdict
+                  toolName="ImgSpec Responsive Breakpoint Auditor"
+                  targetDomain={auditResult.domain || auditResult.target_url}
+                  impact={(auditResult.stats?.oversized_images ?? 0) === 0 ? 'safe' : (auditResult.stats?.oversized_images ?? 0) < 3 ? 'warning' : 'critical'}
+                  headline={
+                    (auditResult.stats?.oversized_images ?? 0) === 0
+                      ? 'Images scale efficiently across phone and desktop screens.'
+                      : `Found ${auditResult.stats?.oversized_images} oversized image(s) wasting mobile bandwidth.`
+                  }
+                  summary={`Discovered ${auditResult.total_images} images. ${(auditResult.stats?.oversized_images ?? 0) > 0 ? (auditResult.stats?.oversized_images + ' image(s) deliver giant desktop files to small phone screens.') : 'All images adapt properly to screen sizes.'}`}
+                  businessImpact="Mobile visitors on 4G/5G connections spend unnecessary seconds waiting for giant photos to download, increasing mobile bounce rates."
+                  topFix={auditResult.recommendations?.[0] || 'Provide responsive srcset attributes and add fetchpriority="high" to your primary hero photo.'}
+                  noCodeTip="Upload photos at reasonable dimensions (e.g. 1200px wide for heroes, 800px for blog photos) rather than raw 4000px camera uploads."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -1012,6 +1109,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'payload-sniper' ? (
               /* PayloadSniper INP & Script Performance View */
               <>
+                <PlainEnglishVerdict
+                  toolName="PayloadSniper INP & Script Bloat Tracer"
+                  targetDomain={auditResult.domain || auditResult.target_url}
+                  impact={auditResult.overall_score >= 75 ? 'safe' : auditResult.overall_score >= 50 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overall_score >= 75
+                      ? 'Your JavaScript scripts run lean without freezing the browser.'
+                      : 'Heavy script files are freezing the page during user taps or clicks.'
+                  }
+                  summary={`Evaluated ${auditResult.total_scripts} script files. Overall script health score is ${auditResult.overall_score}/100. ${auditResult.stats?.long_task_count ? auditResult.stats?.long_task_count + ' freeze periods (long tasks) detected.' : 'No severe execution freezes.'}`}
+                  businessImpact="Freezing scripts cause the page to feel unresponsive when visitors tap the menu, buttons, or links, failing Google INP metric."
+                  topFix={auditResult.recommendations?.[0] || 'Defer non-critical tracking scripts and remove unused marketing widgets.'}
+                  noCodeTip="Audit your plugins and remove old analytics, heatmap, or popup tools that are no longer essential."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -1153,6 +1265,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'link-bleed' ? (
               /* LinkBleed Internal Link Graph & Orphan Page View */
               <>
+                <PlainEnglishVerdict
+                  toolName="LinkBleed Internal Link Graph & Equity Tracer"
+                  targetDomain={auditResult.domain || auditResult.url}
+                  impact={auditResult.overall_score >= 75 ? 'safe' : auditResult.overall_score >= 50 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overall_score >= 75
+                      ? 'Your internal pages are well linked with healthy crawl equity.'
+                      : 'Internal links are leaking equity or leaving orphan pages behind.'
+                  }
+                  summary={`Crawled internal links across ${auditResult.stats?.total_internal_pages ?? 0} pages. Score: ${auditResult.overall_score}/100 with ${auditResult.stats?.orphan_pages_count ?? 0} orphan page(s).`}
+                  businessImpact="Pages with no internal links (orphan pages) rarely rank in Google because search engines cannot discover them easily."
+                  topFix={auditResult.recommendations?.[0] || 'Add internal cross-links from top-performing articles to key conversion pages.'}
+                  noCodeTip="When writing a new post in WordPress, always link to 2 or 3 of your older related posts."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -1335,6 +1462,21 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : tool.slug === 'context-silo' ? (
               /* ContextSilo Semantic Anchor Text & Vector Contiguity View */
               <>
+                <PlainEnglishVerdict
+                  toolName="ContextSilo Topical Anchor Text Auditor"
+                  targetDomain={auditResult.domain || auditResult.url}
+                  impact={auditResult.overall_score >= 75 ? 'safe' : auditResult.overall_score >= 50 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.overall_score >= 75
+                      ? 'Your link anchors provide rich topical context for search engines.'
+                      : 'Generic anchors like "click here" or duplicate links are diluting your SEO.'
+                  }
+                  summary={`Analyzed ${auditResult.stats?.total_links_analyzed ?? 0} links. Overall topical silo score is ${auditResult.overall_score}/100. Detected ${auditResult.stats?.generic_anchor_count ?? 0} generic anchor(s) and ${auditResult.stats?.cannibalization_collisions_count ?? 0} keyword collisions.`}
+                  businessImpact="Descriptive anchor text tells Google exactly what the target page is about, helping it rank for targeted search queries."
+                  topFix={auditResult.recommendations?.[0] || 'Replace generic phrases with 2-4 words describing the destination article.'}
+                  noCodeTip="Avoid linking the words 'here' or 'link'. Instead, link the actual name of the topic or product."
+                />
+
                 {/* Summary Top Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>
@@ -1534,6 +1676,23 @@ export default function ToolRunnerClient({ tool }: { tool: WebTool }) {
             ) : (
               /* Performance / Core Web Vitals Audit View (Fallback) */
               <>
+                <PlainEnglishVerdict
+                  toolName={tool.name || 'Website Performance Audit'}
+                  targetDomain={auditResult.domain}
+                  impact={auditResult.score >= 80 ? 'safe' : auditResult.score >= 60 ? 'warning' : 'critical'}
+                  headline={
+                    auditResult.score >= 80
+                      ? 'Your page health is in solid shape across performance and structure.'
+                      : auditResult.score >= 60
+                      ? 'Moderate page performance: minor bottlenecks detected on mobile.'
+                      : 'Critical performance issues detected: immediate optimization needed.'
+                  }
+                  summary={`Overall website health score is ${auditResult.score}/100. Server response time is ${auditResult.ttfb ?? 0}ms with ${auditResult.totalElements ?? auditResult.domElements ?? 0} DOM elements.`}
+                  businessImpact="Fast, clean web pages convert up to 2x better and earn higher Google search rankings."
+                  topFix={auditResult.recommendations?.[0] || 'Optimize server response time and compress above-the-fold media.'}
+                  noCodeTip="Enable full page caching and a CDN like Cloudflare to serve your HTML in under 200ms."
+                />
+
                 {/* Summary Top Bar: Summary First */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
                   <div>

@@ -2,13 +2,43 @@
 
 import React, { useState } from 'react';
 import { BrokenLinkAuditResult, LinkRecord } from '@/lib/tool-analyzers/brokenLinkAnalyzer';
-import { CheckCircle2, AlertTriangle, AlertCircle, ExternalLink, Link2, Filter } from 'lucide-react';
+import PlainEnglishVerdict from '@/components/ui/PlainEnglishVerdict';
+import { CheckCircle2, AlertTriangle, AlertCircle, ExternalLink, Link2, Filter, HelpCircle, Wrench } from 'lucide-react';
 
 export default function BrokenLinkResult({ result }: { result: BrokenLinkAuditResult }) {
   const [activeTab, setActiveTab] = useState<'broken' | 'all' | 'internal' | 'external'>('broken');
 
   const isGood = result.score >= 90 && result.stats.brokenCount === 0;
   const isWarning = result.score >= 60 && result.score < 90;
+  const impact = result.stats.brokenCount === 0 ? 'safe' : result.stats.brokenCount <= 2 ? 'warning' : 'critical';
+
+  const headline =
+    result.stats.brokenCount === 0
+      ? 'All tested links are healthy: zero dead ends or 404 errors.'
+      : 'Found ' +
+        result.stats.brokenCount +
+        ' broken link(s) leading visitors to a dead end.';
+
+  const summary =
+    'Tested ' +
+    result.stats.testedCount +
+    ' on-page links. ' +
+    (result.stats.brokenCount === 0
+      ? 'Every link successfully responded with an active HTTP 200 OK or valid redirect.'
+      : result.stats.brokenCount +
+        ' link(s) returned a dead 404 Not Found error, giving visitors a frustrating dead-end page.');
+
+  const businessImpact =
+    result.stats.brokenCount === 0
+      ? 'Smooth visitor navigation and zero wasted crawl budget for search engines.'
+      : 'Dead links cause visitors to abandon your site and signal to Google that your content is outdated or unmaintained.';
+
+  const topFix =
+    result.stats.brokenCount > 0
+      ? 'Update or remove the ' +
+        result.stats.brokenCount +
+        ' broken link(s) identified in the table below, or set up 301 redirects.'
+      : 'Maintain healthy links by auditing outgoing affiliate or resource links quarterly.';
 
   const filteredLinks = result.allLinks.filter((link) => {
     if (activeTab === 'broken') return link.status === 'BROKEN';
@@ -19,7 +49,19 @@ export default function BrokenLinkResult({ result }: { result: BrokenLinkAuditRe
 
   return (
     <div className="space-y-6">
-      {/* Top Summary Bar */}
+      {/* 1. Plain English Human Verdict */}
+      <PlainEnglishVerdict
+        toolName="Broken Link Checker"
+        targetDomain={result.domain}
+        impact={impact}
+        headline={headline}
+        summary={summary}
+        businessImpact={businessImpact}
+        topFix={topFix}
+        noCodeTip="In WordPress, install the free 'Redirection' plugin to create simple 301 redirects pointing old or deleted URLs to your active pages."
+      />
+
+      {/* 2. Top Summary Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
@@ -60,6 +102,17 @@ export default function BrokenLinkResult({ result }: { result: BrokenLinkAuditRe
             <span>{result.grade.replace('_', ' ')}</span>
           </div>
         </div>
+      </div>
+
+      {/* ELI5 Jargon Explainer Box */}
+      <div className="p-4 rounded-lg bg-[#F8F8F8] border border-[#E5E7EB] text-xs text-[#4B5563] space-y-1">
+        <div className="flex items-center gap-1.5 font-bold text-[#0F0F0F]">
+          <HelpCircle className="h-3.5 w-3.5 text-[#2563EB]" />
+          <span>Explain Like I am 5: What is a Broken Link (404 Error)?</span>
+        </div>
+        <p className="leading-relaxed">
+          Imagine giving a customer driving directions to your store, but the road ends at an empty ditch. When a visitor clicks a link on your site and sees "Page Not Found", they lose trust and go back to Google to click your competitor.
+        </p>
       </div>
 
       {/* Stats Counters Grid */}
@@ -216,22 +269,42 @@ export default function BrokenLinkResult({ result }: { result: BrokenLinkAuditRe
         )}
       </div>
 
-      {/* Recommendations */}
-      {result.recommendations.length > 0 && (
-        <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+      {/* Dual Remediation Guidance */}
+      <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-4">
+        <div className="flex items-center gap-2">
+          <Wrench className="h-4 w-4 text-[#2563EB]" />
           <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-            Link Equity & Crawl Recommendations
+            How to Fix Broken Links
           </h3>
-          <ul className="space-y-2">
-            {result.recommendations.map((rec, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-[#4B5563]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
-                <span>{rec}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#2563EB]">
+              For Site Owners (No Code):
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Edit the Post:</strong> Click into the article or page containing the broken anchor and swap the URL for a live equivalent.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>301 Redirect:</strong> If the deleted page has backlinks, create a 301 redirect to the most relevant surviving page.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#0F0F0F]">
+              For Developers:
+            </span>
+            <p className="text-[#4B5563]">
+              Configure server redirect rules (e.g. <code>rewrite ^/old-path$ /new-path permanent;</code> in Nginx or <code>Redirect 301 /old /new</code> in Apache .htaccess).
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

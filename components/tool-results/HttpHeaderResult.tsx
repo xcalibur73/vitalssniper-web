@@ -2,10 +2,37 @@
 
 import React, { useState } from 'react';
 import { HeaderAuditResult } from '@/lib/tool-analyzers/headersAnalyzer';
-import { CheckCircle2, AlertTriangle, AlertCircle, Shield, Search, Server, Zap, Clock } from 'lucide-react';
+import PlainEnglishVerdict from '@/components/ui/PlainEnglishVerdict';
+import { CheckCircle2, AlertTriangle, AlertCircle, Shield, Search, Server, Zap, Clock, HelpCircle, Wrench } from 'lucide-react';
 
 export default function HttpHeaderResult({ result }: { result: HeaderAuditResult }) {
   const [searchTerm, setSearchTerm] = useState('');
+
+  const isGood = result.securityScore >= 75;
+  const isWarning = result.securityScore >= 50 && result.securityScore < 75;
+  const impact = isGood ? 'safe' : isWarning ? 'warning' : 'critical';
+
+  const headline = isGood
+    ? 'Your server has strong digital security headers in place.'
+    : isWarning
+    ? 'Missing recommended security headers (like HSTS or CSP).'
+    : 'Essential security headers are missing: leaving visitors less protected.';
+
+  const summary =
+    'Audited ' +
+    result.rawHeaders.length +
+    ' server response headers. ' +
+    (isGood
+      ? 'Your web server successfully enforces HTTPS encryption and prevents clickjacking attempts.'
+      : 'Your web server is missing key defensive headers. Adding HSTS and X-Frame-Options will safeguard user sessions and satisfy Google modern web standards.');
+
+  const businessImpact = isGood
+    ? 'Protects your brand reputation and prevents malicious sites from framing your checkout or forms.'
+    : 'Without security headers, scammers can display your website inside an invisible iframe to steal user clicks (clickjacking) or downgrade HTTPS connections.';
+
+  const topFix =
+    result.recommendations[0] ||
+    'Enable Strict-Transport-Security (HSTS) and X-Content-Type-Options: nosniff via Cloudflare or web server config.';
 
   const filteredHeaders = result.rawHeaders.filter(
     (h) =>
@@ -15,7 +42,19 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
 
   return (
     <div className="space-y-6">
-      {/* Top Summary Bar */}
+      {/* 1. Plain English Human Verdict */}
+      <PlainEnglishVerdict
+        toolName="HTTP Header Checker"
+        targetDomain={result.domain}
+        impact={impact}
+        headline={headline}
+        summary={summary}
+        businessImpact={businessImpact}
+        topFix={topFix}
+        noCodeTip="If your site runs through Cloudflare (free), go to SSL/TLS > Edge Certificates and enable 'HTTP Strict Transport Security (HSTS)' with one toggle."
+      />
+
+      {/* 2. Top Summary Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
@@ -39,9 +78,9 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
 
           <div
             className={`px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
-              result.securityScore >= 75
+              isGood
                 ? 'bg-[#10B981]/15 text-[#059669]'
-                : result.securityScore >= 50
+                : isWarning
                 ? 'bg-[#F59E0B]/15 text-[#B45309]'
                 : 'bg-[#EF4444]/15 text-[#DC2626]'
             }`}
@@ -50,6 +89,17 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
             <span>Grade {result.securityGrade}</span>
           </div>
         </div>
+      </div>
+
+      {/* ELI5 Jargon Explainer Box */}
+      <div className="p-4 rounded-lg bg-[#F8F8F8] border border-[#E5E7EB] text-xs text-[#4B5563] space-y-1">
+        <div className="flex items-center gap-1.5 font-bold text-[#0F0F0F]">
+          <HelpCircle className="h-3.5 w-3.5 text-[#2563EB]" />
+          <span>Explain Like I am 5: What are HTTP Security Headers?</span>
+        </div>
+        <p className="leading-relaxed">
+          Think of security headers as digital locks and alarms on your website. When a visitor's browser connects, these headers say: "Always encrypt our conversation, never let another website embed our pages inside an invisible trap, and block malicious code from running."
+        </p>
       </div>
 
       {/* Security Headers Scorecard */}
@@ -98,11 +148,11 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
             {result.cachingPolicy.cacheControl || 'No Cache-Control header found.'}
           </div>
           <div className="flex flex-wrap gap-2 text-[11px] pt-1">
-            <span className={`px-2 py-0.5 rounded font-semibold ${result.cachingPolicy.hasEtag ? 'bg-[#10B981]/10 text-[#059669]' : 'bg-[#F3F4F6] text-[#6B7280]'}`}>
-              ETag: {result.cachingPolicy.hasEtag ? 'Present' : 'Missing'}
+            <span className={result.cachingPolicy.cacheControl ? 'text-[#059669]' : 'text-[#B45309]'}>
+              {result.cachingPolicy.cacheControl ? '✓ Cache-Control set' : '✗ No Cache-Control'}
             </span>
-            <span className={`px-2 py-0.5 rounded font-semibold ${result.cachingPolicy.hasLastModified ? 'bg-[#10B981]/10 text-[#059669]' : 'bg-[#F3F4F6] text-[#6B7280]'}`}>
-              Last-Modified: {result.cachingPolicy.hasLastModified ? 'Present' : 'Missing'}
+            <span className={result.cachingPolicy.hasEtag ? 'text-[#059669]' : 'text-[#6B7280]'}>
+              {result.cachingPolicy.hasEtag ? '✓ ETag supported' : '- No ETag'}
             </span>
           </div>
         </div>
@@ -110,56 +160,46 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
         <div className="p-4 rounded-lg bg-white border border-[#E5E7EB] space-y-2">
           <div className="flex items-center gap-2 font-bold text-[#0F0F0F] text-xs uppercase tracking-wider">
             <Server className="h-4 w-4 text-[#2563EB]" />
-            <span>Server Infrastructure</span>
+            <span>Server & Infrastructure</span>
           </div>
-          <div className="space-y-1 text-xs">
-            <div className="flex justify-between py-1 border-b border-[#E5E7EB]">
-              <span className="text-[#6B7280]">Server Header:</span>
-              <span className="font-mono font-semibold text-[#0F0F0F]">{result.serverSignatures.server || 'Hidden'}</span>
-            </div>
-            <div className="flex justify-between py-1 border-b border-[#E5E7EB]">
-              <span className="text-[#6B7280]">Detected CDN:</span>
-              <span className="font-semibold text-[#2563EB]">{result.serverSignatures.cdnDetected || 'Origin / Direct'}</span>
-            </div>
-            <div className="flex justify-between py-1">
-              <span className="text-[#6B7280]">Compression:</span>
-              <span className="font-mono font-semibold text-[#10B981]">{result.compression.contentEncoding || 'Uncompressed'}</span>
-            </div>
+          <div className="bg-[#F8F8F8] p-2.5 rounded border border-[#E5E7EB] text-[11px] text-[#4B5563] space-y-1 font-mono">
+            <div>Server Software: {result.serverSignatures.server || 'Hidden (Good)'}</div>
+            <div>Edge CDN: {result.serverSignatures.cdnDetected || 'None Detected'}</div>
           </div>
         </div>
       </div>
 
-      {/* Raw Response Headers Table with Search */}
+      {/* Raw Headers Table with Filter */}
       <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
-            Raw Response Headers ({result.rawHeaders.length} total):
+          <div className="flex items-center gap-2">
+            <Search className="h-4 w-4 text-[#6B7280]" />
+            <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
+              Complete Header List ({result.rawHeaders.length})
+            </h3>
           </div>
-          <div className="relative">
-            <Search className="h-3.5 w-3.5 absolute left-2.5 top-2.5 text-[#6B7280]" />
-            <input
-              type="text"
-              placeholder="Filter headers..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-8 pr-3 py-1.5 text-xs rounded border border-[#E5E7EB] bg-[#F8F8F8] focus:outline-none focus:border-[#2563EB]"
-            />
-          </div>
+          <input
+            type="text"
+            placeholder="Search headers..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="text-xs px-3 py-1.5 rounded-lg border border-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#2563EB] w-full sm:w-64"
+          />
         </div>
 
-        <div className="overflow-x-auto max-h-72 overflow-y-auto">
-          <table className="w-full text-left text-xs border-collapse font-mono">
-            <thead>
-              <tr className="border-b border-[#E5E7EB] text-[#6B7280] sticky top-0 bg-white">
-                <th className="py-2 pr-4 font-semibold w-1/3">Header Name</th>
-                <th className="py-2 font-semibold">Header Value</th>
+        <div className="overflow-x-auto border border-[#E5E7EB] rounded-lg">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-[#F9FAFB] text-[#6B7280] uppercase tracking-wider text-[10px] border-b border-[#E5E7EB]">
+              <tr>
+                <th className="p-3">Header</th>
+                <th className="p-3">Value</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E5E7EB]">
               {filteredHeaders.map((h, idx) => (
-                <tr key={idx} className="hover:bg-[#F9FAFB]">
-                  <td className="py-2 pr-4 font-bold text-[#0F0F0F] align-top">{h.key}</td>
-                  <td className="py-2 text-[#4B5563] break-all align-top">{h.value}</td>
+                <tr key={idx} className="hover:bg-[#F9FAFB] transition-colors">
+                  <td className="p-3 font-semibold text-[#0F0F0F] whitespace-nowrap align-top">{h.key}</td>
+                  <td className="p-3 text-[#4B5563] break-all">{h.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -167,22 +207,44 @@ export default function HttpHeaderResult({ result }: { result: HeaderAuditResult
         </div>
       </div>
 
-      {/* Recommendations */}
-      {result.recommendations.length > 0 && (
-        <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
-          <div className="text-xs font-semibold uppercase tracking-wider text-[#0F0F0F]">
-            Recommended Header Fixes:
-          </div>
-          <ul className="space-y-2">
-            {result.recommendations.map((rec, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#4B5563]">
-                <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" />
-                <span>{rec}</span>
-              </li>
-            ))}
-          </ul>
+      {/* Dual Guidance: How to Fix */}
+      <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-4">
+        <div className="flex items-center gap-2">
+          <Wrench className="h-4 w-4 text-[#2563EB]" />
+          <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
+            How to Add Security Headers
+          </h3>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#2563EB]">
+              For Site Owners (No Code):
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Cloudflare:</strong> Enable "Automatic HTTPS Rewrites" and "HSTS" under SSL/TLS settings with one click.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>WordPress:</strong> Plugins like Wordfence or Really Simple SSL have a 1-click toggle to insert modern security headers.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#0F0F0F]">
+              For Developers:
+            </span>
+            <div className="p-2.5 rounded bg-[#111827] text-white/90 font-mono text-[10px] space-y-1 overflow-x-auto">
+              <div>add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;</div>
+              <div>add_header X-Content-Type-Options "nosniff" always;</div>
+              <div>add_header X-Frame-Options "SAMEORIGIN" always;</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

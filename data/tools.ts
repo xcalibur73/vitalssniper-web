@@ -29,7 +29,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Performance',
     icon: '⚡',
     referenceBenchmark: 'Reference Benchmark: TTFB < 200ms, LCP < 2.5s',
-    whatItMeans: 'Time to First Byte measures the latency between browser request and the first byte of server response. High TTFB delays every subsequent visual asset and render step.',
+    whatItMeans: 'Time to First Byte measures how fast your web hosting server responds to visitors. When the server is slow, visitors stare at a blank screen before any text or pictures appear.',
     howToImprove: [
       'Enable server-level page caching (FastCGI, Redis, or Varnish).',
       'Use an edge CDN with automatic platform optimization to serve HTML from the nearest edge point.',
@@ -42,13 +42,13 @@ export const FREE_TOOLS: WebTool[] = [
   {
     slug: 'lcp-checker',
     name: 'LCP Element Finder',
-    shortDescription: 'Isolate the exact DOM element and image asset triggering your Largest Contentful Paint.',
-    fullDescription: 'Identifies the precise node triggering LCP in the viewport, measuring render delay, load duration, and element dimensions.',
+    shortDescription: 'Isolate the exact image or headline slowing down your Largest Contentful Paint.',
+    fullDescription: 'Identifies the precise headline or photo triggering LCP in the viewport, measuring render delay, load duration, and element dimensions.',
     tier: 'free',
     category: 'Performance',
     icon: '🎯',
     referenceBenchmark: 'Reference Benchmark: Mobile LCP <= 2.5s (75th percentile)',
-    whatItMeans: 'Largest Contentful Paint measures perceived load speed by timing when the primary viewport content finishes rendering. A slow LCP directly impacts user bounce rates.',
+    whatItMeans: 'Largest Contentful Paint measures how many seconds a visitor waits before the main image or headline appears on their phone. Slow LCP directly causes mobile visitors to tap back.',
     howToImprove: [
       'Add fetchpriority="high" to the principal above-the-fold hero image.',
       'Preload the LCP image in the document head before render-blocking CSS stylesheets.',
@@ -67,7 +67,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Performance',
     icon: '⚖️',
     referenceBenchmark: 'Reference Benchmark: Initial mobile transfer < 1.5MB',
-    whatItMeans: 'Heavy web pages congest mobile radio interfaces and delay rendering on cellular networks, driving up CPU processing and battery consumption.',
+    whatItMeans: 'Page weight is the total file size downloaded when opening your site. Heavy pages eat visitor mobile data plans and load sluggishly over cellular connections.',
     howToImprove: [
       'Compress raster photography into modern WebP or AVIF formats.',
       'Remove unused CSS frameworks and defer non-critical JavaScript execution.',
@@ -86,7 +86,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'SEO',
     icon: '🔍',
     referenceBenchmark: 'Reference Benchmark: Title 50-60 chars, Description 140-160 chars',
-    whatItMeans: 'Accurate title tags and meta descriptions determine search snippet CTR and communicate primary query context to search engine crawlers.',
+    whatItMeans: 'Your page title and description are your billboard on Google search results. Clear, compelling titles convince searchers to click your link instead of your competitors.',
     howToImprove: [
       'Ensure every indexable URL has a self-referential canonical tag.',
       'Craft unique, high-intent titles placing primary keywords toward the front.',
@@ -105,7 +105,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'SEO',
     icon: '🏷️',
     referenceBenchmark: 'Reference Benchmark: Valid Schema.org JSON-LD with verified entity IDs',
-    whatItMeans: 'Structured data assists search engines and autonomous AI agents in disambiguating page entities, author credentials, and topical relationships without guessing.',
+    whatItMeans: 'Structured data (JSON-LD) acts like a nutritional facts label for search engines, helping Google display rich search features like review stars, FAQs, and product prices.',
     howToImprove: [
       'Embed valid Schema.org entities directly inside script type="application/ld+json" blocks.',
       'Declare exact author Person identifiers and explicit datePublished ISO timestamps.',
@@ -124,7 +124,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Security',
     icon: '🛡️',
     referenceBenchmark: 'Reference Benchmark: Modern security headers (HSTS, CSP, X-Content-Type-Options)',
-    whatItMeans: 'HTTP security headers safeguard users against clickjacking, cross-site scripting (XSS), and SSL downgrade attacks while enforcing efficient browser caching.',
+    whatItMeans: 'Security headers are digital locks on your website that protect your visitors from malicious iframe framing (clickjacking) and enforce secure HTTPS connections.',
     howToImprove: [
       'Enable HSTS with max-age=31536000 and includeSubDomains.',
       'Set X-Content-Type-Options to nosniff to prevent MIME-type confusion attacks.',
@@ -143,7 +143,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'SEO',
     icon: '🔗',
     referenceBenchmark: 'Reference Benchmark: 0 broken internal links (100% 200/301 status)',
-    whatItMeans: 'Broken internal links disrupt user navigation and cause search engine crawlers to waste crawl budget on non-existent endpoints.',
+    whatItMeans: 'Broken links send visitors to a frustrating 404 Not Found dead-end, hurting your sales conversions and wasting Google crawl budget.',
     howToImprove: [
       'Implement permanent 301 redirects for any altered or retired URLs.',
       'Update internal cross-links immediately following site restructuring.',
@@ -162,7 +162,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Performance',
     icon: '🖼️',
     referenceBenchmark: 'Reference Benchmark: Content imagery in WebP/AVIF under 150KB',
-    whatItMeans: 'Unoptimized images represent the largest single component of website weight on the modern web and are a primary driver of mobile LCP issues.',
+    whatItMeans: 'Images are the heaviest part of most websites. Uncompressed images slow down mobile loading, while missing dimensions make the screen jump around while loading.',
     howToImprove: [
       'Always serve images in modern next-gen formats like WebP or AVIF.',
       'Provide responsive srcset attributes to serve scaled dimensions to mobile viewports.',
@@ -181,7 +181,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'AI Search & GEO',
     icon: '🤖',
     referenceBenchmark: 'Reference Benchmark: Citability Score >= 80/100, Search Bots 100% Allowed',
-    whatItMeans: 'AI search engines retrieve passages based on factual density, statistical proofs, and explicit crawler permissions. Blocking search crawlers or formatting answers into verbose paragraphs causes content to be omitted from synthesized AI answers.',
+    whatItMeans: 'AI search engines (like ChatGPT Search, Google AI Overviews, and Perplexity) look for concise, direct answer passages to quote as authoritative sources with clickable links.',
     howToImprove: [
       "Explicitly allow 'OAI-SearchBot', 'Claude-SearchBot', and 'PerplexityBot' in robots.txt.",
       'Format key factual definitions into 134-167 word blocks in the opening 40 words of each section.',
@@ -202,7 +202,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Technical SEO',
     icon: '🔬',
     referenceBenchmark: 'Reference Benchmark: 100% Metadata Parity, 0 Dropped Schemas, 0 Client-Only Critical Links',
-    whatItMeans: 'Client-side hydration frequently alters the DOM after initial server render. Search engines without full headless JavaScript execution may miss links, schemas, or indexing directives injected dynamically.',
+    whatItMeans: 'When complex JavaScript runs in the browser, it can accidentally hide or modify text and links that search engine crawlers were expecting to see in the initial server HTML.',
     howToImprove: [
       'Ensure all primary navigation links render in initial server HTML before JavaScript hydration.',
       'Render Schema.org JSON-LD scripts server-side to avoid client hydration race conditions.',
@@ -222,7 +222,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Technical SEO',
     icon: '🔍',
     referenceBenchmark: 'Reference Benchmark: Clean HTTP 200, 0 Robots Collisions, Self-Canonicalized',
-    whatItMeans: 'Search engines abandon indexation when encountering redirect loops, line-level robots collisions, or conflicting noindex headers. Immediate root-cause diagnosis prevents traffic losses.',
+    whatItMeans: 'If your page has redirect loops, robots.txt blocks, or conflicting noindex tags, Google cannot index it and your page will get zero search traffic.',
     howToImprove: [
       'Eliminate intermediate 302/307 redirect hops to preserve crawl budget and equity transfer.',
       'Audit robots.txt with RFC 9309 longest-match precedence to prevent unintentional line collisions.',
@@ -243,7 +243,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Responsive & UX',
     icon: '📱',
     referenceBenchmark: 'Reference Benchmark: Mobile Viewport 375px, 0px Horizontal Overflow',
-    whatItMeans: 'Elements exceeding mobile screen widths trigger horizontal scrolling, disrupting touch navigation and causing mobile usability penalties in Google Search Console.',
+    whatItMeans: 'When website elements are too wide for phone screens, the page wiggles and scrolls sideways, creating an unpleasant mobile experience and triggering Google usability warnings.',
     howToImprove: [
       "Replace 'width: 100vw' with 'width: 100%' to prevent scrollbar gutter width offset bugs.",
       "Apply 'min-width: 0' on flex children to allow text and code snippets to shrink inside rows.",
@@ -264,7 +264,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Technical SEO',
     icon: '🕸️',
     referenceBenchmark: 'Reference Benchmark: Graph Integrity >= 85/100, 0 Broken @id References, 0 Cycles',
-    whatItMeans: 'Modern search engines and AI Overviews evaluate connected entity graphs rather than isolated page snippets. Broken @id references or orphan nodes break entity resolution and drop rich results.',
+    whatItMeans: 'Connecting your articles, authors, and company website into an entity graph helps Google recognize your authority in Knowledge Panels and AI search answers.',
     howToImprove: [
       'Ensure every referenced @id URI resolves to a defined entity node on the site.',
       'Connect isolated Organization and WebSite nodes to content-level Article and Product entities via publisher or isPartOf.',
@@ -285,7 +285,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Performance',
     icon: '📸',
     referenceBenchmark: 'Reference Benchmark: 0% Mobile Pixel Waste, LCP fetchpriority="high", WebP/AVIF',
-    whatItMeans: 'Serving desktop-resolution images to mobile viewports wastes 40%-70% of network data and is the primary driver of mobile LCP failures. Adding fetchpriority and responsive srcset resolves the bottleneck.',
+    whatItMeans: 'Sending desktop-resolution photos to mobile phones wastes mobile cellular data and slows down your main hero image.',
     howToImprove: [
       'Add fetchpriority="high" and loading="eager" to your above-the-fold hero image.',
       'Deploy responsive <picture> or <img> srcset with calibrated sizes queries.',
@@ -306,7 +306,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'Performance',
     icon: '⚡',
     referenceBenchmark: 'Reference Benchmark: TBT < 150ms, Estimated INP < 200ms, 0 Render-Blocking Scripts',
-    whatItMeans: 'Interaction to Next Paint measures page responsiveness to user input. Unoptimized hydration bundles and heavy third-party marketing tags freeze the main thread, causing noticeable input delays.',
+    whatItMeans: 'Heavy JavaScript scripts can freeze your page, making buttons and menus feel unresponsive when tapped by mobile visitors.',
     howToImprove: [
       'Add defer or async attributes to external head scripts to unblock First Contentful Paint.',
       'Break up monolithic execution blocks exceeding 50ms using scheduler.yield() or requestIdleCallback().',
@@ -327,7 +327,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'SEO',
     icon: '🕸️',
     referenceBenchmark: 'Reference Benchmark: PageRank Leakage < 5%, Crawl Depth <= 3 Clicks, 0 Orphan Pages',
-    whatItMeans: 'Internal links distribute organic authority (PageRank) across your domain. When links point to redirects, 404 errors, or use internal nofollow tags, link equity evaporates instead of ranking conversion pages.',
+    whatItMeans: 'Pages on your site that have no internal links pointing to them (orphan pages) rarely rank in Google because search engines cannot easily find them.',
     howToImprove: [
       'Update internal redirect links (301/302) to point directly to their final canonical URLs.',
       'Eliminate internal rel="nofollow" attributes to allow PageRank to flow freely through navigation.',
@@ -348,7 +348,7 @@ export const FREE_TOOLS: WebTool[] = [
     category: 'SEO',
     icon: '🎯',
     referenceBenchmark: 'Reference Benchmark: Generic Anchors < 3%, Vector Contiguity > 25%, 0 Cannibalization Collisions',
-    whatItMeans: 'Internal link anchor text signals topical relevance to search engines. When internal links use generic words ("click here") or repeat identical anchors to different pages, search engine algorithms experience vector drift and keyword cannibalization.',
+    whatItMeans: 'Using descriptive link text (rather than generic words like "click here") tells Google what the linked page is about and passes valuable search ranking power.',
     howToImprove: [
       'Replace low-value phrases ("click here", "read more") with descriptive entity-rich anchors derived from target H1s.',
       'Resolve anchor cannibalization by assigning unique, distinct anchor phrases to each destination URL.',

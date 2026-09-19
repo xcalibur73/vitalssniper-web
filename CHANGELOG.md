@@ -5,6 +5,30 @@ All notable changes to the WebAudits.pro platform will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-09-19
+
+### Added
+- Human-friendly "Plain English Verdict" component (`components/ui/PlainEnglishVerdict.tsx`):
+  - 10-second TL;DR summary with color-coded traffic light impact badges (Looking Good, Room to Improve, Action Needed).
+  - Explicit business impact callouts explaining what metrics mean for sales, SEO traffic, and conversion rates.
+  - "Top Priority Fix" recommendations highlighting the single most urgent task.
+  - "No-Code CMS Tip" for WordPress and Shopify site owners.
+  - One-click "Send to Developer" quick-copy button formatting a 3-line Markdown note for Slack, email, or Jira tickets.
+- "Explain Like I'm 5" (ELI5) jargon explainer cards across all 8 free audit tools:
+  - TTFB: "The Drive-Thru Order Window"
+  - LCP: "The Front-Page Newspaper Headline"
+  - CLS / Images: "The Menu Button Jump"
+  - Page Weight: "The Heavy Suitcase Analogy"
+  - Broken Links: "The Dead-End Ditch"
+  - HTTP Headers: "The Deadbolt Front Door"
+  - SEO Meta: "The Book Cover & Storefront Sign"
+  - Schema: "The Nutrition Facts Label for Robots"
+- Dual actionable fix pathways ("For Site Owners (No-Code)" vs "For Developers (Code Snippets)") on all audit outputs.
+- Integration of `PlainEnglishVerdict` across all 9 specialized flagship audit tools (`geo-audit`, `index-trace`, `overflow-trace`, `hydration-audit`, `schema-graph`, `img-spec`, `payload-sniper`, `link-bleed`, `context-silo`) and the fallback performance auditor.
+
+### Changed
+- `data/tools.ts`: Rewrote short descriptions and "what it means" definitions across all 17 tools to eliminate technical jargon while maintaining engineering accuracy.
+
 ## [1.3.0] - 2026-09-19
 
 ### Added

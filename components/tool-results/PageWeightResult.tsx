@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { PageWeightAuditResult } from '@/lib/tool-analyzers/pageWeightAnalyzer';
-import { CheckCircle2, AlertTriangle, AlertCircle, HardDrive, Zap, ExternalLink } from 'lucide-react';
+import PlainEnglishVerdict from '@/components/ui/PlainEnglishVerdict';
+import { CheckCircle2, AlertTriangle, AlertCircle, HardDrive, Zap, ExternalLink, HelpCircle, Wrench } from 'lucide-react';
 
 const CATEGORY_COLORS: Record<string, string> = {
   HTML: '#2563EB',
@@ -15,6 +16,40 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default function PageWeightResult({ result }: { result: PageWeightAuditResult }) {
   const isGood = result.score >= 80;
   const isWarning = result.score >= 50 && result.score < 80;
+  const impact = result.isWithinBudget ? 'safe' : result.totalTransferMb <= 2.5 ? 'warning' : 'critical';
+
+  const heaviestCategory = result.categories.reduce(
+    (max, cat) => (cat.estimatedBytes > max.estimatedBytes ? cat : max),
+    result.categories[0] || { name: 'Assets', estimatedBytes: 0 }
+  );
+
+  const headline = result.isWithinBudget
+    ? 'Your page is lean and fast (' + result.totalTransferMb + ' MB), within mobile budgets.'
+    : 'Your page is ' +
+      result.totalTransferMb +
+      ' MB: heavier than the recommended 1.5 MB mobile threshold.';
+
+  const summary =
+    'When someone visits on mobile, their phone has to download ' +
+    result.totalTransferMb +
+    ' MB of data (' +
+    result.totalTransferKb +
+    ' KB). ' +
+    (result.isWithinBudget
+      ? 'This fits well within Google 1.5 MB performance budget for mobile cellular connections.'
+      : 'The biggest weight contributor is ' +
+        heaviestCategory.name +
+        ' (' +
+        heaviestCategory.estimatedKb +
+        ' KB). Trimming this will deliver faster page loads on phones.');
+
+  const businessImpact = result.isWithinBudget
+    ? 'Minimal data transfer costs and rapid loading on mobile networks with low bounce rates.'
+    : 'Heavy pages drain visitor phone batteries, burn mobile data limits, and cause noticeable loading delays on cellular signals.';
+
+  const topFix =
+    result.recommendations[0] ||
+    'Compress oversized images to WebP/AVIF and remove unused third-party tracking scripts.';
 
   const budgetPercent = Math.min(
     Math.round((result.totalTransferMb / result.budgetLimitMb) * 100),
@@ -23,7 +58,19 @@ export default function PageWeightResult({ result }: { result: PageWeightAuditRe
 
   return (
     <div className="space-y-6">
-      {/* Top Summary Bar */}
+      {/* 1. Plain English Human Verdict */}
+      <PlainEnglishVerdict
+        toolName="Page Weight Checker"
+        targetDomain={result.domain}
+        impact={impact}
+        headline={headline}
+        summary={summary}
+        businessImpact={businessImpact}
+        topFix={topFix}
+        noCodeTip="In WordPress, install an automatic image compressor (ShortPixel, Smush, or Imagify) and audit your plugins to deactivate tracking tools you are no longer using."
+      />
+
+      {/* 2. Top Summary Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-wider text-[#6B7280] block mb-1">
@@ -66,13 +113,24 @@ export default function PageWeightResult({ result }: { result: PageWeightAuditRe
         </div>
       </div>
 
+      {/* ELI5 Jargon Explainer Box */}
+      <div className="p-4 rounded-lg bg-[#F8F8F8] border border-[#E5E7EB] text-xs text-[#4B5563] space-y-1">
+        <div className="flex items-center gap-1.5 font-bold text-[#0F0F0F]">
+          <HelpCircle className="h-3.5 w-3.5 text-[#2563EB]" />
+          <span>Explain Like I am 5: What is Page Weight?</span>
+        </div>
+        <p className="leading-relaxed">
+          Think of your webpage like a suitcase. If your suitcase is 25kg when the overhead limit is 5kg, you get stuck at security. A heavy webpage forces a visitor's phone to download megabytes of giant photos and unnecessary scripts over cellular data before the page finishes loading.
+        </p>
+      </div>
+
       {/* Budget Meter Card */}
       <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <HardDrive className="h-4 w-4 text-[#2563EB]" />
             <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-              Performance Budget: {result.budgetLimitMb} MB Mobile Threshold
+              Mobile Cellular Budget: {result.budgetLimitMb} MB Recommended
             </h3>
           </div>
           <span className="font-mono text-xs font-bold text-[#4B5563]">
@@ -196,22 +254,49 @@ export default function PageWeightResult({ result }: { result: PageWeightAuditRe
         </div>
       )}
 
-      {/* Recommendations */}
-      {result.recommendations.length > 0 && (
-        <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-3">
+      {/* Dual Remediation Guidance */}
+      <div className="p-5 rounded-lg bg-white border border-[#E5E7EB] space-y-4">
+        <div className="flex items-center gap-2">
+          <Wrench className="h-4 w-4 text-[#2563EB]" />
           <h3 className="text-sm font-bold text-[#0F0F0F] uppercase tracking-wide">
-            Weight Reduction Recommendations
+            How to Lighten Your Page Weight
           </h3>
-          <ul className="space-y-2">
-            {result.recommendations.map((rec, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-[#4B5563]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
-                <span>{rec}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#2563EB]">
+              For Site Owners (No Code):
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Images:</strong> Run your pictures through TinyPNG.com or install WebP Express on WordPress before uploading.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-1.5 flex-shrink-0" />
+                <span><strong>Fonts:</strong> Limit your custom fonts to 1 or 2 families rather than loading 4 different Google fonts.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg bg-[#F9FAFB] border border-[#E5E7EB] space-y-2">
+            <span className="font-bold text-[#0F0F0F] text-xs uppercase tracking-wider block text-[#0F0F0F]">
+              For Developers:
+            </span>
+            <ul className="space-y-2 text-[#4B5563]">
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0F0F0F] mt-1.5 flex-shrink-0" />
+                <span>Enable server-side Brotli compression (reduces text payload by an additional 15-20% over Gzip).</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0F0F0F] mt-1.5 flex-shrink-0" />
+                <span>Tree-shake unused JavaScript dependencies and load heavy tracking libraries (Hotjar, HubSpot) via Google Tag Manager with deferred triggers.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
